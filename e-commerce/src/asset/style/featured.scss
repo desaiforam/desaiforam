@@ -1,0 +1,110 @@
+.container{
+    .featured{
+       .name{
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+       }
+       .row-shopping{
+        color: white;
+        margin: 20px;
+        width: 100%;
+        align-items: center;
+        text-align: left;
+        
+    }
+    .ps6{
+        display: flex;
+        background-color: black;
+        width: 615px;
+        height: 700px;
+        margin-left: 0; 
+       
+    }
+    .playStation{
+        position: absolute;
+        color: white;
+        bottom: 0;
+        width: 250px;
+        margin: 51px 35px;
+        .shop{
+            color: #fff;
+            font-weight: 700;
+            margin-top: 5px;
+            display: flex;
+        }
+        }
+       .col-6{
+           .row-shopping{
+            color: white;
+            margin: 7px;
+            align-items: center;
+            text-align: left;
+            width: 625px;
+            height: 100%;
+            // gap: -5px;
+            /* margin: 0; */
+            padding: 0;
+            margin-left: 50px;
+               
+               .women{
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                height: 423px;
+                width: 625px;
+                margin: 0;
+                margin-left: 61px;
+                   
+                   .collections{
+                    bottom: 50px;
+                    margin-left: 25px;
+                    position: absolute;   
+                    .shop{
+                        color: #fff;
+                        font-weight: 700;
+                        margin-top: 5px;
+                        display: flex;
+                    }
+                    }    
+                }
+            }
+            .amazon{
+                display: flex;
+                gap: 41px;
+                padding-bottom: 0;
+                margin: 0;
+                margin-left: 13px;
+                .sker{
+                    display: flex;
+                    height: 270px;
+                    flex-direction: column;
+                    width: 275px;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: black;
+                    padding: 17px;
+                    img{
+                        height: 300px;
+                        width: 150px;
+                    }
+                .speakers{
+                    position: absolute;
+                    bottom: 25px;
+                    width: 80%;
+                    .shop{
+                        color: #fff;
+                        font-weight: 700;
+                        margin-top: 5px;
+                        display: flex;
+                    }
+                }
+                
+            }
+        }   
+        
+        }
+    }
+}
+

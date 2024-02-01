@@ -1,0 +1,157 @@
+
+//mine 
+.container {
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: inherit;
+    // margin-top: 25px;
+    // border: 5px solid royalblue;
+    .anualgrross {
+        display: flex;
+        padding: 30px 29px 30px 28px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        .cardcastum {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            .img-outter-leyer {
+                background: #c1c0c1;
+                height: 90px;
+                width: 90px;
+                border-radius: 180px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .img-leyer {
+                background: black;
+                height: 70px;
+                width: 70px;
+                border-radius: 140px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .delivery {
+                color: black;
+                .fasttext {
+                    display: flex;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: black;
+                }
+                .orders {
+                    display: flex;
+                    font-size: 20px;
+                    color: black;
+                }
+            }
+        }
+    }
+}
+.container {
+    .company {
+        gap: 30px;
+        img {
+            display: flex;
+            padding: 38px 50px 0px 50px;
+            flex-direction: column;
+            // justify-content: flex-end;
+            align-items: center;
+        }
+        .postsofperson{
+         text-align: left;
+         gap: 16px;
+
+         .socialimg{
+            display: flex;
+            gap: 8px;
+         }
+        }
+    }
+}
+
+
+
+// .container {
+//     .anualgrross {
+//         padding: 5%; /* Adjust padding for responsiveness */
+//         .cardcastum {
+//             width: 100%;
+//             height: 100%;
+//             gap: 3vw; /* Use vw unit for responsiveness */
+//             .img-outter-leyer {
+//                 height: 10vw; /* Use vw unit for responsiveness */
+//                 width: 10vw; /* Use vw unit for responsiveness */
+//             }
+//             .img-leyer {
+//                 height: 8vw; /* Use vw unit for responsiveness */
+//                 width: 8vw; /* Use vw unit for responsiveness */
+//             }
+//             .delivery {
+//                 .fasttext, .orders {
+//                     font-size: 3vw; /* Use vw unit for responsiveness */
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// .container {
+//     .company {
+//         gap: 5%; /* Adjust gap for responsiveness */
+//         img {
+//             padding: 5% 10% 0 10%; /* Adjust padding for responsiveness */
+//         }
+//         .postsofperson {
+//             text-align: left;
+//             gap: 2vw; /* Use vw unit for responsiveness */
+//             .socialimg {
+//                 gap: 1vw; /* Use vw unit for responsiveness */
+//             }
+//         }
+//     }
+// }
+
+
+// @media only screen and (max-width: 768px) {
+//     .container {
+//         .anualgrross {
+//             .cardcastum {
+//                 gap: 5%; /* Adjust gap for smaller screens */
+//                 .img-outter-leyer {
+//                     height: 15vw; /* Adjust size for smaller screens */
+//                     width: 15vw; /* Adjust size for smaller screens */
+//                 }
+//                 .img-leyer {
+//                     height: 12vw; /* Adjust size for smaller screens */
+//                     width: 12vw; /* Adjust size for smaller screens */
+//                 }
+//                 .delivery {
+//                     .fasttext, .orders {
+//                         font-size: 4vw; /* Adjust font size for smaller screens */
+//                     }
+//                 }
+//             }
+//         }
+//         .company {
+//             gap: 5%; /* Adjust gap for smaller screens */
+//             img {
+//                 padding: 5% 5% 0 5%; /* Adjust padding for smaller screens */
+//             }
+//             .postsofperson {
+//                 gap: 3vw; /* Adjust gap for smaller screens */
+//                 .socialimg {
+//                     gap: 2vw; /* Adjust gap for smaller screens */
+//                 }
+//             }
+//         }
+//     }
+// }
+

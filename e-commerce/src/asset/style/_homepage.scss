@@ -1,0 +1,169 @@
+
+.topheader {
+    width: 100%;
+    height: 48px;
+    left: 0;
+    top: 0;
+    padding: 0;
+    position: relative;
+
+    .Header {
+        position: absolute;
+        background: #000000;
+        padding-right: 10px;
+
+        @media screen and (max-width: 768px) {
+            padding-right: 5px; // Adjust for smaller screens
+        }
+    }
+
+    .pt-1 {
+        margin-top: 16px;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .link {
+            padding-left: 10px;
+            color: #fff;
+            display: flex;
+            flex-direction: row;
+            font-weight: 700;
+
+            @media screen and (max-width: 768px) {
+                padding-left: 5px; // Adjust for smaller screens
+            }
+        }
+    }
+}
+
+.drop {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    bottom: 0;
+    padding: 25px 50px 0 10px;
+    margin-top: 5px;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column; // Adjust for smaller screens
+        align-items: flex-end;
+        padding: 15px 10px 0 10px;
+    }
+
+    .english {
+        color: #fff;
+        background: black;
+        display: flex;
+        padding-right: 9px;
+        justify-content: flex-start;
+        margin: 0;
+
+        @media screen and (max-width: 768px) {
+            margin-top: 10px; // Adjust for smaller screens
+        }
+    }
+
+    .list {
+        height: 20px;
+        width: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        @media screen and (max-width: 768px) {
+            margin-top: 10px; // Adjust for smaller screens
+        }
+    }
+}
+
+.navbar {
+    margin-top: 47px;
+    color: #000000;
+    align-content: flex-start;
+
+    .img {
+        height: 60px;
+        width: 60px;
+
+        @media screen and (max-width: 768px) {
+            height: 40px; // Adjust for smaller screens
+            width: 40px;
+        }
+    }
+}
+
+// .topheader{
+// width: 100%;
+// height: 48px;
+// left: 0px;
+// top: 0px;
+// padding: 0px;
+// position: relative;
+//     .Header{
+//     position: absolute;
+//     background: #000000;
+//     padding-right:10px ;
+//     }
+//     .pt-1{
+//         margin-top: 16px;
+//         margin-bottom: 1rem;
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: center;
+        
+//         .link{
+//         padding-left: 10px;
+//             color: #fff;
+//             display: flex;
+//             flex-direction: row;
+//             font-weight: 700;
+            
+            
+//             }
+//     }
+// }
+// .drop{
+//     position: absolute;
+    
+//     right: 0;
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     gap: 5px;
+//     bottom: 0;
+//     padding: 25px 50px 0px 10px;
+//     margin-top: 5px;
+//     .english {
+//         color: #fff;
+//         background: black;
+//         display: flex;
+        
+//         padding-right: 9px;
+//         justify-content:flex-start;
+//         margin: 0;
+       
+//     }
+//     .list{
+//         height: 20px;
+//         width: 20px;
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: center;
+        
+//     }
+// }
+// .navbar{
+//     margin-top: 47px;
+//     color: #000000;
+//     align-content: flex-start;
+
+//     .img{
+//         height: 60px;
+//         width: 60px;
+//     }
+// }

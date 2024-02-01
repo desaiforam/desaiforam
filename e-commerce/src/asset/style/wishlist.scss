@@ -1,0 +1,56 @@
+.container {
+    .wishlidtcart{
+        margin-bottom: 40px;
+        .wishlist {
+            height: 80px;
+            width: 100%;
+            gap: 1000px;
+            align-items: center;
+            margin-bottom: 80px;
+            span {
+                font-family: Poppins;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px;
+            }
+            button {
+                display: flex;
+                padding: 10px 45px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 4px;
+                border: 1px solid rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+
+    .justforyou{
+            margin-top: 40px;
+            margin-bottom: 80px;
+        .justyou {
+            display: flex;
+            align-items: center;
+            gap: 864px;
+            justify-content: space-between;
+            
+        .justfor{
+            gap: 16px;
+            display: flex;
+            align-items: center;
+        }    
+    
+            button {
+                display: flex;
+                padding: 10px 45px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 4px;
+                border: 1px solid rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+
+}

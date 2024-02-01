@@ -1,0 +1,47 @@
+import { ReactComponent as PhoneIcon} from './phone.svg'
+import {ReactComponent as ComputerIcon} from './Computer.svg'
+import {ReactComponent as SmartWatch} from './watch.svg'
+import {ReactComponent as Camera} from './camera.svg'
+import {ReactComponent as HeadPhone } from './headphone.svg'
+import {ReactComponent as Gaming} from './gaming.svg'
+import { ReactComponent as Dollar } from './test.svg'
+import {ReactComponent as Bag} from './active.svg'
+import {ReactComponent as Doller} from './dollar.svg'
+import {ReactComponent as Home} from './home.svg'
+import {ReactComponent as Twiter} from './twiter.svg'
+import {ReactComponent as Insta} from './instgram.svg'
+import {ReactComponent as Link} from './linkdin.svg'
+import {ReactComponent as Contactus} from './contect.svg'
+import {ReactComponent as Message} from './message.svg'
+import {ReactComponent as FaceBook} from './facebook.svg'
+import {ReactComponent as Cancleicon} from './cancellations.svg'
+import {ReactComponent as LogOut} from './logout.svg'
+import {ReactComponent as Review} from './review.svg'
+import {ReactComponent as Uaericon}  from './manageacc.svg'
+
+export {
+    PhoneIcon,
+    ComputerIcon,
+    SmartWatch,
+    Camera,
+    HeadPhone,
+    Gaming,
+    Dollar,
+    Bag,
+    Doller,
+    Home,
+    Twiter,
+    Insta,
+    Link,
+    Contactus,
+    Message,
+    FaceBook,
+    Cancleicon,
+    LogOut,
+    Review,
+    Uaericon
+
+
+
+
+}

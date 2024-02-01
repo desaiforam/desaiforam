@@ -1,0 +1,121 @@
+.container{
+    .ourproduct{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        // flex-wrap: inherit;
+        // align-items: center;
+        // margin-top: 25px;
+    
+    .row{
+        color: white;
+        margin: 20px;
+        align-items: center;
+        text-align: left;
+        height:fit-content;
+        width: 100%;
+        display: flex;
+        // border: 3px solid red;
+        .cumstcard{
+            
+            margin-bottom: 50px; 
+            height: 364px;
+            width: 313px;    
+                .addtocart{
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    justify-content: center;
+                    width: 250px;
+                    height: 250px
+                }
+                .addto{
+                    height: 50px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                
+                    .btn{
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+                .games{
+                    .havit{
+                        color: black;
+                        font-weight: 700;
+                        .price{
+                            color:red;
+                            align-items: center;       
+                        }
+                    }
+                    .colorchanger{
+                        display: flex;
+                        flex-direction: row;
+                        gap: 11px;
+                        .imgoutterleyer{
+                            background-color:orangered;
+                            height: 20px;
+                            width: 20px;
+                            border-width: 4px ;
+                            border-color: black;
+                            border-radius: 40px;
+                            display: flex;
+                            
+                            flex-direction: inherit;
+                            justify-content: center;
+                            align-items: center;
+                        .leyer{
+                            background-color: white;
+                            height: 20px;
+                            width: 20px;
+                            border-radius: 40px;
+                            border-width: 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border: 3px solid black;
+                        .checkmark{
+                            background-color: orangered;
+                            height: 8px;
+                            width: 8px;
+                            border-radius: 50%;
+                        }
+
+                        }
+                        }
+                        .imgoutterleyer2{
+                            background-color:orangered;
+                            height: 20px;
+                            width: 20px;
+                            border-width: 4px ;
+                            border-color: black;
+                            border-radius: 40px;
+                            display: flex;
+                            
+                            flex-direction: inherit;
+                            justify-content: center;
+                            align-items: center;
+                        .leyer2{
+                            background-color: orangered;
+                            height: 20px;
+                            width: 20px;
+                            border-radius: 40px;
+                            
+                            border-width: 4px ;
+                        .checkmark2{
+                            background-color: #000;
+                            height: 15px;
+                            width: 15px;
+                            border-radius: 50%
+                        }
+
+                        }
+                        }
+                }
+                }
+            }
+            
+        }
+    }
+    }

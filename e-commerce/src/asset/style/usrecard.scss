@@ -1,0 +1,84 @@
+.container {
+    .homecart {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .tablecatr {
+        // border: 2px solid black;
+        width: 100%;
+        // height: 480px;
+        .carttable {
+            gap: 280px;
+            display: flex;
+            height: 125px;
+            align-items: center;
+            .carttmages {
+                width: 205px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 18px;
+                .quntity {
+                    display: flex;
+                    position: relative;
+
+                    svg {
+                        display: flex;
+                        position: absolute;
+                        top: -5px;
+                        left: -12px;
+                    }
+                }
+            }
+        }
+    }
+    .btngroup {
+        height: 80px;
+        width: 100%;
+        gap: 800px;
+        margin-bottom: 80px;
+        button {
+            width: 1100px;
+            display: flex;
+            padding: 16px 48px;
+            border-radius: 4px;
+            border: 1px solid black;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+    .applycoupon {
+        .codecoupon {
+            display: flex;
+
+            gap: 16px;
+            .inputtype {
+                width: 300px;
+                height: 56px;
+                gap: 30px;
+            }
+        }
+        .coupon {
+            background: #db4444;
+            color: white;
+            height: 56px;
+            width: 211px;
+            border: 0;
+            border-radius: 4px;
+        }
+        .carttotal {
+            border: 1.5px solid black;
+            width: 414px;
+            height: 340px;
+            padding: 25px;
+            border-radius: 4px;
+
+            .total {
+                text-align: start;
+                font-size: x-large;
+            }
+        }
+    }
+}

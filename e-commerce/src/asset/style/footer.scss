@@ -1,0 +1,169 @@
+// .footer{
+//     background-color: black;
+//     width: 100%;
+//     color: white;
+//     display: flex;
+//     align-items: flex-start;
+//     text-align: left;
+
+//     .container{
+//         padding: 40px 0px 24px 0px;
+//         gap: 60px;
+//         flex-shrink: 0;
+    
+
+//         .exclisive{
+//             img {
+//                 height: 21px;
+//                 width: 100px;
+//                 }
+//             .email{
+//                 display: flex;
+//                 border: 1px solid white;
+//                 width: 230px;
+//                 align-items: center;
+//                 padding: 5px;
+//             .input{
+//                 background-color: black;
+//                 border: 0;
+//             }    
+//             }
+//             }
+//         .support{
+//             width: 189px;
+         
+//         .gmail{
+//             display: flex;
+//             flex-direction: column;
+//             gap: 10px;
+//         }    
+//         }    
+        
+// }
+            
+        
+    
+//     .support{
+//         height: auto;
+//         width: 175px;
+//         gap: 2px;
+//         display: flex;
+//         flex-direction: column;
+
+//         .gmail{
+//             display: flex;
+//             flex-direction: column;
+//             gap: 16px;
+//         }
+//     }
+//     .accdeteils{
+//         height: auto;
+//         width: 175px;
+//         gap: 2px;
+//         display: flex;
+//         flex-direction: column;
+        
+//         .account{
+//             display: flex;
+//             flex-direction: column;
+//             gap: 16px;
+//         }
+
+//     }
+//     .downloadapp{
+//         .socialimg{
+//             Twiter{
+//                 fill: white;
+//             }
+//             Insta{
+//                 fill: white;
+//             }
+//         }
+//     }
+// }
+.footer {
+    background-color: black;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+
+    .container {
+        padding: 40px 0 24px 0;
+        gap: 2rem; // Adjust the gap as needed
+        flex-shrink: 0;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column; // Adjust for smaller screens
+            align-items: center;
+            text-align: center;
+        }
+
+        .exclusive {
+            img {
+                height: 21px;
+                width: 100px;
+            }
+
+            .email {
+                display: flex;
+                border: 1px solid white;
+                width: 230px;
+                align-items: center;
+                padding: 5px;
+
+                .input {
+                    background-color: black;
+                    border: 0;
+                    color: white;
+
+                    @media screen and (max-width: 768px) {
+                        width: 100%; // Adjust for smaller screens
+                    }
+                }
+            }
+        }
+
+        .support {
+            width: 189px;
+
+            .gmail {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    }
+
+    .support,
+    .account-details,
+    .download-app {
+        height: auto;
+        width: 175px;
+        gap: 2px;
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-width: 768px) {
+            margin-top: 20px; // Add spacing between sections for smaller screens
+        }
+
+        .gmail,
+        .account {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
+
+    .download-app {
+        .social-img {
+            svg {
+                fill: white;
+            }
+        }
+    }
+}
+
+

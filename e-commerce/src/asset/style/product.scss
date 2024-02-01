@@ -1,0 +1,52 @@
+@use './variables';
+.container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: inherit;
+        align-items: center;
+        margin-top: 25px; 
+    } 
+.CumstCard {
+        // margin-left: 33pc;
+        // margin-top: 38px;
+          .btn{
+            background-color: #00FF66;
+          }
+          
+            .games        {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                color: black;
+                .price{
+                    color: red;
+                 .price2   {
+                     
+                    top: 11px;
+                    right: 0;
+                    position: absolute;
+                    content: "";
+                    width: -webkit-fill-available;
+                    height: 2px;
+                    background-color: gray;
+                    }
+                }
+            }
+            .havit{
+                  .row{
+                    margin-block-start: revert-layer;
+                    color: black;
+                    margin-top: 26px;
+                    text-align: left;
+                    h6 {
+                        font-size: 1rem;
+                        color: black !important;
+                    }
+                    
+                }
+            }
+            .value3{
+                color: gray;
+            }
+    
+        }

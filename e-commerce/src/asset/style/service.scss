@@ -1,0 +1,72 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: inherit;
+    margin-top: 25px;
+    // border: 5px solid royalblue;
+    
+    .service{
+        width: 100%;
+        height: 100%;
+        .img-outter-leyer{
+            background: #C1C0C1;
+            height: 90px;
+            width: 90px;
+            border-radius: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-leyer{
+            background: black;
+            height: 70px;
+            width: 70px;
+            border-radius: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .delivery{
+         color: black;
+         .fasttext{
+            display: flex;
+            font-size: 20px;
+            font-weight: 600;
+            color: black;
+         }
+         .orders{
+            display: flex;
+            font-size: 20px;
+            color: black;
+
+         }
+        } 
+    }
+}
+
+
+
+//     .fast{
+//         background-color: gray;
+//         position: absolute;
+//         width: 125px;
+//         border-radius: 250px;
+//         height: 125px;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         .free{
+//             background-color: black;
+//             position: relative;
+//             height: 100px;
+//             width: 100px;
+//             border-radius: 200px;
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             img{
+//                 height: 90px;
+//                 width: 90px;
+//             }
+//         }
+//     }
