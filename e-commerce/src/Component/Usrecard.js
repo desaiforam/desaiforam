@@ -20,6 +20,7 @@ const Usrecard = () => {
 
 
     const proceesToCheckout = () => {
+
         nevigate("/Billing-Details")
     }
 
@@ -36,7 +37,7 @@ const Usrecard = () => {
 
     useEffect(() => {
         getprice()
-    }, [])
+    },[])
 
 
     const onhandalprice = (index, qty) => {
@@ -47,7 +48,7 @@ const Usrecard = () => {
         const totalData = data.reduce((accumulator, object) => {
             return accumulator + object.price;
         }, 0);
-        console.log('totalData', totalData);
+        // console.log('totalData', totalData);
         settotal(totalData)
 
     }

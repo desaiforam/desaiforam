@@ -15,7 +15,7 @@ const Logedin = () => {
                     <div className='row w-100'>
                         <div className='col-7'>
                             <div className='bag'>
-                                <img src={Images.singup} height="760px" />
+                                <img src={Images.singup} height="760px"  alt=''/>
                             </div>
                         </div>
                         

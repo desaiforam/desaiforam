@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 
 const cardSecound =
-    [{ image: Images.gameingleptop, title: "ASUS FHD Gaming Laptop", FillEye: true, button: "new", star: true, buttoncolor: "#DB4444", count: "$960 ", price: "(65)", price2: "$1160", button: "-35%", iscart: true },
+    [{ image: Images.gameingleptop, title: "ASUS FHD Gaming Laptop", FillEye: true, star: true, buttoncolor: "#DB4444", count: "$960 ", price: "(65)", price2: "$1160", button: "-35%", iscart: true },
     { image: Images.leptop, title: "IPS LCD Gaming Monitor", FillEye: true, star: true, price: "$1160 ", value3: "(65)", iscart: true },
     { image: Images.Gamepad, title: "HAVIT HV-G92 Gamepad", FillEye: true, star: true, button: "new", buttoncolor: "#00FF66", value3: "(65)", price: "$560 ", iscart: true },
     { image: Images.Keyboard, title: "AK-900 Wired Keyboard", FillEye: true, star: true, price: "$200 ", value3: "(65)", iscart: true }

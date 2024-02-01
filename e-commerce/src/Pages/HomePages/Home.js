@@ -37,9 +37,9 @@ class Home extends Component {
     axios.get('https://mocki.io/v1/e93df3d3-714f-47c5-a223-e12112899cdd')
     
 
-    //('https://fakestoreapi.com/products')
+ 
       .then(response => {
-        // console.log("3333", response?.data)
+       
         this.setState({ posts: response.data })
 
       })

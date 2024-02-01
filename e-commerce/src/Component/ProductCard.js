@@ -14,7 +14,7 @@ const ProductCard = (props) => {
   }
   const dispatch = useDispatch();
   const addWishlist = () => {
-    console.log('addWishlist', addWishlist);
+    // console.log('addWishlist', addWishlist);
     dispatch(AuthAction.uapdateWishlist(item))
   }
   const addtocartbtn = () => {

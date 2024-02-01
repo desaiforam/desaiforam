@@ -16,7 +16,7 @@ const CumstCard = (props) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   }
   const iscart = addtocart.find(itemprice => { return itemprice.id === item.price })
-  console.log('addtocart', addtocart);
+  // console.log('addtocart', addtocart);
 
   console.log('iscart', iscart);
 

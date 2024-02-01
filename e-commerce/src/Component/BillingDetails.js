@@ -5,6 +5,7 @@ import Footer from './Footer'
 import Images from '../utilis/images'
 import { useSelector } from 'react-redux'
 
+
 const BillingDetails = () => {
 
 
@@ -24,20 +25,11 @@ const BillingDetails = () => {
     }
     useEffect(() => {
         getprice()
-    }, [])
-    const onhandalprice = (index, qty) => {
-        const data = [...subtotal]
-        data[index].price = data[index].price * qty
+    },[])
     
+  
 
-        setsubtotal(data)
-        const totalData = data.reduce((accumulator, object) => {
-            return accumulator + object.price;
-        }, 0);
-        console.log('totalData', totalData);
-        settotal(totalData)
 
-    }
     return (
         <div>
             <Navebar />
@@ -102,14 +94,16 @@ const BillingDetails = () => {
 
                                 {addtocart &&
                                     addtocart.map((item, index) => {
+                                        console.log('item', item);
 
                                         return <><div className='cartbill'>
                                             <div className='imges'>
                                                 <img src={item?.image} height={50} width={50} alt='' />
-                                                {truncate(item.title, 5, 30)}
+                                                {truncate(item.title, 5, 20)}
                                             </div>
                                             <div className='moniter'>
                                                 {item?.price}
+
                                             </div>
                                         </div>
                                         </>
