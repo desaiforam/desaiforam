@@ -12,9 +12,9 @@ const { addtocart } = useSelector((state) => state.Auth)
 const [carttoadd, setCarttoadd] = useState([])
 useEffect(() => {
   setCarttoadd(addtocart)
-  console.log('loder')
+  // console.log('loder')
 },[addtocart])
-
+// const [cart, setCart] = useState(initialState)
 
 const truncate = (str, max, len) => {
   return str.length > max ? str.substring(0, len) + "..." : str;

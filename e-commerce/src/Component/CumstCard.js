@@ -13,7 +13,7 @@ const CumstCard = (props) => {
   const [carttoadd, setCarttoadd] = useState([])
   useEffect(() => {
     setCarttoadd(addtocart)
-    console.log('loder')
+    // console.log('loder')
   },[addtocart])
 
 

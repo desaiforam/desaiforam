@@ -68,10 +68,10 @@ function Footer() {
                   </div>
                   <div className="col-6 mb-3 d-flex flex-column">
                     <div className='iapp'>
-                      <img src={Images.google} height="50px" width="130px" alt='' />
+                      <img src={Images.google} height="50px" width="105px" alt='' />
                     </div>
                     <div className='android'>
-                      <img src={Images.iapple} height="50px" width="130px" alt='' />
+                      <img src={Images.iapple} height="50px" width="105px" alt='' />
                     </div>
                   </div>
                 </div>

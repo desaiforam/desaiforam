@@ -9,7 +9,7 @@ const CumstCard2 = (props) => {
 
 
 
-    <div className='col-2 category-main  '>
+    <div className='col-2 category-main'>
       <div className='images-box d-flex align-items-center justify-content-center flex-column'>
         {/* <img  src={items.img} className='hover d-flex justify-content-start' height="60" width="60" /> */}
         {items.img}

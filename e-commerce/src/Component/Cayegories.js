@@ -19,7 +19,7 @@ const Cayegories = () => {
 
   return (
     <div>
-      <div className='container flex-column'>
+      <div className='container flex-column'  >
 
         <div className='name flex-row w-100'>
         <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@ const Cayegories = () => {
         <div className='row w-100'>
           {card2.map((items, index) => {
             return (
-              <CumstCard2 items={items} />
+              <CumstCard2 items={items}/>
             );
 
           })}
