@@ -4,6 +4,7 @@ import CumstCard2 from './CumstCard2'
 import { PhoneIcon,ComputerIcon,SmartWatch,Camera,HeadPhone,Gaming } from '../asset/images/svg'
 
 
+
 const card2 = [{ img:<PhoneIcon/>, value: "phone" },
 { img:<ComputerIcon/>, value: "computer" },
 { img:<SmartWatch/>, value: "SmartWatch" },
@@ -49,6 +50,16 @@ const Cayegories = () => {
           })}
         </div>
       </div>
+            {/* <div className='conntainer'>
+          <Carousel itemsToShow={6} pagination={false} >
+            {card2.map((items, index) => (
+      <div className="carousel-wrapper d-flex">
+                <CumstCard2 items={items}  />
+              </div>
+            ))}
+          </Carousel>
+
+        </div> */}
 
     </div>
   )

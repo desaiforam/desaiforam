@@ -1,29 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Images from '../utilis/images'
 import { useDispatch, useSelector } from 'react-redux'
 import { AuthAction } from '../store/action/AuthAction'
 
 const ProductCard = (props) => {
 
-  const { item, index } = props
-  const { addtocart } = useSelector((state) => state.Auth)
-  const [carttoadd, setCarttoadd] = useState("")
+const { item,  index } = props
+const { addtocart } = useSelector((state) => state.Auth)
 
-   const truncate = (str, max, len) => {
-     return str.length > max ? str.substring(0, len) + "..." : str;
-  }
-  const dispatch = useDispatch();
-  const addWishlist = () => {
-    // console.log('addWishlist', addWishlist);
-    dispatch(AuthAction.uapdateWishlist(item))
-  }
-  const addtocartbtn = () => {
-    const object = addtocart.find(obj => obj === item);
-    setCarttoadd(object)
-    console.log('object', object);
-  }
 
-  
+const [carttoadd, setCarttoadd] = useState([])
+useEffect(() => {
+  setCarttoadd(addtocart)
+  console.log('loder')
+},[addtocart])
+
+
+const truncate = (str, max, len) => {
+  return str.length > max ? str.substring(0, len) + "..." : str;
+}
+const iscart = carttoadd.length > 0 ? carttoadd.find(itemid => { return itemid.id === item.id }) : false
+
+// console.log('iscart', addtocart);
+
+const dispatch = useDispatch();
+const addWishlist = () => {
+  dispatch(AuthAction.uapdateWishlist(item))
+}
+
+
+const addtocartbtn = () => {
+  dispatch(AuthAction.updatCart(item))
+
+  // const object = carttoadd.push(item);
+  console.log('[...carttoadd,item]', [...carttoadd, item]);
+  setCarttoadd([...carttoadd, item])
+  // console.log('object', object);
+
+
+}
+const carttoremovebtn = (id) => {
+
+  dispatch(AuthAction.removetoCart(id))
+  const object = carttoadd.filter(obj => obj.id !== id);
+  setCarttoadd(object)
+  console.log('carttoremove', object);
+}
   return (
 
     <div className='cumstcard col-3 position-relative' key={index}>
@@ -42,9 +64,12 @@ const ProductCard = (props) => {
       {/* </div> */}
       <div className='addto'>
       <div className='addto mb-3'>
-          {!carttoadd && <button className='btn btn-dark ' onClick={() => addtocartbtn(item)}>Add To cart</button>
+          {/* {!carttoadd && <button className='btn btn-dark ' onClick={() => addtocartbtn(item)}>Add To cart</button>
+          } */}
+          {!iscart && <button className='btn btn-dark ' onClick={() => addtocartbtn(item)}>Add To Cart</button>
           }
-
+          {iscart && <button className='btn btn-dark ' onClick={() => carttoremovebtn(item.id)}>Remove To Cart</button>
+          }
       </div>
       <div className='games mt-3'>
         <div className='d-flex flex-column  align-items-start'>
@@ -69,21 +94,7 @@ const ProductCard = (props) => {
             </div>
           </div>
         </div>
-        {/* {item?.color && <div className='colorchanger'>
-          <a className='imgoutterleyer' href='/prodect-details'
-          >
-            {item?.changecolor && <div className='leyer'>
-              <div class="checkmark" style={{ backgroundColor: item.changecolor }} />
-            </div>}
-            <span></span>
-          </a>
-          <div className='imgoutterleyer2'>
-            <div className='leyer2'>
-              <span></span>
-            </div>
-            <span></span>
-          </div>
-        </div>} */}
+        
       </div>
     </div >
     </div>

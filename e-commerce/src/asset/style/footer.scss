@@ -10,7 +10,6 @@
 //         padding: 40px 0px 24px 0px;
 //         gap: 60px;
 //         flex-shrink: 0;
-    
 
 //         .exclisive{
 //             img {
@@ -26,23 +25,21 @@
 //             .input{
 //                 background-color: black;
 //                 border: 0;
-//             }    
+//             }
 //             }
 //             }
 //         .support{
 //             width: 189px;
-         
+
 //         .gmail{
 //             display: flex;
 //             flex-direction: column;
 //             gap: 10px;
-//         }    
-//         }    
-        
+//         }
+//         }
+
 // }
-            
-        
-    
+
 //     .support{
 //         height: auto;
 //         width: 175px;
@@ -62,7 +59,7 @@
 //         gap: 2px;
 //         display: flex;
 //         flex-direction: column;
-        
+
 //         .account{
 //             display: flex;
 //             flex-direction: column;
@@ -93,7 +90,23 @@
         padding: 40px 0 24px 0;
         gap: 2rem; // Adjust the gap as needed
         flex-shrink: 0;
-
+        .exclisive{
+                        img {
+                            height: 21px;
+                            width: 100px;
+                            }
+                        .email{
+                            display: flex;
+                            border: 1px solid white;
+                            width: 230px;
+                            align-items: center;
+                            padding: 5px;
+                        .input{
+                            background-color: black;
+                            border: 0;
+                        }
+                        }
+                        }
         @media screen and (max-width: 768px) {
             flex-direction: column; // Adjust for smaller screens
             align-items: center;
@@ -165,5 +178,3 @@
         }
     }
 }
-
-

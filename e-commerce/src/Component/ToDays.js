@@ -2,15 +2,12 @@ import React from 'react'
 import Images from '../utilis/images'
 import CumstCard from './CumstCard'
 import Carousel from 'react-elastic-carousel'
-// import ReactElasticCarousel from 'react-elastic-carousel'
-
-// import Products from './Products'
 
 
 const ToDays = ({ posts }) => {
   // console.log('posts', posts)
 
-  
+
 
   return (
     <>
@@ -60,24 +57,22 @@ const ToDays = ({ posts }) => {
             </div>
           </div>
 
-          {/* <div className='arrow d-flex gap-2'>
-            <img src={Images.arrow_left} height="30px" width="30px" alt='' />
-            <img src={Images.arrow_right} height="30px" width="30px" alt='' />
-          </div> */}
+          
         </div>
 
-        <div className="carousel-wrapper">
-        <div className='conntainer '>
-          <Carousel itemsToShow={3} pagination={false} >
+
+        <div className="carousel-wrapper d-flex">
+          <Carousel itemsToShow={4.5} pagination={false} >
             {posts.map((item, index) => (
-              <CumstCard item={item} slider index={index} />
+              <div className='conntainer'>
+                <CumstCard item={item} slider index={index} />
+              </div>
             ))}
           </Carousel>
-        </div>
 
         </div>
 
-       
+
       </div>
       <button className='btn btn-danger mt-5' style={{ height: "20", width: "20", align_item: "center" }}>View All Products</button>
 

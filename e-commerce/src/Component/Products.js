@@ -25,7 +25,7 @@ const Products = ({ posts }) => {
                     </div>
                 </div>
             </div>
-            <div className=' CumstCard  row'>
+            <div className=' CumstCard  row mt-4'>
 
                 {posts.map((item, index) => {
                     return (
