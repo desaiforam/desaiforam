@@ -43,6 +43,10 @@
     .btn-dark {
         height: 100%;
         width: 100%;
+        .btn-dark:hover{
+            background-color: black !important;
+            
+        }
     }
 }
 .games {

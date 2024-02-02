@@ -1,82 +1,80 @@
-.container{
-    .featured{
-       .name{
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-       }
-       .row-shopping{
-        color: white;
-        margin: 20px;
-        width: 100%;
-        align-items: center;
-        text-align: left;
-        
-    }
-    .ps6{
-        display: flex;
-        background-color: black;
-        width: 615px;
-        height: 700px;
-        margin-left: 0; 
-       
-    }
-    .playStation{
-        position: absolute;
-        color: white;
-        bottom: 0;
-        width: 250px;
-        margin: 51px 35px;
-        .shop{
-            color: #fff;
-            font-weight: 700;
-            margin-top: 5px;
+.container {
+    .featured {
+        .name {
+            align-items: center;
             display: flex;
+            flex-direction: row;
+            width: 100%;
         }
-        }
-       .col-6{
-           .row-shopping{
+        .row-shopping {
             color: white;
-            margin: 7px;
+            margin: 20px;
+            width: 100%;
             align-items: center;
             text-align: left;
-            width: 625px;
-            height: 100%;
-            // gap: -5px;
-            /* margin: 0; */
-            padding: 0;
-            margin-left: 50px;
-               
-               .women{
+        }
+        .ps6 {
+            display: flex;
+            background-color: black;
+            width: 615px;
+            height: 700px;
+            margin-left: 0;
+        }
+        .playStation {
+            position: absolute;
+            color: white;
+            bottom: 0;
+            width: 250px;
+            margin: 51px 35px;
+            .shop {
+                color: #fff;
+                font-weight: 700;
+                margin-top: 5px;
                 display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                height: 423px;
+            }
+        }
+        .col-6 {
+            .row-shopping {
+                color: white;
+                margin: 7px;
+                align-items: center;
+                text-align: left;
                 width: 625px;
-                margin: 0;
-                margin-left: 61px;
-                   
-                   .collections{
-                    bottom: 50px;
-                    margin-left: 25px;
-                    position: absolute;   
-                    .shop{
-                        color: #fff;
-                        font-weight: 700;
-                        margin-top: 5px;
-                        display: flex;
+                height: 100%;
+                // gap: -5px;
+                /* margin: 0; */
+                padding: 0;
+                margin-left: 50px;
+
+                .women {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    height: 423px;
+                    width: 625px;
+                    margin: 0;
+                    margin-left: 61px;
+
+                    .collections {
+                        bottom: 50px;
+                        margin-left: 25px;
+                        position: absolute;
+                        .shop {
+                            color: #fff;
+                            font-weight: 700;
+                            margin-top: 5px;
+                            display: flex;
+                        }
                     }
-                    }    
                 }
             }
-            .amazon{
+            .amazon {
                 display: flex;
                 gap: 41px;
                 padding-bottom: 0;
                 margin: 0;
                 margin-left: 13px;
-                .sker{
+                .sker {
                     display: flex;
                     height: 270px;
                     flex-direction: column;
@@ -85,26 +83,58 @@
                     align-items: center;
                     background-color: black;
                     padding: 17px;
-                    img{
+                    img {
                         height: 300px;
                         width: 150px;
                     }
-                .speakers{
-                    position: absolute;
-                    bottom: 25px;
-                    width: 80%;
-                    .shop{
-                        color: #fff;
-                        font-weight: 700;
-                        margin-top: 5px;
-                        display: flex;
+                    .speakers {
+                        position: absolute;
+                        bottom: 25px;
+                        width: 80%;
+                        .shop {
+                            color: #fff;
+                            font-weight: 700;
+                            margin-top: 5px;
+                            display: flex;
+                        }
                     }
                 }
-                
             }
-        }   
-        
         }
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .container .featured .col-6 .row-shopping {
+        margin: 20px;
+    }
+
+    .container .featured .col-6 .women .collections,
+    .container .featured .col-6 .amazon .sker {
+        width: 100%;
+        max-width: none;
+    }
+
+    .container .featured .col-6 .amazon .sker img {
+        height: auto;
+        max-width: none;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .container .featured .col-6 .row-shopping {
+        margin: 20px;
+    }
+
+    .container .featured .col-6 .women .collections,
+    .container .featured .col-6 .amazon .sker {
+        width: 100%;
+        max-width: none;
+    }
+
+    .container .featured .col-6 .amazon .sker img {
+        height: auto;
+        max-width: none;
     }
 }
 

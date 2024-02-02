@@ -62,7 +62,7 @@ const ToDays = ({ posts }) => {
 
 
         <div className="carousel-wrapper d-flex">
-          <Carousel itemsToShow={4.5} pagination={false} >
+          <Carousel itemsToShow={4} pagination={false} >
             {posts.map((item, index) => (
               <div className='conntainer'>
                 <CumstCard item={item} slider index={index} />

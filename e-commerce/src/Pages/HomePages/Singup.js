@@ -4,7 +4,9 @@ import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
 import Images from '../../utilis/images'
 
+
 const Singup = () => {
+
     return (
         <>
             <Navebar />
@@ -15,7 +17,7 @@ const Singup = () => {
                     <div className='row w-100'>
                         <div className='col-6'>
                             <div className='bag'>
-                                <img src={Images.singup} height="760px"alt='' />
+                                <img src={Images.singup} height="760px" alt='' />
                             </div>
                         </div>
                         <div className='col-1'></div>
@@ -54,7 +56,8 @@ const Singup = () => {
                                             Sign up with Google</button>
                                     </div>
                                     <span>Already have account?
-                                        <a href='log-in' className='link'>Log in</a></span>
+                                        <a href='log-in' className='link'>Log in</a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
