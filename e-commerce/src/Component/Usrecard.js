@@ -21,7 +21,7 @@ const Usrecard = () => {
 
     const proceesToCheckout = () => {
 
-        nevigate("/Billing-Details")
+        nevigate("/Cart-Details")
     }
 
 

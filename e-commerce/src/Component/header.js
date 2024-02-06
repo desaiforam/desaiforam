@@ -73,17 +73,16 @@ const Header = ({ posts }) => {
                     <Uaericon /><a className="dropdown-item" href="/my-profile">Manage My Account</a></li>
                   <li className=' d-flex'>
                     <Bag fill='black' />
-                    <div onClick={onclickMyOrder} className='position-relative' style={{ cursor: "pointer" }} >
+                    <div onClick={onclickMyOrder} className='dropdown-item position-relative' style={{ cursor: "pointer" }} >
                       My Order
                     </div>
                   </li>
                   <li className=' d-flex'><Cancleicon />
-                    <div onClick={onclicknotFound} className='position-relative' style={{ cursor: "pointer" }} >
+                    <div onClick={onclicknotFound} className='dropdown-itme position-relative' style={{ cursor: "pointer" }} >
                       My Cancellations
                     </div>
                     </li>
-                  <li className=' d-flex'><Review />
-
+                  <li className='d-flex'><Review />
                     <a className='dropdown-item' href='/api'>My Reviews</a>
                   </li>
                   <li className=' d-flex'><LogOut />

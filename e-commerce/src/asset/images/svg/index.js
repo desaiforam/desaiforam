@@ -18,6 +18,9 @@ import {ReactComponent as Cancleicon} from './cancellations.svg'
 import {ReactComponent as LogOut} from './logout.svg'
 import {ReactComponent as Review} from './review.svg'
 import {ReactComponent as Uaericon}  from './manageacc.svg'
+import {ReactComponent as Heart} from './heart.svg'
+import {ReactComponent as Blnkheart} from './blankheart.svg'
+ 
 
 export {
     PhoneIcon,
@@ -39,7 +42,9 @@ export {
     Cancleicon,
     LogOut,
     Review,
-    Uaericon
+    Uaericon,
+    Heart,
+    Blnkheart
 
 
 

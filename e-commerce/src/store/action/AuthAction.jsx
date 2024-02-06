@@ -2,14 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     wishlist: [],
-    Listwish:[],
+    Listwish: [],
     addtocart: [],
     carttoremove: [],
     subtotal: "",
-
-
 }
-
 const authAction = createSlice({
     name: 'user',
     initialState,
@@ -20,9 +17,9 @@ const authAction = createSlice({
             state.wishlist = [...state.wishlist, action.payload]
 
         },
-        uapdateListwish : (state, action) => {
-            state.Listwish =[...state.Listwish,action.payload]
-        },
+        // uapdateListwish : (state, action) => {
+        //     state.Listwish =[...state.Listwish,action.payload]
+        // },
         updatCart: (state, action) => {
 
             state.addtocart = [...state.addtocart, action.payload]
@@ -34,6 +31,10 @@ const authAction = createSlice({
         removetoCart: (state, action) => {
             const object = state.addtocart.filter(obj => obj.id !== action.payload);
             state.addtocart = object
+        },
+        removetowish: (state, action) => {
+            const object = state.wishlist.filter(obj => obj.id !== action.payload);
+            state.wishlist = object
         }
 
 

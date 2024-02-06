@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 
 
 const Ourproduct = ({ posts }) => {
-    console.log('Ourproduct', posts);
+    // console.log('Ourproduct', posts);
 
     return (
         <div>
