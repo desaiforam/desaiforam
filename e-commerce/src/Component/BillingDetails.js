@@ -4,10 +4,14 @@ import Headers from './header'
 import Footer from './Footer'
 import Images from '../utilis/images'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+
 
 
 const BillingDetails = () => {
 
+    const { state } = useLocation()
+    console.log('state', state);
 
     const { addtocart } = useSelector((state) => state.Auth)
     const [subtotal, setsubtotal] = useState([])
@@ -17,18 +21,32 @@ const BillingDetails = () => {
     }
     const getprice = () => {
         const pricetotal = addtocart.map(item => ({ id: item.id, price: item.price }))
-        const totalData = pricetotal.reduce((accumulator, object) => {
+        const totalData = state.reduce((accumulator, object) => {
             return accumulator + object.price;
         }, 0);
         settotal(totalData)
         setsubtotal(pricetotal)
     }
     useEffect(() => {
-        getprice(total)
-    },[total])
-    
-  
+        getprice()
+    }, [])
 
+    // const onhandalprice = (index, qty) => {
+    //     console.log('onhandalprice', onhandalprice);
+
+    //     const data = [...subtotal]
+    //     console.log('subtotal', subtotal);
+    //     // data[index].price = data[index].price * qty
+
+
+    //     setsubtotal(data)
+    //     const totalData = data.reduce((accumulator, object) => {
+
+    //         return accumulator + object.price;
+    //     }, 0);
+
+    //     settotal(totalData)
+    // }
 
     return (
         <div>
@@ -94,15 +112,18 @@ const BillingDetails = () => {
 
                                 {addtocart &&
                                     addtocart.map((item, index) => {
-                                        // console.log('item', item);
-
+                                      
+                                        const totalprice = state.find((o) => {
+                                            return o.id === item.id
+                                        })
+                                        console.log('totalprice', totalprice);
                                         return <><div className='cartbill'>
                                             <div className='imges'>
                                                 <img src={item?.image} height={50} width={50} alt='' />
                                                 {truncate(item.title, 5, 20)}
                                             </div>
                                             <div className='moniter'>
-                                                {item?.price}
+                                                {totalprice?.price}
 
                                             </div>
                                         </div>
@@ -163,9 +184,6 @@ const BillingDetails = () => {
 
                 </div>
             </div>
-
-
-
             <Footer />
         </div>
     )

@@ -34,13 +34,14 @@ const Usrecard = () => {
     const [total, settotal] = useState(0)
     const proceesToCheckout = () => {
 
-        nevigate("/Cart-Details")
+        nevigate("/Cart-Details ",{state:subtotal} )
     }
     const getprice = () => {
         const pricetotal = addtocart.map(item => ({ id: item.id, price: item.price }))
         const totalData = pricetotal.reduce((accumulator, object) => {
+           
             return accumulator + object.price;
-            
+
         }, 0);
         settotal(totalData)
         setsubtotal(pricetotal)
@@ -50,14 +51,15 @@ const Usrecard = () => {
         getprice()
     }, [])
 
-    const onhandalprice = (index, qty) => {
+    const onhandalprice = (index, qty,itemprice) => {
         const data = [...subtotal]
-        data[index].price = data[index].price * qty
+        data[index].price = itemprice * qty
         setsubtotal(data)
+
         const totalData = data.reduce((accumulator, object) => {
             return accumulator + object.price;
         }, 0);
-        
+
         settotal(totalData)
     }
 
@@ -76,7 +78,7 @@ const Usrecard = () => {
                     </tr>
                     {addtocart &&
                         addtocart.map((item, index) => {
-                            return <><AddtoCart item={item} onhandalprice={(quantity) => onhandalprice(index, quantity)} />
+                            return <><AddtoCart item={item} onhandalprice={(quantity) => onhandalprice(index, quantity,item.price)} />
                             </>
                         })}
                 </div>

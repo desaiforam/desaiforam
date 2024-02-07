@@ -16,7 +16,7 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
   return (
     <div className="d-flex flex-row gap-5 align-items-center mb-0">
       <a className="countdown-link">
-        <DateTimeDisplay value={days} type={'Days'} isDanger={days <= 5} />
+        <DateTimeDisplay value={days} type={'Days'} isDanger={days <= 3} />
         {/* <p className='value' >:</p> */}
         <div className='d-flex flex-column  gap-2 '>
           <img src={Images.doteed} width="9" height="9" alt='' />

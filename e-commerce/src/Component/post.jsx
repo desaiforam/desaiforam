@@ -14,7 +14,8 @@ class Post extends Component {
   
   componentDidMount() {
     axios.get('https://fakestoreapi.com/products')
-
+              
+    
     .then(response => {
         console.log(response)
         this.setState({posts: response.data})

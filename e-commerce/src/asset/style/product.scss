@@ -6,9 +6,12 @@
         align-items: center;
         margin-top: 25px; 
     } 
-.CumstCard {
+.cmstcard {
         // margin-left: 33pc;
         // margin-top: 38px;
+        .ourproduct:hover{
+            background-color: #e98f8f;
+        }
           .btn{
             background-color: #00FF66;
           }

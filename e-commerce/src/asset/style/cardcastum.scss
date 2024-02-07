@@ -20,6 +20,10 @@
             flex-direction: column;
             align-items: center;
             gap: 24px;
+
+            & .cardcustm:hover{
+                background-color: #f1b2b2;
+            }
             .img-outter-leyer {
                 background: #c1c0c1;
                 height: 90px;

@@ -1,10 +1,10 @@
 import React from 'react'
 import Navebar from '../../Component/Navebar'
 import Header from '../../Component/header'
-// import ProductCard from '../../Component/ProductCard'
-// import CumstCard from '../../Component/CumstCard'
-import Images from '../../utilis/images'
 import Footer from '../../Component/Footer'
+import { useLocation,useNavigate } from 'react-router-dom'
+
+
 
 // const card =
 //     [{ img: Images.Gamepad, title: "HAVIT HV-G92 Gamepad", value1: "$160 ", value2: "$160", button: "-40%", buttoncolor: "#DB4444", star: "", value3: "(88)" },
@@ -13,6 +13,13 @@ import Footer from '../../Component/Footer'
 //     { img: Images.cpu, title: "RGB liquid CPU Cooler", value1: "$160", value2: "$170", star: "", value3: "(65)" },
 //     ]
 const ProductDetails = () => {
+
+   
+    const location = useLocation()
+    const nevigate = useNavigate()
+    const onclickCart = () => { nevigate("/uase-cart") }
+    const product = location?.state
+    console.log('product', product);
     return (
         <div>
             <Navebar />
@@ -20,25 +27,25 @@ const ProductDetails = () => {
             <hr w-100 ></hr>
             <div className='container'>
                 <div className='productcart'>
-                    <p className='accounthavic'><span>Account/</span><span> gameing /</span>Havic HV G-92 Gamepad </p>
+                    <p className='accounthavic'><span>Account/</span><span> gameing /</span>{product.title} </p>
                     <div className='row'>
                         <div className='col-7  d-flex g-2'>
 
                             <div className='setofimages mt-5 g-3'>
-                                <img className='mb-5' src={Images.dobblehavic} alt='' />
-                                <img className='mb-5' src={Images.firstside} alt='' />
-                                <img className='mb-5' src={Images.leftside} alt='' />
-                                <img className='mb-5' src={Images.rightside} alt='' />
+                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
+                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
+                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
+                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
 
                             </div>
                             <div className='mainhavic'>
-                                <img src={Images.havic} alt='' />
+                                <img src={product.image} alt='' height="50%" width="100%" />
                             </div>
                         </div>
                         <div className='col-5 gap-5'>
                             <div className='havicgamepad'>
                                 <div className='stock d-flex flex-column  align-items-baseline'>
-                                    <span>Havic HV G-92 Gamepad</span>
+                                    <span className='d-flex align-items-baseline'>{product.title}</span>
                                     <div className='value3 d-flex flex-row justify-content-center align-items-baseline mt-3 gap-2' >
                                         <div className='d-flex  flex-row gap-1' style={{ color: "orange" }}>
                                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -49,15 +56,15 @@ const ProductDetails = () => {
                                             <span className="fa fa-star" />
                                             <span className="fa fa-star" />
                                         </div>
-                                        <h5 style={{ font: 'small-caption' }}>(150 Review)</h5>
+                                        <h5 style={{ font: 'small-caption' }}>({product?.rating?.count})</h5>
                                         <div className='line' >|</div>
                                         <span style={{ color: "#00FF66", fontSize: 'small' }}>In Stock</span>
                                     </div>
                                 </div>
                                 <div className='havice mt-3'>
-                                    <span>$192.00</span>
+                                    <span>${product.price} </span>
                                     <p className='sensitive' >
-                                        PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.
+                                       {product.description}
                                     </p>
                                 </div>
                                 <hr className='w-100' ></hr>
@@ -85,7 +92,10 @@ const ProductDetails = () => {
                                     <input type="text" value="2" />
                                     <span style={{ backgroundColor: 'orangered', color: 'white' }}>+</span>
                                 </div>
+                                <div className="buyNow" onClick={onclickCart}>
+
                                 <button className='btn btn-now' style={{ backgroundColor: 'orangered' }}>Buy Now</button>
+                                </div>
                                 <svg width="50" height="50" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="0.5" y="0.5" width="41" height="41" rx="4.5" stroke="black" strokeOpacity="0.5" />
                                     <path d="M16 12C13.239 12 11 14.216 11 16.95C11 19.157 11.875 24.395 20.488 29.69C20.6423 29.7839 20.8194 29.8335 21 29.8335C21.1806 29.8335 21.3577 29.7839 21.512 29.69C30.125 24.395 31 19.157 31 16.95C31 14.216 28.761 12 26 12C23.239 12 21 15 21 15C21 15 18.761 12 16 12Z" stroke="black" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />

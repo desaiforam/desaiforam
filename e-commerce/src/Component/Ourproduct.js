@@ -28,7 +28,7 @@ const Ourproduct = ({ posts }) => {
                         </div>
                     </div>
                 </div>
-                <div className='container'>
+                <div className='container '>
                     <div className='ourproduct cumstcard'>
                         <div className='row m-0'>
                             {posts.map((item, index) => {
