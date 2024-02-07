@@ -1,7 +1,7 @@
 import React from 'react'
-import Images from '../utilis/images'
 import CumstCard from './CumstCard'
 import Carousel from 'react-elastic-carousel'
+import Timer from './Timer'
 
 
 const ToDays = ({ posts }) => {
@@ -25,8 +25,10 @@ const ToDays = ({ posts }) => {
           <div className='sales d-flex align-items-end gap-5 mb-0'>
 
             <h3 className='mb-0 '>Flash Sales</h3>
-            <div className='timer d-flex flex-row gap-4 align-items-center mb-0'>
-              <div>
+            <div className='timer show-counter d-flex flex-row gap-4 align-items-center mb-0'>
+              
+              <Timer />
+              {/* <div>
                 <h6>Days </h6>
                 <h3 className='mb-0'>03</h3>
               </div>
@@ -53,7 +55,7 @@ const ToDays = ({ posts }) => {
               <div>
                 <h6>Seconds </h6>
                 <h3 className='mb-0'>56</h3>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -61,11 +63,12 @@ const ToDays = ({ posts }) => {
         </div>
 
 
-        <div className="carousel-wrapper d-flex">
-          <Carousel itemsToShow={4} pagination={false} >
+        <div className="carousel-wrapper d-flex mt-4">
+          <Carousel itemsToShow={4} pagination={false}  >
             {posts.map((item, index) => (
               <div className='conntainer'>
                 <CumstCard item={item} slider index={index} />
+               
               </div>
             ))}
           </Carousel>

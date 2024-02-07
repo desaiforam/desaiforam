@@ -30,7 +30,6 @@ const Header = ({ posts }) => {
             <div onClick={onclickHome} style={{ cursor: "pointer" }} className='position-relative'>
               Home
             </div>
-            {/* <a className="nav-link active" aria-current="page" href="/">Home</a> */}
           </li>
           <li className="nav-item">
             <div onClick={onclickContactus} style={{ cursor: "pointer" }} className='position-relative'>Contact</div>
@@ -69,23 +68,23 @@ const Header = ({ posts }) => {
                   <img src={Images.user} width="35" height="35" alt='' />
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li className=' d-flex'>
+                  <li className=' d-flex align-items-center'>
                     <Uaericon /><a className="dropdown-item" href="/my-profile">Manage My Account</a></li>
-                  <li className=' d-flex'>
+                  <li className=' d-flex align-items-center'>
                     <Bag fill='black' />
                     <div onClick={onclickMyOrder} className='dropdown-item position-relative' style={{ cursor: "pointer" }} >
                       My Order
                     </div>
                   </li>
-                  <li className=' d-flex'><Cancleicon />
-                    <div onClick={onclicknotFound} className='dropdown-itme position-relative' style={{ cursor: "pointer" }} >
+                  <li className=' d-flex align-items-center'><Cancleicon />
+                    <div onClick={onclicknotFound} className='dropdown-item position-relative' style={{ cursor: "pointer" }} >
                       My Cancellations
                     </div>
                     </li>
-                  <li className='d-flex'><Review />
+                  <li className='d-flex align-items-center'><Review />
                     <a className='dropdown-item' href='/api'>My Reviews</a>
                   </li>
-                  <li className=' d-flex'><LogOut />
+                  <li className=' d-flex align-items-center'><LogOut />
                     <a className='dropdown-item' href='/'>Logout</a> </li>
                 </ul>
               </div>

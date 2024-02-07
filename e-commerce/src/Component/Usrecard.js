@@ -16,16 +16,10 @@ const Usrecard = () => {
     const { addtocart } = useSelector((state) => state.Auth)
     const [subtotal, setsubtotal] = useState([])
     const [total, settotal] = useState(0)
-
-
-
     const proceesToCheckout = () => {
 
         nevigate("/Cart-Details")
     }
-
-
-
     const getprice = () => {
         const pricetotal = addtocart.map(item => ({ id: item.id, price: item.price }))
         const totalData = pricetotal.reduce((accumulator, object) => {

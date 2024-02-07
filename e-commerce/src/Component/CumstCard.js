@@ -4,11 +4,18 @@ import '../asset/style/cumstcard.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { AuthAction } from '../store/action/AuthAction'
 import { Blnkheart, Heart } from '../asset/images/svg'
+import { FaStar } from "react-icons/fa";
+
+
 
 const CumstCard = (props) => {
 
-  const { item, slider, index } = props
-  const { addtocart } = useSelector((state) => state.Auth)
+
+  const { item,  index,  } = props
+
+
+  const { addtocart,wishlist } = useSelector((state) => state.Auth)
+
 
   const [carttoadd, setCarttoadd] = useState([])
   const [addtowish, setaddtoWish] = useState([])
@@ -16,27 +23,31 @@ const CumstCard = (props) => {
     setCarttoadd(addtocart)
   }, [addtocart])
   useEffect(() => {
-    setaddtoWish(addtowish)
-    // console.log('loder')
-  }, [addtowish])
+    setaddtoWish(wishlist)
+    
+  }, [wishlist])
 
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   }
   const iscart = carttoadd.length > 0 ? carttoadd.find(itemid => { return itemid.id === item.id }) : false
   const iswish = addtowish.length > 0 ? addtowish.find(itemid => { return itemid.id === item.id }) : false
-  console.log('iswish', iswish);
+ 
+  
+
+
 
   const dispatch = useDispatch();
 
   const addtocartbtn = () => {
     dispatch(AuthAction.updatCart(item))
-    console.log('[...carttoadd,item]', [...carttoadd, item]);
+    
     setCarttoadd([...carttoadd, item])
   }
   const wishlistbtn = () => {
     dispatch(AuthAction.uapdateWishlist(item))
-    console.log('[...carttoadd,item]', [...addtowish, item]);
+
+    
     setaddtoWish([...addtowish, item])
 
   }
@@ -44,43 +55,31 @@ const CumstCard = (props) => {
     dispatch(AuthAction.removetoCart(id))
     const object = carttoadd.filter(obj => obj.id !== id);
     setCarttoadd(object)
-    console.log('carttoremove', object);
+    
   }
   const wishtoremovebtn = (id) => {
     dispatch(AuthAction.removetowish(id))
     const object = addtowish.filter(obj => obj.id !== id);
     setaddtoWish(object)
-    // console.log('wishtoremovebtn', object);
-
   }
 
   return (
 
     <div className=' d-flex  col-3 ' key={index}>
-      <div className={`${slider ? "" : ""}position-relative d-flex flex-column`}>
-        <div className='images  position-absolute d-flex flex-column align-items-center' style={{ right: '25px' }}>
-          {!iswish ?
-            < button style={{ border: 'none', color: 'red' }} onClick={() => wishlistbtn(item)}>
+      <div className={`position-relative d-flex flex-column`}>
+        <div className='images  position-absolute d-flex flex-column align-items-center justify-content-center' style={{ right: '25px', background: 'transparent' }}>
+          {!iswish  ?
+            < button style={{ border: 'none', background: 'transparent' }} onClick={() => wishlistbtn(item) }>
               <Blnkheart />
             </button> :
-            < button style={{ border: 'none', color: 'red' }} onClick={() => wishtoremovebtn(item.id)}>
-
+            < button style={{ border: 'none', background: 'transparent' }} onClick={() => wishtoremovebtn(item.id)}>
               <Heart />
             </button>
-
           }
-          {/* <div className='addto mb-3'>
-            {iswish &&
               < button style={{ border: 'none', color: 'red' }} onClick={() => wishlistbtn(item)}>
-                <Heart />
-              </button>}
-            {!iswish && <button style={{ border: 'none', color: 'red' }} onClick={() => wishtoremovebtn(item.id)}>
-              <img src={Images.vector} className='d-flex justify-content-start' height="20" width="20" alt='' />
-            </button>
-            }
-          </div> */}
+
           <img src={Images.FillEye} className='d-flex' height="20" width="20" alt='' />
-          {item.icon && <img src={Images.delete} className='d-flex' height="20" width="20" alt='' />}
+          
 
         </div>
         {item.button && <button className='btn  btn-success d-flex  position-absolute m-3' style={{ background: item.buttoncolor, border: '0' }}>{item.button} </button>}
@@ -113,16 +112,19 @@ const CumstCard = (props) => {
 
 
             </div>
-            <div className='value3 d-flex flex-row justify-content-center mt-2 gap-2' >
-              {item?.rating?.rate && <div className='d-flex  flex-row gap-1' style={{ color: "orange" }}>
-                <span className="fa fa-star checked" />
-                <span className="fa fa-star checked" />
-                <span className="fa fa-star checked" />
-                <span className="fa fa-star" />
-                <span className="fa fa-star" />
-              </div>}
-              {/* {item?.rating?.rate && <Rating name="half-rating" defaultValue={2.5} precision={0.5} />} */}
+            <div className='value3 d-flex flex-row justify-content-center align-items-baseline mt-2 gap-2' >
+              <div className={item?.rating.rate} style={{ color: "orange" }} >
 
+                <div>
+                  {/* {item?.rating.rate} */}
+                  <FaStar {...item?.rating.rate} />
+                  <FaStar  {...item?.rating.rate} />
+                  <FaStar  {...item?.rating.rate} />
+                  <FaStar  {...item?.rating.rate} />
+                  <FaStar {...item?.rating.rate} />
+                </div>
+
+              </div>
               <h5 style={{ font: 'small-caption' }}>({item?.rating?.count})</h5>
             </div>
           </div>

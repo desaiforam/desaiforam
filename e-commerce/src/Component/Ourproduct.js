@@ -1,6 +1,7 @@
 import React from 'react'
 import Images from '../utilis/images';
-import ProductCard from './ProductCard';
+
+import CumstCard from './CumstCard';
 
 
 const Ourproduct = ({ posts }) => {
@@ -32,7 +33,8 @@ const Ourproduct = ({ posts }) => {
                         <div className='row m-0'>
                             {posts.map((item, index) => {
                                 return (
-                                    <ProductCard item={item} index={index} />
+                                    // <ProductCard item={item} index={index} />
+                                     <CumstCard item={item} index={index} />
                                 );
                             })}
                             <div className='column'>

@@ -20,7 +20,7 @@ import {ReactComponent as Review} from './review.svg'
 import {ReactComponent as Uaericon}  from './manageacc.svg'
 import {ReactComponent as Heart} from './heart.svg'
 import {ReactComponent as Blnkheart} from './blankheart.svg'
- 
+import {ReactComponent as Remove} from './remove.svg'
 
 export {
     PhoneIcon,
@@ -44,7 +44,8 @@ export {
     Review,
     Uaericon,
     Heart,
-    Blnkheart
+    Blnkheart,
+    Remove
 
 
 

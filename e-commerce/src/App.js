@@ -37,7 +37,6 @@ const App = () => {
             <Route path='/my-profile' element={<Myprofile />} />
             <Route path='/not-found' element={<NotFound />} />
             <Route path='/api' element={<Post />} />
-
           </Routes>
         </BrowserRouter>
         {/* <Home /> */}

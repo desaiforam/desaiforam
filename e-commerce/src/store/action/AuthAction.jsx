@@ -12,14 +12,11 @@ const authAction = createSlice({
     initialState,
     reducers: {
         uapdateWishlist: (state, action) => {
-            // console.log('state', state);
-            // console.log('[...state.wishlist,action.payload]', [...state.wishlist, action.payload]);
+        
             state.wishlist = [...state.wishlist, action.payload]
 
         },
-        // uapdateListwish : (state, action) => {
-        //     state.Listwish =[...state.Listwish,action.payload]
-        // },
+       
         updatCart: (state, action) => {
 
             state.addtocart = [...state.addtocart, action.payload]

@@ -25,7 +25,7 @@ const BillingDetails = () => {
     }
     useEffect(() => {
         getprice()
-    },[])
+    },[total])
     
   
 
@@ -94,7 +94,7 @@ const BillingDetails = () => {
 
                                 {addtocart &&
                                     addtocart.map((item, index) => {
-                                        console.log('item', item);
+                                        // console.log('item', item);
 
                                         return <><div className='cartbill'>
                                             <div className='imges'>

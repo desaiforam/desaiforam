@@ -30,6 +30,7 @@ const Products = ({ posts }) => {
                 {posts.map((item, index) => {
                     return (
                         <CumstCard item={item} index={index} />
+                        
                     );
                 })}
             </div>
