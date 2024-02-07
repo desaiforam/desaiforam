@@ -76,7 +76,6 @@ const CumstCard = (props) => {
               <Heart />
             </button>
           }
-              < button style={{ border: 'none', color: 'red' }} onClick={() => wishlistbtn(item)}>
 
           <img src={Images.FillEye} className='d-flex' height="20" width="20" alt='' />
           
