@@ -24,7 +24,7 @@ const BillingDetails = () => {
         setsubtotal(pricetotal)
     }
     useEffect(() => {
-        getprice()
+        getprice(total)
     },[total])
     
   

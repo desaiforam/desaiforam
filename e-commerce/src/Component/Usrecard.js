@@ -12,6 +12,22 @@ const Usrecard = () => {
     const dispatch = useDispatch()
     console.log('dispatch', dispatch);
 
+    // const incrementcounterhandler = (index) =>{
+    //     const updatedcart = [...cartproducts]
+    //     updatedcart[index].quantity++ // <-- mutation
+    //     setcartproducts(updatedcart);
+    //     totalquantityhandler();
+    //     totalpricehandler();
+    //     //console.log(cartproducts)
+    //   }
+
+    //   const decrementcounterhandler=(index)=>{
+    //     const updatedcart = [...cartproducts]
+    //     updatedcart[index].quantity-- // <-- mutation
+    //     setcartproducts(updatedcart);
+    //     totalquantityhandler();
+    //     totalpricehandler();
+    //   }
 
     const { addtocart } = useSelector((state) => state.Auth)
     const [subtotal, setsubtotal] = useState([])
@@ -24,6 +40,7 @@ const Usrecard = () => {
         const pricetotal = addtocart.map(item => ({ id: item.id, price: item.price }))
         const totalData = pricetotal.reduce((accumulator, object) => {
             return accumulator + object.price;
+            
         }, 0);
         settotal(totalData)
         setsubtotal(pricetotal)
@@ -31,22 +48,18 @@ const Usrecard = () => {
 
     useEffect(() => {
         getprice()
-    },[])
-
+    }, [])
 
     const onhandalprice = (index, qty) => {
         const data = [...subtotal]
         data[index].price = data[index].price * qty
-
         setsubtotal(data)
         const totalData = data.reduce((accumulator, object) => {
             return accumulator + object.price;
         }, 0);
-        // console.log('totalData', totalData);
+        
         settotal(totalData)
-
     }
-
 
     return (
         <div>
@@ -63,10 +76,8 @@ const Usrecard = () => {
                     </tr>
                     {addtocart &&
                         addtocart.map((item, index) => {
-
                             return <><AddtoCart item={item} onhandalprice={(quantity) => onhandalprice(index, quantity)} />
                             </>
-
                         })}
                 </div>
                 <div className='btn btngroup d-flex' >
@@ -81,7 +92,6 @@ const Usrecard = () => {
                         <span className='total mb-3'>Cart Total</span>
                         <div className='pricetotal d-flex flex-row justify-content-between'>
                             <span>Subtotal:</span>
-
                             {Number(total).toFixed(2)}
                         </div>
                         <hr w-75 />
@@ -95,12 +105,9 @@ const Usrecard = () => {
                             {Number(total).toFixed(2)}
                         </div>
                         <div className='process d-flex justify-content-center'>
-
-
                             <div onClick={proceesToCheckout} style={{ cursor: "pointer" }} className='position-relative'>
                                 <button className='coupon mt-4 '>Procees to checkout</button>
                             </div>
-
                         </div>
                     </div>
                 </div>
