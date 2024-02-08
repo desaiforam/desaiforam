@@ -17,7 +17,7 @@ class Post extends Component {
               
     
     .then(response => {
-        console.log(response)
+        // console.log(response)
         this.setState({posts: response.data})
        
     })
