@@ -4,42 +4,29 @@ import Header from './header'
 import Footer from './Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import AddtoCart from './AddtoCart'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 // import AuthAction from '../store/action/AuthAction'
 
 const Usrecard = () => {
     const nevigate = useNavigate()
     const dispatch = useDispatch()
-    console.log('dispatch', dispatch);
+   
+    const { state } = useLocation()
+  
 
-    // const incrementcounterhandler = (index) =>{
-    //     const updatedcart = [...cartproducts]
-    //     updatedcart[index].quantity++ // <-- mutation
-    //     setcartproducts(updatedcart);
-    //     totalquantityhandler();
-    //     totalpricehandler();
-    //     //console.log(cartproducts)
-    //   }
-
-    //   const decrementcounterhandler=(index)=>{
-    //     const updatedcart = [...cartproducts]
-    //     updatedcart[index].quantity-- // <-- mutation
-    //     setcartproducts(updatedcart);
-    //     totalquantityhandler();
-    //     totalpricehandler();
-    //   }
 
     const { addtocart } = useSelector((state) => state.Auth)
+    console.log('addtocart', addtocart);
     const [subtotal, setsubtotal] = useState([])
     const [total, settotal] = useState(0)
     const proceesToCheckout = () => {
 
-        nevigate("/Cart-Details ",{state:subtotal} )
+        nevigate("/Cart-Details ", { state: subtotal })
     }
     const getprice = () => {
         const pricetotal = addtocart.map(item => ({ id: item.id, price: item.price }))
         const totalData = pricetotal.reduce((accumulator, object) => {
-           
+
             return accumulator + object.price;
 
         }, 0);
@@ -51,7 +38,7 @@ const Usrecard = () => {
         getprice()
     }, [])
 
-    const onhandalprice = (index, qty,itemprice) => {
+    const onhandalprice = (index, qty, itemprice) => {
         const data = [...subtotal]
         data[index].price = itemprice * qty
         setsubtotal(data)
@@ -78,7 +65,9 @@ const Usrecard = () => {
                     </tr>
                     {addtocart &&
                         addtocart.map((item, index) => {
-                            return <><AddtoCart item={item} onhandalprice={(quantity) => onhandalprice(index, quantity,item.price)} />
+                            // const totalprice = state.find((o) => {
+                            //     return o.id === item.id})
+                            return <><AddtoCart item={item} onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)} />
                             </>
                         })}
                 </div>

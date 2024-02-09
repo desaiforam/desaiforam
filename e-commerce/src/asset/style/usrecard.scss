@@ -13,6 +13,9 @@
             display: flex;
             height: 125px;
             align-items: center;
+            box-shadow: 1px 1px 13px 0px rgba(0, 0, 0, 0.05);
+            margin: 10px;
+
             .carttmages {
                 width: 205px;
                 display: flex;
@@ -47,6 +50,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
+            background-color: transparent;
         }
     }
     .applycoupon {
@@ -57,7 +61,7 @@
             .inputtype {
                 width: 300px;
                 height: 56px;
-                gap: 30px;
+                padding: 15px;
             }
         }
         .coupon {

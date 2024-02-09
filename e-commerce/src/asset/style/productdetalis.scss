@@ -1,138 +1,143 @@
-.container
-{
-.productcart
-    {
-    width: 100%;
-    .accounthavic
-    {
-        display: flex;
-        margin: 36px 39px;
-        span
-        {
-            color: gray;
-        }
-    }
-.row{
-     .setofimages
-    {
-        flex-direction: column;
-        display: flex;
-        justify-content: center;
-        width: 139px;
-    }
-    .mainhavic{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        max-height: 100%;
-        margin-left: 75px;
-        }
-    .havicgamepad{
-        flex-direction: column;
-        display: flex;
-        align-items: baseline;
-        .havice{
+.container {
+    .productcart {
+        width: 100%;
+        .accounthavic {
             display: flex;
-            flex-direction: column;
-            align-items: self-start;
-            .sensitive{
-                display: flex;
-                align-items: self-start;
-                text-align: start;
+            margin: 36px 39px;
+            span {
+                color: gray;
             }
         }
-    }
-    
-    .inputbutton{
-        display: flex;
-        gap: 26px;
-        font-size: x-large;
-        // align-items: self-end;
-   
-    .sortOptions {
-        width: 30px;
-        height: 30px;
-        accent-color: #A0BCE0;
-        // border: 1px solid black;
-       
-    }
-    
-    .sortOptions2{
-        width: 30px;
-        height: 30px;
-        accent-color: #E07575;
-        // border: 1px solid black;
-
-    }    
-}         
-    .sizechart{
-        display: flex;
-    gap: 30px;
-    font-size: 23px;
-    align-items: center;
-    .chart{
-        border: 1px solid black;
-        border-radius: 9px;
-        margin: 5px;
-        padding: 4px 8px;
-        justify-content: center;
-        display: flex;
-        height: 40px;
-        font-size: 14px;
-        align-items: center;
-        width: 40px;
-    }
-    }
-    .buynow{
-        display: flex;
-        gap: 30px;
-        justify-content: space-between;
-        .counter{
-            display: flex;
-            border: 2px solid;
-            
-        span{
-            width: 28%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: xx-large;
-        }
-        input{
-            width: 45%;
-            text-align: center;
-            border-top: 0;
-            border-bottom: 0;
-}
-        }
-    }
-    .btn-now{
-        background-color: orangered;
-        color: white;
-        width: 165px;
-        height: 50px;
-        border-radius: 3px;
-        border: 0px;
-    }
-    .deliveryavailability{
-        border: 2px solid gray;
-        .freedelivery{
-            display: flex;
-            flex-direction: row;
-            gap: 21px;
-            
-            align-items: center;
-            padding: 11px;
-            .postal{
-                display: flex;
+        .row {
+            .setofimages {
                 flex-direction: column;
-                text-align: justify;
-                gap: 9px;
+                display: flex;
+                justify-content: center;
+                width: 139px;
+            }
+            .mainhavic {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                max-height: 100%;
+                margin-left: 75px;
+            }
+            .havicgamepad {
+                flex-direction: column;
+                display: flex;
+                align-items: baseline;
+                .havice {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: self-start;
+                    .sensitive {
+                        display: flex;
+                        align-items: self-start;
+                        text-align: start;
+                    }
+                }
+            }
+
+            .inputbutton {
+                display: flex;
+                gap: 26px;
+                font-size: x-large;
+                // align-items: self-end;
+
+                .sortOptions {
+                    width: 30px;
+                    height: 30px;
+                    accent-color: #a0bce0;
+                    // border: 1px solid black;
+                }
+
+                .sortOptions2 {
+                    width: 30px;
+                    height: 30px;
+                    accent-color: #e07575;
+                    color: #e07575;
+                }
+            }
+            .sizechart {
+                display: flex;
+                gap: 30px;
+                font-size: 23px;
+                align-items: center;
+                .chart {
+                    border: 1px solid black;
+                    border-radius: 9px;
+                    margin: 5px;
+                    padding: 4px 8px;
+                    justify-content: center;
+                    display: flex;
+                    height: 40px;
+                    font-size: 14px;
+                    align-items: center;
+                    width: 40px;
+                }
+            }
+            .buynow {
+                display: flex;
+                gap: 30px;
+                justify-content: space-between;
+                .counter {
+                    display: flex;
+                    border: 2px solid;
+                    width: 200px;
+
+                    span {
+                        width: 28%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: xx-large;
+                    }
+                    input {
+                        width: 100%;
+                        text-align: center;
+                        border-top: 0;
+                        border-bottom: 0;
+                    }
+                }
+
+            }
+            .wishheart{
+                border: 1px solid gray;
+                padding: 11px;
+                display: flex;
+                align-items: center;
+                border-radius: 5px 
+            }
+           
+            .btn-now {
+                background-color: orangered;
+                color: white;
+                width: 165px;
+                height: 50px;
+                border-radius: 3px;
+                border: 0px;
+            }
+            .deliveryavailability {
+                border: 2px solid gray;
+                .freedelivery {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 21px;
+
+                    align-items: center;
+                    padding: 11px;
+                    .postal {
+                        display: flex;
+                        flex-direction: column;
+                        text-align: justify;
+                        gap: 9px;
+                    }
+                }
             }
         }
     }
-    }
-    }
 }
-    
+input[type="radio"] {
+    filter: hue-rotate(-100deg);
+}

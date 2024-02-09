@@ -18,7 +18,6 @@ const CumstCard = (props) => {
   const nevigate = useNavigate()
   const { addtocart, wishlist } = useSelector((state) => state.Auth)
 
-  const onclickMyOrder = (item) => { nevigate("/prodect-details", {state :item}) }
   const [carttoadd, setCarttoadd] = useState([])
   const [addtowish, setaddtoWish] = useState([])
   useEffect(() => {
@@ -35,39 +34,45 @@ const CumstCard = (props) => {
   const iswish = addtowish.length > 0 ? addtowish.find(itemid => { return itemid.id === item.id }) : false
   const dispatch = useDispatch();
 
-  const addtocartbtn = () => {
-
-    dispatch(AuthAction.updatCart(item))
-
-    setCarttoadd([...carttoadd, item])
+  const onclickMyOrder = (item) => {
+    nevigate("/prodect-details", { state: { ...item, iscart: !!iscart } })
   }
-  const wishlistbtn = () => {
+  const addtocartbtn = (e) => {
+    dispatch(AuthAction.updatCart(item))
+    setCarttoadd([...carttoadd, item])
+    e.stopPropagation();
+  }
+  const wishlistbtn = (e) => {
     dispatch(AuthAction.uapdateWishlist(item))
     setaddtoWish([...addtowish, item])
+    e.stopPropagation();
 
   }
-  const carttoremovebtn = (id) => {
+  const carttoremovebtn = (id,e) => {
     dispatch(AuthAction.removetoCart(id))
     const object = carttoadd.filter(obj => obj.id !== id);
     setCarttoadd(object)
+    e.stopPropagation();
 
   }
-  const wishtoremovebtn = (id) => {
+  const wishtoremovebtn = (e,id) => {
     dispatch(AuthAction.removetowish(id))
     const object = addtowish.filter(obj => obj.id !== id);
     setaddtoWish(object)
+    e.stopPropagation();
   }
-
+  
   return (
 
     <div className='d-flex  col-3 ' key={index}>
-      <div className='position-relative d-flex flex-column cardmain' >
+      <div className='position-relative d-flex flex-column cardmain' onClick={() => onclickMyOrder(item)}  >
         <div className='images  position-absolute d-flex flex-column align-items-center justify-content-center' style={{ right: '25px', background: 'transparent' }}>
           {!iswish ?
-            < button style={{ border: 'none', background: 'transparent' }} onClick={() => wishlistbtn(item)}>
+            <button style={{ border: 'none', background: 'transparent' }} onClick={(e) =>  wishlistbtn(e,item) }>
               <Blnkheart />
             </button> :
-            < button style={{ border: 'none', background: 'transparent' }} onClick={() => wishtoremovebtn(item.id)}>
+
+            < button style={{ border: 'none', background: 'transparent' }} onClick={(e) =>  wishtoremovebtn(e,item.id) }>
               <Heart />
             </button>
           }
@@ -77,15 +82,16 @@ const CumstCard = (props) => {
 
         </div>
         {item.button && <button className='btn  btn-success d-flex  position-absolute m-3' style={{ background: item.buttoncolor, border: '0' }}>{item.button} </button>}
-        <div className='cardcustm d-flex flel-d-block align-itme-center m-5 justify-content-center' onClick={() => onclickMyOrder(item)} >
+        <div className='cardcustm d-flex flel-d-block align-itme-center m-5 justify-content-center' >
           <div className='img'>
+
             <img src={item?.image} style={{ height: '90%', width: '90%' }} alt='' />
           </div>
         </div>
         <div className='addto mb-3'>
-          {!iscart && <button className='btn btn-dark ' onClick={() => addtocartbtn(item)}>Add To Cart</button>
+          {!iscart && <button className='btn btn-dark ' onClick={(e) => addtocartbtn(e,item)}>Add To Cart</button>
           }
-          {iscart && <button className='btn btn-dark ' onClick={() => carttoremovebtn(item.id)}>Remove To Cart</button>
+          {iscart && <button className='btn btn-dark ' onClick={(e) => carttoremovebtn(item.id,e)}>Remove To Cart</button>
           }
         </div>
         <div className='games'>

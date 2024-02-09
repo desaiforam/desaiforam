@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navebar from '../../Component/Navebar'
 import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
-import { useLocation,useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { AuthAction } from '../../store/action/AuthAction'
+import SizeSelector from '../../Component/SizeSelector'
+import QuantityEvent from '../../Component/QuantityEvent'
+import { Blnkheart, Heart } from '../../asset/images/svg'
+
 
 
 
@@ -12,14 +18,77 @@ import { useLocation,useNavigate } from 'react-router-dom'
 //     { img: Images.leptop, title: "IPS LCD Gaming Monitor", value1: "$120 ", value2: "$360", button: "-30%", buttoncolor: "#DB4444", star: "", value3: "(99)" },
 //     { img: Images.cpu, title: "RGB liquid CPU Cooler", value1: "$160", value2: "$170", star: "", value3: "(65)" },
 //     ]
-const ProductDetails = () => {
+const ProductDetails = ({ item }) => {
+    console.log('item', item);
 
-   
+
+
     const location = useLocation()
+    const { addtocart, wishlist } = useSelector((state) => state.Auth)
+    console.log('location', location);
+    const dispatch = useDispatch();
     const nevigate = useNavigate()
-    const onclickCart = () => { nevigate("/uase-cart") }
+    const [carttoadd, setCarttoadd] = useState([])
+    const [addtowish, setaddtoWish] = useState([])
+    useEffect(() => {
+        setaddtoWish(wishlist)
+
+    }, [wishlist])
+    useEffect(() => {
+        setCarttoadd(addtocart)
+    }, [addtocart])
+    // const onclickCart = () => {
+    //     dispatch(AuthAction.updatCart(location.state))        
+    // }
+
+
+    const wishlistbtn = (e) => {
+        dispatch(AuthAction.uapdateWishlist(location.state))
+        setaddtoWish([...addtowish, item])
+        e.stopPropagation();
+
+    }
+    const carttoremovebtn = (id, e) => {
+        dispatch(AuthAction.removetoCart(id))
+        const object = carttoadd.filter(obj => obj.id !== id);
+        setCarttoadd(object)
+        e.stopPropagation();
+
+    }
+    const addtocartbtn = (e) => {
+        dispatch(AuthAction.updatCart(location.state))
+        setCarttoadd([...carttoadd, item])
+       
+
+        setTimeout(() => {
+            nevigate("/uase-cart")
+        }, 200);
+    }
+    const wishtoremovebtn = (e, id) => {
+        dispatch(AuthAction.removetowish(location.state))
+        const object = addtowish.filter(obj => obj.id !== id);
+        setaddtoWish(object)
+        e.stopPropagation();
+    }
+
+    // const onclickwish = () => {
+    //     dispatch(AuthAction.uapdateWishlist(location.state))
+    // }
+
     const product = location?.state
-    console.log('product', product);
+
+    // const [value, setValue] = useState(1)
+    // const [quntity, setQuntity] = useState([item?.price])
+    const iscart = addtocart.length > 0 ? addtocart.find(itemid => { return itemid.id === location.state.id }) : false
+    const iswish = wishlist.length > 0 ? wishlist.find(itemid => { return itemid.id === location.state.id }) : false
+    console.log('wishlist', wishlist);
+
+
+
+
+
+
+
     return (
         <div>
             <Navebar />
@@ -27,15 +96,22 @@ const ProductDetails = () => {
             <hr w-100 ></hr>
             <div className='container'>
                 <div className='productcart'>
-                    <p className='accounthavic'><span>Account/</span><span> gameing /</span>{product.title} </p>
+                    <p className='accounthavic gap-3'>
+                        <span className=' d-flex gap-2'>
+                            <span>Account</span>
+                            <span>/</span>
+                        </span>
+                        <span className=' d-flex gap-2'>
+                            <span>gameing</span>/
+                        </span> {product.title} </p>
                     <div className='row'>
                         <div className='col-7  d-flex g-2'>
 
                             <div className='setofimages mt-5 g-3'>
-                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
-                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
-                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
-                                <img className='mb-5' src={product.image}height="90px" width="90px" alt='' />
+                                <img className='mb-5' src={product.image} height="90px" width="90px" alt='' />
+                                <img className='mb-5' src={product.image} height="90px" width="90px" alt='' />
+                                <img className='mb-5' src={product.image} height="90px" width="90px" alt='' />
+                                <img className='mb-5' src={product.image} height="90px" width="90px" alt='' />
 
                             </div>
                             <div className='mainhavic'>
@@ -43,63 +119,89 @@ const ProductDetails = () => {
                             </div>
                         </div>
                         <div className='col-5 gap-5'>
-                            <div className='havicgamepad'>
-                                <div className='stock d-flex flex-column  align-items-baseline'>
-                                    <span className='d-flex align-items-baseline'>{product.title}</span>
-                                    <div className='value3 d-flex flex-row justify-content-center align-items-baseline mt-3 gap-2' >
-                                        <div className='d-flex  flex-row gap-1' style={{ color: "orange" }}>
-                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+                            <>
+                                <div className='havicgamepad'>
+                                    <div className='stock d-flex flex-column  align-items-baseline'>
+                                        <span className='d-flex align-items-baseline'>{product.title}</span>
+                                        <div className='value3 d-flex flex-row justify-content-center align-items-baseline mt-3 gap-2' >
+                                            <div className='d-flex  flex-row gap-1' style={{ color: "orange" }}>
+                                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-                                            <span className="fa fa-star checked" />
-                                            <span className="fa fa-star checked" />
-                                            <span className="fa fa-star checked" />
-                                            <span className="fa fa-star" />
-                                            <span className="fa fa-star" />
+                                                <span className="fa fa-star checked" />
+                                                <span className="fa fa-star checked" />
+                                                <span className="fa fa-star checked" />
+                                                <span className="fa fa-star" />
+                                                <span className="fa fa-star" />
+                                            </div>
+                                            <h5 style={{ font: 'small-caption' }}>({product?.rating?.count})</h5>
+                                            <div className='line' >|</div>
+                                            <span style={{ color: "#00FF66", fontSize: 'small' }}>In Stock</span>
                                         </div>
-                                        <h5 style={{ font: 'small-caption' }}>({product?.rating?.count})</h5>
-                                        <div className='line' >|</div>
-                                        <span style={{ color: "#00FF66", fontSize: 'small' }}>In Stock</span>
+                                    </div>
+                                    <div className='havice mt-3'>
+                                        <span>${product.price} </span>
+                                        <p className='sensitive' >
+                                            {product.description}
+                                        </p>
+                                    </div>
+                                    <hr className='w-100' ></hr>
+                                </div>
+                                <div className='inputbutton'>Colors:
+                                    <div className='butinput d-flex gap-3'>
+                                        <input className='sortOptions' type="radio" id="radio" name="radio" value="radio" />
+                                        <input className='sortOptions2' type="radio" id="radio" name="radio" value="radio" />
                                     </div>
                                 </div>
-                                <div className='havice mt-3'>
-                                    <span>${product.price} </span>
-                                    <p className='sensitive' >
-                                       {product.description}
-                                    </p>
+                                <div className='sizechart mt-4'>
+                                    Size :
+                                    <div className="size d-flex">
+                                        <SizeSelector />
+                                    </div>
                                 </div>
-                                <hr className='w-100' ></hr>
-                            </div>
-                            <div className='inputbutton'>Colors:
-                                <div className='butinput d-flex gap-3'>
-                                    <input className='sortOptions' type="radio" id="html" name="fav_language" value="HTML" />
-                                    <input className='sortOptions2' type="radio" id="css" name="" value="CSS" />
-                                </div>
-                            </div>
-                            <div className='sizechart mt-4'>
-                                Size :
-                                <div className='size d-flex'>
-                                    <span className='chart'>XS</span>
-                                    <span className='chart'>S</span>
-                                    <span className='chart' style={{ background: "orangered", color: "white" }}>M</span>
-                                    <span className='chart'>L</span>
-                                    <span className='chart'>XL</span>
-                                </div>
-                            </div>
+                            </>
                             <div className='buynow mt-4'>
 
-                                <div className="counter">
-                                    <span>-</span>
-                                    <input type="text" value="2" />
-                                    <span style={{ backgroundColor: 'orangered', color: 'white' }}>+</span>
+                                <div className="counter " style={{ border: '0' }}>
+                                    <QuantityEvent />
                                 </div>
-                                <div className="buyNow" onClick={onclickCart}>
+                                <div >
 
-                                <button className='btn btn-now' style={{ backgroundColor: 'orangered' }}>Buy Now</button>
+                                    {!iscart &&
+                                        <div className="buyNow" onClick={() => {
+                                            if (!product.iscart) { addtocartbtn() }
+                                        }}>
+                                            <button disabled={product.iscart} className='btn btn-now' style={{ backgroundColor: 'orangered' }}>Buy Now</button>
+
+                                        </div>
+
+                                    }
+                                   
                                 </div>
-                                <svg width="50" height="50" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="0.5" y="0.5" width="41" height="41" rx="4.5" stroke="black" strokeOpacity="0.5" />
-                                    <path d="M16 12C13.239 12 11 14.216 11 16.95C11 19.157 11.875 24.395 20.488 29.69C20.6423 29.7839 20.8194 29.8335 21 29.8335C21.1806 29.8335 21.3577 29.7839 21.512 29.69C30.125 24.395 31 19.157 31 16.95C31 14.216 28.761 12 26 12C23.239 12 21 15 21 15C21 15 18.761 12 16 12Z" stroke="black" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+
+
+                                <div className='wishheart'
+                                //  onClick={() => {  if (!product.iswish) { onclickwish() } }}
+                                >
+
+
+
+                                    {!iswish ?
+                                        <button style={{ border: 'none', background: 'transparent' }} onClick={(e) => wishlistbtn(e, location.state.id)}>
+                                            <Blnkheart />
+                                        </button> :
+
+                                        < button style={{ border: 'none', background: 'transparent' }} onClick={(e) => wishtoremovebtn(e, location.state.id)}>
+                                            <Heart />
+                                        </button>
+                                    }
+
+
+                                </div>
+
+                                {/* <svg width="50" height="50" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="0.5" y="0.5" width="41" height="41" rx="4.5" stroke="black" strokeOpacity="0.5" />
+                                        <path d="M16 12C13.239 12 11 14.216 11 16.95C11 19.157 11.875 24.395 20.488 29.69C20.6423 29.7839 20.8194 29.8335 21 29.8335C21.1806 29.8335 21.3577 29.7839 21.512 29.69C30.125 24.395 31 19.157 31 16.95C31 14.216 28.761 12 26 12C23.239 12 21 15 21 15C21 15 18.761 12 16 12Z" stroke="black" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg> */}
                             </div>
 
                             <div className="deliveryavailability mt-5">
@@ -157,10 +259,6 @@ const ProductDetails = () => {
                     return // <CumstCard item={item} />
                 })} */}
             </div>
-
-
-
-
             <Footer />
         </div>
 

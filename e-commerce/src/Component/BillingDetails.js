@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom'
 const BillingDetails = () => {
 
     const { state } = useLocation()
-    console.log('state', state);
+    // console.log('state', state);
 
     const { addtocart } = useSelector((state) => state.Auth)
     const [subtotal, setsubtotal] = useState([])
@@ -73,35 +73,35 @@ const BillingDetails = () => {
                     <div className=' d-flex flex-column w-100'>
                         <div className='billingdetails d-flex'>
                             <div className='d-flex flex-column w-100'>
-                                <span htmlfor="fname">First Name:</span>
-                                <input type="text" name="fname" id="fname" required />
+                                <label className=' d-flex' for="fname">First Name:</label>
+                                <input type="text" name="fname" id="fname" value="" required />
                             </div>
                             <div className='d-flex flex-column w-100'>
-                                <span htmlfor="fname">Company Name:</span>
-                                <input type="text" name="fname" id="fname" required />
+                                <label className=' d-flex' for="cname">Company Name:</label>
+                                <input type="text" name="cname" id="cname" value="" required />
                             </div>
                             <div className='d-flex flex-column w-100'>
-                                <span htmlfor="fname">Street Address:</span>
-                                <input type="text" name="fname" id="fname" required />
+                                <label className=' d-flex' for="saddress">Street Address:</label>
+                                <input type="text" name="saddress" id="saddress" required />
                             </div>
                             <div className='d-flex flex-column w-100'>
-                                <span htmlfor="fname">Apartment,floor, etc.(Optional):</span>
-                                <input type="text" name="fname" id="fname" required />
+                                <label className=' d-flex' for="floor">Apartment,floor, etc.(Optional):</label>
+                                <input type="text" name="floor" id="floor" required />
                             </div>
                             <div className='d-flex flex-column w-100'>
-                                <span htmlfor="fname">Town/city:</span>
-                                <input type="text" name="fname" id="fname" required />
+                                <label className=' d-flex' for="city">Town/city:</label>
+                                <input type="text" name="city" id="city" required />
                             </div>
                             <div className='d-flex flex-column w-100'>
-                                <span htmlfor="fname">Phone Number:</span>
-                                <input type="text" name="fname" id="fname" required />
+                                <label className='d-flex' for="number">Phone Number:</label>
+                                <input type="number" name="Number" id="Number" required />
                             </div>
                             <div className='d-flex flex-column w-100'>
-                                <span htmlfor="fname">Email Address:</span>
-                                <input type="text" name="fname" id="fname" required />
+                                <label className=' d-flex' for="Email">Email Address:</label>
+                                <input type="email" name="Email" id="Email" required />
                             </div>
                         </div>
-                        <div className=' d-flex mt-4 g-4'>
+                        <div className=' d-flex mt-4 gap-4'>
                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
                             <label htmlfor="vehicle1"> Save this information for faster check-out next time</label>
                         </div>
