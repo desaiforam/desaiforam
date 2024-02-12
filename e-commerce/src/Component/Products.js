@@ -4,7 +4,7 @@ import CumstCard from './CumstCard'
 
 
 const Products = ({ posts }) => {
-    console.log('posts', posts);
+    // console.log('posts', posts);
 
     return (
         <div className='container flex-column'>

@@ -22,6 +22,7 @@ import {ReactComponent as Heart} from './heart.svg'
 import {ReactComponent as Blnkheart} from './blankheart.svg'
 import {ReactComponent as Remove} from './remove.svg'
 import{ ReactComponent as Wishheart} from './wishheart.svg'
+import {ReactComponent as Eyes} from './eyes.svg'
 
 export {
     PhoneIcon,
@@ -48,6 +49,7 @@ export {
     Blnkheart,
     Remove,
     Wishheart,
+    Eyes,
 
 
 

@@ -19,13 +19,17 @@ import { Blnkheart, Heart } from '../../asset/images/svg'
 //     { img: Images.cpu, title: "RGB liquid CPU Cooler", value1: "$160", value2: "$170", star: "", value3: "(65)" },
 //     ]
 const ProductDetails = ({ item }) => {
-    console.log('item', item);
+
 
 
 
     const location = useLocation()
-    const { addtocart, wishlist } = useSelector((state) => state.Auth)
-    console.log('location', location);
+    const { addtocart, wishlist, quntityfind } = useSelector((state) => state.Auth)
+    console.log('quntityfind', quntityfind);
+
+
+
+
     const dispatch = useDispatch();
     const nevigate = useNavigate()
     const [carttoadd, setCarttoadd] = useState([])
@@ -37,43 +41,38 @@ const ProductDetails = ({ item }) => {
     useEffect(() => {
         setCarttoadd(addtocart)
     }, [addtocart])
-    // const onclickCart = () => {
-    //     dispatch(AuthAction.updatCart(location.state))        
-    // }
 
 
-    const wishlistbtn = (e) => {
+
+    const wishlistbtn = () => {
         dispatch(AuthAction.uapdateWishlist(location.state))
         setaddtoWish([...addtowish, item])
-        e.stopPropagation();
 
     }
-    const carttoremovebtn = (id, e) => {
-        dispatch(AuthAction.removetoCart(id))
-        const object = carttoadd.filter(obj => obj.id !== id);
-        setCarttoadd(object)
-        e.stopPropagation();
 
-    }
-    const addtocartbtn = (e) => {
+    const addtocartbtn = () => {
         dispatch(AuthAction.updatCart(location.state))
         setCarttoadd([...carttoadd, item])
-       
+
 
         setTimeout(() => {
             nevigate("/uase-cart")
         }, 200);
     }
-    const wishtoremovebtn = (e, id) => {
-        dispatch(AuthAction.removetowish(location.state))
-        const object = addtowish.filter(obj => obj.id !== id);
+    const wishtoremovebtn = () => {
+        dispatch(AuthAction.removetowish(location.state.id))
+        const object = addtowish.filter(obj => obj.id !== location.state);
         setaddtoWish(object)
-        e.stopPropagation();
-    }
 
-    // const onclickwish = () => {
-    //     dispatch(AuthAction.uapdateWishlist(location.state))
-    // }
+    }
+    const [selectedSize, setSelectedSize] = useState('0');
+    console.log('selectedSize', selectedSize);
+
+
+    const handleSizeClick = (size) => {
+        setSelectedSize(size);
+
+    };
 
     const product = location?.state
 
@@ -81,7 +80,8 @@ const ProductDetails = ({ item }) => {
     // const [quntity, setQuntity] = useState([item?.price])
     const iscart = addtocart.length > 0 ? addtocart.find(itemid => { return itemid.id === location.state.id }) : false
     const iswish = wishlist.length > 0 ? wishlist.find(itemid => { return itemid.id === location.state.id }) : false
-    console.log('wishlist', wishlist);
+    // const isqunty = quntity.length > 0 ? quntity.find(itemid => { return itemid.id === location.state.id }) : false
+    // console.log('isqunty', isqunty);
 
 
 
@@ -148,8 +148,12 @@ const ProductDetails = ({ item }) => {
                                 </div>
                                 <div className='inputbutton'>Colors:
                                     <div className='butinput d-flex gap-3'>
-                                        <input className='sortOptions' type="radio" id="radio" name="radio" value="radio" />
-                                        <input className='sortOptions2' type="radio" id="radio" name="radio" value="radio" />
+                                      
+                                        <div className={`chart ${selectedSize === '0' && 'select'}`}  onClick={() => handleSizeClick('0')}>
+                                            <div className='colorselect' style={{backgroundColor:'#A0BCE0',color:"#A0BCE1",margin: "5px"}} >0</div>
+                                        </div>
+                                        <div className={`chart ${selectedSize === '1' && 'select'}`}  onClick={() => handleSizeClick('1')}>
+                                            <div className='colorselect' style={{backgroundColor:"#E07575",color:"#E07576",margin: "5px"}}>1</div></div>
                                     </div>
                                 </div>
                                 <div className='sizechart mt-4'>
@@ -162,7 +166,9 @@ const ProductDetails = ({ item }) => {
                             <div className='buynow mt-4'>
 
                                 <div className="counter " style={{ border: '0' }}>
+
                                     <QuantityEvent />
+
                                 </div>
                                 <div >
 
@@ -175,16 +181,11 @@ const ProductDetails = ({ item }) => {
                                         </div>
 
                                     }
-                                   
+
                                 </div>
 
 
-                                <div className='wishheart'
-                                //  onClick={() => {  if (!product.iswish) { onclickwish() } }}
-                                >
-
-
-
+                                <div className='wishheart' >
                                     {!iswish ?
                                         <button style={{ border: 'none', background: 'transparent' }} onClick={(e) => wishlistbtn(e, location.state.id)}>
                                             <Blnkheart />
@@ -198,10 +199,7 @@ const ProductDetails = ({ item }) => {
 
                                 </div>
 
-                                {/* <svg width="50" height="50" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="0.5" y="0.5" width="41" height="41" rx="4.5" stroke="black" strokeOpacity="0.5" />
-                                        <path d="M16 12C13.239 12 11 14.216 11 16.95C11 19.157 11.875 24.395 20.488 29.69C20.6423 29.7839 20.8194 29.8335 21 29.8335C21.1806 29.8335 21.3577 29.7839 21.512 29.69C30.125 24.395 31 19.157 31 16.95C31 14.216 28.761 12 26 12C23.239 12 21 15 21 15C21 15 18.761 12 16 12Z" stroke="black" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg> */}
+                                
                             </div>
 
                             <div className="deliveryavailability mt-5">

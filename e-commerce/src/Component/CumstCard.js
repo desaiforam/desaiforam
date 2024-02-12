@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Images from '../utilis/images'
 import '../asset/style/cumstcard.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { AuthAction } from '../store/action/AuthAction'
-import { Blnkheart, Heart } from '../asset/images/svg'
+import { Blnkheart, Eyes, Heart } from '../asset/images/svg'
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
 
@@ -13,12 +12,12 @@ const CumstCard = (props) => {
 
 
   const { item, index, } = props
-  console.log('item', item);
+  // console.log('item', item);
 
   const nevigate = useNavigate()
   const { addtocart, wishlist } = useSelector((state) => state.Auth)
 
-  const [carttoadd, setCarttoadd] = useState([])
+    const [carttoadd, setCarttoadd] = useState([])
   const [addtowish, setaddtoWish] = useState([])
   useEffect(() => {
     setCarttoadd(addtocart)
@@ -32,6 +31,7 @@ const CumstCard = (props) => {
   }
   const iscart = carttoadd.length > 0 ? carttoadd.find(itemid => { return itemid.id === item.id }) : false
   const iswish = addtowish.length > 0 ? addtowish.find(itemid => { return itemid.id === item.id }) : false
+ 
   const dispatch = useDispatch();
 
   const onclickMyOrder = (item) => {
@@ -65,6 +65,8 @@ const CumstCard = (props) => {
   return (
 
     <div className='d-flex  col-3 ' key={index}>
+     
+     
       <div className='position-relative d-flex flex-column cardmain' onClick={() => onclickMyOrder(item)}  >
         <div className='images  position-absolute d-flex flex-column align-items-center justify-content-center' style={{ right: '25px', background: 'transparent' }}>
           {!iswish ?
@@ -76,8 +78,8 @@ const CumstCard = (props) => {
               <Heart />
             </button>
           }
-
-          <img src={Images.FillEye} className='d-flex' height="20" width="20" alt='' />
+          <Eyes />
+         
 
 
         </div>
@@ -130,7 +132,7 @@ const CumstCard = (props) => {
           </div>
         </div>
       </div>
-
+     
 
 
     </div >

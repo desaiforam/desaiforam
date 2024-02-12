@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux'
 
 const Wishlist = () => {
 
-    const { wishlist } = useSelector((state) => state.Auth)
+    const { wishlist} = useSelector((state) => state.Auth)
     // console.log('wishlist', wishlist);
 
     return (

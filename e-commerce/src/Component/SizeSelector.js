@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function SizeSelector() {
 
-    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedSize, setSelectedSize] = useState('M');
     console.log('selectedSize', selectedSize);
 
 

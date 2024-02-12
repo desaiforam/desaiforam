@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { act } from "@testing-library/react";
 
 const initialState = {
     wishlist: [],
     Listwish: [],
     addtocart: [],
+    quntityfind: [],
     carttoremove: [],
     subtotal: "",
 }
@@ -12,11 +14,14 @@ const authAction = createSlice({
     initialState,
     reducers: {
         uapdateWishlist: (state, action) => {
-        
+
             state.wishlist = [...state.wishlist, action.payload]
 
         },
-       
+        updateQunty: (state, action) => {
+            state.quntityfind = action.payload
+        },
+
         updatCart: (state, action) => {
 
             state.addtocart = [...state.addtocart, action.payload]

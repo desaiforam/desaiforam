@@ -6,6 +6,7 @@ import Images from '../../utilis/images'
 
 
 const Singup = () => {
+    
 
     return (
         <>
@@ -28,9 +29,11 @@ const Singup = () => {
                                     <span>Enter your details below</span>
                                 </div>
                                 <div className="form__group field">
-                                    <input type="input" className="form__field" placeholder="Name" value={''} name="name" id="name" required />
-                                    <input type="input" className="form__field" placeholder="Email or Phone Number" value={''} name="" id="" required />
-                                    <input type="input" className="form__field" placeholder="Password" value={''} name="" id="name" required />
+
+                                    <input type="text" placeholder="Name" id='' required />
+                                    <input type='text' placeholder='Email or Phone Number' id='' />
+                                    <input type='password' placeholder='password' id='' />
+
                                 </div>
                                 <div className='login'>
                                     <div className='buttoncreate'>
