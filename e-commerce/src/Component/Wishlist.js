@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux'
 
 const Wishlist = () => {
 
-    const { wishlist} = useSelector((state) => state.Auth)
+    const { wishlist } = useSelector((state) => state.Auth)
     // console.log('wishlist', wishlist);
 
     return (
@@ -31,7 +31,7 @@ const Wishlist = () => {
 
                     <div className='wishlist d-flex' >
                         <span>wishlist({wishlist.length})</span>
-                        {wishlist.length > 0 && <div className='position-absolute wishlist-count' ></div>}
+                        {wishlist.length > 1 && <div className='position-absolute wishlist-count' ></div>}
                         <button>Move All To Bag</button>
                     </div>
                 </div>

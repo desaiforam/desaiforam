@@ -25,7 +25,7 @@ const ProductDetails = ({ item }) => {
 
     const location = useLocation()
     const { addtocart, wishlist, quntityfind } = useSelector((state) => state.Auth)
-    console.log('quntityfind', quntityfind);
+    // console.log('quntityfind', quntityfind);
 
 
 
@@ -42,12 +42,13 @@ const ProductDetails = ({ item }) => {
         setCarttoadd(addtocart)
     }, [addtocart])
 
+    const [selectedSize, setSelectedSize] = useState('0');
+    // console.log('selectedSize', selectedSize);
 
 
     const wishlistbtn = () => {
         dispatch(AuthAction.uapdateWishlist(location.state))
         setaddtoWish([...addtowish, item])
-
     }
 
     const addtocartbtn = () => {
@@ -55,9 +56,7 @@ const ProductDetails = ({ item }) => {
         setCarttoadd([...carttoadd, item])
 
 
-        setTimeout(() => {
-            nevigate("/uase-cart")
-        }, 200);
+
     }
     const wishtoremovebtn = () => {
         dispatch(AuthAction.removetowish(location.state.id))
@@ -65,14 +64,20 @@ const ProductDetails = ({ item }) => {
         setaddtoWish(object)
 
     }
-    const [selectedSize, setSelectedSize] = useState('0');
-    console.log('selectedSize', selectedSize);
 
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
 
     };
+    const carttoremovebtn = () => {
+        dispatch(AuthAction.removetoCart(location.state.id))
+        const object = carttoadd.filter(obj => obj.id !== location.state);
+        setCarttoadd(object)
+        console.log('setCarttoadd', setCarttoadd);
+
+
+    }
 
     const product = location?.state
 
@@ -148,12 +153,12 @@ const ProductDetails = ({ item }) => {
                                 </div>
                                 <div className='inputbutton'>Colors:
                                     <div className='butinput d-flex gap-3'>
-                                      
-                                        <div className={`chart ${selectedSize === '0' && 'select'}`}  onClick={() => handleSizeClick('0')}>
-                                            <div className='colorselect' style={{backgroundColor:'#A0BCE0',color:"#A0BCE1",margin: "5px"}} >0</div>
+
+                                        <div className={`chart ${selectedSize === '0' && 'select'}`} onClick={() => handleSizeClick('0')}>
+                                            <div className='colorselect' style={{ backgroundColor: '#A0BCE0', color: "#A0BCE1", margin: "5px" }} >0</div>
                                         </div>
-                                        <div className={`chart ${selectedSize === '1' && 'select'}`}  onClick={() => handleSizeClick('1')}>
-                                            <div className='colorselect' style={{backgroundColor:"#E07575",color:"#E07576",margin: "5px"}}>1</div></div>
+                                        <div className={`chart ${selectedSize === '1' && 'select'}`} onClick={() => handleSizeClick('1')}>
+                                            <div className='colorselect' style={{ backgroundColor: "#E07575", color: "#E07576", margin: "5px" }}>1</div></div>
                                     </div>
                                 </div>
                                 <div className='sizechart mt-4'>
@@ -170,21 +175,16 @@ const ProductDetails = ({ item }) => {
                                     <QuantityEvent />
 
                                 </div>
-                                <div >
 
-                                    {!iscart &&
-                                        <div className="buyNow" onClick={() => {
-                                            if (!product.iscart) { addtocartbtn() }
-                                        }}>
-                                            <button disabled={product.iscart} className='btn btn-now' style={{ backgroundColor: 'orangered' }}>Buy Now</button>
+                                <div className="buyNow" >
+                                    {!iscart ?
+                                        <button className='btn btn-now' style={{ backgroundColor: 'orangered' }} onClick={() => addtocartbtn()}>
+                                            Buy Now
+                                        </button> :
 
-                                        </div>
-
+                                        <button className='btn btn-now ' style={{ backgroundColor: 'orangered' }} onClick={(e) => carttoremovebtn()}>Remove To Cart</button>
                                     }
-
                                 </div>
-
-
                                 <div className='wishheart' >
                                     {!iswish ?
                                         <button style={{ border: 'none', background: 'transparent' }} onClick={(e) => wishlistbtn(e, location.state.id)}>
@@ -199,7 +199,7 @@ const ProductDetails = ({ item }) => {
 
                                 </div>
 
-                                
+
                             </div>
 
                             <div className="deliveryavailability mt-5">

@@ -36,7 +36,7 @@ const Usrecard = () => {
 
     useEffect(() => {
         getprice()
-    }, [])
+    },[state])
 
     const onhandalprice = (index, qty, itemprice) => {
         const data = [...subtotal]

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 const QuantityEvent = () => {
   const [quantity, setQuantity] = useState(1);
-  console.log('quantity', quantity);
+  // console.log('quantity', quantity);
   const dispatch = useDispatch();
 
   const decreaseQuantity = () => {

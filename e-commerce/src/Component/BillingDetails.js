@@ -5,6 +5,7 @@ import Footer from './Footer'
 import Images from '../utilis/images'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import BillingForm from './Formfill'
 
 
 
@@ -31,7 +32,7 @@ const BillingDetails = () => {
     }
     useEffect(() => {
         getprice()
-    }, [subtotal    ])
+    }, [])
 
     // const onhandalprice = (index, qty) => {
     //     console.log('onhandalprice', onhandalprice);
@@ -73,38 +74,15 @@ const BillingDetails = () => {
                 </div>
                 <div className=' d-flex flex-row align-items-start' style={{ gap: '245px' }}>
                     <div className=' d-flex flex-column w-100'>
-                        {/* <div className='billingdetails d-flex'>
-                           <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="fname">First Name:</label>
-                                <input type="text" id="fname" name="fname"  required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="companyname">Company Name:</label>
-                                <input type="text" id="companyname" name="companyname"  required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="address">Street Address:</label>
-                                <input type="text" id="address" name="address"  required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="floor">Apartment, floor, etc. (Optional):</label>
-                                <input type="text" id="floor" name="floor"  required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="city">Town/city:</label>
-                                <input type="text" id="city" name="city"  required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="Number">Phone Number:</label>
-                                <input type="number" id="Number" name="Number"  required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="Email">Email Address:</label>
-                                <input type="email" id="Email" name="Email"  required />
-                            </div> 
-                        </div> */}
+                       
+                        <form>
+
+                        
                         <div className='billingdetails d-flex'>
-                            <div className='d-flex flex-column w-100'>
+
+                            <BillingForm />
+                            
+                            {/* <div className='d-flex flex-column w-100'>
                                 <label className=' d-flex' htmlFor="fname">First Name:</label>
                                 <input type="text" id="fname" name="fname" required />
                             </div>
@@ -131,14 +109,13 @@ const BillingDetails = () => {
                             <div className='d-flex flex-column w-100'>
                                 <label className=' d-flex' htmlFor="Email">Email Address:</label>
                                 <input type="email" id="Email" name="Email" required />
-                            </div>
+                            </div> */}
                         </div>
-
-                        <div className=' d-flex mt-4 gap-4'>
+                        {/* <div className=' d-flex mt-4 gap-4'>
                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
                             <label htmlFor="vehicle1"> Save this information for faster check-out next time</label>
-                        </div>
-                    </div>
+                        </div> */}
+                        </form></div>
                     <div className='totalcart d-flex flex-column w-100'>
                         <div className='finalcart  d-flex flex-column'>
                             <div className='totalbill'>
@@ -149,7 +126,7 @@ const BillingDetails = () => {
                                         const totalprice = state.find((o) => {
                                             return o.id === item.id
                                         })
-                                        console.log('totalprice', totalprice);
+                                      
                                         return <><div className='cartbill'>
                                             <div className='imges'>
                                                 <img src={item?.image} height={50} width={50} alt='' />
@@ -214,7 +191,7 @@ const BillingDetails = () => {
                             </div>
                         </div>
                     </div>
-
+                  
 
                 </div>
             </div>

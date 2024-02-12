@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function SizeSelector() {
 
     const [selectedSize, setSelectedSize] = useState('M');
-    console.log('selectedSize', selectedSize);
+    // console.log('selectedSize', selectedSize);
 
 
     const handleSizeClick = (size) => {

@@ -12,7 +12,7 @@ const AddtoCart = ({ item, onhandalprice }) => {
     const [quntity, setQuntity] = useState([item?.price])
 
     const { quntityfind } = useSelector((state) => state.Auth)
-    console.log('quntityfind', quntityfind);
+
     // const isqunty = quntityfind.length > 0 ? quntityfind.find(itemid => { return itemid.id === item.id }) : false
     const onchangeQue = (e, price) => {
         setValue(e.target.value)
