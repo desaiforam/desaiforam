@@ -16,7 +16,7 @@ const Usrecard = () => {
 
 
     const { addtocart } = useSelector((state) => state.Auth)
-    // console.log('addtocart', addtocart);
+    console.log('addtocart', addtocart);
     const [subtotal, setsubtotal] = useState([])
     const [total, settotal] = useState(0)
     const proceesToCheckout = () => {
@@ -67,7 +67,7 @@ const Usrecard = () => {
                         addtocart.map((item, index) => {
                             // const totalprice = state.find((o) => {
                             //     return o.id === item.id})
-                            return <><AddtoCart item={item} onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)} />
+                            return <><AddtoCart item={item} index={index} onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)} />
                             </>
                         })}
                 </div>

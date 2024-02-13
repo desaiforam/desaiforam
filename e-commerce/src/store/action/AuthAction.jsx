@@ -7,6 +7,7 @@ const initialState = {
     addtocart: [],
     quntityfind: [],
     carttoremove: [],
+    quantitycart: [],
     subtotal: "",
 }
 const authAction = createSlice({
@@ -19,12 +20,16 @@ const authAction = createSlice({
 
         },
         updateQunty: (state, action) => {
+            console.log('action', action);
             state.quntityfind = action.payload
         },
-
         updatCart: (state, action) => {
-
             state.addtocart = [...state.addtocart, action.payload]
+        },
+        updatQuantitycart: (state, action) => {
+            const list = [...state.addtocart]
+            list[action.payload.index].proquantity = Number(action.payload.quntity)
+            state.addtocart = list
         },
         updateSubtotal: (state, action) => {
             // console.log('action', action);

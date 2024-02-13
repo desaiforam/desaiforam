@@ -11,14 +11,13 @@ import BillingForm from './Formfill'
 
 const BillingDetails = () => {
 
-
-
     const { state } = useLocation()
-
 
     const { addtocart } = useSelector((state) => state.Auth)
     const [subtotal, setsubtotal] = useState([])
+    // console.log('subtotal', subtotal);
     const [total, settotal] = useState(0)
+
     const truncate = (str, max, len) => {
         return str.length > max ? str.substring(0, len) + "..." : str;
     }
@@ -34,22 +33,6 @@ const BillingDetails = () => {
         getprice()
     }, [])
 
-    // const onhandalprice = (index, qty) => {
-    //     console.log('onhandalprice', onhandalprice);
-
-    //     const data = [...subtotal]
-    //     console.log('subtotal', subtotal);
-    //     // data[index].price = data[index].price * qty
-
-
-    //     setsubtotal(data)
-    //     const totalData = data.reduce((accumulator, object) => {
-
-    //         return accumulator + object.price;
-    //     }, 0);
-
-    //     settotal(totalData)
-    // }
 
     return (
         <div>
@@ -74,15 +57,15 @@ const BillingDetails = () => {
                 </div>
                 <div className=' d-flex flex-row align-items-start' style={{ gap: '245px' }}>
                     <div className=' d-flex flex-column w-100'>
-                       
+
                         <form>
 
-                        
-                        <div className='billingdetails d-flex'>
 
-                            <BillingForm />
-                            
-                            {/* <div className='d-flex flex-column w-100'>
+                            <div className='billingdetails d-flex'>
+
+                                <BillingForm />
+
+                                {/* <div className='d-flex flex-column w-100'>
                                 <label className=' d-flex' htmlFor="fname">First Name:</label>
                                 <input type="text" id="fname" name="fname" required />
                             </div>
@@ -110,8 +93,8 @@ const BillingDetails = () => {
                                 <label className=' d-flex' htmlFor="Email">Email Address:</label>
                                 <input type="email" id="Email" name="Email" required />
                             </div> */}
-                        </div>
-                        {/* <div className=' d-flex mt-4 gap-4'>
+                            </div>
+                            {/* <div className=' d-flex mt-4 gap-4'>
                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
                             <label htmlFor="vehicle1"> Save this information for faster check-out next time</label>
                         </div> */}
@@ -126,7 +109,7 @@ const BillingDetails = () => {
                                         const totalprice = state.find((o) => {
                                             return o.id === item.id
                                         })
-                                      
+
                                         return <><div className='cartbill'>
                                             <div className='imges'>
                                                 <img src={item?.image} height={50} width={50} alt='' />
@@ -187,11 +170,11 @@ const BillingDetails = () => {
                             </div>
                             <div className='orderplace d-flex' >
                                 <button className='btn-placeorder' >Place Order</button>
-                                
+
                             </div>
                         </div>
                     </div>
-                  
+
 
                 </div>
             </div>

@@ -12,26 +12,26 @@ import { Blnkheart, Heart } from '../../asset/images/svg'
 
 
 
+
 // const card =
 //     [{ img: Images.Gamepad, title: "HAVIT HV-G92 Gamepad", value1: "$160 ", value2: "$160", button: "-40%", buttoncolor: "#DB4444", star: "", value3: "(88)" },
 //     { img: Images.Keyboard, title: "AK-900 Wired Keyboard", value1: "$920 ", value2: "$1160", iscart: true, buttoncolor: "#DB4444", button: "-35%", star: "", value3: "(75)" },
 //     { img: Images.leptop, title: "IPS LCD Gaming Monitor", value1: "$120 ", value2: "$360", button: "-30%", buttoncolor: "#DB4444", star: "", value3: "(99)" },
 //     { img: Images.cpu, title: "RGB liquid CPU Cooler", value1: "$160", value2: "$170", star: "", value3: "(65)" },
 //     ]
-const ProductDetails = ({ item }) => {
-
-
-
+const ProductDetails = ({ item, posts }) => {
 
     const location = useLocation()
-    const { addtocart, wishlist, quntityfind } = useSelector((state) => state.Auth)
+    console.log('location', location.state);
+    const { addtocart, wishlist } = useSelector((state) => state.Auth)
     // console.log('quntityfind', quntityfind);
 
 
-
-
+    // const { quntityfind } = useSelector((state) => state.Auth)
     const dispatch = useDispatch();
     const nevigate = useNavigate()
+    const [quantity, setQuantity] = useState([]);
+    // console.log('quantity', quantity);
     const [carttoadd, setCarttoadd] = useState([])
     const [addtowish, setaddtoWish] = useState([])
     useEffect(() => {
@@ -41,9 +41,23 @@ const ProductDetails = ({ item }) => {
     useEffect(() => {
         setCarttoadd(addtocart)
     }, [addtocart])
+    useEffect(() => {
+        dispatch(AuthAction.updateQunty(quantity))
+        console.log('quantity', quantity);
+    }, [quantity])
+    // useEffect(() => {
+    //     const finditem = location.state.posts.length > 0 ? location.state.posts.find(o => {
+    //         return o.id === item.id
+    //     }) : { proquantity: 1 }
 
+    //     return ({
+    //         proquantity: finditem?.proquantity || 1,
+    //         ...item
+    //     })
+
+    // }, [])
     const [selectedSize, setSelectedSize] = useState('0');
-    // console.log('selectedSize', selectedSize);
+
 
 
     const wishlistbtn = () => {
@@ -85,8 +99,7 @@ const ProductDetails = ({ item }) => {
     // const [quntity, setQuntity] = useState([item?.price])
     const iscart = addtocart.length > 0 ? addtocart.find(itemid => { return itemid.id === location.state.id }) : false
     const iswish = wishlist.length > 0 ? wishlist.find(itemid => { return itemid.id === location.state.id }) : false
-    // const isqunty = quntity.length > 0 ? quntity.find(itemid => { return itemid.id === location.state.id }) : false
-    // console.log('isqunty', isqunty);
+
 
 
 
@@ -171,8 +184,8 @@ const ProductDetails = ({ item }) => {
                             <div className='buynow mt-4'>
 
                                 <div className="counter " style={{ border: '0' }}>
+                                    <QuantityEvent value={location.state} />
 
-                                    <QuantityEvent />
 
                                 </div>
 
@@ -198,8 +211,6 @@ const ProductDetails = ({ item }) => {
 
 
                                 </div>
-
-
                             </div>
 
                             <div className="deliveryavailability mt-5">
