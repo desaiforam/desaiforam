@@ -42,25 +42,25 @@ const CumstCard = (props) => {
     nevigate("/prodect-details", { state: { ...item, iscart: !!iscart, posts } })
   }
   const addtocartbtn = (e) => {
-    dispatch(AuthAction.updatCart(item))
+    dispatch(AuthAction.UpDatCart(item))
     setCarttoadd([...carttoadd, item])
     e.stopPropagation();
   }
   const wishlistbtn = (e) => {
-    dispatch(AuthAction.uapdateWishlist(item))
+    dispatch(AuthAction.UpDateWishList(item))
     setaddtoWish([...addtowish, item])
     e.stopPropagation();
 
   }
   const carttoremovebtn = (id, e) => {
-    dispatch(AuthAction.removetoCart(id))
+    dispatch(AuthAction.RemoveToCart(id))
     const object = carttoadd.filter(obj => obj.id !== id);
     setCarttoadd(object)
     e.stopPropagation();
 
   }
   const wishtoremovebtn = (e, id) => {
-    dispatch(AuthAction.removetowish(id))
+    dispatch(AuthAction.RemoveToWish(id))
     const object = addtowish.filter(obj => obj.id !== id);
     setaddtoWish(object)
     e.stopPropagation();

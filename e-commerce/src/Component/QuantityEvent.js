@@ -26,7 +26,7 @@ const QuantityEvent = ({ value }) => {
   };
 
   useEffect(() => {
-    dispatch(AuthAction.updateQunty(quantity))
+    dispatch(AuthAction.UpDateQuantity(quantity))
     setQuantity(quantity)
   }, [quantity])
 
@@ -40,7 +40,7 @@ const QuantityEvent = ({ value }) => {
     <div className="quantitycounter d-flex " >
       <button className="quantity" onClick={decreaseQuantity}>-</button>
 
-      <div className="qunatityvalue">{value.proquantity}</div>
+      <div className="qunatityvalue">{value.profundity}</div>
       <button className="quantity" onClick={increaseQuantity}>+</button>
     </div>
   );

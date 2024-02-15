@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     wishlist: [],
-    Listwish: [],
     addtocart: [],
     quntityfind: [],
     carttoremove: [],
@@ -14,32 +13,32 @@ const authAction = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        uapdateWishlist: (state, action) => {
+        UpDateWishList: (state, action) => {
 
             state.wishlist = [...state.wishlist, action.payload]
 
         },
-        updateQunty: (state, action) => {
+        UpDateQuantity: (state, action) => {
             console.log('action', action);
             state.quntityfind = action.payload
         },
-        updatCart: (state, action) => {
+        UpDatCart: (state, action) => {
             state.addtocart = [...state.addtocart, action.payload]
         },
-        updatQuantitycart: (state, action) => {
+        UpDatQuantityCart: (state, action) => {
             const list = [...state.addtocart]
-            list[action.payload.index].proquantity = Number(action.payload.quntity)
+            list[action.payload.index].profundity = Number(action.payload.quantity)
             state.addtocart = list
         },
         updateSubtotal: (state, action) => {
             // console.log('action', action);
             state.subtotal = action.payload
         },
-        removetoCart: (state, action) => {
+        RemoveToCart: (state, action) => {
             const object = state.addtocart.filter(obj => obj.id !== action.payload);
             state.addtocart = object
         },
-        removetowish: (state, action) => {
+        RemoveToWish: (state, action) => {
             const object = state.wishlist.filter(obj => obj.id !== action.payload);
             state.wishlist = object
         }

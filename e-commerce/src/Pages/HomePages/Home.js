@@ -32,10 +32,10 @@ const Home = () => {
           // console.log('response', response);
           const finditem = addtocart.length > 0 ? addtocart.find(o => {
             return o.id === item.id
-          }) : { proquantity: 1 }
+          }) : { profundity: 1 }
 
           return ({
-            proquantity: finditem?.proquantity || 1,
+            profundity: finditem?.profundity || 1,
             ...item
           })
         }

@@ -42,16 +42,16 @@ const ProductDetails = ({ item, posts }) => {
         setCarttoadd(addtocart)
     }, [addtocart])
     useEffect(() => {
-        dispatch(AuthAction.updateQunty(quantity))
+        dispatch(AuthAction.UpDateQuantity(quantity))
         console.log('quantity', quantity);
     }, [quantity])
     // useEffect(() => {
     //     const finditem = location.state.posts.length > 0 ? location.state.posts.find(o => {
     //         return o.id === item.id
-    //     }) : { proquantity: 1 }
+    //     }) : { profundity: 1 }
 
     //     return ({
-    //         proquantity: finditem?.proquantity || 1,
+    //         profundity: finditem?.profundity || 1,
     //         ...item
     //     })
 
@@ -61,19 +61,19 @@ const ProductDetails = ({ item, posts }) => {
 
 
     const wishlistbtn = () => {
-        dispatch(AuthAction.uapdateWishlist(location.state))
+        dispatch(AuthAction.UpDateWishList(location.state))
         setaddtoWish([...addtowish, item])
     }
 
     const addtocartbtn = () => {
-        dispatch(AuthAction.updatCart(location.state))
+        dispatch(AuthAction.UpDatCart(location.state))
         setCarttoadd([...carttoadd, item])
 
 
 
     }
     const wishtoremovebtn = () => {
-        dispatch(AuthAction.removetowish(location.state.id))
+        dispatch(AuthAction.RemoveToWish(location.state.id))
         const object = addtowish.filter(obj => obj.id !== location.state);
         setaddtoWish(object)
 
@@ -85,7 +85,7 @@ const ProductDetails = ({ item, posts }) => {
 
     };
     const carttoremovebtn = () => {
-        dispatch(AuthAction.removetoCart(location.state.id))
+        dispatch(AuthAction.RemoveToCart(location.state.id))
         const object = carttoadd.filter(obj => obj.id !== location.state);
         setCarttoadd(object)
         console.log('setCarttoadd', setCarttoadd);
@@ -96,7 +96,7 @@ const ProductDetails = ({ item, posts }) => {
     const product = location?.state
 
     // const [value, setValue] = useState(1)
-    // const [quntity, setQuntity] = useState([item?.price])
+    // const [quantity, setquantity] = useState([item?.price])
     const iscart = addtocart.length > 0 ? addtocart.find(itemid => { return itemid.id === location.state.id }) : false
     const iswish = wishlist.length > 0 ? wishlist.find(itemid => { return itemid.id === location.state.id }) : false
 

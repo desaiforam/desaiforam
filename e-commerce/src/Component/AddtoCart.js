@@ -11,10 +11,10 @@ const truncate = (str, max, len) => {
 const AddtoCart = ({ item, onhandalprice,index }) => {
     // console.log('item', item);
     const [value, setValue] = useState(1)
-    const [quntity, setQuntity] = useState([item?.price])
-    // console.log('quntity', quntity);
+    const [quantity, setQuantity] = useState([item?.price])
+    // console.log('quantity', quantity);
 
-    const { quntityfind, } = useSelector((state) => state.Auth)
+    // const { quntityfind, } = useSelector((state) => state.Auth)
     // console.log('quntityfind', quntityfind);
 
 
@@ -24,21 +24,21 @@ const AddtoCart = ({ item, onhandalprice,index }) => {
 
     const onchangeQue = (e, price) => {
         setValue(e.target.value)
-         dispatch (AuthAction.updatQuantitycart({ index:index,quntity:e.target.value}) )
+         dispatch (AuthAction.UpDatQuantityCart({ index:index,quantity:e.target.value}) )
         const addQue = price * e.target.value
-        setQuntity(addQue)
+        setQuantity(addQue)
         onhandalprice(e.target.value)
     }
 
     useEffect(() => {
-        setValue(item.proquantity)
+        setValue(item.profundity)
         const addQue = item?.price * value
-        setQuntity(addQue)
+        setQuantity(addQue)
     }, [])
 
     useEffect(() => {
-        setQuntity(quntity)
-    }, [quntity])
+        setQuantity(quantity)
+    }, [quantity])
 
 
 
@@ -47,7 +47,7 @@ const AddtoCart = ({ item, onhandalprice,index }) => {
         <tr className='carttable'>
 
             <td className='carttmages'>
-                <div className='quntity'>
+                <div className='quantity'>
 
                     <img src={item?.image} height="50" width="50" alt='' />
                 </div>
@@ -59,11 +59,11 @@ const AddtoCart = ({ item, onhandalprice,index }) => {
             </td> */}
             <td>
 
-                <input type="number" value={item.proquantity} min="1" max="10" onChange={(e) => onchangeQue(e, item?.price)} />
+                <input type="number" value={item.profundity} min="1" max="10" onChange={(e) => onchangeQue(e, item?.price)} />
 
             </td>
             <td>
-                {quntity}
+                {quantity}
             </td>
         </tr>
 
