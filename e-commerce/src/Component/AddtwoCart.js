@@ -8,7 +8,7 @@ import{ AuthAction} from '../store/action/AuthAction';
 const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
 }
-const AddtoCart = ({ item, onhandalprice,index }) => {
+const AddtwoCart = ({ item, onhandalprice,index }) => {
     // console.log('item', item);
     const [value, setValue] = useState(1)
     const [quantity, setQuantity] = useState([item?.price])
@@ -70,4 +70,4 @@ const AddtoCart = ({ item, onhandalprice,index }) => {
     )
 }
 
-export default AddtoCart
+export default AddtwoCart

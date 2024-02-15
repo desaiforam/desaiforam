@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Singup from './Pages/HomePages/Singup';
 import Logedin from './Pages/HomePages/Logedin';
 import ProductDetails from './Pages/HomePages/ProductDetails';
-import Usrecard from './Component/Usrecard';
+import Useradd from './Component/Useradd';
 import Wishlist from './Component/Wishlist';
 import Myprofile from './Component/Myprofile';
 import BillingDetails from './Component/BillingDetails';
@@ -28,7 +28,7 @@ const App = () => {
             <Route path='/sing-up' element={<Singup />} />
             <Route path='/log-in' element={<Logedin />} />
             <Route path='/prodect-details' element={<ProductDetails />} />
-            <Route path='/uase-cart' element={<Usrecard />} />
+            <Route path='/ukase-cart' element={<Useradd />} />
             <Route path='/wish-list' element={<Wishlist />} />
             <Route path='/my-profile' element={<Myprofile />} />
             <Route path='/Cart-Details' element={<BillingDetails />} />

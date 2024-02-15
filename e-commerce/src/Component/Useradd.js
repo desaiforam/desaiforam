@@ -3,11 +3,11 @@ import Navebar from './Navebar'
 import Header from './header'
 import Footer from './Footer'
 import { useDispatch, useSelector } from 'react-redux'
-import AddtoCart from './AddtoCart'
+import AddtwoCart from './AddtwoCart'
 import { useLocation, useNavigate } from 'react-router-dom'
 // import AuthAction from '../store/action/AuthAction'
 
-const Usrecard = () => {
+const Useradd = () => {
     const nevigate = useNavigate()
     const dispatch = useDispatch()
    
@@ -67,7 +67,7 @@ const Usrecard = () => {
                         addtocart.map((item, index) => {
                             // const totalprice = state.find((o) => {
                             //     return o.id === item.id})
-                            return <><AddtoCart item={item} index={index} onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)} />
+                            return <><AddtwoCart item={item} index={index} onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)} />
                             </>
                         })}
                 </div>
@@ -108,4 +108,4 @@ const Usrecard = () => {
     )
 }
 
-export default Usrecard
+export default Useradd

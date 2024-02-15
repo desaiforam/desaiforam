@@ -9,7 +9,7 @@ const Header = ({ posts }) => {
   const nevigate = useNavigate()
   const onclickwishlist = () => { nevigate("/wish-list ") }
   const onclickHome = () => { nevigate("/") }
-  const onclickCart = () => { nevigate("/uase-cart") }
+  const onclickCart = () => { nevigate("/ukase-cart") }
   const onclickAbout = () => { nevigate("/about") }
   const onclickContactus = () => { nevigate("/contact") }
   const onclickSingup = () => { nevigate("/sing-up") }
@@ -60,7 +60,7 @@ const Header = ({ posts }) => {
                 <img src={Images.cart1} width="35" height="35" alt='' />
                 {addtocart.length > 0 && <div className='position-absolute wishlist-count' >{addtocart.length}</div>}
               </div>
-              <a href='/uase-cart'>
+              <a href='/ukase-cart'>
 
               </a>
               <div className="dropdown">
