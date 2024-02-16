@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navebar from "./Navebar";
+import Navbar from "./Navebar";
 import Header from "./header";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,7 +52,7 @@ const Useradd = () => {
 
   return (
     <div>
-      <Navebar />
+      <Navbar />
       <Header />
       <div className="container d-flex flex-column ">
         <div className="homers">Home/ Cart</div>

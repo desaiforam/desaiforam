@@ -1,5 +1,5 @@
 import React from 'react'
-import Navebar from '../../Component/Navebar'
+import Navbar from '../../Component/Navebar'
 import Headers from '../../Component/header'
 import Footer from '../../Component/Footer'
 import Service from '../../Component/Service'
@@ -19,7 +19,7 @@ const card2 = [{ img: <Home />, value: "10.5K", value1: "Sallers active our site
 const About = () => {
     return (
         <div>
-          <Navebar />
+          <Navbar />
           <Headers />
           <div className='our'>
             <div className='container'>

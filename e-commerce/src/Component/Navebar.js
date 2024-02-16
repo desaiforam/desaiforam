@@ -2,7 +2,7 @@ import React from 'react'
 import Images from '../utilis/images'
 
 
-function Navebar() {
+function Navbar() {
   return (
     
     
@@ -27,4 +27,4 @@ function Navebar() {
   )
 }
 
-export default Navebar
+export default Navbar

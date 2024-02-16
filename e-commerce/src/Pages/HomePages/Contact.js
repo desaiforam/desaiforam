@@ -1,5 +1,5 @@
 import React from 'react'
-import Navebar from '../../Component/Navebar'
+import Navbar from '../../Component/Navebar'
 import Headers from '../../Component/header'
 import Footer from '../../Component/Footer'
 import {Contactus, Message} from '../../asset/images/svg'
@@ -10,7 +10,7 @@ import {Contactus, Message} from '../../asset/images/svg'
 const Contact = () => {
   return (
     <div>
-      <Navebar />
+      <Navbar />
       <Headers />
       <div className=' container d-flex flex-column'>
       <div className='about d-flex'>

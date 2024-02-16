@@ -1,12 +1,12 @@
 import React from 'react'
-import Navebar from './Navebar'
+import Navbar from './Navebar'
 import Headers from './header'
 import Footer from './Footer'
 // import '../asset/style/notfound.scss'
 const NotFound = () => {
   return (
     <div>
-      <Navebar />
+      <Navbar />
       <Headers />
       <hr />
       <div className=' container d-flex flex-column gap-5'>

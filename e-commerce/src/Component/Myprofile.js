@@ -1,12 +1,12 @@
 import React from 'react'
-import Navebar from './Navebar'
+import Navbar from './Navebar'
 import Headers from './header'
 import Footer from './Footer'
 
 const Myprofile = () => {
   return (
     <div>
-      <Navebar />
+      <Navbar />
       <Headers />
       <div className='container  d-flex flex-column'>
 

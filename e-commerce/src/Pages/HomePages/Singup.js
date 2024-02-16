@@ -1,5 +1,5 @@
 import React from 'react'
-import Navebar from '../../Component/Navebar'
+import Navbar from '../../Component/Navebar'
 import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
 import Images from '../../utilis/images'
@@ -10,7 +10,7 @@ const Singup = () => {
 
     return (
         <>
-            <Navebar />
+            <Navbar />
             <Header />
             <hr className='w-100' />
             <div className='container' style={{ marginLeft: '0' }}>

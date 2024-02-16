@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 // import Images from '../../utilis/images'
-import Navebar from '../../Component/Navebar'
+import Navar from '../../Component/Navebar'
 import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
 import Iphone from '../../Component/Iphone'
 import ToDays from '../../Component/ToDays'
-import Cayegories from '../../Component/Cayegories'
+import Categories from '../../Component/Cayegories'
 import Products from '../../Component/Products'
-import Ourproduct from '../../Component/Ourproduct'
+import Outproduces from '../../Component/Ourproduct'
 import Music from '../../Component/Music'
 import Featured from '../../Component/Featured'
 import Service from '../../Component/Service'
@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <>
 
-      <Navebar />
+      <Navar />
       {posts && <Header posts={posts} />}
       <div className='container mt-0  '>
         <hr className='w-100' />
@@ -65,13 +65,13 @@ const Home = () => {
       <div className='container '>
         <hr className='w-100' />
       </div>
-      <Cayegories />
+      <Categories />
       <div className='container '>
         <hr className='w-100' mt-2 mb-2 />
       </div>
       {posts && <Products posts={posts} />}
       <Music />
-      {posts && <Ourproduct posts={posts} />}
+      {posts && <Outproduces posts={posts} />}
       <Featured />
       <Service />
       <Footer />

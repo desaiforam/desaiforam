@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navebar from '../../Component/Navebar'
+import Navbar from '../../Component/Navebar'
 import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -110,7 +110,7 @@ const ProductDetails = ({ item, posts }) => {
 
     return (
         <div>
-            <Navebar />
+            <Navbar />
             <Header />
             <hr w-100 ></hr>
             <div className='container'>

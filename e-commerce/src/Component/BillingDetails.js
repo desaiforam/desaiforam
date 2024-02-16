@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navebar from './Navebar'
+import Navbar from './Navebar'
 import Headers from './header'
 import Footer from './Footer'
 import Images from '../utilis/images'
@@ -36,7 +36,7 @@ const BillingDetails = () => {
 
     return (
         <div>
-            <Navebar />
+            <Navbar />
             <Headers />
             <hr className='w-100' />
             <div className='container d-flex flex-column'>
