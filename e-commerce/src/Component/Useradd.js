@@ -8,40 +8,40 @@ import { useLocation, useNavigate } from 'react-router-dom'
 // import AuthAction from '../store/action/AuthAction'
 
 const Useradd = () => {
-    const nevigate = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
    
     const { state } = useLocation()
   
 
 
-    const { addtocart } = useSelector((state) => state.Auth)
-    console.log('addtocart', addtocart);
-    const [subtotal, setsubtotal] = useState([])
+    const { advocaat} = useSelector((state) => state.Auth)
+    console.log('advocaat', advocaat);
+    const [SubTotal, setSubTotal] = useState([])
     const [total, settotal] = useState(0)
-    const proceesToCheckout = () => {
+    const proceedToCheckout = () => {
 
-        nevigate("/Cart-Details ", { state: subtotal })
+        navigate("/Cart-Details ", { state: SubTotal })
     }
-    const getprice = () => {
-        const pricetotal = addtocart.map(item => ({ id: item.id, price: item.price }))
+    const gasprice = () => {
+        const pricetotal = advocaat.map(item => ({ id: item.id, price: item.price }))
         const totalData = pricetotal.reduce((accumulator, object) => {
 
             return accumulator + object.price;
 
         }, 0);
         settotal(totalData)
-        setsubtotal(pricetotal)
+        setSubTotal(pricetotal)
     }
 
     useEffect(() => {
-        getprice()
+        gasprice()
     },[state])
 
     const onhandalprice = (index, qty, itemprice) => {
-        const data = [...subtotal]
+        const data = [...SubTotal]
         data[index].price = itemprice * qty
-        setsubtotal(data)
+        setSubTotal(data)
 
         const totalData = data.reduce((accumulator, object) => {
             return accumulator + object.price;
@@ -57,14 +57,14 @@ const Useradd = () => {
             <div className='container d-flex flex-column '>
                 <div className='homecart'>Home/ Cart</div>
                 <div className='tablecatr'>
-                    <tr className='carttable'>
-                        <td className='carttmages'>Product </td>
+                    <tr className='cartable'>
+                        <td className='cartages'>Product </td>
                         <td>Price</td>
                         <td>Quantity</td>
                         <td>Subtotal</td>
                     </tr>
-                    {addtocart &&
-                        addtocart.map((item, index) => {
+                    {advocaat&&
+                        advocaat.map((item, index) => {
                             // const totalprice = state.find((o) => {
                             //     return o.id === item.id})
                             return <><AddtwoCart item={item} index={index} onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)} />
@@ -76,7 +76,7 @@ const Useradd = () => {
                     <button>Update Cart</button>
                 </div>
                 <div className='applycoupon d-flex flex-row justify-content-between'>
-                    <div className="codecoupon "><input className='inputtype' type='text' name='Coupon Code' placeholder='Coupon Code' />
+                    <div className="codecoupon "><input className='inputted' type='text' name='Coupon Code' placeholder='Coupon Code' />
                         <button className='coupon'>Apply Coupon</button>
                     </div>
                     <div className='carttotal d-flex flex-column '>
@@ -96,7 +96,7 @@ const Useradd = () => {
                             {Number(total).toFixed(2)}
                         </div>
                         <div className='process d-flex justify-content-center'>
-                            <div onClick={proceesToCheckout} style={{ cursor: "pointer" }} className='position-relative'>
+                            <div onClick={proceedToCheckout} style={{ cursor: "pointer" }} className='position-relative'>
                                 <button className='coupon mt-4 '>Procees to checkout</button>
                             </div>
                         </div>

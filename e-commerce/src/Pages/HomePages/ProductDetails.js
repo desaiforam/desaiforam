@@ -23,28 +23,29 @@ const ProductDetails = ({ item, posts }) => {
 
     const location = useLocation()
     console.log('location', location.state);
-    const { addtocart, wishlist } = useSelector((state) => state.Auth)
+    const {  advocaat, wishlist } = useSelector((state) => state.Auth)
     // console.log('quntityfind', quntityfind);
 
 
     // const { quntityfind } = useSelector((state) => state.Auth)
     const dispatch = useDispatch();
-    const nevigate = useNavigate()
-    const [quantity, setQuantity] = useState([]);
+    const navigate = useNavigate()
+        console.log('navigate', navigate);
+    const [Quantity, setQuantity] = useState([]);
     // console.log('quantity', quantity);
-    const [carttoadd, setCarttoadd] = useState([])
-    const [addtowish, setaddtoWish] = useState([])
+    const [CartToad, setCartToad] = useState([])
+    const [AddToWish, setAddToWish] = useState([])
     useEffect(() => {
-        setaddtoWish(wishlist)
+        setAddToWish(wishlist)
 
     }, [wishlist])
     useEffect(() => {
-        setCarttoadd(addtocart)
-    }, [addtocart])
+        setCartToad(advocaat)
+    }, [advocaat])
     useEffect(() => {
-        dispatch(AuthAction.UpDateQuantity(quantity))
-        console.log('quantity', quantity);
-    }, [quantity])
+        dispatch(AuthAction.UpDateQuantity(Quantity))
+        
+    }, [Quantity])
     // useEffect(() => {
     //     const finditem = location.state.posts.length > 0 ? location.state.posts.find(o => {
     //         return o.id === item.id
@@ -60,22 +61,22 @@ const ProductDetails = ({ item, posts }) => {
 
 
 
-    const wishlistbtn = () => {
+    const onclickwishlistbtn = () => {
         dispatch(AuthAction.UpDateWishList(location.state))
-        setaddtoWish([...addtowish, item])
+        setAddToWish([...AddToWish, item])
     }
 
     const addtocartbtn = () => {
         dispatch(AuthAction.UpDatCart(location.state))
-        setCarttoadd([...carttoadd, item])
+        setCartToad([...CartToad, item])
 
 
 
     }
     const wishtoremovebtn = () => {
         dispatch(AuthAction.RemoveToWish(location.state.id))
-        const object = addtowish.filter(obj => obj.id !== location.state);
-        setaddtoWish(object)
+        const object = AddToWish.filter(obj => obj.id !== location.state);
+        setAddToWish(object)
 
     }
 
@@ -84,11 +85,11 @@ const ProductDetails = ({ item, posts }) => {
         setSelectedSize(size);
 
     };
-    const carttoremovebtn = () => {
+    const carttoremove = () => {
         dispatch(AuthAction.RemoveToCart(location.state.id))
-        const object = carttoadd.filter(obj => obj.id !== location.state);
-        setCarttoadd(object)
-        console.log('setCarttoadd', setCarttoadd);
+        const object = CartToad.filter(obj => obj.id !== location.state);
+        setCartToad(object)
+        console.log('setCartToad', setCartToad);
 
 
     }
@@ -97,8 +98,8 @@ const ProductDetails = ({ item, posts }) => {
 
     // const [value, setValue] = useState(1)
     // const [quantity, setquantity] = useState([item?.price])
-    const iscart = addtocart.length > 0 ? addtocart.find(itemid => { return itemid.id === location.state.id }) : false
-    const iswish = wishlist.length > 0 ? wishlist.find(itemid => { return itemid.id === location.state.id }) : false
+    const isar = advocaat.length > 0 ? advocaat.find(itemed => { return itemed.id === location.state.id }) : false
+    const swish = wishlist.length > 0 ? wishlist.find(itemed => { return itemed.id === location.state.id }) : false
 
 
 
@@ -190,21 +191,21 @@ const ProductDetails = ({ item, posts }) => {
                                 </div>
 
                                 <div className="buyNow" >
-                                    {!iscart ?
-                                        <button className='btn btn-now' style={{ backgroundColor: 'orangered' }} onClick={() => addtocartbtn()}>
+                                    {!isar ?
+                                        <button className='btn btn-now' style={{ backgroundColor: 'orangeade' }} onClick={() => addtocartbtn()}>
                                             Buy Now
                                         </button> :
 
-                                        <button className='btn btn-now ' style={{ backgroundColor: 'orangered' }} onClick={(e) => carttoremovebtn()}>Remove To Cart</button>
+                                        <button className='btn btn-now ' style={{ backgroundColor: 'orangeade' }} onClick={(e) => carttoremove()}>Remove To Cart</button>
                                     }
                                 </div>
-                                <div className='wishheart' >
-                                    {!iswish ?
-                                        <button style={{ border: 'none', background: 'transparent' }} onClick={(e) => wishlistbtn(e, location.state.id)}>
+                                <div className='Wishart' >
+                                    {!swish ?
+                                        <button style={{ border: 'none', background: 'transparent' }} onClick={(e) => onclickwishlistbtn(e, location.state.id)}>
                                             <Blnkheart />
                                         </button> :
 
-                                        < button style={{ border: 'none', background: 'transparent' }} onClick={(e) => wishtoremovebtn(e, location.state.id)}>
+                                        <button style={{ border: 'none', background: 'transparent' }} onClick={(e) => wishtoremovebtn(e, location.state.id)}>
                                             <Heart />
                                         </button>
                                     }

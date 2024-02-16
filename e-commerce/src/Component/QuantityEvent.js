@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AuthAction } from '../store/action/AuthAction'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch  } from "react-redux";
 
 
 const QuantityEvent = ({ value }) => {
@@ -28,7 +28,7 @@ const QuantityEvent = ({ value }) => {
   useEffect(() => {
     dispatch(AuthAction.UpDateQuantity(quantity))
     setQuantity(quantity)
-  }, [quantity])
+  }, [0])
 
 
 

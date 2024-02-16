@@ -6,16 +6,16 @@ import { useSelector } from 'react-redux'
 
 
 const Header = ({ posts }) => {
-  const nevigate = useNavigate()
-  const onclickwishlist = () => { nevigate("/wish-list ") }
-  const onclickHome = () => { nevigate("/") }
-  const onclickCart = () => { nevigate("/ukase-cart") }
-  const onclickAbout = () => { nevigate("/about") }
-  const onclickContactus = () => { nevigate("/contact") }
-  const onclickSingup = () => { nevigate("/sing-up") }
-  const onclickMyOrder = () => { nevigate("/prodect-details") }
-  const onclicknotFound = () => { nevigate("//not-found") }
-  const { wishlist, addtocart } = useSelector((state) => state.Auth)
+  const navigate = useNavigate()
+  const onclickwishlist = () => { navigate("/wish-list ") }
+  const onclickHome = () => { navigate("/") }
+  const onclickCart = () => { navigate("/ukase-cart") }
+  const onclickAbout = () => { navigate("/about") }
+  const onclickContactus = () => { navigate("/contact") }
+  const onclickSingup = () => { navigate("/sing-up") }
+  const onclickMyOrder = () => { navigate("/prodect-details") }
+  const onclicknotFound = () => { navigate("//not-found") }
+  const { wishlist, advocaat} = useSelector((state) => state.Auth)
 
 
   return (
@@ -58,7 +58,7 @@ const Header = ({ posts }) => {
               </div>
               <div onClick={onclickCart} style={{ cursor: "pointer" }} className='position-relative'>
                 <img src={Images.cart1} width="35" height="35" alt='' />
-                {addtocart.length > 0 && <div className='position-absolute wishlist-count' >{addtocart.length}</div>}
+                {advocaat.length > 0 && <div className='position-absolute wishlist-count' >{advocaat.length}</div>}
               </div>
               <a href='/ukase-cart'>
 

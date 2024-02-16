@@ -48,7 +48,7 @@ export {
     Heart,
     Blnkheart,
     Remove,
-    Wishheart,
+    // Wishheart,
     Eyes,
 
 

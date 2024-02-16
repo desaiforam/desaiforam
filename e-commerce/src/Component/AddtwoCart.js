@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import{ AuthAction} from '../store/action/AuthAction';
 
 
@@ -12,14 +12,22 @@ const AddtwoCart = ({ item, onhandalprice,index }) => {
     // console.log('item', item);
     const [value, setValue] = useState(1)
     const [quantity, setQuantity] = useState([item?.price])
+    const dispatch = useDispatch()
+    useEffect(() => {
+        setValue(item.profundity)
+        const addQue = item?.price * value
+        setQuantity(addQue)
+    }, [])
+
+    useEffect(() => {
+        setQuantity(quantity)
+    }, [quantity])
     // console.log('quantity', quantity);
 
     // const { quntityfind, } = useSelector((state) => state.Auth)
     // console.log('quntityfind', quntityfind);
 
-
-
-    const dispatch = useDispatch()
+    
 
 
     const onchangeQue = (e, price) => {
@@ -30,23 +38,15 @@ const AddtwoCart = ({ item, onhandalprice,index }) => {
         onhandalprice(e.target.value)
     }
 
-    useEffect(() => {
-        setValue(item.profundity)
-        const addQue = item?.price * value
-        setQuantity(addQue)
-    }, [])
-
-    useEffect(() => {
-        setQuantity(quantity)
-    }, [quantity])
+   
 
 
 
 
     return (
-        <tr className='carttable'>
+        <tr className='cartable'>
 
-            <td className='carttmages'>
+            <td className='cartages'>
                 <div className='quantity'>
 
                     <img src={item?.image} height="50" width="50" alt='' />

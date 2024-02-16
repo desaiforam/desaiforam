@@ -13,24 +13,24 @@ const BillingDetails = () => {
 
     const { state } = useLocation()
 
-    const { addtocart } = useSelector((state) => state.Auth)
-    const [subtotal, setsubtotal] = useState([])
-    // console.log('subtotal', subtotal);
-    const [total, settotal] = useState(0)
+    const { advocaat} = useSelector((state) => state.Auth)
+    const [SubTotal, setSubTotal] = useState([])
+    console.log('subtotal', SubTotal);
+    const [Total, setTotal] = useState(0)
 
     const truncate = (str, max, len) => {
         return str.length > max ? str.substring(0, len) + "..." : str;
     }
-    const getprice = () => {
-        const pricetotal = addtocart.map(item => ({ id: item.id, price: item.price }))
+    const getprime = () => {
+        const pricetotal = advocaat.map(item => ({ id: item.id, price: item.price }))
         const totalData = state.reduce((accumulator, object) => {
             return accumulator + object.price;
         }, 0);
-        settotal(totalData)
-        setsubtotal(pricetotal)
+        setTotal(totalData)
+        setSubTotal(pricetotal)
     }
     useEffect(() => {
-        getprice()
+        getprime()
     }, [])
 
 
@@ -65,58 +65,28 @@ const BillingDetails = () => {
 
                                 <BillingForm />
 
-                                {/* <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="fname">First Name:</label>
-                                <input type="text" id="fname" name="fname" required />
+                                
                             </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="companyname">Company Name:</label>
-                                <input type="text" id="companyname" name="companyname" required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="address">Street  Address : <span class="field-star" aria-hidden="true">*</span></label>
-                                <input type="text" id="address" name="address" required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="floor">Apartment, floor, etc. (Optional):</label>
-                                <input type="text" id="floor" name="floor" />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="city">Town/city:</label>
-                                <input type="text" id="city" name="city" required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="Number">Phone Number:</label>
-                                <input type="number" id="Number" name="Number" required />
-                            </div>
-                            <div className='d-flex flex-column w-100'>
-                                <label className=' d-flex' htmlFor="Email">Email Address:</label>
-                                <input type="email" id="Email" name="Email" required />
-                            </div> */}
-                            </div>
-                            {/* <div className=' d-flex mt-4 gap-4'>
-                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                            <label htmlFor="vehicle1"> Save this information for faster check-out next time</label>
-                        </div> */}
+                            
                         </form></div>
                     <div className='totalcart d-flex flex-column w-100'>
-                        <div className='finalcart  d-flex flex-column'>
-                            <div className='totalbill'>
+                        <div className='finalist  d-flex flex-column'>
+                            <div className='totaling'>
 
-                                {addtocart &&
-                                    addtocart.map((item, index) => {
+                                {advocaat&&
+                                    advocaat.map((item, index) => {
 
-                                        const totalprice = state.find((o) => {
+                                        const totalize = state.find((o) => {
                                             return o.id === item.id
                                         })
 
-                                        return <><div className='cartbill'>
-                                            <div className='imges'>
+                                        return <><div className='crabbily'>
+                                            <div className='img'>
                                                 <img src={item?.image} height={50} width={50} alt='' />
                                                 {truncate(item.title, 5, 20)}
                                             </div>
-                                            <div className='moniter'>
-                                                {totalprice?.price}
+                                            <div className='moniker'>
+                                                {totalize?.price}
 
                                             </div>
                                         </div>
@@ -126,35 +96,35 @@ const BillingDetails = () => {
                             </div>
 
                             <div className='totalcart'>
-                                <div className='totalitem d-flex flex-row justify-content-between'>
+                                <div className='totalism d-flex flex-row justify-content-between'>
                                     <span> Subtotal:</span>
-                                    {Number(total).toFixed(2)}
+                                    {Number(Total).toFixed(2)}
                                 </div>
                                 <hr />
-                                <div className='totalitem d-flex flex-row justify-content-between'>
+                                <div className='totalism d-flex flex-row justify-content-between'>
                                     <span> Shipping:</span>
                                     <span>Free</span>
                                 </div>
                                 <hr />
-                                <div className='totalitem d-flex flex-row justify-content-between'>
+                                <div className='totalism d-flex flex-row justify-content-between'>
                                     <span> Subtotal:</span>
-                                    {Number(total).toFixed(2)}
+                                    {Number(Total).toFixed(2)}
                                 </div>
                             </div>
 
                             <div className='bank d-flex flex-column'>
-                                <div className='cashon justify-content-between g-4'>
-                                    <div className='bankcash'>
+                                <div className='cashoo justify-content-between g-4'>
+                                    <div className='backlash'>
                                         <input type="radio" id="radio" name="radio" value="radio" />
                                         <label htmlFor="html">Bank</label></div>
-                                    <div className='logobank'>
-                                        <img src={Images.bkash} height='50' width="50" alt='' />
+                                    <div className='logbook'>
+                                        <img src={Images.bash} height='50' width="50" alt='' />
                                         <img src={Images.visa} height='50' width="50" alt='' />
-                                        <img src={Images.mastrcards} height='50' width="50" alt='' />
-                                        <img src={Images.banklogo} height='50' width="50" alt='' />
+                                        <img src={Images.mastercard} height='50' width="50" alt='' />
+                                        <img src={Images.backlog} height='50' width="50" alt='' />
                                     </div>
                                 </div>
-                                <div className='cashon'>
+                                <div className='cashoo d-flex gap-4'>
                                     <input type="radio" id="radio" name="radio" value="radio" />
                                     <label htmlFor="html">Cash on delivery</label>
                                 </div>
@@ -164,12 +134,12 @@ const BillingDetails = () => {
                         <div className='couponapply d-flex flex-column'                                                     >
                             <div className='applycoupon d-flex flex-row justify-content-between'>
                                 <div className="codecoupon">
-                                    <input className='inputtype' type='text' name='Coupon Code' placeholder='Coupon Code' />
+                                    <input className='inputted' type='text' name='Coupon Code' placeholder='Coupon Code' />
                                     <button className='coupon'>Apply Coupon</button>
                                 </div>
                             </div>
                             <div className='orderplace d-flex' >
-                                <button className='btn-placeorder' >Place Order</button>
+                                <button className='btn-placarder' >Place Order</button>
 
                             </div>
                         </div>

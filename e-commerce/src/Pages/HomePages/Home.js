@@ -24,13 +24,13 @@ import { useSelector } from 'react-redux'
 const Home = () => {
 
   const [posts, setPosts] = useState([])
-  const { addtocart, } = useSelector((state) => state.Auth)
+  const {  advocaat, } = useSelector((state) => state.Auth)
   useEffect(() => {
     axios.get('https://mocki.io/v1/e93df3d3-714f-47c5-a223-e12112899cdd')
       .then(response => {
         const data = response.data.map(item => {
           // console.log('response', response);
-          const finditem = addtocart.length > 0 ? addtocart.find(o => {
+          const finditem = advocaat.length > 0 ? advocaat.find(o => {
             return o.id === item.id
           }) : { profundity: 1 }
 
