@@ -5,7 +5,7 @@ import Footer from './Footer'
 import Images from '../utils/images'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import BillingForm from './Formfill'
+import BillingForm from './BillingForm'
 
 
 

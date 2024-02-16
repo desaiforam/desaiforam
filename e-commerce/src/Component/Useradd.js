@@ -12,7 +12,6 @@ const Useradd = () => {
   const dispatch = useDispatch();
   console.log("dispatch", dispatch);
 
-  const { state } = useLocation();
 
   const { advocaat } = useSelector((state) => state.Auth);
   console.log("advocaat", advocaat);
@@ -26,9 +25,6 @@ const Useradd = () => {
       id: item.id,
       price: item.price,
     }));
-
-    
-
     const totalData = pricetotal.reduce((accumulator, object) => {
       return accumulator + object.price;
     }, 0);
@@ -36,10 +32,9 @@ const Useradd = () => {
     setSubTotal(pricetotal);
   };
 
-  useEffect(() => {
-    gasprice();
+  useEffect((id) => {
+    gasprice(id);
   }, []);
-  
 
   const onhandalprice = (index, qty, itemize) => {
     const data = [...SubTotal];

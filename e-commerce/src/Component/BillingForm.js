@@ -83,11 +83,11 @@ function BillingForm() {
             </div>
             <div className='d-flex flex-column w-100'>
                 <label className='d-flex' htmlFor="Email">Email Address:</label>
-                <input type="email" id="Email" name="Email" value={formData.Email} onChange={handleChange} required />
+                <input type="email" id="Email" name="Email" value={formData.Email} pattern=".+@example\.com" size="30" onChange={handleChange} required />
                 {errors.Email && <span className="error">{errors.Email}</span>}
             </div>
             <div className=' d-flex mt-4 gap-4 align-items-center'>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                <button type="checkbox" id="vehicle1" name="vehicle1" value="Bike" style={{height:'15px'}} />
                 <label htmlFor="vehicle1"> Save this information for faster check-out next time</label>
             </div>
             {/* <button type="submit">Submit</button> */}
