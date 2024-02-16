@@ -1,11 +1,11 @@
 import React from 'react'
-import Navbar from '../../Component/Navebar'
+import Navbar from '../../Component/Navbar'
 import Headers from '../../Component/header'
 import Footer from '../../Component/Footer'
 import Service from '../../Component/Service'
 import CardCastum from '../../Component/CardCastum'
 import CompanyCard from '../../Component/companycard'
-import Images from '../../utilis/images'
+import Images from '../../utils/images'
 import { Bag, Dollar, Doller, Home} from '../../asset/images/svg'
 
 
@@ -33,7 +33,7 @@ const About = () => {
                 </div>
               </div>
             <div className='imgstory'>
-              <img src={Images.ourstory} height={650} width={750} alt='' />
+              <img src={Images.oratory} height={650} width={750} alt='' />
             </div>
             </div>
           </div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-// import Images from '../../utilis/images'
-import Navar from '../../Component/Navebar'
+// import Images from '../../utils/images'
+import Navbar from '../../Component/Navbar'
 import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
 import Iphone from '../../Component/Iphone'
 import ToDays from '../../Component/ToDays'
-import Categories from '../../Component/Cayegories'
+import Categories from '../../Component/Categories'
 import Products from '../../Component/Products'
-import Outproduces from '../../Component/Ourproduct'
+import OurProducts from '../../Component/OurProducts'
 import Music from '../../Component/Music'
 import Featured from '../../Component/Featured'
 import Service from '../../Component/Service'
@@ -30,12 +30,12 @@ const Home = () => {
       .then(response => {
         const data = response.data.map(item => {
           // console.log('response', response);
-          const finditem = advocaat.length > 0 ? advocaat.find(o => {
+          const finite = advocaat.length > 0 ? advocaat.find(o => {
             return o.id === item.id
           }) : { profundity: 1 }
 
           return ({
-            profundity: finditem?.profundity || 1,
+            profundity: finite?.profundity || 1,
             ...item
           })
         }
@@ -48,13 +48,13 @@ const Home = () => {
       .catch(error => {
         console.log(error)
       })
-  }, [])
+  }, [advocaat])
 
 
   return (
     <>
 
-      <Navar />
+      <Navbar />
       {posts && <Header posts={posts} />}
       <div className='container mt-0  '>
         <hr className='w-100' />
@@ -71,7 +71,7 @@ const Home = () => {
       </div>
       {posts && <Products posts={posts} />}
       <Music />
-      {posts && <Outproduces posts={posts} />}
+      {posts && <OurProducts posts={posts} />}
       <Featured />
       <Service />
       <Footer />

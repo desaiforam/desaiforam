@@ -1,5 +1,5 @@
 import React from 'react'
-import Images from '../utilis/images'
+import Images from '../utils/images'
 import { Bag, Cancleicon, LogOut, Review, Uaericon } from '../asset/images/svg'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'

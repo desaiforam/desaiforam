@@ -1,21 +1,21 @@
 import React from 'react'
-import Images from '../utilis/images'
+import Images from '../utils/images'
 // import { Insta, Twiter,Link, FaceBook } from '../asset/images/svg'
 
 function Footer() {
   return (
     <>
       <div className='footer mt-5 d-flex flex-column'>
-        <div className='container rowfooter  d-flex justify-content-between'>
+        <div className='container rooter  d-flex justify-content-between'>
 
-          <div className='exclisive'>
+          <div className='exclusive'>
             <div className='svg mt-0 mb-0'>
               <img src={Images.exclusive} alt=''/>
               <h5 className='subscribe mt-4 mb-3' >Subscribe</h5>
             </div>
             <p className='text mb-1'>Get 10% off your first order</p>
             <div className='email'>
-              <label htmlfor="email"></label>
+              <label htmlo="email"></label>
               <input type="email" id="email" name="email" placeholder='Enter your email:' className='input' style={{backgroundColor: 'black',border:'0'}}/>
               <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.91199 9.9998H2.99999L1.02299 2.1348C1.01033 2.0891 1.00262 2.04216 0.999989 1.9948C0.977989 1.2738 1.77199 0.773804 2.45999 1.1038L21 9.9998L2.45999 18.8958C1.77999 19.2228 0.995989 18.7368 0.999989 18.0288C1.00201 17.9655 1.01313 17.9029 1.03299 17.8428L2.49999 12.9998" stroke="#FAFAFA" strokewidth="{1.5}" strokelinecap="round" strokelinejoin="round" />
@@ -63,7 +63,7 @@ function Footer() {
 
                   <div className='col-6 mb-3'>
                     <div className="code">
-                      <img src={Images.quercode} height="100px " width="100px" alt=''/>
+                      <img src={Images.quenched} height="100px " width="100px" alt=''/>
                     </div>
                   </div>
                   <div className="col-6 mb-3 d-flex flex-column">
@@ -71,7 +71,7 @@ function Footer() {
                       <img src={Images.google} height="50px" width="105px" alt='' />
                     </div>
                     <div className='android'>
-                      <img src={Images.iapple} height="50px" width="105px" alt='' />
+                      <img src={Images.apple} height="50px" width="105px" alt='' />
                     </div>
                   </div>
                 </div>

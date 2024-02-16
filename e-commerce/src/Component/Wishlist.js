@@ -1,8 +1,8 @@
 import React from 'react'
-import Navebar from './Navebar'
+import Navbar from './Navbar'
 import Headers from './header'
 import Footer from './Footer'
-// import Images from '../utilis/images'
+// import Images from '../utils/images'
 import CumstCard from './CumstCard'
 import { useSelector } from 'react-redux'
 
@@ -16,7 +16,7 @@ const Wishlist = () => {
 
     return (
         <div>
-            <Navebar />
+            <Navbar />
             <Headers />
             <hr w-100 ></hr>
             <div className='container d-flex flex-column'>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Images from '../utilis/images'
+import Images from '../utils/images'
 const Iphone = () => {
   return (
     <>
@@ -38,7 +38,7 @@ const Iphone = () => {
             <div className='alink mt-4'>
             <h2> Up to 10% off Voucher</h2>
             <a href='/' className='alink mt-5' color='white'>Shop Now</a>
-            <img src={Images.shopnow} height="30" width="30" alt=''/>
+            <img src={Images.shopboy} height="30" width="30" alt=''/>
             </div>
             </div>
             <div className='col-6'>

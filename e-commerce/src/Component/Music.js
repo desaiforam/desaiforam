@@ -1,5 +1,5 @@
 import React from 'react'
-import Images from '../utilis/images'
+import Images from '../utils/images'
 
 const Music = (props) => {
 

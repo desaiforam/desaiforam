@@ -21,8 +21,8 @@ import {ReactComponent as Uaericon}  from './manageacc.svg'
 import {ReactComponent as Heart} from './heart.svg'
 import {ReactComponent as Blnkheart} from './blankheart.svg'
 import {ReactComponent as Remove} from './remove.svg'
-import{ ReactComponent as Wishheart} from './wishheart.svg'
 import {ReactComponent as Eyes} from './eyes.svg'
+import {ReactComponent as Exclusive} from  './Exclusive.svg'
 
 export {
     PhoneIcon,
@@ -48,8 +48,8 @@ export {
     Heart,
     Blnkheart,
     Remove,
-    // Wishheart,
     Eyes,
+    Exclusive,
 
 
 

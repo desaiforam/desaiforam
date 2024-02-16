@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../Component/Navebar'
+import Navbar from '../../Component/Navbar'
 import Headers from '../../Component/header'
 import Footer from '../../Component/Footer'
 import {Contactus, Message} from '../../asset/images/svg'

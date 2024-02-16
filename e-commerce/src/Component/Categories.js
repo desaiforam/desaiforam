@@ -1,5 +1,5 @@
 import React from 'react'
-import Images from '../utilis/images'
+import Images from '../utils/images'
 import CumstCard2 from './CumstCard2'
 import { PhoneIcon,ComputerIcon,SmartWatch,Camera,HeadPhone,Gaming } from '../asset/images/svg'
 

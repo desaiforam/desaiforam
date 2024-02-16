@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navebar";
+import Navbar from "./Navbar";
 import Header from "./header";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,9 @@ const Useradd = () => {
       id: item.id,
       price: item.price,
     }));
+
+    
+
     const totalData = pricetotal.reduce((accumulator, object) => {
       return accumulator + object.price;
     }, 0);
@@ -35,8 +38,8 @@ const Useradd = () => {
 
   useEffect(() => {
     gasprice();
-  }, [state]);
-  console.log("state", state);
+  }, []);
+  
 
   const onhandalprice = (index, qty, itemize) => {
     const data = [...SubTotal];

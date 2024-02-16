@@ -1,7 +1,7 @@
 import React from 'react';
 import DateTimeDisplay from './DateTimeDisplay';
 import { useCountdown } from './useCountdown';
-import Images from '../utilis/images';
+import Images from '../utils/images';
 
 const ExpiredNotice = () => {
   return (
@@ -19,18 +19,18 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
         <DateTimeDisplay value={days} type={'Days'} isDanger={days <= 3} />
         {/* <p className='value' >:</p> */}
         <div className='d-flex flex-column  gap-2 '>
-          <img src={Images.doteed} width="9" height="9" alt='' />
-          <img src={Images.doteed} width="9" height="9" alt='' />
+          <img src={Images.doted} width="9" height="9" alt='' />
+          <img src={Images.doted} width="9" height="9" alt='' />
         </div>
         <DateTimeDisplay value={hours} type={'Hours'} isDanger={false} />
         <div className='d-flex flex-column  gap-2 '>
-          <img src={Images.doteed} width="9" height="9" alt='' />
-          <img src={Images.doteed} width="9" height="9" alt='' />
+          <img src={Images.doted} width="9" height="9" alt='' />
+          <img src={Images.doted} width="9" height="9" alt='' />
         </div>
         <DateTimeDisplay value={minutes} type={'Mins'} isDanger={false} />
         <div className='d-flex flex-column  gap-2 '>
-          <img src={Images.doteed} width="9" height="9" alt='' />
-          <img src={Images.doteed} width="9" height="9" alt='' />
+          <img src={Images.doted} width="9" height="9" alt='' />
+          <img src={Images.doted} width="9" height="9" alt='' />
         </div>
         <DateTimeDisplay value={seconds} type={'Seconds'} isDanger={false} />
       </a>

@@ -1,26 +1,26 @@
 import React from 'react'
 import ReactElasticCarousel from 'react-elastic-carousel'
-import Images from '../utilis/images'
+import Images from '../utils/images'
 import { Insta, Twiter,Link } from '../asset/images/svg'
 
 
 
 const card = [
-    { img: Images.tomcruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
-    { img: Images.emmawatson, valueone: "Emma Watson", value: "Managing Director" },
-    { img: Images.willsmith, valueone: "Will Smith", value: "Product Designer" },
-    { img: Images.tomcruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
-    { img: Images.emmawatson, valueone: "Emma Watson", value: "Managing Director" },
-    { img: Images.willsmith, valueone: "Will Smith", value: "Product Designer" },
-    { img: Images.tomcruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
-    { img: Images.emmawatson, valueone: "Emma Watson", value: "Managing Director" },
-    { img: Images.willsmith, valueone: "Will Smith", value: "Product Designer" },
-    { img: Images.tomcruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
-    { img: Images.emmawatson, valueone: "Emma Watson", value: "Managing Director" },
-    { img: Images.willsmith, valueone: "Will Smith", value: "Product Designer" },
-    { img: Images.tomcruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
-    { img: Images.emmawatson, valueone: "Emma Watson", value: "Managing Director" },
-    { img: Images.willsmith, valueone: "Will Smith", value: "Product Designer" }
+    { img: Images.cruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
+    { img: Images.emanation, valueone: "Emma Watson", value: "Managing Director" },
+    { img: Images.wellsite, valueone: "Will Smith", value: "Product Designer" },
+    { img: Images.cruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
+    { img: Images.emanation, valueone: "Emma Watson", value: "Managing Director" },
+    { img: Images.wellsite, valueone: "Will Smith", value: "Product Designer" },
+    { img: Images.cruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
+    { img: Images.emanation, valueone: "Emma Watson", value: "Managing Director" },
+    { img: Images.wellsite, valueone: "Will Smith", value: "Product Designer" },
+    { img: Images.cruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
+    { img: Images.emanation, valueone: "Emma Watson", value: "Managing Director" },
+    { img: Images.wellsite, valueone: "Will Smith", value: "Product Designer" },
+    { img: Images.cruise, valueone: "Tom Cruise", value: "Founder & Chairman" },
+    { img: Images.emanation, valueone: "Emma Watson", value: "Managing Director" },
+    { img: Images.wellsite, valueone: "Will Smith", value: "Product Designer" }
 
 ]
 

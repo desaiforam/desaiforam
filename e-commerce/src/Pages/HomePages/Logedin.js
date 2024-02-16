@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from '../../Component/Navebar'
+import Navbar from '../../Component/Navbar'
 import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
-import Images from '../../utilis/images'
+import Images from '../../utils/images'
 
 const Logedin = () => {
   return (
@@ -15,7 +15,7 @@ const Logedin = () => {
                     <div className='row w-100'>
                         <div className='col-7'>
                             <div className='bag'>
-                                <img src={Images.singup} height="760px"  alt=''/>
+                                <img src={Images.signup} height="760px"  alt=''/>
                             </div>
                         </div>
                         

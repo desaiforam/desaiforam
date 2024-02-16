@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './Navebar'
+import Navbar from './Navbar'
 import Headers from './header'
 import Footer from './Footer'
 // import '../asset/style/notfound.scss'

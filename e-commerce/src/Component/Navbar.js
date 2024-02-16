@@ -1,5 +1,5 @@
 import React from 'react'
-import Images from '../utilis/images'
+import Images from '../utils/images'
 
 
 function Navbar() {
@@ -7,7 +7,7 @@ function Navbar() {
     
     
       <>
-       <div className='topheader'>
+       <div className='towheaded'>
       <header className='Header'> 
         <p className='Summer pt-1' >
         Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
