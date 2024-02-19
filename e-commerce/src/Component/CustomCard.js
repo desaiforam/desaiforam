@@ -7,7 +7,7 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomCard = (props) => {
-  const { item, index, posts } = props;
+  const { item, index, Productcart } = props;
 
   const navigate = useNavigate();
   const {  advocaat, wishlist } = useSelector((state) => state.Auth);
@@ -43,7 +43,7 @@ const CustomCard = (props) => {
 
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
-      state: { ...item, isar: !!isar, posts },
+      state: { ...item, isar: !!isar, Productcart },
     });
   };
   const addtocartbtn = (e) => {
@@ -161,6 +161,8 @@ const CustomCard = (props) => {
       </div>
     </div>
   );
-};
+}; 
+
 
 export default CustomCard;
+

@@ -18,9 +18,9 @@ import { Blnkheart, Heart } from "../../asset/images/svg";
 const ProductDetails = ({ item, posts }) => {
   const location = useLocation();
   console.log("location", location.state);
-  const { advocaat, wishlist } = useSelector((state) => state.Auth);
-  // console.log('quntityfind', quntityfind);
 
+  const { advocaat, wishlist } = useSelector((state) => state.Auth);
+  
   // const { quntityfind } = useSelector((state) => state.Auth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,15 +29,16 @@ const ProductDetails = ({ item, posts }) => {
   const [CartToad, setCartToad] = useState([]);
   const [AddToWish, setAddToWish] = useState([]);
   useEffect(() => {
-      setAddToWish(wishlist);
-    }, [wishlist]);
-    useEffect(() => {
-        setCartToad(advocaat);
-    }, [advocaat]);
-    useEffect(() => {
-        dispatch(AuthAction.UpDateQuantity(Quantity));
-    },[]);
-    console.log("setQuantity", setQuantity);
+    setAddToWish(wishlist);
+  }, [wishlist]);
+
+  useEffect(() => {
+    setCartToad(advocaat);
+  }, [advocaat]);
+  useEffect(() => {
+    dispatch(AuthAction.UpDateQuantity(Quantity));
+  }, []);
+  console.log("setQuantity", setQuantity);
   // useEffect(() => {
   //     const finditem = location.state.posts.length > 0 ? location.state.posts.find(o => {
   //         return o.id === item.id
@@ -228,7 +229,7 @@ const ProductDetails = ({ item, posts }) => {
               </>
               <div className="buynow mt-4">
                 <div className="counter " style={{ border: "0" }}>
-                  <QuantityEvent value={location.state} />
+                  <QuantityEvent value={location.state.profundity} />
                 </div>
 
                 <div className="buyNow">

@@ -1,54 +1,88 @@
+// import React, { useEffect, useState } from "react";
+// import { AuthAction } from "../store/action/AuthAction";
+// import { useDispatch } from "react-redux";
+
+// const QuantityEvent = ({ value }) => {
+//   console.log("value", value);
+//   const [quantity, setQuantity] = useState(1);
+
+//   const dispatch = useDispatch();
+//   const decreaseQuantity = () => {
+//     if (quantity > 1) {
+//       setQuantity(quantity - 1);
+//     }
+//   };
+//   const increaseQuantity = () => {
+//     if (quantity < 10) {
+//       setQuantity(quantity + 1);
+//     }
+//   };
+
+//   useEffect(() => {
+//     dispatch(AuthAction.UpDateQuantity(quantity));
+//     setQuantity(quantity);
+//   }, [0]);
+//   return (
+//     <div className="quantitycounter d-flex ">
+//       <button className="quantity" onClick={decreaseQuantity}>
+//         -
+//       </button>
+
+//       <div className="qunatityvalue">{value.profundity}</div>
+//       <button className="quantity" onClick={increaseQuantity}>
+//         +
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default QuantityEvent;
+
+// src/components/QuantityEvent.js
 import React, { useEffect, useState } from "react";
-import { AuthAction } from '../store/action/AuthAction'
-import { useDispatch  } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setQuantity } from "../store/QuantitySlice";
 
-
-const QuantityEvent = ({ value }) => {
-  console.log('value', value);
-  const [quantity, setQuantity] = useState(1);
-
+const QuantityEvent = (item) => {
+  // const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-
-
-
-
+ 
+  const [quantity, setQuantity] = useState([item?.price]);
+  const [value, setValue] = useState(1);
+  useEffect(() => {
+    setValue(item.profundity);
+    const addQue = item?.price * value;
+    setQuantity(addQue);
+  }, []);
   
-
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+      dispatch(setQuantity(quantity - 1));
     }
   };
+  console.log('decreaseQuantity', decreaseQuantity);
+
   const increaseQuantity = () => {
     if (quantity < 10) {
       setQuantity(quantity + 1);
+      dispatch(setQuantity(quantity + 1));
+      console.log("dispatch", dispatch);
+      console.log("increaseQuantity", increaseQuantity);
     }
   };
 
-  useEffect(() => {
-    dispatch(AuthAction.UpDateQuantity(quantity))
-    setQuantity(quantity)
-  }, [0])
-
-
-
-
-
-
-
   return (
-    <div className="quantitycounter d-flex " >
-      <button className="quantity" onClick={decreaseQuantity}>-</button>
-
-      <div className="qunatityvalue">{value.profundity}</div>
-      <button className="quantity" onClick={increaseQuantity}>+</button>
+    <div className="quantitycounter d-flex ">
+      <button className="quantity" onClick={decreaseQuantity}>
+        -
+      </button>
+      <div className="qunatityvalue">{value}</div>
+      <button className="quantity" onClick={increaseQuantity}>
+        +
+      </button>
     </div>
   );
 };
 
 export default QuantityEvent;
-
-
-
-
-

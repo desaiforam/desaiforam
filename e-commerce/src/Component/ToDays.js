@@ -30,7 +30,7 @@ const ToDays = ({ posts }) => {
             {posts.map((item, index) => (
               <div className='conntainer'>
                 
-                <CustomCard item={item} slider index={index} posts={posts} />
+                <CustomCard item={item} slider index={index} productcart={posts} />
                
               </div>
             ))}

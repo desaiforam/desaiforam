@@ -1,18 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
-// import { act } from "@testing-library/react";
+import { createAction, createSlice } from "@reduxjs/toolkit";
+
 
 const initialState = {
   wishlist: [],
   advocaat: [],
+  productcart: [],
   quntityfind: [],
   carttoremove: [],
   quantitycart: [],
   subtotal: "",
 };
+
+
 const authAction = createSlice({
-  name: "foram",
+  name: "user",
   initialState,
   reducers: {
+   
+    addToProduct: (state, action) => {
+      state.productcart = action.payload;
+      console.log(" action.payload", action.payload);
+    },
+
     UpDateWishList: (state, action) => {
       state.wishlist = [...state.wishlist, action.payload];
     },
@@ -45,5 +54,5 @@ const authAction = createSlice({
 });
 
 export const AuthAction = authAction.actions;
-
+export const setPosts = createAction('SET_POSTS');
 export default authAction.reducer;

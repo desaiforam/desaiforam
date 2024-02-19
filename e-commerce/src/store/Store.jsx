@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import  Authredaucre  from "./action/AuthAction"
 import logger from "redux-logger"
+import quantityReducer from './QuantitySlice'
 
 const middleware = (getDefaultMiddleware) => {
     return getDefaultMiddleware({
@@ -8,10 +9,14 @@ const middleware = (getDefaultMiddleware) => {
     }).concat(logger)
 }
 const store = configureStore({
-    reducer: { Auth: Authredaucre },
+    reducer: { 
+        Auth: Authredaucre,
+        quantity : quantityReducer,
+    },
 
-    middleware: (getDefaultMiddleware) => {
-        return middleware(getDefaultMiddleware)
+    middleware: (getDefaultMiddleware) => { return middleware(getDefaultMiddleware)
+       
+
     }
 })
 
