@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function BillingForm() {
     const [formData, setFormData] = useState({
         fname: '',
-        companyname: '',
+        companionate: '',
         address: '',
         floor: '',
         city: '',
@@ -26,8 +26,8 @@ function BillingForm() {
         if (!formData.fname) {
             validationErrors.fname = 'First name is required';
         }
-        if (!formData.companyname) {
-            validationErrors.companyname = 'Company name is required';
+        if (!formData.companionate) {
+            validationErrors.companionate = 'Company name is required';
         }
         if (!formData.address) {
             validationErrors.address = 'Street address is required';
@@ -58,9 +58,9 @@ function BillingForm() {
                 {errors.fname && <span className="error">{errors.fname}</span>}
             </div>
             <div className='d-flex flex-column w-100'>
-                <label className='d-flex' htmlFor="companyname">Company Name:</label>
-                <input type="text" id="companyname" name="companyname" value={formData.companyname} onChange={handleChange} required />
-                {errors.companyname && <span className="error">{errors.companyname}</span>}
+                <label className='d-flex' htmlFor="companionate">Company Name:</label>
+                <input type="text" id="companionate" name="companionate" value={formData.companionate} onChange={handleChange} required />
+                {errors.companionate && <span className="error">{errors.companionate}</span>}
             </div>
             <div className='d-flex flex-column w-100'>
                 <label className='d-flex' htmlFor="address">Street Address:</label>
