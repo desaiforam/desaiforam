@@ -1,6 +1,6 @@
 import React from 'react'
 import Images from '../utils/images'
-import CumstCard2 from './CumstCard2'
+import CustomCard2 from './CustomCard2'
 import { PhoneIcon,ComputerIcon,SmartWatch,Camera,HeadPhone,Gaming } from '../asset/images/svg'
 
 
@@ -44,7 +44,7 @@ const Cayegories = () => {
         <div className='row w-100'>
           {card2.map((items, index) => {
             return (
-              <CumstCard2 items={items}/>
+              <CustomCard2 items={items}/>
             );
 
           })}
@@ -54,7 +54,7 @@ const Cayegories = () => {
           <Carousel itemsToShow={6} pagination={false} >
             {card2.map((items, index) => (
       <div className="carousel-wrapper d-flex">
-                <CumstCard2 items={items}  />
+                <CustomCard2 items={items}  />
               </div>
             ))}
           </Carousel>

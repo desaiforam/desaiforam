@@ -14,8 +14,8 @@ import Service from '../../Component/Service'
 import '../../asset/style/Style.scss';
 import '../../asset/style/footer.scss';
 import '../../asset/style/_header.scss';
-import '../../asset/style/cumstcard.scss';
-import '../../asset/style/cumstcard2.scss';
+import '../../asset/style/CustomCard.scss';
+import '../../asset/style/CustomCard2.scss';
 import '../../asset/style/iphone.scss';
 import axios from 'axios'
 import { useSelector } from 'react-redux'

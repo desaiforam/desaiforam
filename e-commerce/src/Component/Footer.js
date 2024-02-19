@@ -1,6 +1,6 @@
 import React from 'react'
 import Images from '../utils/images'
-// import { Insta, Twiter,Link, FaceBook } from '../asset/images/svg'
+// import { Insta, Twier,Link, FaceBook } from '../asset/images/svg'
 
 function Footer() {
   return (
@@ -93,7 +93,7 @@ function Footer() {
               </svg>
               {/* <div className='socialimg'>
                                     <FaceBook fill='white' />
-                                    <Twiter fill='white' />
+                                    <Twier fill='white' />
                                     <Insta fill='white'/>
                                     <Link fill='white'/>
                                 </div> */}

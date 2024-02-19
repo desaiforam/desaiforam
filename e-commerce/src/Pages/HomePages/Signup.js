@@ -5,7 +5,7 @@ import Footer from '../../Component/Footer'
 import Images from '../../utils/images'
 
 
-const Singup = () => {
+const Signup = () => {
     
 
     return (
@@ -73,4 +73,4 @@ const Singup = () => {
     )
 }
 
-export default Singup
+export default Signup

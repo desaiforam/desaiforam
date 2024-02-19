@@ -7,14 +7,14 @@ import { useSelector } from 'react-redux'
 
 const Header = ({ posts }) => {
   const navigate = useNavigate()
-  const onclickwishlist = () => { navigate("/wish-list ") }
+  const onclickwishlistbtn = () => { navigate("/wish-list ") }
   const onclickHome = () => { navigate("/") }
   const onclickCart = () => { navigate("/ukase-cart") }
   const onclickAbout = () => { navigate("/about") }
-  const onclickContactus = () => { navigate("/contact") }
-  const onclickSingup = () => { navigate("/sing-up") }
-  const onclickMyOrder = () => { navigate("/prodect-details") }
-  const onclicknotFound = () => { navigate("//not-found") }
+  const onclickContacts = () => { navigate("/contact") }
+  const onclickSignup = () => { navigate("/sing-up") }
+  const onclickMyOrder = () => { navigate("/product-details") }
+  const onclickFound = () => { navigate("//not-found") }
   const { wishlist, advocaat} = useSelector((state) => state.Auth)
 
 
@@ -32,13 +32,13 @@ const Header = ({ posts }) => {
             </div>
           </li>
           <li className="nav-item">
-            <div onClick={onclickContactus} style={{ cursor: "pointer" }} className='position-relative'>Contact</div>
+            <div onClick={onclickContacts} style={{ cursor: "pointer" }} className='position-relative'>Contact</div>
           </li>
           <li className="nav-item">
             <div onClick={onclickAbout} style={{ cursor: "pointer" }} className='position-relative'> About</div>
           </li>
           <li className="nav-item">
-            <div onClick={onclickSingup} style={{ cursor: "pointer",whiteSpace: "nowrap" }} className='position-relative'> Sign Up</div>
+            <div onClick={onclickSignup} style={{ cursor: "pointer",whiteSpace: "nowrap" }} className='position-relative'> Sign Up</div>
            
           </li></ul>
         <div className="container-fluid">
@@ -51,7 +51,7 @@ const Header = ({ posts }) => {
 
             </div>
             <div className='img g-2 '>
-              <div onClick={onclickwishlist} className='position-relative' style={{ cursor: "pointer" }} >
+              <div onClick={onclickwishlistbtn} className='position-relative' style={{ cursor: "pointer" }} >
                 <img src={Images.vector} width="35" height="35" alt='' />
                 {wishlist.length > 0 && <div className='position-absolute wishlist-count' >{wishlist.length}</div>}
 
@@ -77,7 +77,7 @@ const Header = ({ posts }) => {
                     </div>
                   </li>
                   <li className=' d-flex align-items-center'><Cancleicon />
-                    <div onClick={onclicknotFound} className='dropdown-item position-relative' style={{ cursor: "pointer" }} >
+                    <div onClick={onclickFound} className='dropdown-item position-relative' style={{ cursor: "pointer" }} >
                       My Cancellations
                     </div>
                     </li>

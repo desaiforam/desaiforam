@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const CumstCard2 = (props) => {
+const CustomCard2 = (props) => {
   const { items } = props
   // console.log("items", items)
   
@@ -24,4 +24,4 @@ const CumstCard2 = (props) => {
   )
 }
 
-export default CumstCard2
+export default CustomCard2

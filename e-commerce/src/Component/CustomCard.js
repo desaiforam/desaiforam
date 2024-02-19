@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "../asset/style/cumstcard.scss";
+import "../asset/style/CustomCard.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 import { Blnkheart, Eyes, Heart } from "../asset/images/svg";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const CumstCard = (props) => {
+const CustomCard = (props) => {
   const { item, index, posts } = props;
 
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const CumstCard = (props) => {
   const dispatch = useDispatch();
 
   const onclickMyOrder = (item) => {
-    navigate("/prodect-details", {
+    navigate("/product-details", {
       state: { ...item, isar: !!isar, posts },
     });
   };
@@ -163,4 +163,4 @@ const CumstCard = (props) => {
   );
 };
 
-export default CumstCard;
+export default CustomCard;

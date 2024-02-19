@@ -1,7 +1,7 @@
 import React from 'react'
 import Images from '../utils/images';
 
-import CumstCard from './CumstCard';
+import CustomCard from './CustomCard';
 
 
 const Ourproduct = ({ posts }) => {
@@ -29,12 +29,12 @@ const Ourproduct = ({ posts }) => {
                     </div>
                 </div>
                 <div className='container '>
-                    <div className='ourproduct cumstcard'>
+                    <div className='ourproduct CustomCard'>
                         <div className='row m-0'>
                             {posts.map((item, index) => {
                                 return (
                                     // <ProductCard item={item} index={index} />
-                                     <CumstCard item={item} index={index} />
+                                     <CustomCard item={item} index={index} />
                                 );
                             })}
                             <div className='column'>

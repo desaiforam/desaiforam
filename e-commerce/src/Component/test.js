@@ -1,7 +1,7 @@
 // import React from 'react'
 // import ReactElasticCarousel from 'react-elastic-carousel'
 // import Images from '../utils/images'
-// import { Insta, Twiter } from '../asset/images/svg'
+// import { Insta, Twier } from '../asset/images/svg'
 // import { Link } from 'react-router-dom'
 
 
@@ -40,7 +40,7 @@
 //                                     {item.value}
 //                                 </div>
 //                                 <div className='socialimg'>
-//                                     <Twiter />
+//                                     <Twier />
 //                                     <Insta />
 //                                     <Link />
 //                                 </div>

@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Headers from './header'
 import Footer from './Footer'
 // import Images from '../utils/images'
-import CumstCard from './CumstCard'
+import CustomCard from './CustomCard'
 import { useSelector } from 'react-redux'
 
 
@@ -29,9 +29,9 @@ const Wishlist = () => {
                         <button>Move All To Bag</button>
                     </div>
                 </div>
-                <div className='container CumstCard p-1  mt-2 mb-4 row'>
+                <div className='container CustomCard p-1  mt-2 mb-4 row'>
                     {wishlist && wishlist.map((item, index) => {
-                        return <CumstCard item={item} wishlist={true} />
+                        return <CustomCard item={item} wishlist={true} />
 
                     })}
                 </div>
@@ -42,14 +42,14 @@ const Wishlist = () => {
                                 <rect width="20" height="40" rx="4" fill="#DB4444" />
                             </svg>
                             Just For You</span>
-                        <button>See All</button>
+                        <button>See All</button>                   
                     </div>
-                    {/* <div className='container CumstCard p-1 gap-5 mt-5 mb-4'>
+                    {/* <div className='container CustomCard p-1 gap-5 mt-5 mb-4'>
                         {cardSecound.map((item, index) => {
                             // console.log('!item', !item);
                             if (!item) return null
                             return (
-                                <CumstCard item={item} wishlist={false} />
+                                <CustomCard item={item} wishlist={false} />
                             );
                         })}
                     </div> */}

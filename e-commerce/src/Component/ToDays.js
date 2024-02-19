@@ -1,5 +1,5 @@
 import React from 'react'
-import CumstCard from './CumstCard'
+import CustomCard from './CustomCard'
 import Carousel from 'react-elastic-carousel'
 import Timer from './Timer'
 
@@ -30,7 +30,7 @@ const ToDays = ({ posts }) => {
             {posts.map((item, index) => (
               <div className='conntainer'>
                 
-                <CumstCard item={item} slider index={index} posts={posts} />
+                <CustomCard item={item} slider index={index} posts={posts} />
                
               </div>
             ))}

@@ -1,5 +1,5 @@
 import React from 'react'
-import CumstCard from './CumstCard'
+import CustomCard from './CustomCard'
 
 
 
@@ -25,11 +25,11 @@ const Products = ({ posts }) => {
                     </div>
                 </div>
             </div>
-            <div className=' CumstCard  row mt-4'>
+            <div className=' CustomCard  row mt-4'>
 
                 {posts.map((item, index) => {
                     return (
-                        <CumstCard item={item} index={index} />
+                        <CustomCard item={item} index={index} />
                         
                     );
                 })}

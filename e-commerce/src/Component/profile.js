@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Headers from './header'
 import Footer from './Footer'
 
-const Myprofile = () => {
+const Profile = () => {
   return (
     <div>
       <Navbar />
@@ -84,4 +84,4 @@ const Myprofile = () => {
   )
 }
 
-export default Myprofile
+export default Profile

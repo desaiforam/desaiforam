@@ -4,7 +4,7 @@ import Header from '../../Component/header'
 import Footer from '../../Component/Footer'
 import Images from '../../utils/images'
 
-const Logedin = () => {
+const Login = () => {
   return (
     <div>
       <Navbar />
@@ -50,4 +50,4 @@ const Logedin = () => {
   )
 }
 
-export default Logedin
+export default Login

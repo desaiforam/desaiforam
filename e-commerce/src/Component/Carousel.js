@@ -17,7 +17,7 @@ const Carousel = () => {
   
   <div className="carousel-inner">
     <div className="item active">
-      <img src={Images.iphone} alt="Chania" style={{height:'250px', width:'250px'}} />
+      <img src={Images.iphone} alt="" style={{height:'250px', width:'250px'}} />
       <div className="carousel-caption">
         <h3>Los Angeles</h3>
         <p>LA is always so much fun!</p>
@@ -25,7 +25,7 @@ const Carousel = () => {
     </div>
 
     <div className="item">
-      <img src={Images.iphone} alt="Chicago" style={{height:'250px', width:'250px'}} />
+      <img src={Images.iphone} alt="" style={{height:'250px', width:'250px'}} />
       <div className="carousel-caption">
         <h3>Chicago</h3>
         <p>Thank you, Chicago!</p>

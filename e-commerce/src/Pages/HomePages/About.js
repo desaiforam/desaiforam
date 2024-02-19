@@ -6,11 +6,11 @@ import Service from '../../Component/Service'
 import CardCastum from '../../Component/CardCastum'
 import CompanyCard from '../../Component/companycard'
 import Images from '../../utils/images'
-import { Bag, Dollar, Doller, Home} from '../../asset/images/svg'
+import { Bag, Dollar, Droller, Home} from '../../asset/images/svg'
 
 
 const card2 = [{ img: <Home />, value: "10.5K", value1: "Sallers active our site" },
-{ img: <Doller />, value: "33K", value1: "Mopnthly Produduct Sale", bgcolor: "#DB4444", bgcolorround: '#fff', colortext: "#fff" },
+{ img: <Droller />, value: "33K", value1: "Mopnthly Produduct Sale", bgcolor: "#DB4444", bgcolorround: '#fff', colortext: "#fff" },
 { img: <Dollar />, value: "45.5K", value1: "Customer active in our site" },
 { img: <Bag />, value: "25K", value1: "Anual gross sale in our site" }
 ]

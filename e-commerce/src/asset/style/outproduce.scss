@@ -16,11 +16,11 @@
             width: 100%;
             display: flex;
             // border: 3px solid red;
-            .cumstcard {
+            .CustomCard {
                 margin-bottom: 50px;
                 height: 364px;
                 width: 313px;
-                & .cumstcard:hover {
+                & .CustomCard:hover {
                     background-color: #e98f8f;
                 }
                 .advocaat{
@@ -134,7 +134,7 @@
 //         width: 100%;
 //         display: flex;
 
-//         .cumstcard {
+//         .CustomCard {
 //             margin-bottom: 50px;
 //             height: auto;
 //             max-width: 313px;
@@ -217,7 +217,7 @@
 // }
 
 @media only screen and (max-width: 768px) {
-    .container .ourproduct .row .cumstcard {
+    .container .ourproduct .row .CustomCard {
         max-width: none;
     }
 }

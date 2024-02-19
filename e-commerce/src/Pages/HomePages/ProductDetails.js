@@ -392,9 +392,9 @@ const ProductDetails = ({ item, posts }) => {
           </div>
         </div>
       </div>
-      <div className="container CumstCard p-1 gap-5 mt-2">
+      <div className="container CustomCard p-1 gap-5 mt-2">
         {/* {card.map((item, index) => {
-                    return // <CumstCard item={item} />
+                    return // <CustomCard item={item} />
                 })} */}
       </div>
       <Footer />

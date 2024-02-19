@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../../Component/Navbar'
 import Headers from '../../Component/header'
 import Footer from '../../Component/Footer'
-import {Contactus, Message} from '../../asset/images/svg'
+import {Contacts, Message} from '../../asset/images/svg'
 
 
 
@@ -23,7 +23,7 @@ const Contact = () => {
         <div className='aboutus'>
         <div className='callus mt-5'>
           <div className='callto'>
-          <Contactus />
+          <Contacts />
           <span> Call To Us</span>
         </div>
          <div className='available'>

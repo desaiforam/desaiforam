@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactElasticCarousel from 'react-elastic-carousel'
 import Images from '../utils/images'
-import { Insta, Twiter,Link } from '../asset/images/svg'
+import { Insta, Twier,Link } from '../asset/images/svg'
 
 
 
@@ -40,7 +40,7 @@ const companycard = () => {
                                     {item.value}
                                 </div>
                                 <div className='socialimg'>
-                                    <Twiter />
+                                    <Twier />
                                     <Insta />
                                     <Link />
                                 </div>

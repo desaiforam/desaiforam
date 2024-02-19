@@ -46,7 +46,7 @@ const Featured = () => {
                             <div className='row row-shopping'>
                                 <div className='amazon'>
 
-                                    <div className='sker position-relative'>
+                                    <div className='ster position-relative'>
                                         <img src={Images.speakers} alt=''/>
                                         <div className='speakers'>
                                             <h6>Speakers</h6>
@@ -54,7 +54,7 @@ const Featured = () => {
                                             <a href='/' className='shop '>Shop Now</a>
                                         </div>
                                         </div>
-                                        <div className='sker position-relative'>
+                                        <div className='ster position-relative'>
                                             <img src={Images.gucci} alt='' />
                                             <div className='speakers'>
                                                 <h6>Parfume</h6>
