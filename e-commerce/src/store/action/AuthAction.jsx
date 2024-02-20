@@ -1,4 +1,3 @@
-
 import { createAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -8,7 +7,6 @@ const initialState = {
   quntityfind: [],
   carttoremove: [],
   quantitycart: [],
-  addToCart:[],
   subtotal: "",
 };
 
@@ -16,15 +14,13 @@ const authAction = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addToProduct: (state, action) => {
-      // const object = state.advocaat.filter(action.payload);
-      // console.log("advocaat object", object);
+    ADDTOPRODUCT: (state, action) => {
+      // state.listfoproduct = action.payload.map((item) => item.id);
+      // console.log("listfoproduct ids:", state.listfoproduct);
       state.listfoproduct = action.payload;
-      // console.log(" action.payload", action.payload);
+      // state.listfoproduct =[...state.listfoproduct,action.payload]
     },
-    addToCart:(state,action ) => {
-      state.listofcart = action.payload;
-    },
+    
 
     UpDateWishList: (state, action) => {
       state.wishlist = [...state.wishlist, action.payload];
@@ -33,30 +29,136 @@ const authAction = createSlice({
       state.quntityfind = action.payload;
     },
     UpDatCart: (state, action) => {
-const object = state.advocaat.filter((obj) => action.payload);
-console.log("object advocaat", object);
-state.advocaat = [...state.advocaat, action.payload];
-},
-UpDatQuantityCart: (state, action) => {
-const list = [...state.advocaat];
-list[action.payload.index].quantity = Number(action.payload.quantity);
-state.advocaat = list;
-},
-updateSubtotal: (state, action) => {
-// console.log('action', action);
-state.subtotal = action.payload;
-},
-RemoveToCart: (state, action) => {
-const object = state.advocaat.filter((obj) => obj.id !== action.payload);
-state.advocaat = object;
-},
-RemoveToWish: (state, action) => {
-const object = state.wishlist.filter((obj) => obj.id !== action.payload);
-state.wishlist = object;
-},
-},
+      const object = state.advocaat.filter((obj) => action.payload);
+      console.log("object advocaat", object);
+      state.advocaat = [...state.advocaat, action.payload];
+    },
+    UpDatQuantityCart: (state, action) => {
+      const list = [...state.advocaat];
+      list[action.payload.index].quantity = Number(action.payload.quantity);
+      state.advocaat = list;
+    },
+    updateSubtotal: (state, action) => {
+      // console.log('action', action);
+      state.subtotal = action.payload;
+    },
+    RemoveToCart: (state, action) => {
+      const object = state.advocaat.filter((obj) => obj.id !== action.payload);
+      state.advocaat = object;
+    },
+    RemoveToWish: (state, action) => {
+      const object = state.wishlist.filter((obj) => obj.id !== action.payload);
+      state.wishlist = object;
+    },
+  },
 });
 
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
+
+// import { createAction, createSlice } from "@reduxjs/toolkit";
+
+// const initialState = {
+//   wishlist: [],
+//   advocaat: [],
+//   listfoproduct: [],
+//   quntityfind: [],
+//   carttoremove: [],
+//   quantitycart: [],
+//   subtotal: "",
+// };
+
+// const authAction = createSlice({
+//   name: "user",
+//   initialState,
+//   reducers: {
+//     ADDTOPRODUCT: (state, action) => {
+//       state.listfoproduct = action.payload.map(item => item.id); // Extracting ids
+//       console.log("listfoproduct ids:", state.listfoproduct); // Logging only the ids
+//     },
+//     UpDateWishList: (state, action) => {
+//       state.wishlist = [...state.wishlist, action.payload];
+//     },
+//     UpDateQuantity: (state, action) => {
+//       state.quntityfind = action.payload;
+//     },
+//     UpDatCart: (state, action) => {
+//       const object = state.advocaat.filter((obj) => action.payload);
+//       console.log("object advocaat", object);
+//       state.advocaat = [...state.advocaat, action.payload];
+//     },
+//     UpDatQuantityCart: (state, action) => {
+//       const list = [...state.advocaat];
+//       list[action.payload.index].quantity = Number(action.payload.quantity);
+//       state.advocaat = list;
+//     },
+//     updateSubtotal: (state, action) => {
+//       // console.log('action', action);
+//       state.subtotal = action.payload;
+//     },
+//     RemoveToCart: (state, action) => {
+//       const object = state.advocaat.filter((obj) => obj.id !== action.payload);
+//       state.advocaat = object;
+//     },
+//     RemoveToWish: (state, action) => {
+//       const object = state.wishlist.filter((obj) => obj.id !== action.payload);
+//       state.wishlist = object;
+//     },
+//   },
+// });
+
+// export const AuthAction = authAction.actions;
+// export const setPosts = createAction("SET_POSTS");
+// export default authAction.reducer;
+
+// import { createAction, createSlice } from "@reduxjs/toolkit";
+
+// const initialState = {
+//   wishlist: [],
+//   advocaat: [],
+//   listfoproduct: [],
+//   quntityfind: [],
+//   carttoremove: [],
+//   quantitycart: [],
+//   subtotal: "",
+// };
+
+// const authAction = createSlice({
+//   name: "user",
+//   initialState,
+//   reducers: {
+//     ADDTOPRODUCT: (state, action) => {
+//       // state.listfoproduct = action.payload.map(item => item.id); // Extracting IDs
+//       state.listfoproduct = action.payload ;
+//     },
+//     UpDateWishList: (state, action) => {
+//       state.wishlist = [...state.wishlist, action.payload.id]; // Storing only ID in wishlist
+//     },
+//     UpDateQuantity: (state, action) => {
+//       state.quntityfind = action.payload;
+//     },
+//     UpDatCart: (state, action) => {
+//       state.advocaat = [...state.advocaat, action.payload.id]; // Storing only ID in advocaat
+//     },
+//     UpDatQuantityCart: (state, action) => {
+//       const index = state.advocaat.findIndex(item => item.id === action.payload.id);
+//       if (index !== -1) {
+//         state.advocaat[index].quantity = Number(action.payload.quantity);
+//       }
+//     },
+//     updateSubtotal: (state, action) => {
+//       state.subtotal = action.payload;
+//     },
+//     RemoveToCart: (state, action) => {
+//       state.advocaat = state.advocaat.filter(item => item !== action.payload); // Removing ID from advocaat
+//     },
+//     RemoveToWish: (state, action) => {
+//       state.wishlist = state.wishlist.filter(item => item !== action.payload); // Removing ID from wishlist
+//     },
+//   },
+// });
+
+// export const AuthAction = authAction.actions;
+// export const setPosts = createAction("SET_POSTS");
+// export default authAction.reducer;

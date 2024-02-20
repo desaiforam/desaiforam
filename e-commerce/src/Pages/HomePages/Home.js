@@ -47,9 +47,9 @@ const Home = () => {
             };
           });
 
-          dispatch(AuthAction.addToProduct(data));
+          dispatch(AuthAction.ADDTOPRODUCT(data));
         } else {
-          dispatch(AuthAction.addToProduct(productshopping));
+          dispatch(AuthAction.ADDTOPRODUCT(productshopping));
         }
       } catch (error) {
         console.error("Error fetching data:", error);
