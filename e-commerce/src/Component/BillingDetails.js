@@ -14,8 +14,8 @@ const BillingDetails = () => {
     const { state } = useLocation()
 
     const { ADDTOCART} = useSelector((state) => state.Auth)
-    const [SubTotal, setSubTotal] = useState([])
-    console.log('subtotal', SubTotal);
+    const [SUBTOTAL, setSUBTOTAL] = useState([])
+    console.log('SUBTOTAL', SUBTOTAL);
     const [Total, setTotal] = useState(0)
 
     const truncate = (str, max, len) => {
@@ -27,7 +27,7 @@ const BillingDetails = () => {
             return accumulator + object.price;
         }, 0);
         setTotal(totalData)
-        setSubTotal(pricetotal)
+        setSUBTOTAL(pricetotal)
     }
     useEffect(() => {
         getprime()
@@ -97,7 +97,7 @@ const BillingDetails = () => {
 
                             <div className='totalcart'>
                                 <div className='totalism d-flex flex-row justify-content-between'>
-                                    <span> Subtotal:</span>
+                                    <span> SUBTOTAL:</span>
                                     {Number(Total).toFixed(2)}
                                 </div>
                                 <hr />
@@ -107,7 +107,7 @@ const BillingDetails = () => {
                                 </div>
                                 <hr />
                                 <div className='totalism d-flex flex-row justify-content-between'>
-                                    <span> Subtotal:</span>
+                                    <span> SUBTOTAL:</span>
                                     {Number(Total).toFixed(2)}
                                 </div>
                             </div>

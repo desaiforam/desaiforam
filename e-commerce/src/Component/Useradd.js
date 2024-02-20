@@ -15,10 +15,10 @@ const Useradd = () => {
 
   const { ADDTOCART } = useSelector((state) => state.Auth);
   console.log("ADDTOCART", ADDTOCART);
-  const [SubTotal, setSubTotal] = useState([]);
+  const [SUBTOTAL, setSUBTOTAL] = useState([]);
   const [Total, setTotal] = useState(0);
   const proceedToCheckout = () => {
-    navigate("/Cart-Details ", { state: SubTotal });
+    navigate("/Cart-Details ", { state: SUBTOTAL });
   };
   const gasprice = () => {
     const pricetotal = ADDTOCART.map((item) => ({
@@ -29,7 +29,7 @@ const Useradd = () => {
       return accumulator + object.price;
     }, 0);
     setTotal(totalData);
-    setSubTotal(pricetotal);
+    setSUBTOTAL(pricetotal);
   };
 
   useEffect((id) => {
@@ -37,9 +37,9 @@ const Useradd = () => {
   }, []);
 
   const onhandalprice = (index, qty, itemize) => {
-    const data = [...SubTotal];
+    const data = [...SUBTOTAL];
     data[index].price = itemize * qty;
-    setSubTotal(data);
+    setSUBTOTAL(data);
 
     const totalData = data.reduce((accumulator, object) => {
       return accumulator + object.price;
@@ -59,7 +59,7 @@ const Useradd = () => {
             <td className="cartages">Product </td>
             <td>Price</td>
             <td>Quantity</td>
-            <td>Subtotal</td>
+            <td>SUBTOTAL</td>
           </tr>
           {ADDTOCART &&
             ADDTOCART.map((item, index) => {
@@ -93,7 +93,7 @@ const Useradd = () => {
           <div className="carlotta d-flex flex-column ">
             <span className="total mb-3">Cart Total</span>
             <div className="pricetotal d-flex flex-row justify-content-between">
-              <span>Subtotal:</span>
+              <span>SUBTOTAL:</span>
               {Number(Total).toFixed(2)}
             </div>
             <hr w-75 />

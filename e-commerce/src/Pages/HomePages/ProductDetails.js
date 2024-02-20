@@ -20,7 +20,7 @@ const ProductDetails = ({ item }) => {
 
   const { ADDTOCART, wishlist } = useSelector((state) => state.Auth);
 
-  // const { quntityfind } = useSelector((state) => state.Auth)
+  // const { QUANTITYFIND } = useSelector((state) => state.Auth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // console.log("navigate", navigate);
@@ -42,7 +42,7 @@ const ProductDetails = ({ item }) => {
   const [selectedSize, setSelectedSize] = useState("0");
 
   const onclickwishlistbtn = () => {
-    dispatch(AuthAction.UpDateWishList(location.state));
+    dispatch(AuthAction.UPDATEWISHLIST(location.state));
     setAddToWish([...AddToWish, item]);
   };
 
@@ -59,7 +59,7 @@ const ProductDetails = ({ item }) => {
   const handleSizeClick = (size) => {
     setSelectedSize(size);
   };
-  const carttoremove = () => {
+  const CARTTOREMOVE = () => {
     dispatch(AuthAction.RemoveToCart(location.state.id));
     const object = CartToad.filter((obj) => obj.id !== location.state);
     setCartToad(object);
@@ -234,7 +234,7 @@ const ProductDetails = ({ item }) => {
                     <button
                       className="btn btn-now "
                       style={{ backgroundColor: "orangeade" }}
-                      onClick={(e) => carttoremove()}
+                      onClick={(e) => CARTTOREMOVE()}
                     >
                       Remove To Cart
                     </button>

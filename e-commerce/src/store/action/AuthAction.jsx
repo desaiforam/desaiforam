@@ -1,13 +1,14 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
+import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   wishlist: [],
   ADDTOCART: [],
   LISTFOPRODUCT: [],
-  quntityfind: [],
-  carttoremove: [],
-  quantitycart: [],
-  subtotal: "",
+  QUANTITYFIND: [],
+  CARTTOREMOVE: [],
+  QUANTITYCART: [],
+  SUBTOTAL: "",
+  QUANTITY:[]
 };
 
 const authAction = createSlice({
@@ -20,27 +21,26 @@ const authAction = createSlice({
       state.LISTFOPRODUCT = action.payload;
       // state.LISTFOPRODUCT =[...state.LISTFOPRODUCT,action.payload]
     },
-    
-
-    UpDateWishList: (state, action) => {
+    UPDATEWISHLIST: (state, action) => {
+      // state.wishlist = action.payload.map((item) => item.id)
       state.wishlist = [...state.wishlist, action.payload];
     },
     UpDateQuantity: (state, action) => {
-      state.quntityfind = action.payload;
+      state.QUANTITYFIND = action.payload;
     },
     UpDatCart: (state, action) => {
       const object = state.ADDTOCART.filter((obj) => action.payload);
       console.log("object ADDTOCART", object);
       state.ADDTOCART = [...state.ADDTOCART, action.payload];
     },
-    UpDatQuantityCart: (state, action) => {
+    UpDatQUANTITYCART: (state, action) => {
       const list = [...state.ADDTOCART];
       list[action.payload.index].quantity = Number(action.payload.quantity);
       state.ADDTOCART = list;
     },
-    updateSubtotal: (state, action) => {
+    updateSUBTOTAL: (state, action) => {
       // console.log('action', action);
-      state.subtotal = action.payload;
+      state.SUBTOTAL = action.payload;
     },
     RemoveToCart: (state, action) => {
       const object = state.ADDTOCART.filter((obj) => obj.id !== action.payload);
@@ -50,6 +50,9 @@ const authAction = createSlice({
       const object = state.wishlist.filter((obj) => obj.id !== action.payload);
       state.wishlist = object;
     },
+   QUANTITYREDUCER : (createReducer,state, action)=>{
+     const QUANTITY =   action.payload;
+      }
   },
 });
 
@@ -63,10 +66,10 @@ export default authAction.reducer;
 //   wishlist: [],
 //   ADDTOCART: [],
 //   LISTFOPRODUCT: [],
-//   quntityfind: [],
-//   carttoremove: [],
-//   quantitycart: [],
-//   subtotal: "",
+//   QUANTITYFIND: [],
+//   CARTTOREMOVE: [],
+//   QUANTITYCART: [],
+//   SUBTOTAL: "",
 // };
 
 // const authAction = createSlice({
@@ -77,25 +80,25 @@ export default authAction.reducer;
 //       state.LISTFOPRODUCT = action.payload.map(item => item.id); // Extracting ids
 //       console.log("LISTFOPRODUCT ids:", state.LISTFOPRODUCT); // Logging only the ids
 //     },
-//     UpDateWishList: (state, action) => {
+//     UPDATEWISHLIST: (state, action) => {
 //       state.wishlist = [...state.wishlist, action.payload];
 //     },
 //     UpDateQuantity: (state, action) => {
-//       state.quntityfind = action.payload;
+//       state.QUANTITYFIND = action.payload;
 //     },
 //     UpDatCart: (state, action) => {
 //       const object = state.ADDTOCART.filter((obj) => action.payload);
 //       console.log("object ADDTOCART", object);
 //       state.ADDTOCART = [...state.ADDTOCART, action.payload];
 //     },
-//     UpDatQuantityCart: (state, action) => {
+//     UpDatQUANTITYCART: (state, action) => {
 //       const list = [...state.ADDTOCART];
 //       list[action.payload.index].quantity = Number(action.payload.quantity);
 //       state.ADDTOCART = list;
 //     },
-//     updateSubtotal: (state, action) => {
+//     updateSUBTOTAL: (state, action) => {
 //       // console.log('action', action);
-//       state.subtotal = action.payload;
+//       state.SUBTOTAL = action.payload;
 //     },
 //     RemoveToCart: (state, action) => {
 //       const object = state.ADDTOCART.filter((obj) => obj.id !== action.payload);
@@ -118,10 +121,10 @@ export default authAction.reducer;
 //   wishlist: [],
 //   ADDTOCART: [],
 //   LISTFOPRODUCT: [],
-//   quntityfind: [],
-//   carttoremove: [],
-//   quantitycart: [],
-//   subtotal: "",
+//   QUANTITYFIND: [],
+//   CARTTOREMOVE: [],
+//   QUANTITYCART: [],
+//   SUBTOTAL: "",
 // };
 
 // const authAction = createSlice({
@@ -132,23 +135,23 @@ export default authAction.reducer;
 //       // state.LISTFOPRODUCT = action.payload.map(item => item.id); // Extracting IDs
 //       state.LISTFOPRODUCT = action.payload ;
 //     },
-//     UpDateWishList: (state, action) => {
+//     UPDATEWISHLIST: (state, action) => {
 //       state.wishlist = [...state.wishlist, action.payload.id]; // Storing only ID in wishlist
 //     },
 //     UpDateQuantity: (state, action) => {
-//       state.quntityfind = action.payload;
+//       state.QUANTITYFIND = action.payload;
 //     },
 //     UpDatCart: (state, action) => {
 //       state.ADDTOCART = [...state.ADDTOCART, action.payload.id]; // Storing only ID in ADDTOCART
 //     },
-//     UpDatQuantityCart: (state, action) => {
+//     UpDatQUANTITYCART: (state, action) => {
 //       const index = state.ADDTOCART.findIndex(item => item.id === action.payload.id);
 //       if (index !== -1) {
 //         state.ADDTOCART[index].quantity = Number(action.payload.quantity);
 //       }
 //     },
-//     updateSubtotal: (state, action) => {
-//       state.subtotal = action.payload;
+//     updateSUBTOTAL: (state, action) => {
+//       state.SUBTOTAL = action.payload;
 //     },
 //     RemoveToCart: (state, action) => {
 //       state.ADDTOCART = state.ADDTOCART.filter(item => item !== action.payload); // Removing ID from ADDTOCART

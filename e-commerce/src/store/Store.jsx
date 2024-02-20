@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import Authredaucre from "./action/AuthAction";
 import logger from "redux-logger";
-import quantityReducer from "./QuantitySlice";
+import QUANTITYREDUCER from "./QuantitySlice";
 
 const middleware = (getDefaultMiddleware) => {
   return getDefaultMiddleware({
@@ -11,8 +11,8 @@ const middleware = (getDefaultMiddleware) => {
 const store = configureStore({
   reducer: {
     Auth: Authredaucre,
-    quantity: quantityReducer,
-    quantityReducer: quantityReducer,
+    // quantity: QUANTITYREDUCER,
+    // QUANTITYREDUCER: QUANTITYREDUCER,
   },
 
   middleware: (getDefaultMiddleware) => {

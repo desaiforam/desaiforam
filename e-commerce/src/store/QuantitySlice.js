@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  quantitycart: 1,
+  QUANTITYCART: 1,
 };
 
 const QuantitySlice = createSlice({
@@ -10,7 +10,7 @@ const QuantitySlice = createSlice({
     reducers: {
         setQuantity: (state, action) => {
         console.log("action.payload",typeof action.payload);
-      state.quantitycart = action.payload;
+      state.QUANTITYCART = action.payload;
     },
   },
 });

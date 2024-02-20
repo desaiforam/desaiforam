@@ -27,7 +27,7 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
   const onchangeQue = (e, price) => {
     setValue(e.target.value);
     dispatch(
-      AuthAction.UpDatQuantityCart({ index: index, quantity: e.target.value })
+      AuthAction.UpDatQUANTITYCART({ index: index, quantity: e.target.value })
     );
     const addQue = price * e.target.value;
     setQuantity(addQue);
@@ -59,7 +59,7 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
 };
 
 const mapStateToProps = (state) => ({
-  quantity: state.quantityReducer.quantity
+  quantity: state.QUANTITYREDUCER.quantity
 });
 
 export default connect(mapStateToProps)(AddtwoCart);

@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 
 
 
-const Wishlist = () => {
+const Wishlist = (id) => {
 
     const { wishlist } = useSelector((state) => state.Auth)
  

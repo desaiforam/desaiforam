@@ -53,11 +53,11 @@ const CustomCard = (props) => {
     e.stopPropagation();
   };
   const onclickwishlistbtn = (e) => {
-    dispatch(AuthAction.UpDateWishList(item));
+    dispatch(AuthAction.UPDATEWISHLIST(item));
     setAddToWish([...AddToWish, item]);
     e.stopPropagation();
   };
-  const carttoremove = (id, e) => {
+  const CARTTOREMOVE = (id, e) => {
     dispatch(AuthAction.RemoveToCart(id));
     const object = CartToad.filter((obj) => obj.id !== id);
     setCartToad(object);
@@ -126,7 +126,7 @@ const CustomCard = (props) => {
           {isar && (
             <button
               className="btn btn-dark "
-              onClick={(e) => carttoremove(item.id, e)}
+              onClick={(e) => CARTTOREMOVE(item.id, e)}
             >
               Remove To Cart
             </button>
