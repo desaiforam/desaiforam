@@ -19,7 +19,7 @@ const authAction = createSlice({
    
     addToProduct: (state, action) => {
       state.productcart = action.payload;
-      console.log(" action.payload", action.payload);
+      // console.log(" action.payload", action.payload);
     },
 
     UpDateWishList: (state, action) => {
@@ -56,3 +56,5 @@ const authAction = createSlice({
 export const AuthAction = authAction.actions;
 export const setPosts = createAction('SET_POSTS');
 export default authAction.reducer;
+//api can be a store a redux then all product is also store  redux list 
+// product list can be a store a redux then it will be a display using list can display a redux list 

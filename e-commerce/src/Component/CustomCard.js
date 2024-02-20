@@ -104,7 +104,7 @@ const CustomCard = (props) => {
             {item.button}{" "}
           </button>
         )}
-        <div className="cardcustm d-flex flex-d-block align-item-center m-5 justify-content-center">
+        <div className="custard d-flex flex-d-block align-item-center m-5 justify-content-center">
           <div className="img">
             <img
               src={item?.image}
