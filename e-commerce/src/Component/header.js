@@ -51,11 +51,11 @@ const Header = ({ posts }) => {
 
             </div>
             <div className='img g-2 '>
-              <div onClick={onclickwishlistbtn} className='position-relative' style={{ cursor: "pointer" }} >
-                <img src={Images.vector} width="35" height="35" alt='' />
+              {/* <div onClick={onclickwishlistbtn} className='position-relative' style={{ cursor: "pointer" }} >
+                {/* <img src={Images.vector} width="35" height="35" alt='' /> 
                 {wishlist.length > 0 && <div className='position-absolute wishlist-count' >{wishlist.length}</div>}
 
-              </div>
+              </div> */}
               <div onClick={onclickCart} style={{ cursor: "pointer" }} className='position-relative'>
                 <img src={Images.cart1} width="35" height="35" alt='' />
                 {advocaat.length > 0 && <div className='position-absolute wishlist-count' >{advocaat.length}</div>}

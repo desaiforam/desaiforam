@@ -11,9 +11,8 @@ import { useSelector } from 'react-redux'
 
 const Wishlist = () => {
 
-    const { wishlist } = useSelector((state) => state.Auth)
-    // console.log('wishlist', wishlist);
-
+    const { WISHLIST } = useSelector((state) => state.Auth)
+ 
     return (
         <div>
             <Navbar />
@@ -24,13 +23,13 @@ const Wishlist = () => {
 
 
                     <div className='wishlist d-flex' >
-                        <span>wishlist({wishlist.length})</span>
-                        {wishlist.length > 1 && <div className='position-absolute wishlist-count' ></div>}
+                        <span>wishlist({WISHLIST.length})</span>
+                        {WISHLIST.length > 1 && <div className='position-absolute wishlist-count' ></div>}
                         <button>Move All To Bag</button>
                     </div>
                 </div>
                 <div className='container CustomCard p-1  mt-2 mb-4 row'>
-                    {wishlist && wishlist.map((item, index) => {
+                    {WISHLIST && WISHLIST.map((item, index) => {
                         return <CustomCard item={item} wishlist={true} />
 
                     })}

@@ -7,23 +7,23 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomCard = (props) => {
-  const { item, index, LISTOFPRODUCT } = props;
+  const { item, index, listfoproduct } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { ADDTOCART, WISHLISYT } = useSelector((state) => state.Auth);
+  const { advocaat, wishlist } = useSelector((state) => state.Auth);
   const [CartToad, setCartToad] = useState([]);
 
   const [AddToWish, setAddToWish] = useState([]);
 
   useEffect(() => {
   
-    setCartToad(ADDTOCART);
+    setCartToad(advocaat);
    
-  }, [ADDTOCART]);
+  }, [advocaat]);
 
   useEffect(() => {
-    setAddToWish(WISHLISYT);
-  }, [WISHLISYT]);
+    setAddToWish(wishlist);
+  }, [wishlist]);
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
@@ -43,17 +43,17 @@ const CustomCard = (props) => {
 
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
-      state: { ...item, isar: !!isar, LISTOFPRODUCT },
+      state: { ...item, isar: !!isar, listfoproduct },
     });
   };
   const addtocartbtn = (e) => {
     dispatch(AuthAction.UpDatCart(item));
-    console.log("ADDTOCART", ADDTOCART);
+    console.log("advocaat", advocaat);
     setCartToad([...CartToad, item]);
     e.stopPropagation();
   };
-  const onclickWISHLISYTbtn = (e) => {
-    dispatch(AuthAction.UpDateWISHLISYT(item));
+  const onclickwishlistbtn = (e) => {
+    dispatch(AuthAction.UpDateWishList(item));
     setAddToWish([...AddToWish, item]);
     e.stopPropagation();
   };
@@ -83,7 +83,7 @@ const CustomCard = (props) => {
           {!swish ? (
             <button
               style={{ border: "none", background: "transparent" }}
-              onClick={(e) => onclickWISHLISYTbtn(e, item)}
+              onClick={(e) => onclickwishlistbtn(e, item)}
             >
               <Blnkheart />
             </button>

@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +22,7 @@ import "../../asset/style/iphone.scss";
 import { AuthAction } from "../../store/action/AuthAction";
 
 const Home = () => {
-  const { ADDTOCART, LISTOFPRODUCT } = useSelector((state) => state.Auth);
+  const { advocaat, listfoproduct } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,8 +38,8 @@ const Home = () => {
         if (!productshopping) {
           const data = response.data.map((item) => {
             const finite =
-              ADDTOCART.length > 0
-                ? ADDTOCART.find((o) => o.id === item.id)
+              advocaat.length > 0
+                ? advocaat.find((o) => o.id === item.id)
                 : { quantity: 1 };
             return {
               quantity: finite?.quantity || 1,
@@ -60,12 +61,12 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      {LISTOFPRODUCT && <Header posts={LISTOFPRODUCT} />}
+      {listfoproduct && <Header posts={listfoproduct} />}
       <div className="container mt-0">
         <hr className="w-100" />
       </div>
       <Iphone />
-      {LISTOFPRODUCT && <ToDays posts={LISTOFPRODUCT} />}
+      {listfoproduct && <ToDays posts={listfoproduct} />}
       <div className="container">
         <hr className="w-100" />
       </div>
@@ -73,9 +74,9 @@ const Home = () => {
       <div className="container">
         <hr className="w-100" mt-2 mb-2 />
       </div>
-      {LISTOFPRODUCT && <Products posts={LISTOFPRODUCT} />}
+      {listfoproduct && <Products posts={listfoproduct} />}
       <Music />
-      {LISTOFPRODUCT && <OurProducts posts={LISTOFPRODUCT} />}
+      {listfoproduct && <OurProducts posts={listfoproduct} />}
       <Featured />
       <Service />
       <Footer />
