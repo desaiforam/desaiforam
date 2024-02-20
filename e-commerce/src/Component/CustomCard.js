@@ -7,18 +7,20 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomCard = (props) => {
-  const { item, index, Productcart } = props;
-
+  const { item, index, listfoproduct } = props;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {  advocaat, wishlist } = useSelector((state) => state.Auth);
+  const { advocaat, wishlist } = useSelector((state) => state.Auth);
   const [CartToad, setCartToad] = useState([]);
 
   const [AddToWish, setAddToWish] = useState([]);
-  
 
   useEffect(() => {
+  
     setCartToad(advocaat);
+   
   }, [advocaat]);
+
   useEffect(() => {
     setAddToWish(wishlist);
   }, [wishlist]);
@@ -28,9 +30,9 @@ const CustomCard = (props) => {
 
   const isar =
     CartToad.length > 0
-    ? CartToad.find((itemed) => {
-      return itemed.id === item.id;
-    })
+      ? CartToad.find((itemed) => {
+          return itemed.id === item.id;
+        })
       : false;
   const swish =
     AddToWish.length > 0
@@ -39,15 +41,14 @@ const CustomCard = (props) => {
         })
       : false;
 
-  const dispatch = useDispatch();
-
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
-      state: { ...item, isar: !!isar, Productcart },
+      state: { ...item, isar: !!isar, listfoproduct },
     });
   };
   const addtocartbtn = (e) => {
     dispatch(AuthAction.UpDatCart(item));
+    console.log("advocaat", advocaat);
     setCartToad([...CartToad, item]);
     e.stopPropagation();
   };
@@ -161,8 +162,7 @@ const CustomCard = (props) => {
       </div>
     </div>
   );
-}; 
-
+};
 
 export default CustomCard;
 

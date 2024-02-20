@@ -12,6 +12,7 @@ const store = configureStore({
     reducer: { 
         Auth: Authredaucre,
         quantity : quantityReducer,
+        quantityReducer: quantityReducer,
     },
 
     middleware: (getDefaultMiddleware) => { return middleware(getDefaultMiddleware)

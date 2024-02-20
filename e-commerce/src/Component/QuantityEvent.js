@@ -1,34 +1,30 @@
-// import React, { useEffect, useState } from "react";
-// import { AuthAction } from "../store/action/AuthAction";
-// import { useDispatch } from "react-redux";
+// import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setQuantity } from "../store/action/quantityActions";
 
-// const QuantityEvent = ({ value }) => {
-//   console.log("value", value);
-//   const [quantity, setQuantity] = useState(1);
-
+// const QuantityEvent = ({ item, index }) => {
 //   const dispatch = useDispatch();
+//   const quantity = useSelector(state => state.quantityReducer.quantity);
+
 //   const decreaseQuantity = () => {
 //     if (quantity > 1) {
-//       setQuantity(quantity - 1);
-//     }
-//   };
-//   const increaseQuantity = () => {
-//     if (quantity < 10) {
-//       setQuantity(quantity + 1);
+//       dispatch(setQuantity(quantity - 1));
 //     }
 //   };
 
-//   useEffect(() => {
-//     dispatch(AuthAction.UpDateQuantity(quantity));
-//     setQuantity(quantity);
-//   }, [0]);
+//   const increaseQuantity = () => {
+//     if (quantity < 10) {
+//       dispatch(setQuantity(quantity + 1));
+      
+//     }
+//   };
+
 //   return (
 //     <div className="quantitycounter d-flex ">
 //       <button className="quantity" onClick={decreaseQuantity}>
 //         -
 //       </button>
-
-//       <div className="qunatityvalue">{value.profundity}</div>
+//       <div className="qunatityvalue">{quantity}</div>
 //       <button className="quantity" onClick={increaseQuantity}>
 //         +
 //       </button>
@@ -38,46 +34,82 @@
 
 // export default QuantityEvent;
 
-// src/components/QuantityEvent.js
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setQuantity } from "../store/QuantitySlice";
+// import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setQuantity } from "../store/action/quantityActions";
 
-const QuantityEvent = (item) => {
-  // const [quantity, setQuantity] = useState(1);
+// const QuantityCounter = ({ item }) => {
+//   const dispatch = useDispatch();
+//   const quantity = useSelector((state) => state.quantityReducer.quantity);
+
+//   const decreaseQuantity = () => {
+//     if (quantity > 1) {
+//       dispatch(setQuantity(quantity - 1));
+//     }
+//   };
+
+//   const increaseQuantity = () => {
+//     if (quantity < 10) {
+//       dispatch(setQuantity(quantity + 1));
+//     }
+//   };
+
+//   const handleInputChange = (e) => {
+//     const value = parseInt(e.target.value);
+//     if (!isNaN(value) && value >= 1 && value <= 10) {
+//       dispatch(setQuantity(value));
+//     }
+//   };
+
+//   return (
+//     <div className="quantitycounter d-flex">
+//       <button className="quantity" onClick={decreaseQuantity}>
+//         -
+//       </button>
+//       <div
+//         type="number"
+//         className="qunatityvalue"
+//         value={quantity}
+//         onChange={handleInputChange}
+       
+//       >{quantity}</div>
+//       <button className="quantity" onClick={increaseQuantity}>
+//         +
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default QuantityCounter;
+
+
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setQuantity } from "../store/action/quantityActions";
+
+const QuantityCounter = ({ item }) => {
   const dispatch = useDispatch();
- 
-  const [quantity, setQuantity] = useState([item?.price]);
-  const [value, setValue] = useState(1);
-  useEffect(() => {
-    setValue(item.profundity);
-    const addQue = item?.price * value;
-    setQuantity(addQue);
-  }, []);
   
+  const quantity = useSelector((state) => state.quantityReducer.quantity);
+
   const decreaseQuantity = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
       dispatch(setQuantity(quantity - 1));
     }
   };
-  console.log('decreaseQuantity', decreaseQuantity);
 
   const increaseQuantity = () => {
     if (quantity < 10) {
-      setQuantity(quantity + 1);
       dispatch(setQuantity(quantity + 1));
-      console.log("dispatch", dispatch);
-      console.log("increaseQuantity", increaseQuantity);
     }
   };
 
   return (
-    <div className="quantitycounter d-flex ">
+    <div className="quantitycounter d-flex">
       <button className="quantity" onClick={decreaseQuantity}>
         -
       </button>
-      <div className="qunatityvalue">{value}</div>
+      <div className="qunatityvalue">{quantity}</div>
       <button className="quantity" onClick={increaseQuantity}>
         +
       </button>
@@ -85,4 +117,79 @@ const QuantityEvent = (item) => {
   );
 };
 
-export default QuantityEvent;
+export default QuantityCounter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setQuantity } from "../store/actions/quantityActions";
+
+// const QuantityCounter = ({ item }) => {
+//   const dispatch = useDispatch();
+//   const quantity = useSelector((state) => state.quantityResucer.quantity);
+
+//   const decreaseQuantity = () => {
+//     if (quantity > 1) {
+//       dispatch(setQuantity(quantity - 1));
+//     }
+//   };
+
+//   const increaseQuantity = () => {
+//     if (quantity < 10) {
+//       dispatch(setQuantity(quantity + 1));
+//     }
+//   };
+
+//   return (
+//     <div className="quantity-counter">
+//       <button className="quantity-counter-btn" onClick={decreaseQuantity}>
+//         -
+//       </button>
+//       <span className="quantity-counter-value">{quantity}</span>
+//       <button className="quantity-counter-btn" onClick={increaseQuantity}>
+//         +
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default QuantityCounter;
+
+
+
+

@@ -1,25 +1,28 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = {
   wishlist: [],
   advocaat: [],
-  productcart: [],
+  listfoproduct: [],
   quntityfind: [],
   carttoremove: [],
   quantitycart: [],
+  addToCart:[],
   subtotal: "",
 };
-
 
 const authAction = createSlice({
   name: "user",
   initialState,
   reducers: {
-   
     addToProduct: (state, action) => {
-      state.productcart = action.payload;
+      // const object = state.advocaat.filter(action.payload);
+      // console.log("advocaat object", object);
+      state.listfoproduct = action.payload;
       // console.log(" action.payload", action.payload);
+    },
+    addToCart:(state,action ) => {
+      state.listofcart = action.payload;
     },
 
     UpDateWishList: (state, action) => {
@@ -35,7 +38,7 @@ const authAction = createSlice({
     },
     UpDatQuantityCart: (state, action) => {
       const list = [...state.advocaat];
-      list[action.payload.index].profundity = Number(action.payload.quantity);
+      list[action.payload.index].quantity = Number(action.payload.quantity);
       state.advocaat = list;
     },
     updateSubtotal: (state, action) => {
@@ -54,7 +57,8 @@ const authAction = createSlice({
 });
 
 export const AuthAction = authAction.actions;
-export const setPosts = createAction('SET_POSTS');
+export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
-//api can be a store a redux then all product is also store  redux list 
-// product list can be a store a redux then it will be a display using list can display a redux list 
+//api can be a store a redux then all product is also store  redux list
+// add to cart product is also store  redux list
+// product list can be a store a redux then it will be a display using list can display a redux list

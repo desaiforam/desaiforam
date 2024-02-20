@@ -21,56 +21,51 @@ import "../../asset/style/iphone.scss";
 import { AuthAction } from "../../store/action/AuthAction";
 
 const Home = () => {
-  
-  const { advocaat, productcart } = useSelector((state) => state.Auth);
-  const dispatch = useDispatch(); 
+  const { advocaat, listfoproduct } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-       
         const response = await axios.get(
           "https://mocki.io/v1/e93df3d3-714f-47c5-a223-e12112899cdd"
         );
 
         const productshopping = localStorage.getItem("shoppingcart");
-        
-      
+   
+
         if (!productshopping) {
-         
           const data = response.data.map((item) => {
             const finite =
               advocaat.length > 0
                 ? advocaat.find((o) => o.id === item.id)
-                : { profundity: 1 };
+                : { quantity: 1 };
             return {
-              profundity: finite?.profundity || 1,
+              quantity: finite?.quantity || 1,
               ...item,
             };
           });
-        
+
           dispatch(AuthAction.addToProduct(data));
         } else {
-          
           dispatch(AuthAction.addToProduct(productshopping));
         }
       } catch (error) {
-          
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
-  },[]);
+  }, []);
 
   return (
     <>
       <Navbar />
-      {productcart && <Header posts={productcart} />}
+      {listfoproduct && <Header posts={listfoproduct} />}
       <div className="container mt-0">
         <hr className="w-100" />
       </div>
       <Iphone />
-      {productcart && <ToDays posts={productcart} />}
+      {listfoproduct && <ToDays posts={listfoproduct} />}
       <div className="container">
         <hr className="w-100" />
       </div>
@@ -78,9 +73,9 @@ const Home = () => {
       <div className="container">
         <hr className="w-100" mt-2 mb-2 />
       </div>
-      {productcart && <Products posts={productcart} />}
+      {listfoproduct && <Products posts={listfoproduct} />}
       <Music />
-      {productcart && <OurProducts posts={productcart} />}
+      {listfoproduct && <OurProducts posts={listfoproduct} />}
       <Featured />
       <Service />
       <Footer />
@@ -89,4 +84,3 @@ const Home = () => {
 };
 
 export default Home;
-

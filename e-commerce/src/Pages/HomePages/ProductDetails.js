@@ -15,16 +15,16 @@ import { Blnkheart, Heart } from "../../asset/images/svg";
 //     { img: Images.leptop, title: "IPS LCD Gaming Monitor", value1: "$120 ", value2: "$360", button: "-30%", buttoncolor: "#DB4444", star: "", value3: "(99)" },
 //     { img: Images.cpu, title: "RGB liquid CPU Cooler", value1: "$160", value2: "$170", star: "", value3: "(65)" },
 //     ]
-const ProductDetails = ({ item, posts }) => {
+const ProductDetails = ({ item }) => {
   const location = useLocation();
-  console.log("location", location.state);
 
   const { advocaat, wishlist } = useSelector((state) => state.Auth);
-  
+
   // const { quntityfind } = useSelector((state) => state.Auth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("navigate", navigate);
+  // console.log("navigate", navigate);
+
   const [Quantity, setQuantity] = useState([]);
   const [CartToad, setCartToad] = useState([]);
   const [AddToWish, setAddToWish] = useState([]);
@@ -38,18 +38,7 @@ const ProductDetails = ({ item, posts }) => {
   useEffect(() => {
     dispatch(AuthAction.UpDateQuantity(Quantity));
   }, []);
-  console.log("setQuantity", setQuantity);
-  // useEffect(() => {
-  //     const finditem = location.state.posts.length > 0 ? location.state.posts.find(o => {
-  //         return o.id === item.id
-  //     }) : { profundity: 1 }
 
-  //     return ({
-  //         profundity: finditem?.profundity || 1,
-  //         ...item
-  //     })
-
-  // }, [])
   const [selectedSize, setSelectedSize] = useState("0");
 
   const onclickwishlistbtn = () => {
@@ -229,7 +218,7 @@ const ProductDetails = ({ item, posts }) => {
               </>
               <div className="buynow mt-4">
                 <div className="counter " style={{ border: "0" }}>
-                  <QuantityEvent value={location.state.profundity} />
+                  <QuantityEvent />
                 </div>
 
                 <div className="buyNow">

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch} from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
-
+import { setQuantity } from "../store/action/quantityActions";
+import { useLocation } from "react-router-dom";
 
 const truncate = (str, max, len) => {
   return str.length > max ? str.substring(0, len) + "..." : str;
 };
 
 const AddtwoCart = ({ item, onhandalprice, index }) => {
-  // console.log('item', item);
   const [value, setValue] = useState(1);
-  const [quantity, setQuantity] = useState([item?.price]);
+  const location = useLocation();
   const dispatch = useDispatch();
+  const [Value, setValue] = useState()
+  const [quantity, setQuantity] = useState([item?.price]);
   useEffect(() => {
-    setValue(item.profundity);
-    const addQue = item?.price * value;
+    setValue(item.quantity);
+    const addQue = item?.price * Value;
     setQuantity(addQue);
   }, []);
 
@@ -42,10 +44,10 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
       </td>
       <td>{item?.price}</td>
 
-      <td>
+      <td>  
         <input
           type="number"
-          value={item.profundity}
+          value={item.quantity}
           min="1"
           max="10"
           onChange={(e) => onchangeQue(e, item?.price)}
@@ -56,4 +58,8 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
   );
 };
 
-export default AddtwoCart;
+const mapStateToProps = (state) => ({
+  quantity: state.quantityReducer.quantity
+});
+
+export default connect(mapStateToProps)(AddtwoCart);
