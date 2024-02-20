@@ -13,7 +13,7 @@ const BillingDetails = () => {
 
     const { state } = useLocation()
 
-    const { advocaat} = useSelector((state) => state.Auth)
+    const { ADDTOCART} = useSelector((state) => state.Auth)
     const [SubTotal, setSubTotal] = useState([])
     console.log('subtotal', SubTotal);
     const [Total, setTotal] = useState(0)
@@ -22,7 +22,7 @@ const BillingDetails = () => {
         return str.length > max ? str.substring(0, len) + "..." : str;
     }
     const getprime = () => {
-        const pricetotal = advocaat.map(item => ({ id: item.id, price: item.price }))
+        const pricetotal = ADDTOCART.map(item => ({ id: item.id, price: item.price }))
         const totalData = state.reduce((accumulator, object) => {
             return accumulator + object.price;
         }, 0);
@@ -73,8 +73,8 @@ const BillingDetails = () => {
                         <div className='finalist  d-flex flex-column'>
                             <div className='totaling'>
 
-                                {advocaat&&
-                                    advocaat.map((item, index) => {
+                                {ADDTOCART&&
+                                    ADDTOCART.map((item, index) => {
 
                                         const totalize = state.find((o) => {
                                             return o.id === item.id

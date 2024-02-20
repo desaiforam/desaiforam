@@ -13,15 +13,15 @@ const Useradd = () => {
   console.log("dispatch", dispatch);
 
 
-  const { advocaat } = useSelector((state) => state.Auth);
-  console.log("advocaat", advocaat);
+  const { ADDTOCART } = useSelector((state) => state.Auth);
+  console.log("ADDTOCART", ADDTOCART);
   const [SubTotal, setSubTotal] = useState([]);
   const [Total, setTotal] = useState(0);
   const proceedToCheckout = () => {
     navigate("/Cart-Details ", { state: SubTotal });
   };
   const gasprice = () => {
-    const pricetotal = advocaat.map((item) => ({
+    const pricetotal = ADDTOCART.map((item) => ({
       id: item.id,
       price: item.price,
     }));
@@ -61,8 +61,8 @@ const Useradd = () => {
             <td>Quantity</td>
             <td>Subtotal</td>
           </tr>
-          {advocaat &&
-            advocaat.map((item, index) => {
+          {ADDTOCART &&
+            ADDTOCART.map((item, index) => {
               return (
                 <>
                   <AddtwoCart

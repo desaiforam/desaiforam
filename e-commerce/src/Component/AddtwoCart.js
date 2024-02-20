@@ -9,7 +9,6 @@ const truncate = (str, max, len) => {
 };
 
 const AddtwoCart = ({ item, onhandalprice, index }) => {
-  const [value, setValue] = useState(1);
   const location = useLocation();
   const dispatch = useDispatch();
   const [Value, setValue] = useState()

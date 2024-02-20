@@ -1,10 +1,10 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  wishlist: [],
-  advocaat: [],
-  listfoproduct: [],
-  quntityfind: [],
+  WISHLISYT: [],
+  ADDTOCART: [],
+  LISTOFPRODUCT: [],
+  QUANTITYFIND: [],
   carttoremove: [],
   quantitycart: [],
   addToCart:[],
@@ -16,10 +16,8 @@ const authAction = createSlice({
   initialState,
   reducers: {
     addToProduct: (state, action) => {
-      // const object = state.advocaat.filter(action.payload);
-      // console.log("advocaat object", object);
-      state.listfoproduct = action.payload;
-      // console.log(" action.payload", action.payload);
+      state.LISTOFPRODUCT = action.payload;
+    
     },
     addToCart:(state,action ) => {
       state.listofcart = action.payload;
@@ -29,25 +27,25 @@ const authAction = createSlice({
       state.wishlist = [...state.wishlist, action.payload];
     },
     UpDateQuantity: (state, action) => {
-      state.quntityfind = action.payload;
+      state.QUANTITYFIND = action.payload;
     },
     UpDatCart: (state, action) => {
-      const object = state.advocaat.filter((obj) => action.payload);
-      console.log("object advocaat", object);
-      state.advocaat = [...state.advocaat, action.payload];
+      const object = state.ADDTOCART.filter((obj) => action.payload);
+    
+      state.ADDTOCART = [...state.ADDTOCART, action.payload];
     },
     UpDatQuantityCart: (state, action) => {
-      const list = [...state.advocaat];
+      const list = [...state.ADDTOCART];
       list[action.payload.index].quantity = Number(action.payload.quantity);
-      state.advocaat = list;
+      state.ADDTOCART = list;
     },
     updateSubtotal: (state, action) => {
       // console.log('action', action);
       state.subtotal = action.payload;
     },
     RemoveToCart: (state, action) => {
-      const object = state.advocaat.filter((obj) => obj.id !== action.payload);
-      state.advocaat = object;
+      const object = state.ADDTOCART.filter((obj) => obj.id !== action.payload);
+      state.ADDTOCART = object;
     },
     RemoveToWish: (state, action) => {
       const object = state.wishlist.filter((obj) => obj.id !== action.payload);
