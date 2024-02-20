@@ -2,8 +2,8 @@ import { createAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   wishlist: [],
-  advocaat: [],
-  listfoproduct: [],
+  ADDTOCART: [],
+  LISTFOPRODUCT: [],
   quntityfind: [],
   carttoremove: [],
   quantitycart: [],
@@ -15,10 +15,10 @@ const authAction = createSlice({
   initialState,
   reducers: {
     ADDTOPRODUCT: (state, action) => {
-      // state.listfoproduct = action.payload.map((item) => item.id);
-      // console.log("listfoproduct ids:", state.listfoproduct);
-      state.listfoproduct = action.payload;
-      // state.listfoproduct =[...state.listfoproduct,action.payload]
+      // state.LISTFOPRODUCT = action.payload.map((item) => item.id);
+      // console.log("LISTFOPRODUCT ids:", state.LISTFOPRODUCT);
+      state.LISTFOPRODUCT = action.payload;
+      // state.LISTFOPRODUCT =[...state.LISTFOPRODUCT,action.payload]
     },
     
 
@@ -29,22 +29,22 @@ const authAction = createSlice({
       state.quntityfind = action.payload;
     },
     UpDatCart: (state, action) => {
-      const object = state.advocaat.filter((obj) => action.payload);
-      console.log("object advocaat", object);
-      state.advocaat = [...state.advocaat, action.payload];
+      const object = state.ADDTOCART.filter((obj) => action.payload);
+      console.log("object ADDTOCART", object);
+      state.ADDTOCART = [...state.ADDTOCART, action.payload];
     },
     UpDatQuantityCart: (state, action) => {
-      const list = [...state.advocaat];
+      const list = [...state.ADDTOCART];
       list[action.payload.index].quantity = Number(action.payload.quantity);
-      state.advocaat = list;
+      state.ADDTOCART = list;
     },
     updateSubtotal: (state, action) => {
       // console.log('action', action);
       state.subtotal = action.payload;
     },
     RemoveToCart: (state, action) => {
-      const object = state.advocaat.filter((obj) => obj.id !== action.payload);
-      state.advocaat = object;
+      const object = state.ADDTOCART.filter((obj) => obj.id !== action.payload);
+      state.ADDTOCART = object;
     },
     RemoveToWish: (state, action) => {
       const object = state.wishlist.filter((obj) => obj.id !== action.payload);
@@ -61,8 +61,8 @@ export default authAction.reducer;
 
 // const initialState = {
 //   wishlist: [],
-//   advocaat: [],
-//   listfoproduct: [],
+//   ADDTOCART: [],
+//   LISTFOPRODUCT: [],
 //   quntityfind: [],
 //   carttoremove: [],
 //   quantitycart: [],
@@ -74,8 +74,8 @@ export default authAction.reducer;
 //   initialState,
 //   reducers: {
 //     ADDTOPRODUCT: (state, action) => {
-//       state.listfoproduct = action.payload.map(item => item.id); // Extracting ids
-//       console.log("listfoproduct ids:", state.listfoproduct); // Logging only the ids
+//       state.LISTFOPRODUCT = action.payload.map(item => item.id); // Extracting ids
+//       console.log("LISTFOPRODUCT ids:", state.LISTFOPRODUCT); // Logging only the ids
 //     },
 //     UpDateWishList: (state, action) => {
 //       state.wishlist = [...state.wishlist, action.payload];
@@ -84,22 +84,22 @@ export default authAction.reducer;
 //       state.quntityfind = action.payload;
 //     },
 //     UpDatCart: (state, action) => {
-//       const object = state.advocaat.filter((obj) => action.payload);
-//       console.log("object advocaat", object);
-//       state.advocaat = [...state.advocaat, action.payload];
+//       const object = state.ADDTOCART.filter((obj) => action.payload);
+//       console.log("object ADDTOCART", object);
+//       state.ADDTOCART = [...state.ADDTOCART, action.payload];
 //     },
 //     UpDatQuantityCart: (state, action) => {
-//       const list = [...state.advocaat];
+//       const list = [...state.ADDTOCART];
 //       list[action.payload.index].quantity = Number(action.payload.quantity);
-//       state.advocaat = list;
+//       state.ADDTOCART = list;
 //     },
 //     updateSubtotal: (state, action) => {
 //       // console.log('action', action);
 //       state.subtotal = action.payload;
 //     },
 //     RemoveToCart: (state, action) => {
-//       const object = state.advocaat.filter((obj) => obj.id !== action.payload);
-//       state.advocaat = object;
+//       const object = state.ADDTOCART.filter((obj) => obj.id !== action.payload);
+//       state.ADDTOCART = object;
 //     },
 //     RemoveToWish: (state, action) => {
 //       const object = state.wishlist.filter((obj) => obj.id !== action.payload);
@@ -116,8 +116,8 @@ export default authAction.reducer;
 
 // const initialState = {
 //   wishlist: [],
-//   advocaat: [],
-//   listfoproduct: [],
+//   ADDTOCART: [],
+//   LISTFOPRODUCT: [],
 //   quntityfind: [],
 //   carttoremove: [],
 //   quantitycart: [],
@@ -129,8 +129,8 @@ export default authAction.reducer;
 //   initialState,
 //   reducers: {
 //     ADDTOPRODUCT: (state, action) => {
-//       // state.listfoproduct = action.payload.map(item => item.id); // Extracting IDs
-//       state.listfoproduct = action.payload ;
+//       // state.LISTFOPRODUCT = action.payload.map(item => item.id); // Extracting IDs
+//       state.LISTFOPRODUCT = action.payload ;
 //     },
 //     UpDateWishList: (state, action) => {
 //       state.wishlist = [...state.wishlist, action.payload.id]; // Storing only ID in wishlist
@@ -139,19 +139,19 @@ export default authAction.reducer;
 //       state.quntityfind = action.payload;
 //     },
 //     UpDatCart: (state, action) => {
-//       state.advocaat = [...state.advocaat, action.payload.id]; // Storing only ID in advocaat
+//       state.ADDTOCART = [...state.ADDTOCART, action.payload.id]; // Storing only ID in ADDTOCART
 //     },
 //     UpDatQuantityCart: (state, action) => {
-//       const index = state.advocaat.findIndex(item => item.id === action.payload.id);
+//       const index = state.ADDTOCART.findIndex(item => item.id === action.payload.id);
 //       if (index !== -1) {
-//         state.advocaat[index].quantity = Number(action.payload.quantity);
+//         state.ADDTOCART[index].quantity = Number(action.payload.quantity);
 //       }
 //     },
 //     updateSubtotal: (state, action) => {
 //       state.subtotal = action.payload;
 //     },
 //     RemoveToCart: (state, action) => {
-//       state.advocaat = state.advocaat.filter(item => item !== action.payload); // Removing ID from advocaat
+//       state.ADDTOCART = state.ADDTOCART.filter(item => item !== action.payload); // Removing ID from ADDTOCART
 //     },
 //     RemoveToWish: (state, action) => {
 //       state.wishlist = state.wishlist.filter(item => item !== action.payload); // Removing ID from wishlist

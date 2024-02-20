@@ -18,7 +18,7 @@ import { Blnkheart, Heart } from "../../asset/images/svg";
 const ProductDetails = ({ item }) => {
   const location = useLocation();
 
-  const { advocaat, wishlist } = useSelector((state) => state.Auth);
+  const { ADDTOCART, wishlist } = useSelector((state) => state.Auth);
 
   // const { quntityfind } = useSelector((state) => state.Auth)
   const dispatch = useDispatch();
@@ -33,8 +33,8 @@ const ProductDetails = ({ item }) => {
   }, [wishlist]);
 
   useEffect(() => {
-    setCartToad(advocaat);
-  }, [advocaat]);
+    setCartToad(ADDTOCART);
+  }, [ADDTOCART]);
   useEffect(() => {
     dispatch(AuthAction.UpDateQuantity(Quantity));
   }, []);
@@ -71,8 +71,8 @@ const ProductDetails = ({ item }) => {
   // const [value, setValue] = useState(1)
   // const [quantity, setquantity] = useState([item?.price])
   const isar =
-    advocaat.length > 0
-      ? advocaat.find((itemed) => {
+    ADDTOCART.length > 0
+      ? ADDTOCART.find((itemed) => {
           return itemed.id === location.state.id;
         })
       : false;

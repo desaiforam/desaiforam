@@ -7,19 +7,19 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomCard = (props) => {
-  const { item, index, listfoproduct } = props;
+  const { item, index, LISTFOPRODUCT } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { advocaat, wishlist } = useSelector((state) => state.Auth);
+  const { ADDTOCART, wishlist } = useSelector((state) => state.Auth);
   const [CartToad, setCartToad] = useState([]);
 
   const [AddToWish, setAddToWish] = useState([]);
 
   useEffect(() => {
   
-    setCartToad(advocaat);
+    setCartToad(ADDTOCART);
    
-  }, [advocaat]);
+  }, [ADDTOCART]);
 
   useEffect(() => {
     setAddToWish(wishlist);
@@ -43,12 +43,12 @@ const CustomCard = (props) => {
 
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
-      state: { ...item, isar: !!isar, listfoproduct },
+      state: { ...item, isar: !!isar, LISTFOPRODUCT },
     });
   };
   const addtocartbtn = (e) => {
     dispatch(AuthAction.UpDatCart(item));
-    console.log("advocaat", advocaat);
+    console.log("ADDTOCART", ADDTOCART);
     setCartToad([...CartToad, item]);
     e.stopPropagation();
   };

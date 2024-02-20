@@ -15,7 +15,7 @@ const Header = ({ posts }) => {
   const onclickSignup = () => { navigate("/sing-up") }
   const onclickMyOrder = () => { navigate("/product-details") }
   const onclickFound = () => { navigate("//not-found") }
-  const { wishlist, advocaat} = useSelector((state) => state.Auth)
+  const { wishlist, ADDTOCART} = useSelector((state) => state.Auth)
 
 
   return (
@@ -51,14 +51,14 @@ const Header = ({ posts }) => {
 
             </div>
             <div className='img g-2 '>
-              {/* <div onClick={onclickwishlistbtn} className='position-relative' style={{ cursor: "pointer" }} >
-                {/* <img src={Images.vector} width="35" height="35" alt='' /> 
+              <div onClick={onclickwishlistbtn} className='position-relative' style={{ cursor: "pointer" }} >
+                 <img src={Images.vector} width="35" height="35" alt='' /> 
                 {wishlist.length > 0 && <div className='position-absolute wishlist-count' >{wishlist.length}</div>}
 
-              </div> */}
+              </div>
               <div onClick={onclickCart} style={{ cursor: "pointer" }} className='position-relative'>
                 <img src={Images.cart1} width="35" height="35" alt='' />
-                {advocaat.length > 0 && <div className='position-absolute wishlist-count' >{advocaat.length}</div>}
+                {ADDTOCART.length > 0 && <div className='position-absolute wishlist-count' >{ADDTOCART.length}</div>}
               </div>
               <a href='/ukase-cart'>
 
