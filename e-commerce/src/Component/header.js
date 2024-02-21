@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 const Header = ({ posts }) => {
   const navigate = useNavigate()
-  const onclickwishlistbtn = () => { navigate("/wish-list ") }
+  const onClickWishListBtn = () => { navigate("/wish-list ") }
   const onclickHome = () => { navigate("/") }
   const onclickCart = () => { navigate("/ukase-cart") }
   const onclickAbout = () => { navigate("/about") }
@@ -51,7 +51,7 @@ const Header = ({ posts }) => {
 
             </div>
             <div className='img g-2 '>
-              <div onClick={onclickwishlistbtn} className='position-relative' style={{ cursor: "pointer" }} >
+              <div onClick={onClickWishListBtn} className='position-relative' style={{ cursor: "pointer" }} >
                  <img src={Images.vector} width="35" height="35" alt='' /> 
                 {WishList.length > 0 && <div className='position-absolute wishlist-count' >{WishList.length}</div>}
 

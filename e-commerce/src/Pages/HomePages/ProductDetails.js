@@ -41,7 +41,7 @@ const ProductDetails = ({ item }) => {
   }, []);
   const [selectedSize, setSelectedSize] = useState("0");
 
-  const onclickwishlistbtn = () => {
+  const onClickWishListBtn = () => {
     dispatch(AuthAction.UpDateWishList(location.state));
     setAddToWish([...AddToWish, item]);
   };
@@ -49,7 +49,7 @@ const ProductDetails = ({ item }) => {
     dispatch(AuthAction.UpDateCart(location.state));
     setCartToad([...CartToad, item]);
   };
-  const wishtoremovebtn = () => {
+  const WishToRemoveBtn = () => {
     dispatch(AuthAction.RemoveToWish(location.state));
     const object = WishList.filter((obj) => obj.id !== location.state);
     setAddToWish(object);
@@ -240,14 +240,14 @@ const ProductDetails = ({ item }) => {
                   {!swish ? (
                     <button
                       style={{ border: "none", background: "transparent" }}
-                      onClick={(e) => onclickwishlistbtn(e, location.state.id)}
+                      onClick={(e) => onClickWishListBtn(e, location.state.id)}
                     >
                       <Blnkheart />
                     </button>
                   ) : (
                     <button
                       style={{ border: "none", background: "transparent" }}
-                      onClick={(e) => wishtoremovebtn(e, location.state.id)}
+                      onClick={(e) => WishToRemoveBtn(e, location.state.id)}
                     >
                       <Heart />
                     </button>

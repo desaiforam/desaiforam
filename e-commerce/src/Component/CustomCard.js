@@ -52,7 +52,7 @@ const CustomCard = (props) => {
     setCartToad([...CartToad, item]);
     e.stopPropagation();
   };
-  const onclickwishlistbtn = (e) => {
+  const onClickWishListBtn = (e) => {
     dispatch(AuthAction.UpDateWishList(item));
     setAddToWish([...AddToWish, item]);
     e.stopPropagation();
@@ -63,7 +63,7 @@ const CustomCard = (props) => {
     setCartToad(object);
     e.stopPropagation();
   };
-  const wishtoremovebtn = (e, id) => {
+  const WishToRemoveBtn = (e, id) => {
     dispatch(AuthAction.RemoveToWish(id));
     const object = AddToWish.filter((obj) => obj.id !== id);
     setAddToWish(object);
@@ -83,14 +83,14 @@ const CustomCard = (props) => {
           {!swish ? (
             <button
               style={{ border: "none", background: "transparent" }}
-              onClick={(e) => onclickwishlistbtn(e, item)}
+              onClick={(e) => onClickWishListBtn(e, item)}
             >
               <Blnkheart />
             </button>
           ) : (
             <button
               style={{ border: "none", background: "transparent" }}
-              onClick={(e) => wishtoremovebtn(e, item)}
+              onClick={(e) => WishToRemoveBtn(e, item)}
             >
               <Heart />
             </button>

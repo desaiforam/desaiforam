@@ -8,7 +8,7 @@ const initialState = {
   CartToRemove: [],
   QuantityCart: [],
   SubTotal: "",
-  // QUANTITY: [],
+  
   
 };
 
