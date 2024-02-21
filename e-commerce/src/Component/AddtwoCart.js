@@ -58,8 +58,8 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  quantity: state.QUANTITYREDUCER.quantity
-});
+// const mapStateToProps = (state) => ({
+//   quantity: state.QUANTITYREDUCER.quantity
+// });
 
-export default connect(mapStateToProps)(AddtwoCart);
+export default AddtwoCart;

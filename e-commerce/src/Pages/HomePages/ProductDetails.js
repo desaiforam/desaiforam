@@ -18,7 +18,7 @@ import { Blnkheart, Heart } from "../../asset/images/svg";
 const ProductDetails = ({ item }) => {
   const location = useLocation();
 
-  const { ADDTOCART, wishlist } = useSelector((state) => state.Auth);
+  const { ADDTOCART, WISHLIST } = useSelector((state) => state.Auth);
 
   // const { QUANTITYFIND } = useSelector((state) => state.Auth)
   const dispatch = useDispatch();
@@ -29,8 +29,8 @@ const ProductDetails = ({ item }) => {
   const [CartToad, setCartToad] = useState([]);
   const [AddToWish, setAddToWish] = useState([]);
   useEffect(() => {
-    setAddToWish(wishlist);
-  }, [wishlist]);
+    setAddToWish(WISHLIST);
+  }, [WISHLIST]);
 
   useEffect(() => {
     setCartToad(ADDTOCART);
@@ -77,8 +77,8 @@ const ProductDetails = ({ item }) => {
         })
       : false;
   const swish =
-    wishlist.length > 0
-      ? wishlist.find((itemed) => {
+    WISHLIST.length > 0
+      ? WISHLIST.find((itemed) => {
           return itemed.id === location.state.id;
         })
       : false;

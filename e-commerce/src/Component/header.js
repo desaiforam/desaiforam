@@ -15,7 +15,7 @@ const Header = ({ posts }) => {
   const onclickSignup = () => { navigate("/sing-up") }
   const onclickMyOrder = () => { navigate("/product-details") }
   const onclickFound = () => { navigate("//not-found") }
-  const { wishlist, ADDTOCART} = useSelector((state) => state.Auth)
+  const { WISHLIST, ADDTOCART} = useSelector((state) => state.Auth)
 
 
   return (
@@ -53,7 +53,7 @@ const Header = ({ posts }) => {
             <div className='img g-2 '>
               <div onClick={onclickwishlistbtn} className='position-relative' style={{ cursor: "pointer" }} >
                  <img src={Images.vector} width="35" height="35" alt='' /> 
-                {wishlist.length > 0 && <div className='position-absolute wishlist-count' >{wishlist.length}</div>}
+                {WISHLIST.length > 0 && <div className='position-absolute wishlist-count' >{WISHLIST.length}</div>}
 
               </div>
               <div onClick={onclickCart} style={{ cursor: "pointer" }} className='position-relative'>

@@ -10,7 +10,7 @@ const CustomCard = (props) => {
   const { item, index, LISTFOPRODUCT } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { ADDTOCART, wishlist } = useSelector((state) => state.Auth);
+  const { ADDTOCART, WISHLIST } = useSelector((state) => state.Auth);
   const [CartToad, setCartToad] = useState([]);
 
   const [AddToWish, setAddToWish] = useState([]);
@@ -22,8 +22,8 @@ const CustomCard = (props) => {
   }, [ADDTOCART]);
 
   useEffect(() => {
-    setAddToWish(wishlist);
-  }, [wishlist]);
+    setAddToWish(WISHLIST);
+  }, [WISHLIST]);
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
