@@ -9,6 +9,7 @@ const initialState = {
   QuantityCart: [],
   SubTotal: "",
   // QUANTITY: [],
+  
 };
 
 const authAction = createSlice({

@@ -18,7 +18,7 @@ import { Blnkheart, Heart } from "../../asset/images/svg";
 const ProductDetails = ({ item }) => {
   const location = useLocation();
 
-  const { ADDTOCART, WISHLIST } = useSelector((state) => state.Auth);
+  const { AddToCart, WishList } = useSelector((state) => state.Auth);
 
   // const { QUANTITYFIND } = useSelector((state) => state.Auth)
   const dispatch = useDispatch();
@@ -29,56 +29,52 @@ const ProductDetails = ({ item }) => {
   const [CartToad, setCartToad] = useState([]);
   const [AddToWish, setAddToWish] = useState([]);
   useEffect(() => {
-    setAddToWish(WISHLIST);
-  }, [WISHLIST]);
+    setAddToWish(WishList);
+    console.log("setAddToWish", setAddToWish);
+  }, [WishList]);
 
   useEffect(() => {
-    setCartToad(ADDTOCART);
-  }, [ADDTOCART]);
+    setCartToad(AddToCart);
+  }, [AddToCart]);
   useEffect(() => {
     dispatch(AuthAction.UpDateQuantity(Quantity));
   }, []);
-
   const [selectedSize, setSelectedSize] = useState("0");
 
   const onclickwishlistbtn = () => {
-    dispatch(AuthAction.UPDATEWISHLIST(location.state));
+    dispatch(AuthAction.UpDateWishList(location.state));
     setAddToWish([...AddToWish, item]);
   };
-
   const addtocartbtn = () => {
-    dispatch(AuthAction.UpDatCart(location.state));
+    dispatch(AuthAction.UpDateCart(location.state));
     setCartToad([...CartToad, item]);
   };
   const wishtoremovebtn = () => {
-    dispatch(AuthAction.RemoveToWish(location.state.id));
-    const object = AddToWish.filter((obj) => obj.id !== location.state);
+    dispatch(AuthAction.RemoveToWish(location.state));
+    const object = WishList.filter((obj) => obj.id !== location.state);
     setAddToWish(object);
   };
 
-  const handleSizeClick = (size) => {
-    setSelectedSize(size);
-  };
-  const CARTTOREMOVE = () => {
+  const RemoveToCart = () => {
     dispatch(AuthAction.RemoveToCart(location.state.id));
     const object = CartToad.filter((obj) => obj.id !== location.state);
     setCartToad(object);
-    console.log("setCartToad", setCartToad);
+    
   };
-
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
   const product = location?.state;
 
-  // const [value, setValue] = useState(1)
-  // const [quantity, setquantity] = useState([item?.price])
   const isar =
-    ADDTOCART.length > 0
-      ? ADDTOCART.find((itemed) => {
+    AddToCart.length > 0
+      ? AddToCart.find((itemed) => {
           return itemed.id === location.state.id;
         })
       : false;
   const swish =
-    WISHLIST.length > 0
-      ? WISHLIST.find((itemed) => {
+    WishList.length > 0
+      ? WishList.find((itemed) => {
           return itemed.id === location.state.id;
         })
       : false;
@@ -234,7 +230,7 @@ const ProductDetails = ({ item }) => {
                     <button
                       className="btn btn-now "
                       style={{ backgroundColor: "orangeade" }}
-                      onClick={(e) => CARTTOREMOVE()}
+                      onClick={(e) => RemoveToCart()}
                     >
                       Remove To Cart
                     </button>
