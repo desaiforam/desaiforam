@@ -1,58 +1,56 @@
-import { createAction,  createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  WISHLIST: [],
-  ADDTOCART: [],
-  LISTFOPRODUCT: [],
-  // QUANTITYFIND: [],
-  CARTTOREMOVE: [],
-  QUANTITYCART: [],
-  SUBTOTAL: "",
-  QUANTITY: [],
+  WishList: [],
+  AddToCart: [],
+  Listofproduct: [],
+  QuantityFind: [],
+  CartToRemove: [],
+  QuantityCart: [],
+  SubTotal: "",
+  // QUANTITY: [],
 };
 
 const authAction = createSlice({
   name: "user",
   initialState,
   reducers: {
-    ADDTOPRODUCT: (state, action) => {
-      state.LISTFOPRODUCT = action.payload;
-      const productIds = action.payload.map((product) => product.id);
-      console.log("Product Ids:", productIds);
+    AddToProduct: (state, action) => {
+      state.Listofproduct = action.payload;
     },
-    UPDATEWISHLIST: (state, action) => {
+    UpDateWishList: (state, action) => {
+      state.WishList = [...state.WishList, action.payload];
       
-      state.WISHLIST = [...state.WISHLIST, action.payload];
     },
     UpDateQuantity: (state, action) => {
-      state.QUANTITYFIND = action.payload;
+      state.QuantityFind = action.payload;
     },
-    UpDatCart: (state, action) => {
-      const object = state.ADDTOCART.filter((obj) => action.payload);
-      console.log("object ADDTOCART", object);
-      state.ADDTOCART = [...state.ADDTOCART, action.payload];
+    UpDateCart: (state, action) => {
+      const object = state.AddToCart.filter((obj) => action.payload.id);
+      console.log("object AddToCart", object);
+      state.AddToCart = [...state.AddToCart, action.payload];
     },
-    UpDatQUANTITYCART: (state, action) => {
-      const list = [...state.ADDTOCART];
+    UpDateQuantityCart: (state, action) => {
+      const list = [...state.AddToCart];
       list[action.payload.index].quantity = Number(action.payload.quantity);
-      state.ADDTOCART = list;
+      state.AddToCart = list;
     },
-    updateSUBTOTAL: (state, action) => {
+    UpDateSubTotal: (state, action) => {
       // console.log('action', action);
-      state.SUBTOTAL = action.payload;
+      state.SubTotal = action.payload;
     },
     RemoveToCart: (state, action) => {
-      const object = state.ADDTOCART.filter((obj) => obj.id !== action.payload);
-      state.ADDTOCART = object;
+      const object = state.AddToCart.filter((obj) => obj.id !== action.payload);
+      state.AddToCart = object;
     },
     RemoveToWish: (state, action) => {
-      const object = state.WISHLIST.filter((obj) => obj.id !== action.payload);
-      state.WISHLIST = object;
-    },
-    QUANTITYREDUCER: (state, action) => {
-      const object = state.QUANTITYCART.map((obj) => obj.id !== action.payload);
-      state.QUANTITYCART = object;
-      console.log("state.QUANTITYCART", state.QUANTITYCART);
+      const object = state.WishList.filter((obj) => obj.id !== action.payload.id);
+      state.WishList = object;
+    },  
+    QuantityReducer: (state, action) => {
+      const object = state.QuantityCart.map((obj) => obj.id !== action.payload);
+      state.QuantityCart = object;
+      console.log("state.QuantityCart", state.QuantityCart);
     },
   },
 });
@@ -60,7 +58,3 @@ const authAction = createSlice({
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
-// // a WISHLIST can
-
-
-

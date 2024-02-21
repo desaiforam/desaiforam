@@ -7,23 +7,23 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomCard = (props) => {
-  const { item, index, LISTFOPRODUCT } = props;
+  const { item, index, Listofproduct } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { ADDTOCART, WISHLIST } = useSelector((state) => state.Auth);
+  const { AddToCart, WishList } = useSelector((state) => state.Auth);
   const [CartToad, setCartToad] = useState([]);
 
   const [AddToWish, setAddToWish] = useState([]);
 
   useEffect(() => {
   
-    setCartToad(ADDTOCART);
+    setCartToad(AddToCart);
    
-  }, [ADDTOCART]);
+  }, [AddToCart]);
 
   useEffect(() => {
-    setAddToWish(WISHLIST);
-  }, [WISHLIST]);
+    setAddToWish(WishList);
+  }, [WishList]);
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
@@ -43,21 +43,21 @@ const CustomCard = (props) => {
 
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
-      state: { ...item, isar: !!isar, LISTFOPRODUCT },
+      state: { ...item, isar: !!isar, Listofproduct },
     });
   };
-  const addtocartbtn = (e) => {
-    dispatch(AuthAction.UpDatCart(item));
-    console.log("ADDTOCART", ADDTOCART);
+  const AddToCartbtn = (e) => {
+    dispatch(AuthAction.UpDateCart(item));
+    // console.log("AddToCart", AddToCart);
     setCartToad([...CartToad, item]);
     e.stopPropagation();
   };
   const onclickwishlistbtn = (e) => {
-    dispatch(AuthAction.UPDATEWISHLIST(item));
+    dispatch(AuthAction.UpDateWishList(item));
     setAddToWish([...AddToWish, item]);
     e.stopPropagation();
   };
-  const CARTTOREMOVE = (id, e) => {
+  const CartToRemove = (id, e) => {
     dispatch(AuthAction.RemoveToCart(id));
     const object = CartToad.filter((obj) => obj.id !== id);
     setCartToad(object);
@@ -90,7 +90,7 @@ const CustomCard = (props) => {
           ) : (
             <button
               style={{ border: "none", background: "transparent" }}
-              onClick={(e) => wishtoremovebtn(e, item.id)}
+              onClick={(e) => wishtoremovebtn(e, item)}
             >
               <Heart />
             </button>
@@ -118,7 +118,7 @@ const CustomCard = (props) => {
           {!isar && (
             <button
               className="btn btn-dark "
-              onClick={(e) => addtocartbtn(e, item)}
+              onClick={(e) => AddToCartbtn(e, item)}
             >
               Add To Cart
             </button>
@@ -126,7 +126,7 @@ const CustomCard = (props) => {
           {isar && (
             <button
               className="btn btn-dark "
-              onClick={(e) => CARTTOREMOVE(item.id, e)}
+              onClick={(e) => CartToRemove(item, e)}
             >
               Remove To Cart
             </button>
@@ -136,6 +136,7 @@ const CustomCard = (props) => {
           <div className="d-flex flex-column  align-items-start">
             <div className="havit">
               <h6>{truncate(item?.title, 5, 30)}</h6>
+              <h6></h6>
             </div>
             <div className="price">
               <span>{item.price}</span>

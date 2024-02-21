@@ -4,27 +4,29 @@ import Header from "./header";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
 import AddtwoCart from "./AddtwoCart";
-import { useLocation, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 // import AuthAction from '../store/action/AuthAction'
 
 const Useradd = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  console.log("dispatch", dispatch);
+  // const dispatch = useDispatch();
+  // console.log("dispatch", dispatch);
 
 
-  const { ADDTOCART } = useSelector((state) => state.Auth);
-  console.log("ADDTOCART", ADDTOCART);
+  const { AddToCart } = useSelector((state) => state.Auth);
+  // console.log("ADDTOCART", AddToCart);
   const [SUBTOTAL, setSUBTOTAL] = useState([]);
   const [Total, setTotal] = useState(0);
   const proceedToCheckout = () => {
     navigate("/Cart-Details ", { state: SUBTOTAL });
   };
   const gasprice = () => {
-    const pricetotal = ADDTOCART.map((item) => ({
+    const pricetotal = AddToCart.map((item)=> ({
       id: item.id,
       price: item.price,
+      AddToCart :item.id, 
     }));
+    
     const totalData = pricetotal.reduce((accumulator, object) => {
       return accumulator + object.price;
     }, 0);
@@ -53,7 +55,7 @@ const Useradd = () => {
       <Navbar />
       <Header />
       <div className="container d-flex flex-column ">
-        <div className="homers">Home/ Cart</div>
+        <div className="homers">Home  / Cart</div>
         <div className="tablet">
           <tr className="cartable">
             <td className="cartages">Product </td>
@@ -61,12 +63,12 @@ const Useradd = () => {
             <td>Quantity</td>
             <td>SUBTOTAL</td>
           </tr>
-          {ADDTOCART &&
-            ADDTOCART.map((item, index) => {
+          {AddToCart &&
+            AddToCart.map((item, index) => {
               return (
                 <>
                   <AddtwoCart
-                    item={item}
+                    item={item} 
                     index={index}
                     onhandalprice={(quantity) =>
                       onhandalprice(index, quantity, item.price)

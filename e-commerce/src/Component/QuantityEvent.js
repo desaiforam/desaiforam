@@ -4,7 +4,7 @@
 
 // const QuantityEvent = ({ item, index }) => {
 //   const dispatch = useDispatch();
-//   const quantity = useSelector(state => state.QUANTITYREDUCER.quantity);
+//   const quantity = useSelector(state => state.QuantityReducer.quantity);
 
 //   const decreaseQuantity = () => {
 //     if (quantity > 1) {
@@ -40,7 +40,7 @@
 
 // const QuantityCounter = ({ item }) => {
 //   const dispatch = useDispatch();
-//   const quantity = useSelector((state) => state.QUANTITYREDUCER.quantity);
+//   const quantity = useSelector((state) => state.QuantityReducer.quantity);
 
 //   const decreaseQuantity = () => {
 //     if (quantity > 1) {
@@ -90,7 +90,7 @@ import { setQuantity } from "../store/action/quantityActions";
 const QuantityCounter = ({ item }) => {
   const dispatch = useDispatch();
   
-  const quantity = useSelector((state) => state.QUANTITYREDUCER);
+  const quantity = useSelector((state) => state.QuantityReducer);
 
   const decreaseQuantity = () => {
     if (quantity > 1) {

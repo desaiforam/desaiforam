@@ -1,4 +1,4 @@
-// // reducers/QUANTITYREDUCER.js
+// // reducers/QuantityReducer.js
 // import { createReducer } from '@reduxjs/toolkit';
 // import { setQuantity } from '../actions/quantityActions';
 
@@ -6,10 +6,10 @@
 //   quantity: 1
 // };
 
-// const QUANTITYREDUCER = createReducer(initialState, {
+// const QuantityReducer = createReducer(initialState, {
 //   [setQuantity]: (state, action) => {
 //     state.quantity = action.payload;
 //   }
 // });
 
-// export default QUANTITYREDUCER;
+// export default QuantityReducer;
