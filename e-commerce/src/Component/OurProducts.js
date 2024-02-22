@@ -34,7 +34,7 @@ const Ourproduct = ({ posts }) => {
                             {posts.map((item, index) => {
                                 return (
                                     // <ProductCard item={item} index={index} />
-                                     <CustomCard item={item} index={index} />
+                                     <CustomCard item={item} index={index}  key={index}/>
                                 );
                             })}
                             <div className='column'>

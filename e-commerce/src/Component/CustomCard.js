@@ -16,28 +16,26 @@ const CustomCard = (props) => {
   const [AddToWish, setAddToWish] = useState([]);
 
   useEffect(() => {
-  
     setCartToad(addToCart);
-   
   }, [addToCart]);
 
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
-  const truncate = (str, max, len) => {
-    return str.length > max ? str.substring(0, len) + "..." : str;
-  };
+  // const truncate = (str, max, len) => {
+  //   return str.length > max ? str.substring(0, len) + "..." : str;
+  // };
 
   const isar =
-    CartToad.length > 0
-      ? CartToad.find((itemed) => {
-          return itemed.id === item.id;
+    addToCart.length > 0
+      ? addToCart.find((itemed) => {
+          return itemed === item.id;
         })
       : false;
   const swish =
-    AddToWish.length > 0
-      ? AddToWish.find((itemed) => {
-          return itemed.id === item.id;
+    WishList.length > 0
+      ? WishList.find((itemed) => {
+          return itemed === item.id;
         })
       : false;
 
@@ -47,28 +45,28 @@ const CustomCard = (props) => {
     });
   };
   const addToCartbtn = (e) => {
-    dispatch(AuthAction.upDateCart(item));
-    
-    setCartToad([...CartToad, item]);
+    dispatch(AuthAction.upDateCart(item.id));
+    setCartToad([...addToCart, item.id]);
     e.stopPropagation();
   };
   const onClickWishListBtn = (e) => {
-    dispatch(AuthAction.upDateWishList(item));
-    setAddToWish([...AddToWish, item]);
+    dispatch(AuthAction.upDateWishList(item.id));
+    setAddToWish([...AddToWish, item.id]);
     e.stopPropagation();
   };
   const removeToCart = (id, e) => {
-    dispatch(AuthAction.removeToCart(id));
-    const object = CartToad.filter((obj) => obj.id !== id);
+    const object = addToCart.filter((obj) => obj !== id.id);
+    dispatch(AuthAction.removeToCart(object));
     setCartToad(object);
     e.stopPropagation();
   };
-  
 
-
-  const WishToRemoveBtn = (e, id) => {
-    dispatch(AuthAction.removeToWish(id));
-    const object = AddToWish.filter((obj) => obj.id !== id);
+  const removeToWish = (e, id) => {
+    console.log("id", id);
+    const object = WishList.filter((obj) => obj !== id.id);
+    console.log("object", object);
+    // console.log("WishList", WishList);
+    dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
     e.stopPropagation();
   };
@@ -93,7 +91,7 @@ const CustomCard = (props) => {
           ) : (
             <button
               style={{ border: "none", background: "transparent" }}
-              onClick={(e) => WishToRemoveBtn(e, item)}
+              onClick={(e) => removeToWish(e, item)}
             >
               <Heart />
             </button>
@@ -138,7 +136,10 @@ const CustomCard = (props) => {
         <div className="games">
           <div className="d-flex flex-column  align-items-start">
             <div className="havit">
-              <h6>{truncate(item?.title, 5, 30)}</h6>
+              <h6>
+            {item.title}
+              {/* {truncate(item?.title, 5, 30)} */}
+              </h6>
               <h6></h6>
             </div>
             <div className="price">
@@ -149,17 +150,17 @@ const CustomCard = (props) => {
               </span>
             </div>
             <div className="value3 d-flex flex-row justify-content-center align-items-baseline mt-2 gap-2">
-              <div className={item?.rating.rate} style={{ color: "orange" }}>
+              {/* <div className={item?.rating.rate} style={{ color: "orange" }}>
                 <div>
-                  {/* {item?.rating.rate} */}
+                  {item?.rating.rate}
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                 </div>
-              </div>
-              <h5 style={{ font: "small-caption" }}>({item?.rating?.count})</h5>
+              </div> */}
+              {/* <h5 style={{ font: "small-caption" }}>({item?.rating?.count})</h5> */}
             </div>
           </div>
         </div>
@@ -169,4 +170,3 @@ const CustomCard = (props) => {
 };
 
 export default CustomCard;
-

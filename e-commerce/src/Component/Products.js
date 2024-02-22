@@ -29,7 +29,7 @@ const Products = ({ posts }) => {
 
                 {posts.map((item, index) => {
                     return (
-                        <CustomCard item={item} index={index} />
+                        <CustomCard item={item} index={index}  key={index}/>
                         
                     );
                 })}

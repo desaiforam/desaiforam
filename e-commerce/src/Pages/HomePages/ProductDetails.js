@@ -30,7 +30,6 @@ const ProductDetails = ({ item }) => {
   const [AddToWish, setAddToWish] = useState([]);
   useEffect(() => {
     setAddToWish(WishList);
-    console.log("setAddToWish", setAddToWish);
   }, [WishList]);
 
   useEffect(() => {

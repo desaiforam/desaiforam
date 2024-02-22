@@ -29,12 +29,11 @@ const authAction = createSlice({
       
     },
     removeToCart: (state, action) => {
-      const object = state.addToCart.filter((obj) => obj.id !== action.payload.id);
-      state.addToCart = object;
+      
+      state.addToCart = action.payload;
     },
     removeToWish: (state, action) => {
-      const object = state.WishList.filter((obj) => obj.id !== action.payload.id);
-      state.WishList = object;
+      state.WishList = action.payload;
     }, 
     upDateQuantity: (state, action) => {
       state.quantityFind = action.payload;

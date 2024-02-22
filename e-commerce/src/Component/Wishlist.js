@@ -30,7 +30,7 @@ const Wishlist = (id) => {
                 </div>
                 <div className='container CustomCard p-1  mt-2 mb-4 row'>
                     {WishList && WishList.map((item, index) => {
-                        return <CustomCard item={item} wishlist={true} />
+                        return <CustomCard item={item} wishlist={true}  />
 
                     })}
                 </div>
