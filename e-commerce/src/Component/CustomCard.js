@@ -7,19 +7,19 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomCard = (props) => {
-  const { item, index, Listofproduct } = props;
+  const { item, index, listOfProduct } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { AddToCart, WishList } = useSelector((state) => state.Auth);
+  const { addToCart, WishList } = useSelector((state) => state.Auth);
   const [CartToad, setCartToad] = useState([]);
 
   const [AddToWish, setAddToWish] = useState([]);
 
   useEffect(() => {
   
-    setCartToad(AddToCart);
+    setCartToad(addToCart);
    
-  }, [AddToCart]);
+  }, [addToCart]);
 
   useEffect(() => {
     setAddToWish(WishList);
@@ -43,28 +43,31 @@ const CustomCard = (props) => {
 
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
-      state: { ...item, isar: !!isar, Listofproduct },
+      state: { ...item, isar: !!isar, listOfProduct },
     });
   };
-  const AddToCartbtn = (e) => {
-    dispatch(AuthAction.UpDateCart(item));
-    // console.log("AddToCart", AddToCart);
+  const addToCartbtn = (e) => {
+    dispatch(AuthAction.upDateCart(item));
+    
     setCartToad([...CartToad, item]);
     e.stopPropagation();
   };
   const onClickWishListBtn = (e) => {
-    dispatch(AuthAction.UpDateWishList(item));
+    dispatch(AuthAction.upDateWishList(item));
     setAddToWish([...AddToWish, item]);
     e.stopPropagation();
   };
-  const CartToRemove = (id, e) => {
-    dispatch(AuthAction.RemoveToCart(id));
+  const removeToCart = (id, e) => {
+    dispatch(AuthAction.removeToCart(id));
     const object = CartToad.filter((obj) => obj.id !== id);
     setCartToad(object);
     e.stopPropagation();
   };
+  
+
+
   const WishToRemoveBtn = (e, id) => {
-    dispatch(AuthAction.RemoveToWish(id));
+    dispatch(AuthAction.removeToWish(id));
     const object = AddToWish.filter((obj) => obj.id !== id);
     setAddToWish(object);
     e.stopPropagation();
@@ -118,7 +121,7 @@ const CustomCard = (props) => {
           {!isar && (
             <button
               className="btn btn-dark "
-              onClick={(e) => AddToCartbtn(e, item)}
+              onClick={(e) => addToCartbtn(e, item)}
             >
               Add To Cart
             </button>
@@ -126,7 +129,7 @@ const CustomCard = (props) => {
           {isar && (
             <button
               className="btn btn-dark "
-              onClick={(e) => CartToRemove(item, e)}
+              onClick={(e) => removeToCart(item, e)}
             >
               Remove To Cart
             </button>

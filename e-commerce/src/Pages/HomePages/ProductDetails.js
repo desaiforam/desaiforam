@@ -18,9 +18,9 @@ import { Blnkheart, Heart } from "../../asset/images/svg";
 const ProductDetails = ({ item }) => {
   const location = useLocation();
 
-  const { AddToCart, WishList } = useSelector((state) => state.Auth);
+  const { addToCart, WishList } = useSelector((state) => state.Auth);
 
-  // const { QUANTITYFIND } = useSelector((state) => state.Auth)
+  // const { quantityFind } = useSelector((state) => state.Auth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // console.log("navigate", navigate);
@@ -34,29 +34,29 @@ const ProductDetails = ({ item }) => {
   }, [WishList]);
 
   useEffect(() => {
-    setCartToad(AddToCart);
-  }, [AddToCart]);
+    setCartToad(addToCart);
+  }, [addToCart]);
   useEffect(() => {
-    dispatch(AuthAction.UpDateQuantity(Quantity));
+    dispatch(AuthAction.upDateQuantity(Quantity));
   }, []);
   const [selectedSize, setSelectedSize] = useState("0");
 
   const onClickWishListBtn = () => {
-    dispatch(AuthAction.UpDateWishList(location.state));
+    dispatch(AuthAction.upDateWishList(location.state));
     setAddToWish([...AddToWish, item]);
   };
-  const addtocartbtn = () => {
-    dispatch(AuthAction.UpDateCart(location.state));
+  const addToCartbtn = () => {
+    dispatch(AuthAction.upDateCart(location.state));
     setCartToad([...CartToad, item]);
   };
   const WishToRemoveBtn = () => {
-    dispatch(AuthAction.RemoveToWish(location.state));
+    dispatch(AuthAction.removeToWish(location.state));
     const object = WishList.filter((obj) => obj.id !== location.state);
     setAddToWish(object);
   };
 
-  const RemoveToCart = () => {
-    dispatch(AuthAction.RemoveToCart(location.state.id));
+  const removeToCart = () => {
+    dispatch(AuthAction.removeToCart(location.state));
     const object = CartToad.filter((obj) => obj.id !== location.state);
     setCartToad(object);
     
@@ -67,8 +67,8 @@ const ProductDetails = ({ item }) => {
   const product = location?.state;
 
   const isar =
-    AddToCart.length > 0
-      ? AddToCart.find((itemed) => {
+    addToCart.length > 0
+      ? addToCart.find((itemed) => {
           return itemed.id === location.state.id;
         })
       : false;
@@ -222,7 +222,7 @@ const ProductDetails = ({ item }) => {
                     <button
                       className="btn btn-now"
                       style={{ backgroundColor: "orangeade" }}
-                      onClick={() => addtocartbtn()}
+                      onClick={() => addToCartbtn()}
                     >
                       Buy Now
                     </button>
@@ -230,7 +230,7 @@ const ProductDetails = ({ item }) => {
                     <button
                       className="btn btn-now "
                       style={{ backgroundColor: "orangeade" }}
-                      onClick={(e) => RemoveToCart()}
+                      onClick={(e) => removeToCart()}
                     >
                       Remove To Cart
                     </button>

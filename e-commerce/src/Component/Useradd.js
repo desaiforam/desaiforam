@@ -13,25 +13,25 @@ const Useradd = () => {
   // console.log("dispatch", dispatch);
 
 
-  const { AddToCart } = useSelector((state) => state.Auth);
-  // console.log("ADDTOCART", AddToCart);
-  const [SUBTOTAL, setSUBTOTAL] = useState([]);
+  const { addToCart } = useSelector((state) => state.Auth);
+  // console.log("addToCart", addToCart);
+  const [subTotal, setsubTotal] = useState([]);
   const [Total, setTotal] = useState(0);
   const proceedToCheckout = () => {
-    navigate("/Cart-Details ", { state: SUBTOTAL });
+    navigate("/Cart-Details ", { state: subTotal });
   };
   const gasprice = () => {
-    const pricetotal = AddToCart.map((item)=> ({
+    const pricetotal = addToCart.map((item)=> ({
       id: item.id,
       price: item.price,
-      AddToCart :item.id, 
+      addToCart :item.id, 
     }));
     
     const totalData = pricetotal.reduce((accumulator, object) => {
       return accumulator + object.price;
     }, 0);
     setTotal(totalData);
-    setSUBTOTAL(pricetotal);
+    setsubTotal(pricetotal);
   };
 
   useEffect((id) => {
@@ -39,9 +39,9 @@ const Useradd = () => {
   }, []);
 
   const onhandalprice = (index, qty, itemize) => {
-    const data = [...SUBTOTAL];
+    const data = [...subTotal];
     data[index].price = itemize * qty;
-    setSUBTOTAL(data);
+    setsubTotal(data);
 
     const totalData = data.reduce((accumulator, object) => {
       return accumulator + object.price;
@@ -61,10 +61,10 @@ const Useradd = () => {
             <td className="cartages">Product </td>
             <td>Price</td>
             <td>Quantity</td>
-            <td>SUBTOTAL</td>
+            <td>subTotal</td>
           </tr>
-          {AddToCart &&
-            AddToCart.map((item, index) => {
+          {addToCart &&
+            addToCart.map((item, index) => {
               return (
                 <>
                   <AddtwoCart
@@ -95,7 +95,7 @@ const Useradd = () => {
           <div className="carlotta d-flex flex-column ">
             <span className="total mb-3">Cart Total</span>
             <div className="pricetotal d-flex flex-row justify-content-between">
-              <span>SUBTOTAL:</span>
+              <span>subTotal:</span>
               {Number(Total).toFixed(2)}
             </div>
             <hr w-75 />

@@ -21,7 +21,7 @@ import "../../asset/style/iphone.scss";
 import { AuthAction } from "../../store/action/AuthAction";
 
 const Home = () => {
-  const { AddToCart, Listofproduct } = useSelector((state) => state.Auth);
+  const { addToCart, listOfProduct } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,8 +36,8 @@ const Home = () => {
         if (!productshopping) {
           const data = response.data.map((item) => {
             const finite =
-              AddToCart.length > 0
-                ? AddToCart.find((o) => o.id === item.id)
+              addToCart.length > 0
+                ? addToCart.find((o) => o.id === item.id)
                 : { quantity: 1 };
             return {
               quantity: finite?.quantity || 1,
@@ -62,12 +62,12 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      {Listofproduct && <Header posts={Listofproduct} />}
+      {listOfProduct && <Header posts={listOfProduct} />}
       <div className="container mt-0">
         <hr className="w-100" />
       </div>
       <Iphone />
-      {Listofproduct && <ToDays posts={Listofproduct} />}
+      {listOfProduct && <ToDays posts={listOfProduct} />}
       <div className="container">
         <hr className="w-100" />
       </div>
@@ -75,9 +75,9 @@ const Home = () => {
       <div className="container">
         <hr className="w-100" mt-2 mb-2 />
       </div>
-      {Listofproduct && <Products posts={Listofproduct} />}
+      {listOfProduct && <Products posts={listOfProduct} />}
       <Music />
-      {Listofproduct && <OurProducts posts={Listofproduct} />}
+      {listOfProduct && <OurProducts posts={listOfProduct} />}
       <Featured />
       <Service />
       <Footer />

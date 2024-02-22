@@ -2,12 +2,12 @@ import { createAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   WishList: [],
-  AddToCart: [],
-  Listofproduct: [],
-  QuantityFind: [],
-  CartToRemove: [],
-  QuantityCart: [],
-  SubTotal: "",
+  addToCart: [],
+  listOfProduct: [],
+  quantityFind: [],
+  // removeToCart: [],
+  quantityCart: [],
+  subTotal: "",
   
   
 };
@@ -17,41 +17,42 @@ const authAction = createSlice({
   initialState,
   reducers: {
     AddToProduct: (state, action) => {
-      state.Listofproduct = action.payload;
+      state.listOfProduct = action.payload;
     },
-    UpDateWishList: (state, action) => {
+    upDateCart: (state, action) => {
+      const object = state.addToCart.filter((obj) => action.payload.id);
+      console.log("object addToCart", object);
+      state.addToCart = [...state.addToCart, action.payload];
+    },
+    upDateWishList: (state, action) => {
       state.WishList = [...state.WishList, action.payload];
       
     },
-    UpDateQuantity: (state, action) => {
-      state.QuantityFind = action.payload;
+    removeToCart: (state, action) => {
+      const object = state.addToCart.filter((obj) => obj.id !== action.payload.id);
+      state.addToCart = object;
     },
-    UpDateCart: (state, action) => {
-      const object = state.AddToCart.filter((obj) => action.payload.id);
-      console.log("object AddToCart", object);
-      state.AddToCart = [...state.AddToCart, action.payload];
-    },
-    UpDateQuantityCart: (state, action) => {
-      const list = [...state.AddToCart];
-      list[action.payload.index].quantity = Number(action.payload.quantity);
-      state.AddToCart = list;
-    },
-    UpDateSubTotal: (state, action) => {
-      // console.log('action', action);
-      state.SubTotal = action.payload;
-    },
-    RemoveToCart: (state, action) => {
-      const object = state.AddToCart.filter((obj) => obj.id !== action.payload);
-      state.AddToCart = object;
-    },
-    RemoveToWish: (state, action) => {
+    removeToWish: (state, action) => {
       const object = state.WishList.filter((obj) => obj.id !== action.payload.id);
       state.WishList = object;
-    },  
-    QuantityReducer: (state, action) => {
-      const object = state.QuantityCart.map((obj) => obj.id !== action.payload);
-      state.QuantityCart = object;
-      console.log("state.QuantityCart", state.QuantityCart);
+    }, 
+    upDateQuantity: (state, action) => {
+      state.quantityFind = action.payload;
+    },   
+    upDateQuantityCart: (state, action) => {
+      const list = [...state.addToCart];
+      list[action.payload.index].quantity = Number(action.payload.quantity);
+      state.addToCart = list;
+    },
+    upDatesubTotal: (state, action) => {
+      // console.log('action', action);
+      state.subTotal = action.payload;
+    },
+    
+    quantityReducer: (state, action) => {
+      const object = state.quantityCart.map((obj) => obj.id !== action.payload);
+      state.quantityCart = object;
+      console.log("state.quantityCart", state.quantityCart);
     },
   },
 });

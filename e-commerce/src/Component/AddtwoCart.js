@@ -27,7 +27,7 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
   const onchangeQue = (e, price) => {
     setValue(e.target.value);
     dispatch(
-      AuthAction.UpDateQuantityCart({ index: index, quantity: e.target.value })
+      AuthAction.upDateQuantityCart({ index: index, quantity: e.target.value })
     );
     const addQue = price * e.target.value;
     setQuantity(addQue);
@@ -59,12 +59,12 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
 };
 
 // const mapStateToProps = (state) => ({
-//   quantity: state.QuantityReducer.quantity
+//   quantity: state.quantityReducer.quantity
 // });
 
 export default AddtwoCart;
-//AddToCart  data can get the redux and it will store a addtocatt in redux list
+//addToCart  data can get the redux and it will store a addtocatt in redux list
 
-//AddToCart data can get the product redux list  in store  a localStorage
+//addToCart data can get the product redux list  in store  a localStorage
 
 
