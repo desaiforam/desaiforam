@@ -13,21 +13,21 @@ const BillingDetails = () => {
 
     const { state } = useLocation()
 
-    const { AddToCart} = useSelector((state) => state.Auth)
-    const [SubTotal, setSubTotal] = useState([])
-    console.log('SubTotal', SubTotal);
+    const { addToCart} = useSelector((state) => state.Auth)
+    const [subTotal, setsubTotal] = useState([])
+    console.log('subTotal', subTotal);
     const [Total, setTotal] = useState(0)
 
     const truncate = (str, max, len) => {
         return str.length > max ? str.substring(0, len) + "..." : str;
     }
     const getprime = () => {
-        const pricetotal = AddToCart.map(item => ({ id: item.id, price: item.price }))
+        const pricetotal = addToCart.map(item => ({ id: item.id, price: item.price }))
         const totalData = state.reduce((accumulator, object) => {
             return accumulator + object.price;
         }, 0);
         setTotal(totalData)
-        setSubTotal(pricetotal)
+        setsubTotal(pricetotal)
     }
     useEffect(() => {
         getprime()
@@ -73,8 +73,8 @@ const BillingDetails = () => {
                         <div className='finalist  d-flex flex-column'>
                             <div className='totaling'>
 
-                                {AddToCart&&
-                                    AddToCart.map((item, index) => {
+                                {addToCart&&
+                                    addToCart.map((item, index) => {
 
                                         const totalize = state.find((o) => {
                                             return o.id === item.id
@@ -97,7 +97,7 @@ const BillingDetails = () => {
 
                             <div className='totalcart'>
                                 <div className='totalism d-flex flex-row justify-content-between'>
-                                    <span> SubTotal:</span>
+                                    <span> subTotal:</span>
                                     {Number(Total).toFixed(2)}
                                 </div>
                                 <hr />
@@ -107,7 +107,7 @@ const BillingDetails = () => {
                                 </div>
                                 <hr />
                                 <div className='totalism d-flex flex-row justify-content-between'>
-                                    <span> SubTotal:</span>
+                                    <span> subTotal:</span>
                                     {Number(Total).toFixed(2)}
                                 </div>
                             </div>
