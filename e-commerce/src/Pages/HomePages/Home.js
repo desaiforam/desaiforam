@@ -21,43 +21,26 @@ import "../../asset/style/iphone.scss";
 import { AuthAction } from "../../store/action/AuthAction";
 
 const Home = () => {
-  const { addToCart, listOfProduct } = useSelector((state) => state.Auth);
+  const { listOfProduct } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://mocki.io/v1/e93df3d3-714f-47c5-a223-e12112899cdd"
-        );
-
-        const productshopping = localStorage.getItem("shoppingcart");
-
-        if (!productshopping) {
-          const data = response.data.map((item) => {
-            const finite =
-              addToCart.length > 0
-                ? addToCart.find((o) => o.id === item.id)
-                : { quantity: 1 };
-            return {
-              quantity: finite?.quantity || 1,
-              ...item,
-            };
-          });
-
-          dispatch(AuthAction.AddToProduct(data));
-        } else {
-          
-          dispatch(AuthAction.AddToProduct(productshopping));
-       
-          localStorage.removeItem("shoppingcart");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://mocki.io/v1/e93df3d3-714f-47c5-a223-e12112899cdd"
+      );
+
+      const data = response.data;
+
+      dispatch(AuthAction.addToProduct(data));
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <>
@@ -86,4 +69,3 @@ const Home = () => {
 };
 
 export default Home;
-

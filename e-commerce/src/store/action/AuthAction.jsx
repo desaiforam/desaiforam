@@ -16,7 +16,7 @@ const authAction = createSlice({
   name: "user",
   initialState,
   reducers: {
-    AddToProduct: (state, action) => {
+    addToProduct: (state, action) => {
       state.listOfProduct = action.payload;
     },
     upDateCart: (state, action) => {
