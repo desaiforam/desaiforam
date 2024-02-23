@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 import { setQuantity } from "../store/action/quantityActions";
 import { useLocation } from "react-router-dom";
 
-const truncate = (str, max, len) => {
-  return str.length > max ? str.substring(0, len) + "..." : str;
-};
-
 const AddtwoCart = ({ item, onhandalprice, index }) => {
-  const [value, setValue] = useState(1);
-  const location = useLocation();
+  console.log("item", item);
+
+  // const location = useLocation();
+
   const dispatch = useDispatch();
-  
-  const [quantity, setQuantity] = useState([item?.price]);
+  const [value, setValue] = useState(1);
+  const [quantity, setQuantity] = useState(item?.price);
+
   useEffect(() => {
     setValue(item.quantity);
     const addQue = item?.price * value;
@@ -40,11 +39,10 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
         <div className="quantity">
           <img src={item?.image} height="50" width="50" alt="" />
         </div>
-        {truncate(item?.title, 5, 30)}
+        {item?.title}
       </td>
       <td>{item?.price}</td>
-
-      <td>  
+      <td>
         <input
           type="number"
           value={item.quantity}
@@ -57,14 +55,53 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
     </tr>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   quantity: state.quantityReducer.quantity
-// });
-
+const mapStateToProps = (state) => ({
+  quantity: state.quantityReducer.quantity,
+});
+// export const setQuantity = createAction("SET_QUANTITY");
 export default AddtwoCart;
-//addToCart  data can get the redux and it will store a addtocatt in redux list
+//manage a quantity of  product list  to store a redux   list
 
-//addToCart data can get the product redux list  in store  a localStorage
+// import React, { useEffect, useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { AuthAction } from "../store/action/AuthAction";
 
+// const AddtwoCart = ({ item, onhandalprice, index }) => {
+//   const dispatch = useDispatch();
+//   const [quantity, setQuantity] = useState(item?.quantity);
 
+//   const onchangeQue = (e) => {
+//     const newQuantity = parseInt(e.target.value);
+//     setQuantity(newQuantity);
+
+//     dispatch(AuthAction.upDateQuantityCart({ index: index, quantity: quantity }));
+
+//     onhandalprice(quantity);
+//   };
+
+//   return (
+//     <tr className="cartable">
+//       <td className="cartages">
+//         <div className="quantity">
+//           <img src={item?.image} height="50" width="50" alt="" />
+//         </div>
+//         {item?.title}
+//       </td>
+//       <td>{item?.price}</td>
+//       <td>
+//         <input
+//           type="number"
+//           value={quantity}
+//           min="1"
+//           max="10"
+//           onChange={onchangeQue}
+//         />
+//       </td>
+//       <td>{item?.price * quantity}</td>
+//     </tr>
+//   );
+// };
+
+// export default AddtwoCart;
+
+//Call and store the quantity event of the product item when it is stored in Redux.

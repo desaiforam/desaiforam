@@ -11,8 +11,10 @@ import { useSelector } from 'react-redux'
 
 const Wishlist = (id) => {
 
-    const { WishList } = useSelector((state) => state.Auth)
- 
+    const { WishList ,listOfProduct} = useSelector((state) => state.Auth)
+    const listAdded = WishList.map((id) =>
+    listOfProduct.find((product) => product.id === id)
+  );
     return (
         <div>
             <Navbar />
@@ -29,7 +31,7 @@ const Wishlist = (id) => {
                     </div>
                 </div>
                 <div className='container CustomCard p-1  mt-2 mb-4 row'>
-                    {WishList && WishList.map((item, index) => {
+                    {listAdded && listAdded.map((item, index) => {
                         return <CustomCard item={item} wishlist={true}  />
 
                     })}

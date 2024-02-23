@@ -33,17 +33,17 @@ const Music = (props) => {
                      </div>
 
                     </div>
-                    <div className='buynow mt-3'>
+                    <div className='buyNow mt-3'>
                         <button className='btn btn-success p-2' >Buy Now!</button>
                     </div>
                 </div>
                 <div className='col-7 '>
                     <div className='jbl'>
-                      <div className='redius'>
+                      <div className='Redis'>
                         <img src={Images.jbl}  alt='' />
                       </div>
                     <div className='ellipse '>
-                                  {/* <p> sdjjdnnajsn</p> */}
+                              
                     </div>
                       
                      </div>

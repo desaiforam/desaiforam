@@ -21,26 +21,35 @@ import "../../asset/style/iphone.scss";
 import { AuthAction } from "../../store/action/AuthAction";
 
 const Home = () => {
-  const { listOfProduct } = useSelector((state) => state.Auth);
+  const { listOfProduct, quantity } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const addToCart = () => {
+    dispatch(listOfProduct({ ...listOfProduct, quantity }));
+    console.log("quantity", quantity);
+  };
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://mocki.io/v1/e93df3d3-714f-47c5-a223-e12112899cdd"
+        "https://mocki.io/v1/553960a9-f177-4b4b-a1d2-48fb57c5ebd7"
       );
 
-      const data = response.data;
+      const data = response.data.map((product) => ({
+        ...product,
+        quantityCart: '',
+        color: "",
+        size: "",
+      }));
 
       dispatch(AuthAction.addToProduct(data));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -69,3 +78,4 @@ const Home = () => {
 };
 
 export default Home;
+//set a also quantity of the Product   addtocart

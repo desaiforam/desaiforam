@@ -11,7 +11,8 @@ const CustomCard = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { addToCart, WishList } = useSelector((state) => state.Auth);
-  const [CartToad, setCartToad] = useState([]);
+  const [cartToad, setCartToad] = useState([]);
+
 
   const [AddToWish, setAddToWish] = useState([]);
 
@@ -22,9 +23,9 @@ const CustomCard = (props) => {
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
-  // const truncate = (str, max, len) => {
-  //   return str.length > max ? str.substring(0, len) + "..." : str;
-  // };
+  const truncate = (str, max, len) => {
+    return str.length > max ? str.substring(0, len) + "..." : str;
+  };
 
   const isar =
     addToCart.length > 0
@@ -74,7 +75,7 @@ const CustomCard = (props) => {
   return (
     <div className="d-flex  col-3 " key={index}>
       <div
-        className="position-relative d-flex flex-column cardmain"
+        className="position-relative d-flex flex-column card_main"
         onClick={() => onclickMyOrder(item)}
       >
         <div
@@ -115,7 +116,7 @@ const CustomCard = (props) => {
             />
           </div>
         </div>
-        <div className="addto mb-3">
+        <div className="add mb-3">
           {!isar && (
             <button
               className="btn btn-dark "
@@ -137,8 +138,8 @@ const CustomCard = (props) => {
           <div className="d-flex flex-column  align-items-start">
             <div className="havit">
               <h6>
-            {item.title}
-              {/* {truncate(item?.title, 5, 30)} */}
+                {/* {item.title} */}
+                {truncate(item?.title, 5, 30)}
               </h6>
               <h6></h6>
             </div>
@@ -150,17 +151,17 @@ const CustomCard = (props) => {
               </span>
             </div>
             <div className="value3 d-flex flex-row justify-content-center align-items-baseline mt-2 gap-2">
-              {/* <div className={item?.rating.rate} style={{ color: "orange" }}>
+              <div className={item?.rating.rate} style={{ color: "orange" }}>
                 <div>
-                  {item?.rating.rate}
+                  {/* {item?.rating.rate} */}
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                   <FaStar {...item?.rating.rate} />
                 </div>
-              </div> */}
-              {/* <h5 style={{ font: "small-caption" }}>({item?.rating?.count})</h5> */}
+              </div>
+              <h5 style={{ font: "small-caption" }}>({item?.rating?.count})</h5>
             </div>
           </div>
         </div>

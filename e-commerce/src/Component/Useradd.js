@@ -3,45 +3,48 @@ import Navbar from "./Navbar";
 import Header from "./header";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
-import AddtwoCart from "./AddtwoCart";
-import {  useNavigate } from "react-router-dom";
+import AddtwoCart, { products } from "./AddtwoCart";
+import { useNavigate } from "react-router-dom";
+import { listOfProduct } from "./CustomCard";
+import { addToCart } from "./selectors";
 // import AuthAction from '../store/action/AuthAction'
 
 const Useradd = () => {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // console.log("dispatch", dispatch);
+  // const [data, setData] = useState();
 
-
-  const { addToCart } = useSelector((state) => state.Auth);
-  // console.log("addToCart", addToCart);
-  const [subTotal, setsubTotal] = useState([]);
+  const { addToCart,listOfProduct } = useSelector((state) => state.Auth);
+  const [subTotal, setSubTotal] = useState([]);
   const [Total, setTotal] = useState(0);
+  const [quantity , setQuantity] = useState([])
+
   const proceedToCheckout = () => {
     navigate("/Cart-Details ", { state: subTotal });
   };
   const gasprice = () => {
-    const pricetotal = addToCart.map((item)=> ({
+    const pricetotal = addToCart.map((item) => ({
       id: item.id,
       price: item.price,
-      addToCart :item.id, 
+      addToCart: item.id,
     }));
-    
+
     const totalData = pricetotal.reduce((accumulator, object) => {
       return accumulator + object.price;
     }, 0);
     setTotal(totalData);
-    setsubTotal(pricetotal);
+    setSubTotal(pricetotal);
   };
 
   useEffect((id) => {
     gasprice(id);
   }, []);
-
-  const onhandalprice = (index, qty, itemize) => {
+  useEffect((id)=>{
+    setQuantity(id);
+  },[]);
+  const onhandalprice = (id, qty, itemize) => {
     const data = [...subTotal];
-    data[index].price = itemize * qty;
-    setsubTotal(data);
+    data[id].price = itemize * qty;
+    setSubTotal(data);
 
     const totalData = data.reduce((accumulator, object) => {
       return accumulator + object.price;
@@ -49,13 +52,17 @@ const Useradd = () => {
 
     setTotal(totalData);
   };
-
+  const listAdded = addToCart.map((id) =>
+  listOfProduct.find((product) => product.id === id)
+);
+console.log("listAdded", listAdded);
+ 
   return (
     <div>
       <Navbar />
       <Header />
       <div className="container d-flex flex-column ">
-        <div className="homers">Home  / Cart</div>
+        <div className="homers">Home / Cart</div>
         <div className="tablet">
           <tr className="cartable">
             <td className="cartages">Product </td>
@@ -63,12 +70,12 @@ const Useradd = () => {
             <td>Quantity</td>
             <td>subTotal</td>
           </tr>
-          {addToCart &&
-            addToCart.map((item, index) => {
+          {listAdded &&
+            listAdded.map((item, index) => {
               return (
                 <>
                   <AddtwoCart
-                    item={item} 
+                    item={item}
                     index={index}
                     onhandalprice={(quantity) =>
                       onhandalprice(index, quantity, item.price)
@@ -124,5 +131,6 @@ const Useradd = () => {
     </div>
   );
 };
-
 export default Useradd;
+// give a all product details using  only id also store a only id console in
+// Fetching the product details using the ID in this file

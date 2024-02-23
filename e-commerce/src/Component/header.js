@@ -9,7 +9,7 @@ const Header = ({ posts }) => {
   const navigate = useNavigate()
   const onClickWishListBtn = () => { navigate("/wish-list ") }
   const onclickHome = () => { navigate("/") }
-  const onclickCart = () => { navigate("/ukase-cart") }
+  const onclickCart = (posts) => { navigate("/ukase-cart") }
   const onclickAbout = () => { navigate("/about") }
   const onclickContacts = () => { navigate("/contact") }
   const onclickSignup = () => { navigate("/sing-up") }
@@ -56,13 +56,11 @@ const Header = ({ posts }) => {
                 {WishList.length > 0 && <div className='position-absolute wishlist-count' >{WishList.length}</div>}
 
               </div>
-              <div onClick={onclickCart} style={{ cursor: "pointer" }} className='position-relative'>
+              <div onClick={ onclickCart} style={{ cursor: "pointer" }} className='position-relative'>
                 <img src={Images.cart1} width="35" height="35" alt='' />
                 {addToCart.length > 0 && <div className='position-absolute wishlist-count' >{addToCart.length}</div>}
               </div>
-              <a href='/ukase-cart'>
-
-              </a>
+             
               <div className="dropdown">
                 <a className="btn " href="/" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src={Images.user} width="35" height="35" alt='' />

@@ -9,21 +9,16 @@ import SizeSelector from "../../Component/SizeSelector";
 import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart } from "../../asset/images/svg";
 
-// const card =
-//     [{ img: Images.Gamepad, title: "HAVIT HV-G92 Gamepad", value1: "$160 ", value2: "$160", button: "-40%", buttoncolor: "#DB4444", star: "", value3: "(88)" },
-//     { img: Images.Keyboard, title: "AK-900 Wired Keyboard", value1: "$920 ", value2: "$1160", iscart: true, buttoncolor: "#DB4444", button: "-35%", star: "", value3: "(75)" },
-//     { img: Images.leptop, title: "IPS LCD Gaming Monitor", value1: "$120 ", value2: "$360", button: "-30%", buttoncolor: "#DB4444", star: "", value3: "(99)" },
-//     { img: Images.cpu, title: "RGB liquid CPU Cooler", value1: "$160", value2: "$170", star: "", value3: "(65)" },
-//     ]
+
 const ProductDetails = ({ item }) => {
   const location = useLocation();
 
-  const { addToCart, WishList } = useSelector((state) => state.Auth);
+  const { addToCart, WishList,listOfProduct } = useSelector((state) => state.Auth);
 
-  // const { quantityFind } = useSelector((state) => state.Auth)
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log("navigate", navigate);
+  
 
   const [Quantity, setQuantity] = useState([]);
   const [CartToad, setCartToad] = useState([]);
@@ -85,13 +80,13 @@ const ProductDetails = ({ item }) => {
       <hr w-100></hr>
       <div className="container">
         <div className="productcart">
-          <p className="accounthavic gap-3">
+          <p className="accountHavit gap-3">
             <span className=" d-flex gap-2">
               <span>Account</span>
               <span>/</span>
             </span>
             <span className=" d-flex gap-2">
-              <span>gameing</span>/
+              <span>Gaming</span>/
             </span>{" "}
             {product.title}{" "}
           </p>
@@ -211,7 +206,7 @@ const ProductDetails = ({ item }) => {
                   </div>
                 </div>
               </>
-              <div className="buynow mt-4">
+              <div className="buyNow mt-4">
                 <div className="counter " style={{ border: "0" }}>
                   <QuantityEvent />
                 </div>
@@ -254,7 +249,7 @@ const ProductDetails = ({ item }) => {
                 </div>
               </div>
 
-              <div className="deliveryavailability mt-5">
+              <div className="delivery mt-5">
                 <div className="freedelivery">
                   <div className="svglogo">
                     <svg

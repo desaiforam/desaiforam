@@ -14,7 +14,7 @@ const card2 = [{ img:<PhoneIcon/>, value: "phone" },
 
 ]
 
-const Cayegories = () => {
+const Categories = () => {
 
 
   return (
@@ -50,7 +50,7 @@ const Cayegories = () => {
           })}
         </div>
       </div>
-            {/* <div className='conntainer'>
+            {/* <div className='container'>
           <Carousel itemsToShow={6} pagination={false} >
             {card2.map((items, index) => (
       <div className="carousel-wrapper d-flex">
@@ -65,4 +65,4 @@ const Cayegories = () => {
   )
 }
 
-export default Cayegories
+export default Categories

@@ -28,7 +28,7 @@ const ToDays = ({ posts }) => {
         <div className="carousel-wrapper d-flex mt-4">
           <Carousel itemsToShow={4} pagination={false}  >
             {posts.map((item, index) => (
-              <div className='conntainer'>
+              <div className='container'>
                 
                 <CustomCard item={item} slider index={index} lisoforoduct={posts}  key={`ti-${index}`}/>
                

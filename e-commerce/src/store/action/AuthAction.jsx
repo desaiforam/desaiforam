@@ -4,12 +4,10 @@ const initialState = {
   WishList: [],
   addToCart: [],
   listOfProduct: [],
-  quantityFind: [],
-  // removeToCart: [],
-  quantityCart: [],
-  subTotal: "",
-  
-  
+  quantity: '',
+  // quantityFind: '',
+  // quantityCart:'',
+  subTotal: 0,
 };
 
 const authAction = createSlice({
@@ -18,6 +16,8 @@ const authAction = createSlice({
   reducers: {
     addToProduct: (state, action) => {
       state.listOfProduct = action.payload;
+      // state.quantity += '';
+      // state.total += action.payload.price * action.payload.quantity;
     },
     upDateCart: (state, action) => {
       const object = state.addToCart.filter((obj) => action.payload.id);
@@ -47,7 +47,6 @@ const authAction = createSlice({
       // console.log('action', action);
       state.subTotal = action.payload;
     },
-    
     quantityReducer: (state, action) => {
       const object = state.quantityCart.map((obj) => obj.id !== action.payload);
       state.quantityCart = object;
@@ -55,7 +54,12 @@ const authAction = createSlice({
     },
   },
 });
-
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
+
+//set a quantity event in add to cart 
+
+
+
+
