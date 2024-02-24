@@ -20,7 +20,7 @@ const authAction = createSlice({
     },
     upDateCart: (state, action) => {
       state.addToCart = [...state.addToCart, action.payload];
-      const object = state.addToCart.filter((obj) => action.payload.id);
+      // const object = state.addToCart.filter((obj) => action.payload.id);
     },
     upDateWishList: (state, action) => {
       state.WishList = [...state.WishList, action.payload];

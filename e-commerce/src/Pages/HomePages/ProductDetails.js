@@ -11,19 +11,17 @@ import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart } from "../../asset/images/svg";
 
 const ProductDetails = ({ item }) => {
-  const location = useLocation();
+  const location = useLocation(item);
 
-  const { addToCart, WishList, listOfProduct } = useSelector(
-    (state) => state.Auth
-  );
+  const { addToCart, WishList, listAdded } = useSelector((state) => state.Auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [Quantity, setQuantity] = useState([]);
   const [CartToad, setCartToad] = useState([]);
   const [AddToWish, setAddToWish] = useState([]);
   const [selectedSize, setSelectedSize] = useState("0");
+  const product = location?.state;
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
@@ -33,43 +31,48 @@ const ProductDetails = ({ item }) => {
   useEffect(() => {
     dispatch(AuthAction.upDateQuantity(Quantity));
   }, []);
+  useEffect(() => {
+    setQuantity(listAdded);
+  });
 
-  const onClickWishListBtn = () => {
-    dispatch(AuthAction.upDateWishList(location.state));
-    setAddToWish([...AddToWish, item]);
-  };
+  const cartAdded =
+    addToCart.length > 0
+      ? addToCart.find((itemed) => {
+          return itemed=== location.state.id;
+        })
+      : false;
+  const wishListed =
+    WishList.length > 0
+      ? WishList.find((itemed) => {
+          return itemed === location.state.id;
+        })
+      : false;
+
   const addToCartbtn = () => {
-    dispatch(AuthAction.upDateCart(location.state));
-    setCartToad([...CartToad, item]);
+    dispatch(AuthAction.upDateCart(location.state.id));
+    setCartToad([...addToCart, location.state.id]);
   };
-  const WishToRemoveBtn = () => {
-    dispatch(AuthAction.removeToWish(location.state));
-    const object = WishList.filter((obj) => obj.id !== location.state);
-    setAddToWish(object);
+  const addToWishList = () => {
+    dispatch(AuthAction.upDateWishList(location.state.id));
+    setAddToWish([...AddToWish, location.state.id]);
   };
-
   const removeToCart = () => {
-    dispatch(AuthAction.removeToCart(location.state));
-    const object = CartToad.filter((obj) => obj.id !== location.state);
+    const object = addToCart.filter(
+      (obj) => obj !== location.state.id);
+    console.log("object", object);
+    dispatch(AuthAction.removeToCart(object));
     setCartToad(object);
+  };
+  const removeToWish = () => {
+    const object = WishList.filter(
+      (obj) => obj !== location.state.id);
+    console.log("object", object);
+    dispatch(AuthAction.removeToWish(object));
+    setAddToWish(object);
   };
   const handleSizeClick = (size) => {
     setSelectedSize(size);
   };
-  const product = location?.state;
-
-  const isar =
-    addToCart.length > 0
-      ? addToCart.find((itemed) => {
-          return itemed.id === location.state.id;
-        })
-      : false;
-  const swish =
-    WishList.length > 0
-      ? WishList.find((itemed) => {
-          return itemed.id === location.state.id;
-        })
-      : false;
 
   return (
     <div>
@@ -210,7 +213,7 @@ const ProductDetails = ({ item }) => {
                 </div>
 
                 <div className="buyNow">
-                  {!isar ? (
+                  {!cartAdded ? (
                     <button
                       className="btn btn-now"
                       style={{ backgroundColor: "orangeade" }}
@@ -229,17 +232,17 @@ const ProductDetails = ({ item }) => {
                   )}
                 </div>
                 <div className="Wishart">
-                  {!swish ? (
+                  {!wishListed ? (
                     <button
                       style={{ border: "none", background: "transparent" }}
-                      onClick={(e) => onClickWishListBtn(e, location.state.id)}
+                      onClick={(e) => addToWishList(e, location.state.id)}
                     >
                       <Blnkheart />
                     </button>
                   ) : (
                     <button
                       style={{ border: "none", background: "transparent" }}
-                      onClick={(e) => WishToRemoveBtn(e, location.state.id)}
+                      onClick={(e) => removeToWish(e, location.state.id)}
                     >
                       <Heart />
                     </button>

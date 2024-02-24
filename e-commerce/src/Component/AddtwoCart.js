@@ -5,7 +5,7 @@ import { setQuantity } from "../store/action/quantityActions";
 import { useLocation } from "react-router-dom";
 
 const AddtwoCart = ({ item, onhandalprice, index }) => {
-  console.log("item", item);
+ 
 
   // const location = useLocation();
 

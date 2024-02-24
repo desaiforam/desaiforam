@@ -27,13 +27,13 @@ const CustomCard = (props) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
 
-  const isar =
+  const cartAdded =
     addToCart.length > 0
       ? addToCart.find((itemed) => {
           return itemed === item.id;
         })
       : false;
-  const swish =
+  const wishListed =
     WishList.length > 0
       ? WishList.find((itemed) => {
           return itemed === item.id;
@@ -42,7 +42,7 @@ const CustomCard = (props) => {
 
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
-      state: { ...item, isar: !!isar, listOfProduct },
+      state: { ...item, cartAdded: !!cartAdded, listOfProduct },
     });
   };
   const addToCartbtn = (e) => {
@@ -50,7 +50,7 @@ const CustomCard = (props) => {
     setCartToad([...addToCart, item.id]);
     e.stopPropagation();
   };
-  const onClickWishListBtn = (e) => {
+  const addToWishList = (e) => {
     dispatch(AuthAction.upDateWishList(item.id));
     setAddToWish([...AddToWish, item.id]);
     e.stopPropagation();
@@ -61,12 +61,11 @@ const CustomCard = (props) => {
     setCartToad(object);
     e.stopPropagation();
   };
-
   const removeToWish = (e, id) => {
     console.log("id", id);
     const object = WishList.filter((obj) => obj !== id.id);
     console.log("object", object);
-    // console.log("WishList", WishList);
+    
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
     e.stopPropagation();
@@ -82,10 +81,10 @@ const CustomCard = (props) => {
           className="images  position-absolute d-flex flex-column align-items-center justify-content-center"
           style={{ right: "25px", background: "transparent" }}
         >
-          {!swish ? (
+          {!wishListed ? (
             <button
               style={{ border: "none", background: "transparent" }}
-              onClick={(e) => onClickWishListBtn(e, item)}
+              onClick={(e) => addToWishList(e, item)}
             >
               <Blnkheart />
             </button>
@@ -117,7 +116,7 @@ const CustomCard = (props) => {
           </div>
         </div>
         <div className="add mb-3">
-          {!isar && (
+          {!cartAdded && (
             <button
               className="btn btn-dark "
               onClick={(e) => addToCartbtn(e, item)}
@@ -125,7 +124,7 @@ const CustomCard = (props) => {
               Add To Cart
             </button>
           )}
-          {isar && (
+          {cartAdded && (
             <button
               className="btn btn-dark "
               onClick={(e) => removeToCart(item, e)}
