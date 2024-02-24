@@ -16,11 +16,11 @@ const authAction = createSlice({
   reducers: {
     addToProduct: (state, action) => {
       state.listOfProduct = action.payload;
-      // state.quantity += '';
-      // state.total += action.payload.price * action.payload.quantity;
+      
     },
     upDateCart: (state, action) => {
       state.addToCart = [...state.addToCart, action.payload];
+      const object = state.addToCart.filter((obj) => action.payload.id);
     },
     upDateWishList: (state, action) => {
       state.WishList = [...state.WishList, action.payload];

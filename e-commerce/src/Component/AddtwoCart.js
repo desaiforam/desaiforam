@@ -26,7 +26,7 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
   const onchangeQue = (e, price) => {
     setValue(e.target.value);
     dispatch(
-      AuthAction.upDateQuantityCart({ id: item.id.id, quantity: e.target.value })
+      AuthAction.upDateQuantityCart({ id: item.id, quantity: e.target.value })
     );
     const addQue = price * e.target.value;
     setQuantity(addQue);

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Component/Navbar";
 import Header from "../../Component/header";
@@ -9,31 +10,29 @@ import SizeSelector from "../../Component/SizeSelector";
 import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart } from "../../asset/images/svg";
 
-
 const ProductDetails = ({ item }) => {
   const location = useLocation();
 
-  const { addToCart, WishList,listOfProduct } = useSelector((state) => state.Auth);
+  const { addToCart, WishList, listOfProduct } = useSelector(
+    (state) => state.Auth
+  );
 
- 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
 
   const [Quantity, setQuantity] = useState([]);
   const [CartToad, setCartToad] = useState([]);
   const [AddToWish, setAddToWish] = useState([]);
+  const [selectedSize, setSelectedSize] = useState("0");
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
-
   useEffect(() => {
     setCartToad(addToCart);
   }, [addToCart]);
   useEffect(() => {
     dispatch(AuthAction.upDateQuantity(Quantity));
   }, []);
-  const [selectedSize, setSelectedSize] = useState("0");
 
   const onClickWishListBtn = () => {
     dispatch(AuthAction.upDateWishList(location.state));
@@ -53,7 +52,6 @@ const ProductDetails = ({ item }) => {
     dispatch(AuthAction.removeToCart(location.state));
     const object = CartToad.filter((obj) => obj.id !== location.state);
     setCartToad(object);
-    
   };
   const handleSizeClick = (size) => {
     setSelectedSize(size);
@@ -216,7 +214,7 @@ const ProductDetails = ({ item }) => {
                     <button
                       className="btn btn-now"
                       style={{ backgroundColor: "orangeade" }}
-                      onClick={() => addToCartbtn()}
+                      onClick={() => addToCartbtn(location.state.id)}
                     >
                       Buy Now
                     </button>
@@ -224,7 +222,7 @@ const ProductDetails = ({ item }) => {
                     <button
                       className="btn btn-now "
                       style={{ backgroundColor: "orangeade" }}
-                      onClick={(e) => removeToCart()}
+                      onClick={(e) => removeToCart(location.state.id)}
                     >
                       Remove To Cart
                     </button>
