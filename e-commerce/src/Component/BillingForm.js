@@ -47,7 +47,7 @@ function BillingForm() {
         }
 
 
-        console.log('Form submitted:', formData);
+        
     };
 
     return (

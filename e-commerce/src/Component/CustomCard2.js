@@ -3,8 +3,7 @@ import React from 'react'
 
 const CustomCard2 = (props) => {
   const { items } = props
-  // console.log("items", items)
-  
+ 
   return (
 
 

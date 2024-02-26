@@ -9,38 +9,46 @@ import { AuthAction } from "../../store/action/AuthAction";
 import SizeSelector from "../../Component/SizeSelector";
 import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart } from "../../asset/images/svg";
+import CustomCard from "../../Component/CustomCard";
+import ColorSelect from "../../Component/ColorSelect";
 
-const ProductDetails = ({ item }) => {
+const ProductDetails = ({ item, posts }) => {
   const location = useLocation(item);
 
   const { addToCart, WishList, listAdded } = useSelector((state) => state.Auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [Quantity, setQuantity] = useState([]);
-  const [CartToad, setCartToad] = useState([]);
+  const [quantity, setQuantity] = useState([]);
+  // const [color, setColor] = useState();
+  //const [CartToad, setCartToad] = useState([]);
   const [AddToWish, setAddToWish] = useState([]);
-  const [selectedSize, setSelectedSize] = useState("0");
+
   const product = location?.state;
+
+  const [selectedColor, setSelectedColor] = useState(["sky"]);
+  const [color, setColor] = useState();
+
+  const handleColorClick = (color) => {
+    setSelectedColor(color);
+    dispatch(AuthAction.upDateColor(color));
+  };
+  useEffect(() => {
+    dispatch(AuthAction.upDateColor(color));
+  }, [color]);
+  useEffect(() => {
+    setColor(color);
+  }, [color]);
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
   useEffect(() => {
-    setCartToad(addToCart);
-  }, [addToCart]);
-  useEffect(() => {
-    dispatch(AuthAction.upDateQuantity(Quantity));
-  }, []);
+    dispatch(AuthAction.updateQuantity(quantity));
+  }, [quantity]);
   useEffect(() => {
     setQuantity(listAdded);
-  });
+  }, []);
 
-  const cartAdded =
-    addToCart.length > 0
-      ? addToCart.find((itemed) => {
-          return itemed=== location.state.id;
-        })
-      : false;
   const wishListed =
     WishList.length > 0
       ? WishList.find((itemed) => {
@@ -48,30 +56,15 @@ const ProductDetails = ({ item }) => {
         })
       : false;
 
-  const addToCartbtn = () => {
-    dispatch(AuthAction.upDateCart(location.state.id));
-    setCartToad([...addToCart, location.state.id]);
-  };
   const addToWishList = () => {
     dispatch(AuthAction.upDateWishList(location.state.id));
     setAddToWish([...AddToWish, location.state.id]);
   };
-  const removeToCart = () => {
-    const object = addToCart.filter(
-      (obj) => obj !== location.state.id);
-    console.log("object", object);
-    dispatch(AuthAction.removeToCart(object));
-    setCartToad(object);
-  };
+
   const removeToWish = () => {
-    const object = WishList.filter(
-      (obj) => obj !== location.state.id);
-    console.log("object", object);
+    const object = WishList.filter((obj) => obj !== location.state.id);
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
-  };
-  const handleSizeClick = (size) => {
-    setSelectedSize(size);
   };
 
   return (
@@ -169,37 +162,34 @@ const ProductDetails = ({ item }) => {
                   Colors:
                   <div className="butinput d-flex gap-3">
                     <div
-                      className={`chart ${selectedSize === "0" && "select"}`}
-                      onClick={() => handleSizeClick("0")}
+                      className={`chart ${selectedColor === "0" && "select"}`}
+                      onClick={() => handleColorClick("Sky")}
                     >
                       <div
                         className="colorselect"
                         style={{
                           backgroundColor: "#A0BCE0",
-                          color: "#A0BCE1",
+                          color: "#A0BCE0",
                           margin: "5px",
                         }}
-                      >
-                        0
-                      </div>
+                      ></div>
                     </div>
                     <div
-                      className={`chart ${selectedSize === "1" && "select"}`}
-                      onClick={() => handleSizeClick("1")}
+                      className={`chart ${selectedColor === "1" && "select"}`}
+                      onClick={() => handleColorClick("Orange")}
                     >
                       <div
                         className="colorselect"
                         style={{
                           backgroundColor: "#E07575",
-                          color: "#E07576",
+                          color: "#E07575",
                           margin: "5px",
                         }}
-                      >
-                        1
-                      </div>
+                      ></div>
                     </div>
                   </div>
                 </div>
+                {/* <ColorSelect /> */}
                 <div className="sizechart mt-4">
                   Size :
                   <div className="size d-flex">
@@ -212,25 +202,6 @@ const ProductDetails = ({ item }) => {
                   <QuantityEvent />
                 </div>
 
-                <div className="buyNow">
-                  {!cartAdded ? (
-                    <button
-                      className="btn btn-now"
-                      style={{ backgroundColor: "orangeade" }}
-                      onClick={() => addToCartbtn(location.state.id)}
-                    >
-                      Buy Now
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-now "
-                      style={{ backgroundColor: "orangeade" }}
-                      onClick={(e) => removeToCart(location.state.id)}
-                    >
-                      Remove To Cart
-                    </button>
-                  )}
-                </div>
                 <div className="Wishart">
                   {!wishListed ? (
                     <button
@@ -374,8 +345,8 @@ const ProductDetails = ({ item }) => {
         </div>
       </div>
       <div className="container CustomCard p-1 gap-5 mt-2">
-        {/* {card.map((item, index) => {
-                    return // <CustomCard item={item} />
+        {/* {posts.map((item, index) => {
+                    return  <CustomCard item={item} />
                 })} */}
       </div>
       <Footer />
@@ -384,3 +355,5 @@ const ProductDetails = ({ item }) => {
 };
 
 export default ProductDetails;
+
+//set a QuantityEvent and is storag a redux list

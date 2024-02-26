@@ -5,7 +5,7 @@ import CustomCard from './CustomCard';
 
 
 const Ourproduct = ({ posts }) => {
-    // console.log('Ourproduct', posts);
+
 
     return (
         <div>

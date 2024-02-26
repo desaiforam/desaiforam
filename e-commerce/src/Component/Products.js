@@ -4,7 +4,7 @@ import CustomCard from './CustomCard'
 
 
 const Products = ({ posts }) => {
-    // console.log('posts', posts);
+    
 
     return (
         <div className='container flex-column'>

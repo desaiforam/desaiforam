@@ -1,63 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
-import { setQuantity } from "../store/action/quantityActions";
-import { useLocation } from "react-router-dom";
 
-const AddtwoCart = ({ item, onhandalprice, index }) => {
- 
-
-  // const location = useLocation();
-
+const AddtwoCart = ({ item, onhandalprice }) => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState(1);
-  const [quantity, setQuantity] = useState(item?.price);
-
+  const [quantityCart, setQuantityCart] = useState(1);
+  const { quantity } = useSelector((state) => state.Auth);
+  console.log("quantity", quantity);
   useEffect(() => {
-    setValue(item.quantity);
-    const addQue = item?.price * value;
-    setQuantity(addQue);
-  }, []);
-
-  useEffect(() => {
-    setQuantity(quantity);
-  }, [quantity]);
-
+    
+    setQuantityCart(quantityCart);
+  }, [quantityCart]);
   const onchangeQue = (e, price) => {
-    setValue(e.target.value);
-    dispatch(
-      AuthAction.upDateQuantityCart({ id: item.id, quantity: e.target.value })
-    );
-    const addQue = price * e.target.value;
-    setQuantity(addQue);
-    onhandalprice(e.target.value);
+    const newQuantity = parseInt(e.target.value );
+    dispatch(AuthAction.upDateQuantityCart({ id: item.id, quantity:newQuantity}));
+    setQuantityCart(newQuantity);
+    onhandalprice(newQuantity);
   };
 
   return (
     <tr className="cartable">
       <td className="cartages">
         <div className="quantity">
-          <img src={item?.image} height="50" width="50" alt="" />
+          <img src={item.image} height="50" width="50" alt="" />
         </div>
-        {item?.title}
+        {item.title}
       </td>
-      <td>{item?.price}</td>
+      <td>{item.price}</td>
       <td>
         <input
           type="number"
-          value={item.quantity}
+          value={quantityCart}
           min="1"
           max="10"
-          onChange={(e) => onchangeQue(e, item?.price)}
+          onChange={(e) => onchangeQue(e, item.price)}
         />
       </td>
-      <td>{quantity}</td>
+      <td>{item.price * item.quantity}</td>
     </tr>
   );
 };
-const mapStateToProps = (state) => ({
-  quantity: state.quantityReducer.quantity,
-});
-export default AddtwoCart;
-//manage a quantity of  product list  to store a redux   list in buth file 
 
+export default AddtwoCart;
+//get the quantity value can redux store

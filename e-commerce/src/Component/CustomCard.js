@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "../asset/style/CustomCard.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,9 +63,9 @@ const CustomCard = (props) => {
     e.stopPropagation();
   };
   const removeToWish = (e, id) => {
-    console.log("id", id);
+
     const object = WishList.filter((obj) => obj !== id.id);
-    console.log("object", object);
+    
     
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
@@ -140,7 +141,7 @@ const CustomCard = (props) => {
                 {/* {item.title} */}
                 {truncate(item?.title, 5, 30)}
               </h6>
-              <h6></h6>
+             
             </div>
             <div className="price">
               <span>{item.price}</span>

@@ -6,7 +6,6 @@ import React from 'react'
 const CardCastum = (props) => {
 
     const { items } = props
-    // console.log("items", items)
 
 
     return (

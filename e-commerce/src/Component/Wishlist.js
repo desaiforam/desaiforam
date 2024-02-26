@@ -47,7 +47,7 @@ const Wishlist = (id) => {
                     </div>
                     {/* <div className='container CustomCard p-1 gap-5 mt-5 mb-4'>
                         {cardSecound.map((item, index) => {
-                            // console.log('!item', !item);
+                           
                             if (!item) return null
                             return (
                                 <CustomCard item={item} wishlist={false} />

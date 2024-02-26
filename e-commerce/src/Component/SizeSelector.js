@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {AuthAction} from '../store/action/AuthAction';
 
 function SizeSelector() {
 
     const [selectedSize, setSelectedSize] = useState('M');
-    // console.log('selectedSize', selectedSize);
+    const dispatch = useDispatch();
+   
 
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
+        dispatch(AuthAction.upDateSize(size));
 
     };
 
@@ -23,3 +27,5 @@ function SizeSelector() {
 }
 
 export default SizeSelector;
+
+//set a siez in product then it will store a redux list in auth

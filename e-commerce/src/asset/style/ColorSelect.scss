@@ -1,0 +1,41 @@
+.inputbutton {
+    display: flex;
+    gap: 26px;
+    font-size: x-large;
+    // // align-items: self-end;
+    .chart {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        // border: 3px solid transparent;
+        
+
+        .colorselect {
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            justify-content: center;
+            border: 3px solid transparent;
+            display: flex;  
+            align-items: center;
+        }
+    }
+
+    .select {
+        height: 32px;
+        width: 32px;
+        border: 2px solid black;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    // .sortOptions2 {
+    //     width: 30px;
+    //     height: 30px;
+    //     accent-color: #e07575;
+    //     color: #e07575;
+    // }
+}

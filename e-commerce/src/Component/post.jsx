@@ -16,7 +16,7 @@ const Post = () => {
           ...item
         }))
         setPost(data)
-        console.log('data', data);
+     
 
       })
       .catch(error => {

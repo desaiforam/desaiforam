@@ -3,20 +3,18 @@ import Navbar from "./Navbar";
 import Header from "./header";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
-import AddtwoCart, { products } from "./AddtwoCart";
+import AddtwoCart from "./AddtwoCart";
 import { useNavigate } from "react-router-dom";
 import { listOfProduct } from "./CustomCard";
 import { addToCart } from "./selectors";
-// import AuthAction from '../store/action/AuthAction'
 
 const Useradd = () => {
   const navigate = useNavigate();
-  // const [data, setData] = useState();
 
-  const { addToCart,listOfProduct } = useSelector((state) => state.Auth);
+  const { addToCart, listOfProduct } = useSelector((state) => state.Auth);
+
   const [subTotal, setSubTotal] = useState([]);
   const [Total, setTotal] = useState(0);
-  const [quantity , setQuantity] = useState([])
 
   const proceedToCheckout = () => {
     navigate("/Cart-Details ", { state: subTotal });
@@ -38,9 +36,7 @@ const Useradd = () => {
   useEffect((id) => {
     gasprice(id);
   }, []);
-  useEffect((id)=>{
-    setQuantity(id);
-  },[]);
+
   const onhandalprice = (id, qty, itemize) => {
     const data = [...subTotal];
     data[id].price = itemize * qty;
@@ -53,10 +49,9 @@ const Useradd = () => {
     setTotal(totalData);
   };
   const listAdded = addToCart.map((id) =>
-  listOfProduct.find((product) => product.id === id)
-);
-console.log("listAdded", listAdded);
- 
+    listOfProduct.find((product) => product.id === id)
+  );
+
   return (
     <div>
       <Navbar />
@@ -72,6 +67,7 @@ console.log("listAdded", listAdded);
           </tr>
           {listAdded &&
             listAdded.map((item, index) => {
+             
               return (
                 <>
                   <AddtwoCart
@@ -132,5 +128,3 @@ console.log("listAdded", listAdded);
   );
 };
 export default Useradd;
-// give a all product details using  only id also store a only id console in
-// Fetching the product details using the ID in this file

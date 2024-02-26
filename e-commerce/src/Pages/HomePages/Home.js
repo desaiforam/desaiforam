@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,12 +22,12 @@ import "../../asset/style/iphone.scss";
 import { AuthAction } from "../../store/action/AuthAction";
 
 const Home = () => {
-  const { listOfProduct, quantity } = useSelector((state) => state.Auth);
+  const { listOfProduct, quantity ,} = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
-  const addToCart = () => {
-    dispatch(listOfProduct({ ...listOfProduct, quantity }));
-    console.log("quantity", quantity);
-  };
+  // const quantityFind = () => {
+  //   dispatch(listOfProduct({ ...listOfProduct, quantity }));
+  //  
+  // };
 
   const fetchData = async () => {
     try {
@@ -36,9 +37,9 @@ const Home = () => {
 
       const data = response.data.map((product) => ({
         ...product,
-        quantityCart: '',
-        color: "",
-        size: "",
+        // quantity: 1,
+        // color: "",
+        // size: "",
       }));
 
       dispatch(AuthAction.addToProduct(data));
@@ -78,4 +79,4 @@ const Home = () => {
 };
 
 export default Home;
-//set a also quantity of the Product   addtocart
+
