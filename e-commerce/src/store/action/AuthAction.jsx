@@ -4,8 +4,8 @@ const initialState = {
   WishList: [],
   addToCart: [],
   listOfProduct: [],
-  quantity: "",
-  color:null,
+  quantity: [],
+  color: [],
   sizes: [],
   // // quantityFind: '',
   // // quantity:'',
@@ -33,28 +33,27 @@ const authAction = createSlice({
       state.WishList = action.payload;
     },
     updateQuantity: (state, action) => {
-      state.quantity = action.payload;
+      state.quantity = [...state.quantity, action.payload];
     },
     upDateQuantityCart: (state, action) => {
-      state.quantity = action.payload;
+      state.quantity = [...state.quantity, action.payload];
       const list = [...state.listOfProduct];
       const index = list.findIndex(
         (item) => Number(item.id) === Number(action.payload.id)
       );
       list[index].quantity = Number(action.payload.quantity);
       state.listOfProduct = list;
-      
     },
     upDateColor: (state, action) => {
-      state.color = action.payload;
+      state.color = [...state.color, action.payload];
       
-    
+     
     },
     upDateSize: (state, action) => {
-      state.sizes = action.payload;
+      state.sizes = [...state.sizes, action.payload];
     },
     setSizeInProduct: (state, action) => {
-      const { productId, size } = action.payload;
+      const { productId, size } = [...state.addToCart, action.payload];
       const productIndex = state.listOfProduct.findIndex(
         (product) => product.id === productId
       );
@@ -70,3 +69,4 @@ const authAction = createSlice({
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
+// list of products can different  the size of each product how can set the

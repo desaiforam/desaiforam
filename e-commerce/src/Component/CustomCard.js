@@ -171,3 +171,6 @@ const CustomCard = (props) => {
 };
 
 export default CustomCard;
+//get the quantity value can redux stor
+//get the redux store color using id fetch and store a redux list 
+//get the redux store size using id fetch and store a redux list

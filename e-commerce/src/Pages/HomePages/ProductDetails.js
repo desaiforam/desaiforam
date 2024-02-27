@@ -16,6 +16,7 @@ const ProductDetails = ({ item, posts }) => {
   const location = useLocation(item);
 
   const { addToCart, WishList, listAdded } = useSelector((state) => state.Auth);
+  console.log("addToCart", addToCart);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,19 +27,22 @@ const ProductDetails = ({ item, posts }) => {
 
   const product = location?.state;
 
-  const [selectedColor, setSelectedColor] = useState(["sky"]);
-  const [color, setColor] = useState();
+  const [selectedColor, setSelectedColor] = useState([
+    { colorName: "sky", id: 0 },
+  ]);
+  //  const [color, setColor] = useState();
 
   const handleColorClick = (color) => {
     setSelectedColor(color);
-    dispatch(AuthAction.upDateColor(color));
+    const setColor = { colorName: color, id : addToCart[0]};
+    dispatch(AuthAction.upDateColor(setColor));
   };
-  useEffect(() => {
-    dispatch(AuthAction.upDateColor(color));
-  }, [color]);
-  useEffect(() => {
-    setColor(color);
-  }, [color]);
+  // useEffect(() => {
+  //   dispatch(AuthAction.upDateColor(color));
+  // }, [color]);
+  // useEffect(() => {
+  //   setColor(color);
+  // }, [color]);
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);

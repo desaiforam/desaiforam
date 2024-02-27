@@ -6,7 +6,7 @@ const AddtwoCart = ({ item, onhandalprice }) => {
   const dispatch = useDispatch();
   const [quantityCart, setQuantityCart] = useState(1);
   const { quantity } = useSelector((state) => state.Auth);
-  console.log("quantity", quantity);
+  
   useEffect(() => {
     
     setQuantityCart(quantityCart);
@@ -42,4 +42,6 @@ const AddtwoCart = ({ item, onhandalprice }) => {
 };
 
 export default AddtwoCart;
-//get the quantity value can redux store
+//get the quantity value can redux stor
+//get the redux store color using id fetch and store a redux list 
+//get the redux store size using id fetch and store a redux list 

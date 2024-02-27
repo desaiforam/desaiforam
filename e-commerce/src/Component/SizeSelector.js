@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {AuthAction} from '../store/action/AuthAction';
+import { addToCart } from './selectors';
 
 function SizeSelector() {
 
     const [selectedSize, setSelectedSize] = useState('M');
     const dispatch = useDispatch();
-   
+    const { addToCart, WishList, listAdded } = useSelector((state) => state.Auth);
 
 
     const handleSizeClick = (size) => {
-        setSelectedSize(size);
         dispatch(AuthAction.upDateSize(size));
+        setSelectedSize([...addToCart ,size]);
 
     };
 

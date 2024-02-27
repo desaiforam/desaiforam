@@ -37,19 +37,22 @@ const QuantityCounter = ({ item }) => {
     if (quantityCart > 1) {
       const newQuantity = quantityCart - 1;
       setQuantityCart(newQuantity);
-      dispatch(AuthAction.updateQuantity(newQuantity));
+      const quantityFind =  {id: addToCart[0] ,setQuantity: newQuantity,}
+      dispatch(AuthAction.updateQuantity(quantityFind));
+      
     }
   };
   const increaseQuantity = () => {
     if (quantityCart < 10) {
       const newQuantity = quantityCart + 1;
       setQuantityCart(newQuantity);
-      dispatch(AuthAction.updateQuantity(newQuantity));
+      const quantityFind =  {id: addToCart[0], setQuantity: newQuantity }
+      dispatch(AuthAction.updateQuantity(quantityFind));
     }
   };
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value );
-    dispatch(AuthAction.upDateQuantityCart({ id: item.id, quantity:newQuantity}));
+    dispatch(AuthAction.upDateQuantityCart({ id: item, quantity:newQuantity}));
     setQuantityCart(newQuantity);
    
   };
