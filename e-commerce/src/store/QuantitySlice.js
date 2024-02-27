@@ -1,19 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+// import { UPDATE_QUANTITY } from './actionTypes';
 
-const initialState = {
-  quantity: 1,
-};
-
-const QuantitySlice = createSlice({
-    name: "quantity",
-    initialState,
-    reducers: {
-        setQuantity: (state, action) => {
-    
-      state.quantity = action.payload;
-    },
-  },
-});
-export const { setQuantity } = QuantitySlice.actions;
-export default QuantitySlice.reducer;
-  
+// export const QuantitySlice = {
+//   upDateQuantity: ({ id, quantity }) => ({
+//     type: UPDATE_QUANTITY,
+//     payload: { id, quantity },
+//   }),
+// };

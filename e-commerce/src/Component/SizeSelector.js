@@ -11,8 +11,9 @@ function SizeSelector() {
 
 
     const handleSizeClick = (size) => {
-        dispatch(AuthAction.upDateSize(size));
         setSelectedSize([...addToCart ,size]);
+        const setSize = {id: addToCart[0], size: size}
+        dispatch(AuthAction.upDateSize(setSize));
 
     };
 
