@@ -10,7 +10,7 @@ import SizeSelector from "../../Component/SizeSelector";
 import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart } from "../../asset/images/svg";
 import CustomCard from "../../Component/CustomCard";
-import ColorSelect from "../../Component/ColorSelect";
+
 
 const ProductDetails = ({ item, posts }) => {
   const location = useLocation(item);

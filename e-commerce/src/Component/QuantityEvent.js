@@ -76,7 +76,7 @@ const QuantityCounter = ({ item }) => {
             style={{ backgroundColor: "orangeade" }}
             onClick={() => addToCartbtn(location.state.id)}
           >
-            Buy Now
+          Buy Now
           </button>
         ) : (
           <button
@@ -93,4 +93,3 @@ const QuantityCounter = ({ item }) => {
 };
 
 export default QuantityCounter;
-
