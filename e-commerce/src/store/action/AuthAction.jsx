@@ -33,7 +33,14 @@ const authAction = createSlice({
       state.WishList = action.payload;
     },
     updateQuantity: (state, action) => {
-      state.quantity = [...state.quantity, action.payload];
+      const index = state.quantity.findIndex(
+        item => item.id === action.payload.id
+      )
+        if(index === -1){
+          state.quantity = [...state.quantity, action.payload];
+        }else{
+          state.quantity[index].quantity =  action.payload.quantity
+        }
     },
     upDateQuantityCart: (state, action) => {
       state.quantity = [...state.quantity, action.payload];
@@ -45,12 +52,29 @@ const authAction = createSlice({
       state.listOfProduct = list;
     },
     upDateColor: (state, action) => {
-      state.color = [...state.color, action.payload];
+      const index = state.color.findIndex(
+        item => item.id === action.payload.id
+        )
+        console.log('index', index);
+        if(index === -1){
+          state.color = [...state.color, action.payload];
+        }else{
+          state.color[index].colorName = action.payload.colorName
+ 
+        }
       
      
     },
     upDateSize: (state, action) => {
-      state.sizes = [...state.sizes, action.payload];
+      const index = state.sizes.findIndex(
+        item => item.id === action.payload.id
+      )
+      if(index === -1){
+        state.sizes = [...state.sizes, action.payload];
+      }else{
+
+        state.sizes[index].size = action.payload.size
+      }
     },
     setSizeInProduct: (state, action) => {
       const { productId, size } = [...state.addToCart, action.payload];

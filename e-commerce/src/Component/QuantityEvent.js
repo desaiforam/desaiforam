@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 import { useLocation } from "react-router-dom";
 
-const QuantityCounter = ({ item }) => {
-  const location = useLocation(item);
+const QuantityCounter = ({ item,id }) => {
+  const location = useLocation();
    const {  } = useSelector((state) => state.Auth);
 
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const QuantityCounter = ({ item }) => {
     if (quantityCart > 1) {
       const newQuantity = quantityCart - 1;
       setQuantityCart(newQuantity);
-      const quantityFind =  {id: addToCart[0] ,setQuantity: newQuantity,}
+      const quantityFind =  {id: id,quantity: newQuantity,}
       dispatch(AuthAction.updateQuantity(quantityFind));
       
     }
@@ -46,13 +46,13 @@ const QuantityCounter = ({ item }) => {
     if (quantityCart < 10) {
       const newQuantity = quantityCart + 1;
       setQuantityCart(newQuantity);
-      const quantityFind =  {id: addToCart[0], setQuantity: newQuantity }
+      const quantityFind =  {id: id, quantity: newQuantity }
       dispatch(AuthAction.updateQuantity(quantityFind));
     }
   };
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value );
-    dispatch(AuthAction.upDateQuantityCart({ id: item, quantity:newQuantity}));
+    dispatch(AuthAction.upDateQuantityCart({ id: id, quantity:newQuantity}));
     setQuantityCart(newQuantity);
    
   };

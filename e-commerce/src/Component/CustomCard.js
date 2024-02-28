@@ -77,6 +77,7 @@ const CustomCard = (props) => {
       <div
         className="position-relative d-flex flex-column card_main"
         onClick={() => onclickMyOrder(item)}
+
       >
         <div
           className="images  position-absolute d-flex flex-column align-items-center justify-content-center"

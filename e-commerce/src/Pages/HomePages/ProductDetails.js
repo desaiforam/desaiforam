@@ -9,49 +9,31 @@ import { AuthAction } from "../../store/action/AuthAction";
 import SizeSelector from "../../Component/SizeSelector";
 import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart } from "../../asset/images/svg";
-import CustomCard from "../../Component/CustomCard";
+import ColorSelector from "../../Component/ColorSelector";
 
-
-const ProductDetails = ({ item, posts }) => {
-  const location = useLocation(item);
+const ProductDetails = ({ id, posts }) => {
+  const location = useLocation();
 
   const { addToCart, WishList, listAdded } = useSelector((state) => state.Auth);
-  console.log("addToCart", addToCart);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState([]);
-  // const [color, setColor] = useState();
-  //const [CartToad, setCartToad] = useState([]);
+
   const [AddToWish, setAddToWish] = useState([]);
 
   const product = location?.state;
 
-  const [selectedColor, setSelectedColor] = useState([
-    { colorName: "sky", id: 0 },
-  ]);
-  //  const [color, setColor] = useState();
-
-  const handleColorClick = (color) => {
-    setSelectedColor(color);
-    const setColor = { colorName: color, id : addToCart[0]};
-    dispatch(AuthAction.upDateColor(setColor));
-  };
-  // useEffect(() => {
-  //   dispatch(AuthAction.upDateColor(color));
-  // }, [color]);
-  // useEffect(() => {
-  //   setColor(color);
-  // }, [color]);
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
-  useEffect(() => {
-    dispatch(AuthAction.updateQuantity(quantity));
-  }, [quantity]);
-  useEffect(() => {
-    setQuantity(listAdded);
-  }, []);
+  // useEffect(() => {
+  //   dispatch(AuthAction.updateQuantity(quantity));
+  // }, [quantity]);
+  // useEffect(() => {
+  //   setQuantity(listAdded);
+  //   console.log("setQuantitydfsdvg", setQuantity);
+  // }, []);
 
   const wishListed =
     WishList.length > 0
@@ -162,48 +144,19 @@ const ProductDetails = ({ item, posts }) => {
                   </div>
                   <hr className="w-100"></hr>
                 </div>
-                <div className="inputbutton">
-                  Colors:
-                  <div className="butinput d-flex gap-3">
-                    <div
-                      className={`chart ${selectedColor === "0" && "select"}`}
-                      onClick={() => handleColorClick("Sky")}
-                    >
-                      <div
-                        className="colorselect"
-                        style={{
-                          backgroundColor: "#A0BCE0",
-                          color: "#A0BCE0",
-                          margin: "5px",
-                        }}
-                      ></div>
-                    </div>
-                    <div
-                      className={`chart ${selectedColor === "1" && "select"}`}
-                      onClick={() => handleColorClick("Orange")}
-                    >
-                      <div
-                        className="colorselect"
-                        style={{
-                          backgroundColor: "#E07575",
-                          color: "#E07575",
-                          margin: "5px",
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-                {/* <ColorSelect /> */}
+
+                <ColorSelector id={product.id} />
+
                 <div className="sizechart mt-4">
                   Size :
                   <div className="size d-flex">
-                    <SizeSelector />
+                    <SizeSelector id={product.id} />
                   </div>
                 </div>
               </>
               <div className="buyNow mt-4">
                 <div className="counter " style={{ border: "0" }}>
-                  <QuantityEvent />
+                  <QuantityEvent id={product.id} />
                 </div>
 
                 <div className="Wishart">
