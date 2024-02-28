@@ -34,46 +34,45 @@ const authAction = createSlice({
     },
     updateQuantity: (state, action) => {
       const index = state.quantity.findIndex(
-        item => item.id === action.payload.id
-      )
-        if(index === -1){
-          state.quantity = [...state.quantity, action.payload];
-        }else{
-          state.quantity[index].quantity =  action.payload.quantity
-        }
+        (item) => item.id === action.payload.id,
+        (item) => Number(item.id) === Number(action.payload.id)
+      );
+      if (index === -1) {
+        state.quantity = [...state.quantity, action.payload];
+      } else {
+        state.quantity[index].quantity = action.payload.quantity;
+      }
     },
-    upDateQuantityCart: (state, action) => {
+    upOnChangeQuantity: (state, action) => {
       state.quantity = [...state.quantity, action.payload];
       const list = [...state.listOfProduct];
-      const index = list.findIndex(
+      const index = state.quantity.findIndex(
+        (item) => item.id === action.payload.id, 
         (item) => Number(item.id) === Number(action.payload.id)
       );
       list[index].quantity = Number(action.payload.quantity);
-      state.listOfProduct = list;
-    },
+       state.listOfProduct = list;
+      
+    },  
     upDateColor: (state, action) => {
       const index = state.color.findIndex(
-        item => item.id === action.payload.id
-        )
-        console.log('index', index);
-        if(index === -1){
-          state.color = [...state.color, action.payload];
-        }else{
-          state.color[index].colorName = action.payload.colorName
- 
-        }
-      
-     
-    },
+        (item) => item.id === action.payload.id
+      );
+      console.log("index", index);
+      if (index === -1) {
+        state.color = [...state.color, action.payload];
+      } else {
+        state.color[index].colorName = action.payload.colorName;
+      }
+    },  
     upDateSize: (state, action) => {
       const index = state.sizes.findIndex(
-        item => item.id === action.payload.id
-      )
-      if(index === -1){
+        (item) => item.id === action.payload.id
+      );
+      if (index === -1) {
         state.sizes = [...state.sizes, action.payload];
-      }else{
-
-        state.sizes[index].size = action.payload.size
+      } else {
+        state.sizes[index].size = action.payload.size;
       }
     },
     setSizeInProduct: (state, action) => {
@@ -93,4 +92,5 @@ const authAction = createSlice({
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
-// list of products can different  the size of each product how can set the
+
+//get the quantity value of console  

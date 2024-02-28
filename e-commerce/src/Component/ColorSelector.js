@@ -22,7 +22,7 @@ import { useDispatch } from 'react-redux';
         onClick={() => handleColorClick("Sky")}
       >
         <div
-          className="colorselect"
+          className="select"
           style={{
             backgroundColor: "#A0BCE0",
             color: "#A0BCE0",
@@ -35,7 +35,7 @@ import { useDispatch } from 'react-redux';
         onClick={() => handleColorClick("Orange")}
       >
         <div
-          className="colorselect"
+          className="select"
           style={{
             backgroundColor: "#E07575",
             color: "#E07575",

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
+import '../asset/style/ColorSelect.scss';
 
 function SizeSelector({id}) {
   const [selectedSize, setSelectedSize] = useState("M");
@@ -18,7 +19,7 @@ function SizeSelector({id}) {
   return (
     <div className="size d-flex" style={{ cursor: "pointer" }}>
       <span
-        className={`chart ${selectedSize === "XS" && "selected"}`}
+        className={`chart ${selectedSize === "XS" && "select"}`}
         style={{
           background: selectedSize === "XS" ? "orangeade" : "",
           color: selectedSize === "XS" ? "white" : "",
@@ -28,7 +29,7 @@ function SizeSelector({id}) {
         XS
       </span>
       <span
-        className={`chart ${selectedSize === "S" && "selected"}`}
+        className={`chart ${selectedSize === "S" && "select"}`}
         style={{
           background: selectedSize === "S" ? "orangeade" : "",
           color: selectedSize === "S" ? "white" : "",
@@ -38,7 +39,7 @@ function SizeSelector({id}) {
         S
       </span>
       <span
-        className={`chart ${selectedSize === "M" && "selected"}`}
+        className={`chart ${selectedSize === "M" && "select"}`}
         style={{
           background: selectedSize === "M" ? "orangeade" : "",
           color: selectedSize === "M" ? "white" : "",
