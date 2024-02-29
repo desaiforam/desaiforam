@@ -1,131 +1,4 @@
-// import React, { useEffect, useState } from "react";
-// import Navbar from "./Navbar";
-// import Header from "./header";
-// import Footer from "./Footer";
-// import { useDispatch, useSelector } from "react-redux";
-// import AddtwoCart from "./AddtwoCart";
-// import { useNavigate } from "react-router-dom";
-// import { listOfProduct } from "./CustomCard";
-// import { addToCart } from "./selectors";
-
-// const Useradd = (item) => {
-//   const navigate = useNavigate();
-//   const { addToCart, listOfProduct} = useSelector((state) => state.Auth);
-
-//   const [subTotal, setSubTotal] = useState([]);
-//   const [Total, setTotal] = useState(0);
-
-//   const proceedToCheckout = () => {
-//     navigate("/Cart-Details ", { state: subTotal });
-//   };
-//   useEffect(() => {
-   
-//     const pricetotal = addToCart.map((id) => {
-//       const product = listOfProduct.find((item) => item.id === id);
-//       return {
-//         id: product.id,
-//         price: product.price,
-//       };
-//     });
-
-//     const totalData = pricetotal.reduce((accumulator, item) => accumulator + item.price, 0);
-//     setTotal(totalData);
-//     setSubTotal(pricetotal);
-//   }, [addToCart, listOfProduct]);
- 
-
-//   const onhandalprice = (index, quantity, price) => {
-//     const updatedSubTotal = [...subTotal];
-//     updatedSubTotal[index].price = price * quantity;
-//     setSubTotal(updatedSubTotal);
-
-//     const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item.price, 0);
-//     setTotal(totalData);
-//   };
-//   const listAdded = addToCart.map((id) =>
-//     listOfProduct.find((product) => product.id === id)
-//   );
- 
-//   return (
-//     <div>
-//       <Navbar />
-//       <Header />
-//       <div className="container d-flex flex-column ">
-//         <div className="homers">Home / Cart</div>
-//         <div className="tablet">
-//           <tr className="cartable">
-//             <td className="cartages">Product </td>
-//             <td>Price</td>
-//             <td>Quantity</td>
-//             <td>subTotal</td>
-//           </tr>
-//           {listAdded &&
-//             listAdded.map((item, index) => {
-             
-//               return (
-//                 <>
-//                   <AddtwoCart
-//                     item={item}
-//                     index={index}
-//                     onhandalprice={(quantity) =>
-//                       onhandalprice(index, quantity, item.price)
-//                     }
-//                   />
-//                 </>
-//               );
-//             })}
-//         </div>
-//         <div className="btn btngroup d-flex">
-//           <button>Return To Shop </button>
-//           <button>Update Cart</button>
-//         </div>
-//         <div className="applycoupon d-flex flex-row justify-content-between">
-//           <div className="codecoupon ">
-//             <input
-//               className="inputted"
-//               type="text"
-//               name="Coupon Code"
-//               placeholder="Coupon Code"
-//             />
-//             <button className="coupon">Apply Coupon</button>
-//           </div>
-//           <div className="carlotta d-flex flex-column ">
-//             <span className="total mb-3">Cart Total</span>
-//             <div className="pricetotal d-flex flex-row justify-content-between">
-//               <span>subTotal:</span>
-//               {Total.toFixed(2)}
-//             </div>
-//             <hr w-75 />
-//             <div className="pricetotal d-flex flex-row  justify-content-between">
-//               <span>Shipping:</span>
-//               <span>Free</span>
-//             </div>
-//             <hr></hr>
-//             <div className="pricetotal d-flex flex-row justify-content-between">
-//               <span>Total:</span>
-//               {Total.toFixed(2)}
-//             </div>
-//             <div className="process d-flex justify-content-center">
-//               <div
-//                 onClick={proceedToCheckout}
-//                 style={{ cursor: "pointer" }}
-//                 className="position-relative"
-//               >
-//                 <button className="coupon mt-4 ">Proceed to checkout</button>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//       <Footer />
-//     </div>
-//   );
-// };
-// export default Useradd;
-//update a subTotal and Total to navigate the page 
-
-
-
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Header from "./header";
@@ -134,9 +7,10 @@ import { useSelector } from "react-redux";
 import AddtwoCart from "./AddtwoCart";
 import { useNavigate } from "react-router-dom";
 
-const Useradd = () => {
+
+const Useradd = (item) => {
   const navigate = useNavigate();
-  const { addToCart, listOfProduct } = useSelector((state) => state.Auth);
+  const { addToCart, listOfProduct,quantity } = useSelector((state) => state.Auth);
 
   const [subTotal, setSubTotal] = useState([]);
   const [total, setTotal] = useState(0);
@@ -150,7 +24,7 @@ const Useradd = () => {
       const product = listOfProduct.find((item) => item.id === id);
       return {
         id: product.id,
-        price: product.price,
+        price: product.price * (quantity.find((item) => item.id === product.id)?.quantity || 1),
       };
     });
 
@@ -167,6 +41,9 @@ const Useradd = () => {
     const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item.price, 0);
     setTotal(totalData);
   };
+  // const quantityItem = quantity.find(
+  //   (quantityCart) => quantityCart.id === item.id
+  // );
 
   return (
     <div>
@@ -189,9 +66,7 @@ const Useradd = () => {
                   key={index}
                   item={item}
                   index={index}
-                  onhandalprice={(quantity) =>
-                    onhandalprice(index, quantity, item.price)
-                  }
+                  onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)}
                 />
               );
             })}
@@ -245,3 +120,4 @@ const Useradd = () => {
 
 export default Useradd;
 
+//update a subTotal & total is quantity value  set 

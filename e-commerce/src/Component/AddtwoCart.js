@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
@@ -15,7 +16,7 @@ const AddtwoCart = ({ item, onhandalprice, index}) => {
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value);
     dispatch(
-      AuthAction.updateQuantity({ id: item.id, quantity: newQuantity })
+      AuthAction.updateQuantity({ id: item.id, quantity: newQuantity})
     );
     onhandalprice(newQuantity);
     const addQue = price * newQuantity;
@@ -39,13 +40,13 @@ const AddtwoCart = ({ item, onhandalprice, index}) => {
       <td>
         <input
           type="number"
-          value={quantityItem ? quantityItem.quantity :0}
+          value={quantityItem ? quantityItem.quantity : 1}
           min="1"
           max="10"
-          onChange={(e) => onchangeQue(e, item?.price)}
+          onChange={(e) =>onchangeQue(e, item?.price)}
         />
       </td>
-      <td>{quantityItem ? item.price * quantityItem.quantity : 0}</td>
+      <td>{quantityItem ? item.price * quantityItem.quantity : item.price}</td>
     </tr>
   );
 };
