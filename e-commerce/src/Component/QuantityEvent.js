@@ -9,7 +9,6 @@ const QuantityCounter = ({ item, id }) => {
   const dispatch = useDispatch();
   const [quantityCart, setQuantityCart] = useState(1);
   const [CartToad, setCartToad] = useState([]);
-  const product = location?.state;
   const { addToCart, quantity } = useSelector((state) => state.Auth);
 
   useEffect(() => {
@@ -22,6 +21,7 @@ const QuantityCounter = ({ item, id }) => {
           return itemed === location.state.id;
         })
       : false;
+     
   const addToCartbtn = () => {
     dispatch(AuthAction.upDateCart(location.state.id));
     setCartToad([...addToCart, location.state.id]);
@@ -49,18 +49,20 @@ const QuantityCounter = ({ item, id }) => {
   };
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value);
-    dispatch(AuthAction.upOnChangeQuantity({ id: item.id, quantity: newQuantity }));
+    dispatch(AuthAction.updateQuantity({ id: item.id, quantity: newQuantity }));
     setQuantityCart(newQuantity);
+    const addQue = price * newQuantity;
+    setQuantityCart(addQue);
   };
-
+  const quantityItem = quantity.find((item) => item.id === location.state.id);
   return (
     <>
       <div className="quantitycounter d-flex">
         <button className="quantity" onClick={decreaseQuantity}>
           -
         </button>
-        <div className="qunatityvalue" onChange={() => onchangeQue(item)}>
-          {quantityCart}
+        <div className="qunatityvalue" onChange={() => onchangeQue(item?.price)}>
+        {quantityItem ? quantityItem.quantity :0}
         </div>
         <button className="quantity" onClick={increaseQuantity}>
           +
@@ -90,6 +92,4 @@ const QuantityCounter = ({ item, id }) => {
 };
 
 export default QuantityCounter;
-// as long as the user dose not the change the quantity value there will be no any changes is the quantity valueand it will be a store in a as well as the quantity value in a quantity filed be a store in a as well as the quantity value 
-// onchangeQue time will quantity will set at save of the user can not change 
-// user can not change that  will quantity will save is as well as 
+//read a quantity value in a redux store 

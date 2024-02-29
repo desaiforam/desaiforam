@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 
-const AddtwoCart = ({ item, onhandalprice, index }) => {
+const AddtwoCart = ({ item, onhandalprice, index}) => {
   const dispatch = useDispatch();
-  // const [value, setValue] = useState(1);
+  
   const [quantityCart, setQuantityCart] = useState(item?.price);
   const { quantity } = useSelector((state) => state.Auth);
 
@@ -52,4 +52,4 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
 
 export default AddtwoCart;
 
-// set a uniq key with update a subtotal on product item
+//get the   

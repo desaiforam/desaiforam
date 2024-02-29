@@ -27,13 +27,6 @@ const ProductDetails = ({ id, posts }) => {
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
-  // useEffect(() => {
-  //   dispatch(AuthAction.updateQuantity(quantity));
-  // }, [quantity]);
-  // useEffect(() => {
-  //   setQuantity(listAdded);
-  //   console.log("setQuantitydfsdvg", setQuantity);
-  // }, []);
 
   const wishListed =
     WishList.length > 0
@@ -302,9 +295,7 @@ const ProductDetails = ({ id, posts }) => {
         </div>
       </div>
       <div className="container CustomCard p-1 gap-5 mt-2">
-        {/* {posts.map((item, index) => {
-                    return  <CustomCard item={item} />
-                })} */}
+        
       </div>
       <Footer />
     </div>
@@ -313,4 +304,3 @@ const ProductDetails = ({ id, posts }) => {
 
 export default ProductDetails;
 
-//set a QuantityEvent and is storag a redux list
