@@ -90,3 +90,6 @@ const QuantityCounter = ({ item, id }) => {
 };
 
 export default QuantityCounter;
+// as long as the user dose not the change the quantity value there will be no any changes is the quantity valueand it will be a store in a as well as the quantity value in a quantity filed be a store in a as well as the quantity value 
+// onchangeQue time will quantity will set at save of the user can not change 
+// user can not change that  will quantity will save is as well as 

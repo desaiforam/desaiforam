@@ -34,7 +34,7 @@ const authAction = createSlice({
     },
     updateQuantity: (state, action) => {
       const index = state.quantity.findIndex(
-        (item) => item.id === action.payload.id,
+        (item) => item.id === action.payload.id
       );
       if (index === -1) {
         state.quantity = [...state.quantity, action.payload];
@@ -46,13 +46,14 @@ const authAction = createSlice({
       state.quantity = [...state.quantity, action.payload];
       const list = [...state.listOfProduct];
       const index = state.quantity.findIndex(
-        // (item) => item.id === action.payload.id, 
         (item) => Number(item.id) === Number(action.payload.id)
       );
       list[index].quantity = Number(action.payload.quantity);
        state.listOfProduct = list;
       
-    },  
+
+    },
+
     upDateColor: (state, action) => {
       const index = state.color.findIndex(
         (item) => item.id === action.payload.id
@@ -63,7 +64,7 @@ const authAction = createSlice({
       } else {
         state.color[index].colorName = action.payload.colorName;
       }
-    },  
+    },
     upDateSize: (state, action) => {
       const index = state.sizes.findIndex(
         (item) => item.id === action.payload.id
@@ -91,5 +92,3 @@ const authAction = createSlice({
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
-
-//get the quantity value of console  

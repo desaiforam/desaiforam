@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { listOfProduct } from "./CustomCard";
 import { addToCart } from "./selectors";
 
-const Useradd = () => {
+const Useradd = (item) => {
   const navigate = useNavigate();
 
-  const { addToCart, listOfProduct } = useSelector((state) => state.Auth);
+  const { addToCart, listOfProduct,quantity } = useSelector((state) => state.Auth);
 
   const [subTotal, setSubTotal] = useState([]);
   const [Total, setTotal] = useState(0);
@@ -19,6 +19,9 @@ const Useradd = () => {
   const proceedToCheckout = () => {
     navigate("/Cart-Details ", { state: subTotal });
   };
+  const quantityItem = quantity.find(
+    (quantityCart) => quantityCart.id === item.id
+  );
   const gasprice = () => {
     const pricetotal = addToCart.map((item) => ({
       id: item.id,
