@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
-import { useLocation } from "react-router-dom";
+
 
 const AddtwoCart = ({ item, onhandalprice, index }) => {
-  
-  const location = useLocation();
   const dispatch = useDispatch();
   const [value, setValue] = useState(1);
   const [quantityCart, setQuantityCart] = useState(item?.price);
   const { quantity } = useSelector((state) => state.Auth);
   console.log("quantity", quantity);
-  
- 
+
   useEffect(() => {
     setValue(item.quantityCart);
     const addQue = item?.price * value;
     setQuantityCart(addQue);
-  }, []);
+  }, [item?.price, item.quantityCart, value]);
   useEffect(() => {
     setQuantityCart(quantityCart);
   }, [quantityCart]);
 
-  
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value);
     dispatch(
@@ -32,6 +28,10 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
     setQuantityCart(addQue);
     onhandalprice(newQuantity);
   };
+  const quantityItem = quantity.find(
+    (quantityCart) => quantityCart.id === item.id
+  );
+  console.log("quantityItem", quantityItem);
 
   return (
     <tr className="cartable">
@@ -45,7 +45,7 @@ const AddtwoCart = ({ item, onhandalprice, index }) => {
       <td>
         <input
           type="number"
-          value={item.quantityCart}
+          value={quantityItem.quantity}
           min="1"
           max="10"
           onChange={(e) => onchangeQue(e, item?.price)}

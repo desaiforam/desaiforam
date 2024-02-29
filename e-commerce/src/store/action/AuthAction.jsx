@@ -35,7 +35,6 @@ const authAction = createSlice({
     updateQuantity: (state, action) => {
       const index = state.quantity.findIndex(
         (item) => item.id === action.payload.id,
-        (item) => Number(item.id) === Number(action.payload.id)
       );
       if (index === -1) {
         state.quantity = [...state.quantity, action.payload];
@@ -47,7 +46,7 @@ const authAction = createSlice({
       state.quantity = [...state.quantity, action.payload];
       const list = [...state.listOfProduct];
       const index = state.quantity.findIndex(
-        (item) => item.id === action.payload.id, 
+        // (item) => item.id === action.payload.id, 
         (item) => Number(item.id) === Number(action.payload.id)
       );
       list[index].quantity = Number(action.payload.quantity);
