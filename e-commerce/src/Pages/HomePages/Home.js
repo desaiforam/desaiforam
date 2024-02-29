@@ -24,10 +24,7 @@ import { AuthAction } from "../../store/action/AuthAction";
 const Home = () => {
   const { listOfProduct, quantity ,} = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
-  // const quantityFind = () => {
-  //   dispatch(listOfProduct({ ...listOfProduct, quantity }));
-  //  
-  // };
+  
 
   const fetchData = async () => {
     try {
@@ -37,9 +34,7 @@ const Home = () => {
 
       const data = response.data.map((product) => ({
         ...product,
-        // quantity: 1,
-        // color: "",
-        // size: "",
+        
       }));
 
       dispatch(AuthAction.addToProduct(data));
@@ -49,7 +44,7 @@ const Home = () => {
   };
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, []);
 
   return (

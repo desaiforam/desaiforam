@@ -1,4 +1,3 @@
-// File: src/reducers/authReducer.js
 import { createReducer } from '@reduxjs/toolkit';
 import { setPosts } from '../actions/authActions';
 

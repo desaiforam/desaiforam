@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from './Navbar'
 import Headers from './header'
 import Footer from './Footer'
-// import Images from '../utils/images'
 import CustomCard from './CustomCard'
 import { useSelector } from 'react-redux'
 
