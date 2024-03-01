@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Component/Navbar";
@@ -14,10 +15,10 @@ import ColorSelector from "../../Component/ColorSelector";
 const ProductDetails = (props) => {
   const location = useLocation();
 
-  const { addToCart, WishList, removeCart } = useSelector(
+  const { addToCart, WishList } = useSelector(
     (state) => state.Auth
   );
-  const { id, index } = props;
+ 
   const dispatch = useDispatch();
   const [quantityCart, setQuantityCart] = useState(1);
   const [selectedSize, setSelectedSize] = useState();
@@ -50,19 +51,19 @@ const ProductDetails = (props) => {
     setCartToad([...addToCart, location.state.id]);
   };
   const removeToCart = () => {
-    const [updatedCart] = addToCart.filter(
+    const [object] = addToCart.filter(
       (itemId) => itemId !== location.state.id
     );
-    console.log("updatedCart", updatedCart);
-    dispatch(AuthAction.removeColor(updatedCart));
-    dispatch(AuthAction.removeData(updatedCart))
-    dispatch(AuthAction.removeToCart(updatedCart));
-    dispatch(AuthAction.removeSize(updatedCart))
-    dispatch(AuthAction.removeQuantity(updatedCart))
-    setCartToad(updatedCart);
-    setSelectedColor(updatedCart);
-    setSelectedSize(updatedCart);
-    setQuantityCart(updatedCart);
+    console.log("updatedCart", object);
+    dispatch(AuthAction.removeColor(object));
+    dispatch(AuthAction.removeData(object))
+    dispatch(AuthAction.removeToCart(object));
+    dispatch(AuthAction.removeSize(object))
+    dispatch(AuthAction.removeQuantity(object))
+    setCartToad(object);
+    setSelectedColor(object);
+    setSelectedSize(object);
+    setQuantityCart(object);
   };
   const addToWishList = () => {
     dispatch(AuthAction.upDateWishList(location.state.id));
@@ -170,7 +171,7 @@ const ProductDetails = (props) => {
                 <ColorSelector
                   id={product.id}
                   selectedColor={selectedColor}
-                  setSelectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
                 />
 
                 <div className="size-chart mt-4">
@@ -178,8 +179,8 @@ const ProductDetails = (props) => {
                   <div className="size d-flex">
                     <SizeSelector
                       id={product.id}
-                      setSelectedSize={setSelectedSize}
                       selectedSize={selectedSize}
+                      setSelectedSize={setSelectedSize}
                     />
                   </div>
                 </div>

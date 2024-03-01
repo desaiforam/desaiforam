@@ -6,7 +6,6 @@ import Signup from './Pages/HomePages/Signup';
 import Login from './Pages/HomePages/Login';
 import ProductDetails from './Pages/HomePages/ProductDetails';
 import Useradd from './Component/Useradd';
-import Wishlist from './Component/Wishlist';
 import Profile from './Component/profile';
 import BillingDetails from './Component/BillingDetails';
 import Contact from './Pages/HomePages/Contact';
@@ -15,6 +14,7 @@ import NotFound from './Component/NotFound';
 import Post from './Component/post';
 import { Provider } from 'react-redux';
 import store from './store/Store'
+import WishlistItem from './Component/Wishlist';
 
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
             <Route path='/log-in' element={<Login />} />
             <Route path='/product-details' element={<ProductDetails />} />
             <Route path='/ukase-cart' element={<Useradd />} />
-            <Route path='/wish-list' element={<Wishlist />} />
+            <Route path='/wish-list' element={<WishlistItem />} />
             <Route path='/my-profile' element={<Profile />} />
             <Route path='/Cart-Details' element={<BillingDetails />} />
             <Route path='/contact' element={<Contact />} />

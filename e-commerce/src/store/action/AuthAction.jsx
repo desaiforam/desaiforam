@@ -23,6 +23,7 @@ const authAction = createSlice({
       state.WishList = [...state.WishList, action.payload];
     },
     removeToCart: (state, action) => {
+      
       // state.addToCart = action.payload;
     },
     removeData: (state, action) => {
@@ -61,9 +62,8 @@ const authAction = createSlice({
         state.quantity = [];
       } else {
         const oldQuantity = current(state.quantity);
-        const newQuantity = oldQuantity.filter((index) => {
-          console.log("index", index);
-        });
+        const newQuantity = oldQuantity.filter((index) => index.id !== action.payload);
+        state.quantity = newQuantity
       }
     },
 
@@ -126,5 +126,4 @@ export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
 
-
-// remove a quantity to 
+// remove a quantity to

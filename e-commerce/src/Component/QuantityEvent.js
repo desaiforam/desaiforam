@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React  from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 import { useLocation } from "react-router-dom";
 
 const QuantityCounter = (props) => {
-
-
-
   const location = useLocation();
   const dispatch = useDispatch();
-  
+
   const { quantity } = useSelector((state) => state.Auth);
-  const {id,item ,quantityCart, setQuantityCart} = props
+  const { id, item, quantityCart, setQuantityCart } = props;
   const decreaseQuantity = () => {
     if (quantityCart > 1) {
       const newQuantity = quantityCart - 1;
@@ -34,9 +31,9 @@ const QuantityCounter = (props) => {
     setQuantityCart(newQuantity);
     const addQue = price * newQuantity;
     setQuantityCart(addQue);
-    
   };
   const quantityItem = quantity.find((item) => item.id === location.state.id);
+
   return (
     <>
       <div className="quantitycounter d-flex">

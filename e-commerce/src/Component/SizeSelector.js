@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 
-function SizeSelector( props) {
-  
+function SizeSelector(props) {
   const dispatch = useDispatch();
+
+  const { id, selectedSize, setSelectedSize } = props;
  
-  const {id ,selectedSize ,setSelectedSize} = props
   const handleSizeClick = (size) => {
     const setSize = { id: id, size: size };
     dispatch(AuthAction.upDateSize(setSize));
     setSelectedSize(size);
   };
-
+  
   return (
     <div className="size-chart d-flex" style={{ cursor: "pointer" }}>
       <span
@@ -24,6 +24,7 @@ function SizeSelector( props) {
         onClick={() => handleSizeClick("XS")}
       >
         XS
+     
       </span>
       <span
         className={`chart ${selectedSize === "S" && "select-size"}`}
@@ -34,6 +35,7 @@ function SizeSelector( props) {
         onClick={() => handleSizeClick("S")}
       >
         S
+      
       </span>
       <span
         className={`chart ${selectedSize === "M" && "select-size"}`}
@@ -44,6 +46,7 @@ function SizeSelector( props) {
         onClick={() => handleSizeClick("M")}
       >
         M
+       
       </span>
       <span
         className={`chart ${selectedSize === "L" && "select-size"}`}
@@ -54,6 +57,7 @@ function SizeSelector( props) {
         onClick={() => handleSizeClick("L")}
       >
         L
+        
       </span>
       <span
         className={`chart ${selectedSize === "XL" && "select-size"}`}
@@ -64,6 +68,7 @@ function SizeSelector( props) {
         onClick={() => handleSizeClick("XL")}
       >
         XL
+      
       </span>
     </div>
   );
@@ -71,4 +76,5 @@ function SizeSelector( props) {
 
 export default SizeSelector;
 
-//a list of product size will display  with id using console
+
+

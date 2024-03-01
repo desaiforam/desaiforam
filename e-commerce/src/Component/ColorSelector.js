@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 function ColorSelector(props) {
   const dispatch = useDispatch();
   
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColor, setSelectedColor] = useState("M");
   const { id, } = props
   const handleColorClick = (color) => {
     const setColor = { id: id, colorName: color };

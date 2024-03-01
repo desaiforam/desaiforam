@@ -57,9 +57,11 @@ const CustomCard = (props) => {
     e.stopPropagation();
   };
   const removeToCart = (id, e) => {
-    const object = addToCart.filter((obj) => obj !== id.id);
+    const [object] = addToCart.filter((obj) => obj !== id.id);
+    dispatch(AuthAction.removeColor(object));
     dispatch(AuthAction.removeToCart(object));
     setCartToad(object);
+
     e.stopPropagation();
   };
   const removeToWish = (e, id) => {
