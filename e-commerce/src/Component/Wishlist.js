@@ -44,15 +44,7 @@ const Wishlist = (id) => {
                             Just For You</span>
                         <button>See All</button>                   
                     </div>
-                    {/* <div className='container CustomCard p-1 gap-5 mt-5 mb-4'>
-                        {cardSecound.map((item, index) => {
-                           
-                            if (!item) return null
-                            return (
-                                <CustomCard item={item} wishlist={false} />
-                            );
-                        })}
-                    </div> */}
+                   
                 </div>
             </div>
             <Footer />

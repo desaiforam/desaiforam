@@ -3,34 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 import { useLocation } from "react-router-dom";
 
-const QuantityCounter = ({ item, id }) => {
+const QuantityCounter = (props) => {
+
+
+
   const location = useLocation();
-
   const dispatch = useDispatch();
-  const [quantityCart, setQuantityCart] = useState(1);
-  const [CartToad, setCartToad] = useState([]);
-  const { addToCart, quantity } = useSelector((state) => state.Auth);
-
-  useEffect(() => {
-    setCartToad(addToCart);
-  }, [addToCart]);
-
-  const cartAdded =
-    addToCart.length > 0
-      ? addToCart.find((itemed) => {
-          return itemed === location.state.id;
-        })
-      : false;
-     
-  const addToCartbtn = () => {
-    dispatch(AuthAction.upDateCart(location.state.id));
-    setCartToad([...addToCart, location.state.id]);
-  };
-  const removeToCart = () => {
-    const object = addToCart.filter((obj) => obj !== location.state.id);
-    dispatch(AuthAction.removeToCart(object));
-    setCartToad(object);
-  };
+  
+  const { quantity } = useSelector((state) => state.Auth);
+  const {id,item ,quantityCart, setQuantityCart} = props
   const decreaseQuantity = () => {
     if (quantityCart > 1) {
       const newQuantity = quantityCart - 1;
@@ -53,6 +34,7 @@ const QuantityCounter = ({ item, id }) => {
     setQuantityCart(newQuantity);
     const addQue = price * newQuantity;
     setQuantityCart(addQue);
+    
   };
   const quantityItem = quantity.find((item) => item.id === location.state.id);
   return (
@@ -61,35 +43,18 @@ const QuantityCounter = ({ item, id }) => {
         <button className="quantity" onClick={decreaseQuantity}>
           -
         </button>
-        <div className="qunatityvalue" onChange={() => onchangeQue(item?.price)}>
-        {quantityItem ? quantityItem.quantity :0}
+        <div
+          className="qunatityvalue"
+          onChange={() => onchangeQue(item?.price)}
+        >
+          {quantityItem ? quantityItem.quantity : 1}
         </div>
         <button className="quantity" onClick={increaseQuantity}>
           +
         </button>
-      </div>
-      <div className="buyNow">
-        {!cartAdded ? (
-          <button
-            className="btn btn-now"
-            style={{ backgroundColor: "orangeade" }}
-            onClick={() => addToCartbtn(location.state.id)}
-          >
-            Buy Now
-          </button>
-        ) : (
-          <button
-            className="btn btn-now "
-            style={{ backgroundColor: "orangeade" }}
-            onClick={(e) => removeToCart(location.state.id)}
-          >
-            Remove To Cart
-          </button>
-        )}
       </div>
     </>
   );
 };
 
 export default QuantityCounter;
-//read a quantity value in a redux store 

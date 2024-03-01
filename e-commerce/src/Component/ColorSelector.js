@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { AuthAction } from "../store/action/AuthAction";
 import { useDispatch } from "react-redux";
 
-function ColorSelector({ id }) {
+function ColorSelector(props) {
   const dispatch = useDispatch();
+  
   const [selectedColor, setSelectedColor] = useState();
- 
-
+  const { id, } = props
   const handleColorClick = (color) => {
-    setSelectedColor(color);
     const setColor = { id: id, colorName: color };
     dispatch(AuthAction.upDateColor(setColor));
+    setSelectedColor(color);
   };
   return (
     <div>
@@ -51,3 +51,4 @@ function ColorSelector({ id }) {
 }
 
 export default ColorSelector;
+

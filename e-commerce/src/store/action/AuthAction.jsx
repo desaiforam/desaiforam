@@ -1,4 +1,4 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   WishList: [],
@@ -7,9 +7,6 @@ const initialState = {
   quantity: [],
   color: [],
   sizes: [],
-  // // quantityFind: '',
-  // // quantity:'',
-  // subTotal: 0,
 };
 
 const authAction = createSlice({
@@ -21,13 +18,21 @@ const authAction = createSlice({
     },
     upDateCart: (state, action) => {
       state.addToCart = [...state.addToCart, action.payload];
-      // const object = state.addToCart.filter((obj) => action.payload.id);
     },
     upDateWishList: (state, action) => {
       state.WishList = [...state.WishList, action.payload];
     },
     removeToCart: (state, action) => {
-      state.addToCart = action.payload;
+      // state.addToCart = action.payload;
+    },
+    removeData: (state, action) => {
+      if (!action.payload) {
+        state.addToCart = [];
+      } else {
+        const oldData = current(state.addToCart);
+        const newData = oldData.filter((item) => item !== action.payload);
+        state.addToCart = newData;
+      }
     },
     removeToWish: (state, action) => {
       state.WishList = action.payload;
@@ -49,9 +54,17 @@ const authAction = createSlice({
         (item) => Number(item.id) === Number(action.payload.id)
       );
       list[index].quantity = Number(action.payload.quantity);
-       state.listOfProduct = list;
-      
-
+      state.listOfProduct = list;
+    },
+    removeQuantity: (state, action) => {
+      if (!action.payload) {
+        state.quantity = [];
+      } else {
+        const oldQuantity = current(state.quantity);
+        const newQuantity = oldQuantity.filter((index) => {
+          console.log("index", index);
+        });
+      }
     },
 
     upDateColor: (state, action) => {
@@ -64,6 +77,15 @@ const authAction = createSlice({
         state.color[index].colorName = action.payload.colorName;
       }
     },
+    removeColor: (state, action) => {
+      if (!action.payload) {
+        state.color = [];
+      } else {
+        const oldData = current(state.color);
+        const newData = oldData.filter((item) => item.id !== action.payload);
+        state.color = newData;
+      }
+    },
     upDateSize: (state, action) => {
       const index = state.sizes.findIndex(
         (item) => item.id === action.payload.id
@@ -72,6 +94,18 @@ const authAction = createSlice({
         state.sizes = [...state.sizes, action.payload];
       } else {
         state.sizes[index].size = action.payload.size;
+      }
+    },
+    removeSize: (state, action) => {
+      if (!action.payload) {
+        state.sizes = [];
+      } else {
+        const oldDataSize = current(state.sizes);
+
+        const newDataSize = oldDataSize.filter(
+          (item) => item.id !== action.payload
+        );
+        state.sizes = newDataSize;
       }
     },
     setSizeInProduct: (state, action) => {
@@ -91,3 +125,6 @@ const authAction = createSlice({
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
+
+
+// remove a quantity to 

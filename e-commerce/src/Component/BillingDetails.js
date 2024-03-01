@@ -98,7 +98,7 @@ const BillingDetails = () => {
 
               <div className="totalcart">
                 <div className="totalism d-flex flex-row justify-content-between">
-                  <span> subTotal:</span>
+                  <span> SubTotal:</span>
                   {Number(Total).toFixed(2)}
                 </div>
                 <hr />
@@ -108,7 +108,7 @@ const BillingDetails = () => {
                 </div>
                 <hr />
                 <div className="totalism d-flex flex-row justify-content-between">
-                  <span> subTotal:</span>
+                  <span> SubTotal:</span>
                   {Number(Total).toFixed(2)}
                 </div>
               </div>

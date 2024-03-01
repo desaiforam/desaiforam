@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 
-function SizeSelector({ id }) {
-  const [selectedSize, setSelectedSize] = useState();
-  const dispatch = useDispatch();
-
+function SizeSelector( props) {
   
+  const dispatch = useDispatch();
+ 
+  const {id ,selectedSize ,setSelectedSize} = props
   const handleSizeClick = (size) => {
-   
     const setSize = { id: id, size: size };
     dispatch(AuthAction.upDateSize(setSize));
     setSelectedSize(size);

@@ -88,7 +88,7 @@ const Useradd = (item) => {
           <div className="carlotta d-flex flex-column ">
             <span className="total mb-3">Cart Total</span>
             <div className="pricetotal d-flex flex-row justify-content-between">
-              <span>subTotal:</span>
+              <span>SubTotal:</span>
               {total.toFixed(2)}
             </div>
             <hr w-75 />
