@@ -23,6 +23,8 @@ import { ReactComponent as Blnkheart } from "./blankheart.svg";
 import { ReactComponent as Remove } from "./remove.svg";
 import { ReactComponent as Eyes } from "./eyes.svg";
 import { ReactComponent as Exclusive } from "./Exclusive.svg";
+import { ReactComponent as Truck} from "./truck.svg"
+import {ReactComponent as Refresh} from "./refresh.svg"
 
 export {
   PhoneIcon,
@@ -50,4 +52,6 @@ export {
   Remove,
   Eyes,
   Exclusive,
+  Truck,
+  Refresh,
 };

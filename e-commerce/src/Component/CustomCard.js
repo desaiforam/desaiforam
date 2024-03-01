@@ -41,11 +41,11 @@ const CustomCard = (props) => {
         })
       : false;
 
-  const onclickMyOrder = (item) => {
-    navigate("/product-details", {
-      state: { ...item, cartAdded: !!cartAdded, listOfProduct },
-    });
-  };
+      const onclickMyOrder = (item) => {
+        navigate("/product-details", {
+          state: { ...item, cartAdded: !!cartAdded, listOfProduct },
+        });
+      };
   const addToCartbtn = (e) => {
     dispatch(AuthAction.upDateCart(item.id));
     setCartToad([...addToCart, item.id]);
@@ -172,6 +172,3 @@ const CustomCard = (props) => {
 };
 
 export default CustomCard;
-//get the quantity value can redux stor
-//get the redux store color using id fetch and store a redux list 
-//get the redux store size using id fetch and store a redux list

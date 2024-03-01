@@ -58,7 +58,6 @@ const authAction = createSlice({
       const index = state.color.findIndex(
         (item) => item.id === action.payload.id
       );
-      console.log("index", index);
       if (index === -1) {
         state.color = [...state.color, action.payload];
       } else {

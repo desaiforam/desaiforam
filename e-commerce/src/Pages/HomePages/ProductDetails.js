@@ -3,22 +3,22 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../Component/Navbar";
 import Header from "../../Component/header";
 import Footer from "../../Component/Footer";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../../store/action/AuthAction";
 import SizeSelector from "../../Component/SizeSelector";
 import QuantityEvent from "../../Component/QuantityEvent";
-import { Blnkheart, Heart } from "../../asset/images/svg";
+import { Blnkheart, Heart, Refresh, Truck } from "../../asset/images/svg";
 import ColorSelector from "../../Component/ColorSelector";
 
 const ProductDetails = ({ id, posts }) => {
   const location = useLocation();
 
-  const { addToCart, WishList, listAdded } = useSelector((state) => state.Auth);
+  const { WishList, } = useSelector((state) => state.Auth);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [quantity, setQuantity] = useState([]);
+
+  
 
   const [AddToWish, setAddToWish] = useState([]);
 
@@ -140,7 +140,7 @@ const ProductDetails = ({ id, posts }) => {
 
                 <ColorSelector id={product.id} />
 
-                <div className="sizechart mt-4">
+                <div className="size-chart mt-4" >
                   Size :
                   <div className="size d-flex">
                     <SizeSelector id={product.id} />
@@ -174,7 +174,8 @@ const ProductDetails = ({ id, posts }) => {
               <div className="delivery mt-5">
                 <div className="freedelivery">
                   <div className="svglogo">
-                    <svg
+                    <Truck />
+                    {/* <svg
                       width="40"
                       height="40"
                       viewBox="0 0 40 40"
@@ -237,7 +238,7 @@ const ProductDetails = ({ id, posts }) => {
                           <rect width="40" height="40" fill="white" />
                         </clipPath>
                       </defs>
-                    </svg>
+                    </svg> */}
                   </div>
                   <div className="postal">
                     <span>Free Delivery</span>
@@ -249,7 +250,8 @@ const ProductDetails = ({ id, posts }) => {
                 <hr className="opacity: 40 m-0"></hr>
                 <div className="freedelivery">
                   <div className="svglogo">
-                    <svg
+                    <Refresh />
+                    {/* <svg
                       width="40"
                       height="40"
                       viewBox="0 0 40 40"
@@ -277,7 +279,7 @@ const ProductDetails = ({ id, posts }) => {
                           <rect width="40" height="40" fill="white" />
                         </clipPath>
                       </defs>
-                    </svg>
+                    </svg> */}
                   </div>
                   <div className="postal">
                     <span>Return Delivery</span>

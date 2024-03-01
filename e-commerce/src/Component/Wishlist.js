@@ -25,7 +25,7 @@ const Wishlist = (id) => {
 
                     <div className='wishlist d-flex' >
                         <span>wishlist({Wishlist.length})</span>
-                        {WishList.length > 1 && <div className='position-absolute wishlist-count' ></div>}
+                        {WishList.length > 0 && <div className='position-absolute wishlist-count' ></div>}
                         <button>Move All To Bag</button>
                     </div>
                 </div>

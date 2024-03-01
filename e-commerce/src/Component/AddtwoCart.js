@@ -2,17 +2,29 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
+import { useNavigate } from "react-router-dom";
 
 const AddtwoCart = ({ item, onhandalprice, index}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const [quantityCart, setQuantityCart] = useState(item?.price);
-  const { quantity } = useSelector((state) => state.Auth);
+  const { quantity,addToCart,listOfProduct } = useSelector((state) => state.Auth);
 
   useEffect(() => {
     setQuantityCart(item.quantity);
   }, [item]);
-
+  const cartAdded =
+    addToCart.length > 0
+      ? addToCart.find((itemed) => {
+          return itemed === item.id;
+        })
+      : false;
+  const onclickMyOrder = (item) => {
+    navigate("/product-details", {
+      state: { ...item, cartAdded: !!cartAdded, listOfProduct },
+    });
+  };
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value);
     dispatch(
@@ -30,7 +42,7 @@ const AddtwoCart = ({ item, onhandalprice, index}) => {
  
   return (
     <tr className="cartable">
-      <td className="cartages">
+      <td className="cartages" onClick={() => onclickMyOrder(item)}>
         <div className="quantity">
           <img src={item?.image} height="50" width="50" alt="" />
         </div>

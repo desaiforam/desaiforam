@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
-import '../asset/style/ColorSelect.scss';
 
-function SizeSelector({id}) {
-  const [selectedSize, setSelectedSize] = useState("M");
+function SizeSelector({ id }) {
+  const [selectedSize, setSelectedSize] = useState();
   const dispatch = useDispatch();
-  const { addToCart } = useSelector((state) => state.Auth);
-  //   console.log("addToCart", addToCart);
 
+  
   const handleSizeClick = (size) => {
-    const setSize = { id: id, size: size};
+   
+    const setSize = { id: id, size: size };
     dispatch(AuthAction.upDateSize(setSize));
-    setSelectedSize([...addToCart, size]);
-    
+    setSelectedSize(size);
   };
 
   return (
-    <div className="size d-flex" style={{ cursor: "pointer" }}>
+    <div className="size-chart d-flex" style={{ cursor: "pointer" }}>
       <span
-        className={`chart ${selectedSize === "XS" && "select"}`}
+        className={`chart ${selectedSize === "XS" && "select-size"}`}
         style={{
           background: selectedSize === "XS" ? "orangeade" : "",
           color: selectedSize === "XS" ? "white" : "",
@@ -29,7 +27,7 @@ function SizeSelector({id}) {
         XS
       </span>
       <span
-        className={`chart ${selectedSize === "S" && "select"}`}
+        className={`chart ${selectedSize === "S" && "select-size"}`}
         style={{
           background: selectedSize === "S" ? "orangeade" : "",
           color: selectedSize === "S" ? "white" : "",
@@ -39,7 +37,7 @@ function SizeSelector({id}) {
         S
       </span>
       <span
-        className={`chart ${selectedSize === "M" && "select"}`}
+        className={`chart ${selectedSize === "M" && "select-size"}`}
         style={{
           background: selectedSize === "M" ? "orangeade" : "",
           color: selectedSize === "M" ? "white" : "",
@@ -49,7 +47,7 @@ function SizeSelector({id}) {
         M
       </span>
       <span
-        className={`chart ${selectedSize === "L" && "selected"}`}
+        className={`chart ${selectedSize === "L" && "select-size"}`}
         style={{
           background: selectedSize === "L" ? "orangeade" : "",
           color: selectedSize === "L" ? "white" : "",
@@ -59,7 +57,7 @@ function SizeSelector({id}) {
         L
       </span>
       <span
-        className={`chart ${selectedSize === "XL" && "selected"}`}
+        className={`chart ${selectedSize === "XL" && "select-size"}`}
         style={{
           background: selectedSize === "XL" ? "orangeade" : "",
           color: selectedSize === "XL" ? "white" : "",

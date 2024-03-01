@@ -44,29 +44,28 @@
                 gap: 26px;
                 font-size: x-large;
                 // // align-items: self-end;
-                .chart {
-                    height: 30px;
-                    width: 30px;
+                .color-main {
+                    // height: 30px;
+                    // width: 30px;
                     border-radius: 50%;
-                    .selectedSize {
-                        height: 22px;
-                        width: 22px;
+                    border: 3px solid transparent;
+                   
+                    .select {
+                        height: 25px;
+                        width: 25px;
                         border-radius: 50%;
+                        display: flex;
                         justify-content: center;
-                        border: 3px solid transparent;
-                        display: flex;  
                         align-items: center;
+                        
+
                     }
                 }
-                .select {
-                    height: 32px;
-                    width: 32px;
-                    border: 2px solid black;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    
+                
+                .selected-color{
+                    border:  3px solid black;
+                
+
                 }
 
                 // .sortOptions2 {
@@ -76,9 +75,10 @@
                 //     color: #e07575;
                 // }
             }
-            .sizechart {
+            .size-chart {
                 display: flex;
-                gap: 30px;
+                flex-direction: row;
+                gap: 13px;
                 font-size: 23px;
                 align-items: center;
                 .chart {
@@ -93,9 +93,13 @@
                     align-items: center;
                     width: 40px;
                 }
-                // .chart:hover{
-                //     border: 0;
-                // }
+                .select-size {
+                       
+                       background-color: orangered ;
+                        border: 3px solid transparent;
+                        
+                        
+                    }
             }
             .buyNow {
                 display: flex;
