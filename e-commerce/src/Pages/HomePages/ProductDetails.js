@@ -15,10 +15,8 @@ import ColorSelector from "../../Component/ColorSelector";
 const ProductDetails = (props) => {
   const location = useLocation();
 
-  const { addToCart, WishList } = useSelector(
-    (state) => state.Auth
-  );
- 
+  const { addToCart, WishList } = useSelector((state) => state.Auth);
+
   const dispatch = useDispatch();
   const [quantityCart, setQuantityCart] = useState(1);
   const [selectedSize, setSelectedSize] = useState();
@@ -50,16 +48,14 @@ const ProductDetails = (props) => {
     dispatch(AuthAction.upDateCart(location.state.id));
     setCartToad([...addToCart, location.state.id]);
   };
-  const removeToCart = () => {
-    const [object] = addToCart.filter(
-      (itemId) => itemId !== location.state.id
-    );
-    console.log("updatedCart", object);
+  const removeToCart = (id) => {
+    const [object] = addToCart.filter((obj) => obj !== location.state.id);
+    console.log("objectupdatecart", object);
     dispatch(AuthAction.removeColor(object));
-    dispatch(AuthAction.removeData(object))
+    dispatch(AuthAction.removeData(object));
     dispatch(AuthAction.removeToCart(object));
-    dispatch(AuthAction.removeSize(object))
-    dispatch(AuthAction.removeQuantity(object))
+    dispatch(AuthAction.removeSize(object));
+    dispatch(AuthAction.removeQuantity(object));
     setCartToad(object);
     setSelectedColor(object);
     setSelectedSize(object);
