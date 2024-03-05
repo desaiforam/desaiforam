@@ -7,6 +7,7 @@ const initialState = {
   quantity: [],
   color: [],
   sizes: [],
+  addCartItem: [],
 };
 
 const authAction = createSlice({
@@ -68,46 +69,45 @@ const authAction = createSlice({
         state.quantity = newQuantity;
       }
     },
-
     upDateColor: (state, action) => {
-      const index = state.color.findIndex(
+      const index = state.addCartItem.findIndex(
         (item) => item.id === action.payload.id
       );
       if (index === -1) {
-        state.color = [...state.color, action.payload];
+        state.addCartItem = [...state.addCartItem, action.payload];
       } else {
-        state.color[index].colorName = action.payload.colorName;
+        state.addCartItem[index].colorName = action.payload.colorName;
       }
     },
     removeColor: (state, action) => {
       if (!action.payload) {
-        state.color = [];
+        state.addCartItem = [];
       } else {
-        const oldData = current(state.color);
+        const oldData = current(state.addCartItem);
         const newData = oldData.filter((item) => item.id !== action.payload);
-        state.color = newData;
+        state.addCartItem = newData;
       }
     },
     upDateSize: (state, action) => {
-      const index = state.sizes.findIndex(
+      const index = state.addCartItem.findIndex(
         (item) => item.id === action.payload.id
       );
       if (index === -1) {
-        state.sizes = [...state.sizes, action.payload];
+        state.addCartItem = [...state.addCartItem, action.payload];
       } else {
-        state.sizes[index].size = action.payload.size;
+        state.addCartItem[index].size = action.payload.size;
       }
     },
     removeSize: (state, action) => {
       if (!action.payload) {
-        state.sizes = [];
+        state.addCartItem = [];
       } else {
-        const oldDataSize = current(state.sizes);
+        const oldDataSize = current(state.addCartItem);
 
         const newDataSize = oldDataSize.filter(
           (item) => item.id !== action.payload
         );
-        state.sizes = newDataSize;
+        state.addCartItem = newDataSize;
       }
     },
     setSizeInProduct: (state, action) => {
@@ -128,4 +128,3 @@ export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;
 
-// remove a quantity to
