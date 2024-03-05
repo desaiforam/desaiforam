@@ -5,17 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 import { Blnkheart, Eyes, Heart } from "../asset/images/svg";
 import { FaStar } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CustomCard = (props) => {
   const { item, index, listOfProduct } = props;
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { addToCart, WishList } = useSelector((state) => state.Auth);
   const [cartToad, setCartToad] = useState([]);
-
-
+  const [selectedColor, setSelectedColor] = useState();
+  const [quantityCart, setQuantityCart] = useState(1);
+  const [selectedSize, setSelectedSize] = useState();
   const [AddToWish, setAddToWish] = useState([]);
+  const product = location?.state;
 
   useEffect(() => {
     setCartToad(addToCart);
@@ -41,11 +44,11 @@ const CustomCard = (props) => {
         })
       : false;
 
-      const onclickMyOrder = (item) => {
-        navigate("/product-details", {
-          state: { ...item, cartAdded: !!cartAdded, listOfProduct },
-        });
-      };
+  const onclickMyOrder = (item) => {
+    navigate("/product-details", {
+      state: { ...item, cartAdded: !!cartAdded, listOfProduct },
+    });
+  };
   const addToCartbtn = (e) => {
     dispatch(AuthAction.upDateCart(item.id));
     setCartToad([...addToCart, item.id]);
@@ -58,18 +61,22 @@ const CustomCard = (props) => {
   };
   const removeToCart = (id, e) => {
     const object = addToCart.filter((obj) => obj !== id.id);
-    dispatch(AuthAction.removeColor(object));
-    dispatch(AuthAction.removeData(object))
+    dispatch(AuthAction.removeColor(id.id));
+    dispatch(AuthAction.removeData(id.id));
+    dispatch(AuthAction.removeSize(id.id));
+    dispatch(AuthAction.removeQuantity(id.id));
     dispatch(AuthAction.removeToCart(object));
     setCartToad(object);
-
+    setSelectedColor(object);
+    setSelectedSize(object);
+    setQuantityCart(object);
     e.stopPropagation();
   };
-  const removeToWish = (e, id) => {
 
+  
+  const removeToWish = (e, id) => {
     const object = WishList.filter((obj) => obj !== id.id);
-    
-    
+
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
     e.stopPropagation();
@@ -80,7 +87,6 @@ const CustomCard = (props) => {
       <div
         className="position-relative d-flex flex-column card_main"
         onClick={() => onclickMyOrder(item)}
-
       >
         <div
           className="images  position-absolute d-flex flex-column align-items-center justify-content-center"
@@ -133,6 +139,7 @@ const CustomCard = (props) => {
             <button
               className="btn btn-dark "
               onClick={(e) => removeToCart(item, e)}
+              
             >
               Remove To Cart
             </button>
@@ -145,7 +152,6 @@ const CustomCard = (props) => {
                 {/* {item.title} */}
                 {truncate(item?.title, 5, 30)}
               </h6>
-             
             </div>
             <div className="price">
               <span>{item.price}</span>
@@ -175,3 +181,7 @@ const CustomCard = (props) => {
 };
 
 export default CustomCard;
+
+
+
+//removeToCart to remove value of  from the  and redux list

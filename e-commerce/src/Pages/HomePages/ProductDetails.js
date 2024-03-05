@@ -265,5 +265,3 @@ const ProductDetails = (props) => {
 };
 
 export default ProductDetails;
-
-//removeToCart to removeColor from the  and redux list
