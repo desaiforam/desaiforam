@@ -9,7 +9,7 @@ const AddtwoCart = ({ item, onhandalprice, index}) => {
   const navigate = useNavigate();
   
   const [quantityCart, setQuantityCart] = useState(item?.price);
-  const { quantity,addToCart,listOfProduct } = useSelector((state) => state.Auth);
+  const { quantity,addToCart,listOfProduct,addCartItem } = useSelector((state) => state.Auth);
 
   useEffect(() => {
     setQuantityCart(item.quantity);
@@ -36,9 +36,9 @@ const AddtwoCart = ({ item, onhandalprice, index}) => {
 
 
   };
-  const quantityItem = quantity.find(
-    (quantityCart) => quantityCart.id === item.id
-  );
+
+  const quantityItem = addCartItem.find(
+    (quantityCart) => quantityCart.id === item.id);
  
   return (
     <tr className="cartable">
@@ -65,4 +65,3 @@ const AddtwoCart = ({ item, onhandalprice, index}) => {
 
 export default AddtwoCart;
 
-//get the   

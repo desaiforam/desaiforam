@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Useradd = (item) => {
   const navigate = useNavigate();
-  const { addToCart, listOfProduct,quantity } = useSelector((state) => state.Auth);
+  const { addToCart, listOfProduct,addCartItem } = useSelector((state) => state.Auth);
 
   const [subTotal, setSubTotal] = useState([]);
   const [total, setTotal] = useState(0);
@@ -24,7 +24,7 @@ const Useradd = (item) => {
       const product = listOfProduct.find((item) => item.id === id);
       return {
         id: product.id,
-        price: product.price * (quantity.find((item) => item.id === product.id)?.quantity || 1),
+        price: product.price * (addCartItem.find((item) => item.id === product.id)?.addCartItem || 1),
       };
     });
 
@@ -40,10 +40,7 @@ const Useradd = (item) => {
 
     const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item.price, 0);
     setTotal(totalData);
-  };
-  // const quantityItem = quantity.find(
-  //   (quantityCart) => quantityCart.id === item.id
-  // );
+  };  
 
   return (
     <div>

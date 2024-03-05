@@ -4,9 +4,6 @@ const initialState = {
   WishList: [],
   addToCart: [],
   listOfProduct: [],
-  quantity: [],
-  color: [],
-  sizes: [],
   addCartItem: [],
 };
 
@@ -40,13 +37,13 @@ const authAction = createSlice({
       state.WishList = action.payload;
     },
     updateQuantity: (state, action) => {
-      const index = state.quantity.findIndex(
+      const index = state.addCartItem.findIndex(
         (item) => item.id === action.payload.id
       );
       if (index === -1) {
-        state.quantity = [...state.quantity, action.payload];
+        state.addCartItem = [...state.addCartItem, action.payload];
       } else {
-        state.quantity[index].quantity = action.payload.quantity;
+        state.addCartItem[index].quantity = action.payload.quantity;
       }
     },
     upOnChangeQuantity: (state, action) => {
@@ -60,13 +57,13 @@ const authAction = createSlice({
     },
     removeQuantity: (state, action) => {
       if (!action.payload) {
-        state.quantity = [];
+        state.addCartItem = [];
       } else {
-        const oldQuantity = current(state.quantity);
+        const oldQuantity = current(state.addCartItem);
         const newQuantity = oldQuantity.filter(
           (index) => index.id !== action.payload
         );
-        state.quantity = newQuantity;
+        state.addCartItem = newQuantity;
       }
     },
     upDateColor: (state, action) => {

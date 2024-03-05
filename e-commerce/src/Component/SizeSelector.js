@@ -1,17 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 
 function SizeSelector(props) {
   const dispatch = useDispatch();
-
-  const { id, selectedSize, setSelectedSize } = props;
- 
+  const { addCartItem } = useSelector((state) => state.Auth);
+  const { id } = props;
+ const selectedSize = addCartItem.find ((item) =>  item.id === id)?.size;
   const handleSizeClick = (size) => {
-    const setSize = { id: id, size: size };
-    dispatch(AuthAction.upDateSize(setSize));
-    setSelectedSize(size);
+   
+    dispatch(AuthAction.upDateSize({ id: id, size: size }));
   };
+
+
   
   return (
     <div className="size-chart d-flex" style={{ cursor: "pointer" }}>
@@ -78,3 +79,4 @@ export default SizeSelector;
 
 
 
+// get the size  value can store a redux list 
