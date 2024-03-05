@@ -49,13 +49,12 @@ const ProductDetails = (props) => {
     setCartToad([...addToCart, location.state.id]);
   };
   const removeToCart = (id) => {
-    const [object] = addToCart.filter((obj) => obj !== location.state.id);
-    console.log("objectupdatecart", object);
-    dispatch(AuthAction.removeColor(object));
-    dispatch(AuthAction.removeData(object));
+    const object = addToCart.filter((obj) => obj !== location.state.id);
+    dispatch(AuthAction.removeColor(location.state.id));
+    dispatch(AuthAction.removeData(location.state.id));
+    dispatch(AuthAction.removeSize(location.state.id));
+    dispatch(AuthAction.removeQuantity(location.state.id));
     dispatch(AuthAction.removeToCart(object));
-    dispatch(AuthAction.removeSize(object));
-    dispatch(AuthAction.removeQuantity(object));
     setCartToad(object);
     setSelectedColor(object);
     setSelectedSize(object);
