@@ -7,33 +7,37 @@ const QuantityCounter = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { addCartItem } = useSelector((state) => state.Auth);
-  const { id, item, quantityCart, setQuantityCart } = props;
+  const { id, item,} = props;
+
+  const quantityItem = addCartItem.find(
+    (item) => item.id === location.state.id
+  );
+  const quantityCart = quantityItem ? quantityItem.quantity :1; 
 
   const decreaseQuantity = () => {
     if (quantityCart > 1) {
       const newQuantity = quantityCart - 1;
-      setQuantityCart(newQuantity);
-      dispatch(AuthAction.updateQuantity({id: id, quantity: newQuantity}));
+      dispatch(AuthAction.updateQuantity({ id: id, quantity: newQuantity }))
     }
+   
   };
 
   const increaseQuantity = () => {
     if (quantityCart < 10) {
       const newQuantity = quantityCart + 1;
-      setQuantityCart(newQuantity);
-      dispatch(AuthAction.updateQuantity({id: id, quantity: newQuantity}));
+      dispatch( AuthAction.updateQuantity({ id: id, quantity: newQuantity}));
     }
   };
-  
+
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value);
-    dispatch(AuthAction.updateQuantity({ id: item.id, quantity: newQuantity }));
-    setQuantityCart(newQuantity);
+    if( newQuantity>= 1 && newQuantity <= 10){
+      dispatch(AuthAction.updateQuantity({ id: item.id, quantity: newQuantity }));
+    }
+   
   };
+
   
-  const quantityItem = addCartItem.find(
-    (quantityCart) => quantityCart.id === location.state.id
-  );
   return (
     <>
       <div className="quantitycounter d-flex">
@@ -44,7 +48,8 @@ const QuantityCounter = (props) => {
           className="qunatityvalue"
           onChange={(e) => onchangeQue(e, item?.price)}
         >
-          {quantityItem ? quantityItem.quantity : 1}
+        {quantityCart}
+        
         </div>
         <button className="quantity" onClick={increaseQuantity}>
           +
@@ -55,6 +60,3 @@ const QuantityCounter = (props) => {
 };
 
 export default QuantityCounter;
-
-
-//increaseQuantity and decreaseQuantity a quantity value  after a value can store a redux list  then it will also increaseQuantity and decreaseQuantity

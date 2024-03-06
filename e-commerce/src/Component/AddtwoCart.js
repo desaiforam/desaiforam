@@ -13,12 +13,10 @@ const AddtwoCart = ({ item, onhandalprice,id, index}) => {
 
   useEffect(() => {
     if(item){
+      
       setQuantityCart(item.quantity);
     }
   }, [item]);
-  const truncate = (str, max, len) => {
-    return str.length > max ? str.substring(0, len) + "..." : str;
-  };
 
   const cartAdded =
     addToCart.length > 0
@@ -51,7 +49,7 @@ const AddtwoCart = ({ item, onhandalprice,id, index}) => {
         <div className="quantity">
           <img src={item?.image} height="50" width="50" alt="" />
         </div>
-        {truncate(item?.title, 5, 20)}
+        {item?.title}
       </td>
       <td>{item?.price}</td>
       <td>

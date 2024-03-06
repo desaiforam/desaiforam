@@ -19,12 +19,12 @@ const Useradd = (item ) => {
     navigate("/Cart-Details ", { state: subTotal });
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     const pricetotal = addToCart.map((id,price) => {
       const product = listOfProduct.find((item) => item?.id === id);
       return {
         id: product.id,
-        price: product?.price * (addCartItem?.find((item) => item?.id === product?.id)?.addCartItem || 1),
+        price: product?.price * (addCartItem?.find((item) => item?.id === product.id)?.addCartItem || 1),
       };
     });
 
@@ -37,7 +37,6 @@ const Useradd = (item ) => {
     const updatedSubTotal = [...subTotal];
     updatedSubTotal[index].price = price * quantity;
     setSubTotal(updatedSubTotal);
-
     const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item?.price, 0);
     setTotal(totalData);
   };  

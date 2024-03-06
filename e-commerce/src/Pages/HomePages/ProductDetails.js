@@ -54,7 +54,7 @@ const ProductDetails = (props) => {
     dispatch(AuthAction.removeData(location.state.id));
     dispatch(AuthAction.removeSize(location.state.id));
     dispatch(AuthAction.removeQuantity(location.state.id));
-    dispatch(AuthAction.removeToCart(location.state.id));
+    dispatch(AuthAction.removeToCart(object));
     setCartToad(object);
     setSelectedColor(object);
     setSelectedSize(object);
