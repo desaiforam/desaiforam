@@ -48,13 +48,13 @@ const ProductDetails = (props) => {
     dispatch(AuthAction.upDateCart(location.state.id));
     setCartToad([...addToCart, location.state.id]);
   };
-  const removeToCart = (id) => {
+  const removeToCart = () => {
     const object = addToCart.filter((obj) => obj !== location.state.id);
     dispatch(AuthAction.removeColor(location.state.id));
     dispatch(AuthAction.removeData(location.state.id));
     dispatch(AuthAction.removeSize(location.state.id));
     dispatch(AuthAction.removeQuantity(location.state.id));
-    dispatch(AuthAction.removeToCart(object));
+    dispatch(AuthAction.removeToCart(location.state.id));
     setCartToad(object);
     setSelectedColor(object);
     setSelectedSize(object);

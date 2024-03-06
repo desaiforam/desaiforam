@@ -8,7 +8,7 @@ import AddtwoCart from "./AddtwoCart";
 import { useNavigate } from "react-router-dom";
 
 
-const Useradd = (item) => {
+const Useradd = (item ) => {
   const navigate = useNavigate();
   const { addToCart, listOfProduct,addCartItem } = useSelector((state) => state.Auth);
 
@@ -20,11 +20,11 @@ const Useradd = (item) => {
   };
 
   useEffect(() => {
-    const pricetotal = addToCart.map((id) => {
-      const product = listOfProduct.find((item) => item.id === id);
+    const pricetotal = addToCart.map((id,price) => {
+      const product = listOfProduct.find((item) => item?.id === id);
       return {
         id: product.id,
-        price: product.price * (addCartItem.find((item) => item.id === product.id)?.addCartItem || 1),
+        price: product?.price * (addCartItem?.find((item) => item?.id === product?.id)?.addCartItem || 1),
       };
     });
 
@@ -38,7 +38,7 @@ const Useradd = (item) => {
     updatedSubTotal[index].price = price * quantity;
     setSubTotal(updatedSubTotal);
 
-    const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item.price, 0);
+    const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item?.price, 0);
     setTotal(totalData);
   };  
 
@@ -60,7 +60,7 @@ const Useradd = (item) => {
               const item = listOfProduct.find((product) => product.id === id);
               return (
                 <AddtwoCart
-                  key={index}
+                  key={id}
                   item={item}
                   index={index}
                   onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)}

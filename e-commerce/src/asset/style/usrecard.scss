@@ -85,4 +85,25 @@
             }
         }
     }
+
+    @media only screen and (max-width: 1399px) {
+        .container {
+            .tablet .cartable {
+                gap: 100px;
+            }
+            .btngroup {
+                gap: 680px;
+                width: 100%;
+                button {
+                    width: 400px;
+                    padding: 2px 15px;
+                    gap: 5px;
+                }
+            }
+            .applycoupon .carlotta {
+                width: 514px;
+            }
+        }
+    }
 }
+//create a responsiv design in 1200 in scss
