@@ -7,9 +7,10 @@ import { useSelector } from "react-redux";
 import AddtwoCart from "./AddtwoCart";
 import { useNavigate } from "react-router-dom";
 
-const Useradd = () => {
+
+const Useradd = (item ) => {
   const navigate = useNavigate();
-  const { addToCart, listOfProduct, addCartItem } = useSelector((state) => state.Auth );
+  const { addToCart, listOfProduct,addCartItem } = useSelector((state) => state.Auth);
 
   const [subTotal, setSubTotal] = useState([]);
   const [total, setTotal] = useState(0);
@@ -18,33 +19,27 @@ const Useradd = () => {
     navigate("/Cart-Details ", { state: subTotal });
   };
 
-  useEffect(() => {
-    if(addToCart.length > 0 ){
-      const updatedSubTotal = addToCart.map((id) => 
-      { const product = listOfProduct.find((item) => item?.id === id);
-        const quantity = addCartItem?.find((item) => item.id === product.id )?.quantity || 1;
-        const price = product.price * quantity;
-        return { id: product.id, price: price };
-      });
-      const totalData = updatedSubTotal.reduce(
-        (accumulator, item) => accumulator + item.price,
-        0
-      );
-      setTotal(totalData);
-      setSubTotal(updatedSubTotal);
-    }
-  }, [addToCart, listOfProduct, addCartItem]);
+  useEffect(() => { 
+    const pricetotal = addToCart.map((id,price) => {
+      const product = listOfProduct.find((item) => item?.id === id);
+      return {
+        id: product.id,
+        price: product?.price * (addCartItem?.find((item) => item?.id === product.id)?.addCartItem || 1),
+      };
+    });
+
+    const totalData = pricetotal.reduce((accumulator, item) => accumulator + item.price, 0);
+    setTotal(totalData);
+    setSubTotal(pricetotal);
+  }, [addToCart, listOfProduct]);
 
   const onhandalprice = (index, quantity, price) => {
     const updatedSubTotal = [...subTotal];
     updatedSubTotal[index].price = price * quantity;
     setSubTotal(updatedSubTotal);
-    const totalData = updatedSubTotal.reduce(
-      (accumulator, item) => accumulator + item?.price,
-      0);
+    const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item?.price, 0);
     setTotal(totalData);
-   
-  };
+  };  
 
   return (
     <div>
@@ -67,9 +62,7 @@ const Useradd = () => {
                   key={id}
                   item={item}
                   index={index}
-                  onhandalprice={(quantity) =>
-                    onhandalprice(index, quantity, item.price)
-                  }
+                  onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)}
                 />
               );
             })}
@@ -123,3 +116,4 @@ const Useradd = () => {
 
 export default Useradd;
 
+//update a subTotal & total is quantity value  set 
