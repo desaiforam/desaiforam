@@ -7,37 +7,38 @@ const QuantityCounter = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { addCartItem } = useSelector((state) => state.Auth);
-  const { id, item,} = props;
+  const { id, item } = props;
 
   const quantityItem = addCartItem.find(
     (item) => item.id === location.state.id
-  );
-  const quantityCart = quantityItem ? quantityItem.quantity :1; 
+    );
+  const quantityCart =  quantityItem?.quantity || 1;
 
   const decreaseQuantity = () => {
+    console.log("quantityCart", quantityCart);
     if (quantityCart > 1) {
       const newQuantity = quantityCart - 1;
-      dispatch(AuthAction.updateQuantity({ id: id, quantity: newQuantity }))
+      dispatch(AuthAction.updateQuantity({ id: id, quantity: newQuantity }));
     }
-   
   };
 
   const increaseQuantity = () => {
+    console.log("quantityCart", quantityCart);
     if (quantityCart < 10) {
       const newQuantity = quantityCart + 1;
-      dispatch( AuthAction.updateQuantity({ id: id, quantity: newQuantity}));
+      dispatch(AuthAction.updateQuantity({ id: id, quantity: newQuantity }));
     }
   };
 
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value);
-    if( newQuantity>= 1 && newQuantity <= 10){
-      dispatch(AuthAction.updateQuantity({ id: item.id, quantity: newQuantity }));
+    if (newQuantity >= 1 && newQuantity <= 10) {
+      dispatch(
+        AuthAction.updateQuantity({ id: item.id, quantity: newQuantity })
+      );
     }
-   
   };
 
-  
   return (
     <>
       <div className="quantitycounter d-flex">
@@ -48,8 +49,7 @@ const QuantityCounter = (props) => {
           className="qunatityvalue"
           onChange={(e) => onchangeQue(e, item?.price)}
         >
-        {quantityCart}
-        
+          {quantityCart}
         </div>
         <button className="quantity" onClick={increaseQuantity}>
           +

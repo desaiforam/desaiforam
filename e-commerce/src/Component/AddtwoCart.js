@@ -4,25 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
 import { useNavigate } from "react-router-dom";
 
-const AddtwoCart = ({ item, onhandalprice,id, index}) => {
+const AddtwoCart = ({ item, onhandalprice, id, index }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const [quantityCart, setQuantityCart] = useState(item?.price);
-  const { quantity,addToCart,listOfProduct,addCartItem } = useSelector((state) => state.Auth);
+  const { quantity, addToCart, listOfProduct, addCartItem } = useSelector(
+    (state) => state.Auth
+  );
 
   useEffect(() => {
-    if(item){
-      
+    if (item) {
       setQuantityCart(item.quantity);
     }
   }, [item]);
 
   const cartAdded =
     addToCart.length > 0
-      ? addToCart.find((itemed) =>  itemed === item?.id)
+      ? addToCart.find((itemed) => itemed === item?.id)
       : false;
-
 
   const onclickMyOrder = (item) => {
     navigate("/product-details", {
@@ -31,9 +31,7 @@ const AddtwoCart = ({ item, onhandalprice,id, index}) => {
   };
   const onchangeQue = (e, price) => {
     const newQuantity = parseInt(e.target.value);
-    dispatch(
-      AuthAction.updateQuantity({ id: item.id, quantity: newQuantity})
-    );
+    dispatch(AuthAction.updateQuantity({ id: item.id, quantity: newQuantity }));
 
     onhandalprice(newQuantity);
     const addQue = price * newQuantity;
@@ -41,8 +39,9 @@ const AddtwoCart = ({ item, onhandalprice,id, index}) => {
   };
 
   const quantityItem = addCartItem.find(
-    (quantityCart) => quantityCart.id === item?.id);
- 
+    (quantityCart) => quantityCart.id === item?.id
+  );
+
   return (
     <tr className="cartable">
       <td className="cartages" onClick={() => onclickMyOrder(item)}>
@@ -58,16 +57,14 @@ const AddtwoCart = ({ item, onhandalprice,id, index}) => {
           value={quantityItem ? quantityItem.quantity : 1}
           min="1"
           max="10"
-          onChange={(e) =>onchangeQue(e, item?.price)}
+          onChange={(e) => onchangeQue(e, item?.price)}
         />
       </td>
-      <td>{quantityItem ? item?.price * quantityItem.quantity : item?.price}</td>
+      <td>
+        {quantityItem ? item?.price * quantityItem.quantity : item?.price}
+      </td>
     </tr>
   );
 };
 
 export default AddtwoCart;
-
-// Cannot read properties of undefined (reading 'id')
-//     at AddtwoCart.js:20:1
-//solve a error 
