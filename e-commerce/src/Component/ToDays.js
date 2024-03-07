@@ -40,7 +40,9 @@ const ToDays = ({ posts }) => {
 
 
       </div>
+      <div className='w-100 d-flex flex-column justify-content-center align-items-center'>
       <button className='btn btn-danger mt-5' style={{ height: "20", width: "20", align_item: "center" }}>View All Products</button>
+      </div>
 
     </>
   )
