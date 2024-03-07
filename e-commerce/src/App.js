@@ -15,6 +15,8 @@ import Post from './Component/post';
 import { Provider } from 'react-redux';
 import store from './store/Store'
 import WishlistItem from './Component/Wishlist';
+import AdminLogin from './Component/AdminLogin';
+import './asset/style/global.scss'
 
 
 const App = () => {
@@ -36,6 +38,8 @@ const App = () => {
             <Route path='/my-profile' element={<Profile />} />
             <Route path='/not-found' element={<NotFound />} />
             <Route path='/api' element={<Post />} />
+            <Route path='/admin-login' element={ <AdminLogin />} />
+            
           </Routes>
         </BrowserRouter>
         {/* <Home /> */}

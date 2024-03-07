@@ -14,7 +14,8 @@ const Header = ({ posts }) => {
   const onclickContacts = () => { navigate("/contact") }
   const onclickSignup = () => { navigate("/sing-up") }
   const onclickMyOrder = () => { navigate("/product-details") }
-  const onclickFound = () => { navigate("//not-found") }
+  const onclickFound = () => { navigate("/not-found") }
+  const onclickLogout = () => { navigate("/admin-login")}
   const { WishList, addToCart} = useSelector((state) => state.Auth)
 
 
@@ -83,7 +84,10 @@ const Header = ({ posts }) => {
                     <a className='dropdown-item' href='/api'>My Reviews</a>
                   </li>
                   <li className=' d-flex align-items-center'><LogOut />
-                    <a className='dropdown-item' href='/'>Logout</a> </li>
+                  <div onClick={onclickLogout} className='dropdown-item position-relative' style={{ cursor: "pointer" }} >
+                  Logout
+                    </div>
+                    </li>
                 </ul>
               </div>
 
