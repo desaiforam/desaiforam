@@ -18,29 +18,53 @@ const Signup = () => {
   const [email ,setEmail] = useState('')
   const [userName ,setUserName] = useState('')
     const [password ,setPassword] = useState("")
-    const handleSubmit = async (e) =>{
-       
-        console.log(email,password,userName)
-        try{
-          const result = await auth.createUserWithEmailAndPassword(email,password)
-          window.M.toast({html : `welcome ${result.user.email}`,classes: 'green' }) 
-        }catch(err){
-          window.M.toast({html: err.message ,classes:'green'})
-        }
+    const [userError, setUserError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const[emailError , setEmailError] = useState("")
+    
+  const validationCheck = () => {
+    if (!userName && !password && !email) {
+      setUserError("Please enter your user name");
+      setPasswordError("Please enter your password");
+      setEmailError("Please enter your user email")
+      return false;
+    }
+    if (!userName) {
+      setUserError("Please enter your user name");
+      return false;
+    }
+    if (!password) {
+      setPasswordError("Please enter your password");
+      return false;
+    }
+    if (!email){
+      setEmailError("Please enter your user email")
+      return false;
+    }
+    return true;
+  };
+
+  
+  const onsubmit = async (e) =>{
+       if(!validationCheck()) return;
+       console.log(userName,password,email)
     }
 
-// Sign up
-const signUpWithEmailAndPassword = async (email, password) => {
-  try {
-    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-    // You can access the user object from userCredential.user
-    return userCredential.user;
-  } catch (error) {
-    // Handle errors
-    console.error(error);
-    return null;
-  }
-};
+
+
+const auth = getAuth();
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+     
+      const user = userCredential.user;
+      
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+
     return (
     <>
       <Navbar />
@@ -88,7 +112,7 @@ const signUpWithEmailAndPassword = async (email, password) => {
                 </div>
                 <div className="login">
                   <div className="buttoncreate">
-                    <button className="btn" onClick={handleSubmit}>Create Account</button>
+                    <button className="btn" onClick={onsubmit}>Create Account</button>
                   </div>
                   <div className="google mt-4 mb-5 ">
                     <button className="btn btn-googlsing">

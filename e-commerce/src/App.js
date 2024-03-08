@@ -17,7 +17,8 @@ import store from './store/Store'
 import WishlistItem from './Component/Wishlist';
 import AdminLogin from './Component/AdminLogin';
 import './asset/style/global.scss'
-
+import firebaseConfig from './config';
+import { initializeApp } from 'firebase/app';
 
 const App = () => {
   return (
