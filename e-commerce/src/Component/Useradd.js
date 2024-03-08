@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Header from "./header";
@@ -7,39 +7,36 @@ import { useSelector } from "react-redux";
 import AddtwoCart from "./AddtwoCart";
 import { useNavigate } from "react-router-dom";
 
-
-const Useradd = (item ) => {
+const Useradd = () => {
   const navigate = useNavigate();
-  const { addToCart, listOfProduct,addCartItem } = useSelector((state) => state.Auth);
+  const { addToCart, listOfProduct, addCartItem } = useSelector((state) => state.Auth);
 
   const [subTotal, setSubTotal] = useState([]);
   const [total, setTotal] = useState(0);
 
   const proceedToCheckout = () => {
-    navigate("/Cart-Details ", { state: subTotal });
+    navigate("/Cart-Details", { state: subTotal });
   };
 
-  useEffect(() => { 
-    const pricetotal = addToCart.map((id,price) => {
-      const product = listOfProduct.find((item) => item?.id === id);
-      return {
-        id: product.id,
-        price: product?.price * (addCartItem?.find((item) => item?.id === product.id)?.addCartItem || 1),
-      };
+  useEffect(() => {
+    const updatedSubTotal = addToCart.map((id) => {
+      const product = listOfProduct.find((item) => item.id === id);
+      const quantity = addCartItem?.find((item) => item.id === product.id)?.quantity || 1;
+      const price = product.price * quantity;
+      return { id: product.id, price: price };
     });
-
-    const totalData = pricetotal.reduce((accumulator, item) => accumulator + item.price, 0);
+    const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item.price, 0);
     setTotal(totalData);
-    setSubTotal(pricetotal);
-  }, [addToCart, listOfProduct]);
+    setSubTotal(updatedSubTotal);
+  }, [addToCart, listOfProduct, addCartItem]);
 
   const onhandalprice = (index, quantity, price) => {
     const updatedSubTotal = [...subTotal];
     updatedSubTotal[index].price = price * quantity;
     setSubTotal(updatedSubTotal);
-    const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item?.price, 0);
+    const totalData = updatedSubTotal.reduce((accumulator, item) => accumulator + item.price, 0);
     setTotal(totalData);
-  };  
+  };
 
   return (
     <div>
@@ -48,24 +45,23 @@ const Useradd = (item ) => {
       <div className="container d-flex flex-column ">
         <div className="homers">Home / Cart</div>
         <div className="tablet">
-          <tr className="cartable">
-            <td className="cartages">Product </td>
-            <td>Price</td>
-            <td>Quantity</td>
-            <td>subTotal</td>
-          </tr>
-          {addToCart &&
-            addToCart.map((id, index) => {
-              const item = listOfProduct.find((product) => product.id === id);
-              return (
-                <AddtwoCart
-                  key={id}
-                  item={item}
-                  index={index}
-                  onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)}
-                />
-              );
-            })}
+          <div className="cartable">
+            <div className="cartages">Product </div>
+            <div>Price</div>
+            <div>Quantity</div>
+            <div>subTotal</div>
+          </div>
+          {addToCart.map((id, index) => {
+            const item = listOfProduct.find((product) => product.id === id);
+            return (
+              <AddtwoCart
+                key={index}
+                item={item}
+                index={index}
+                onhandalprice={(quantity) => onhandalprice(index, quantity, item.price)}
+              />
+            );
+          })}
         </div>
         <div className="btn btngroup d-flex">
           <button>Return To Shop </button>
@@ -88,7 +84,7 @@ const Useradd = (item ) => {
               {total.toFixed(2)}
             </div>
             <hr w-75 />
-            <div className="pricetotal d-flex flex-row  justify-content-between">
+            <div className="pricetotal d-flex flex-row justify-content-between">
               <span>Shipping:</span>
               <span>Free</span>
             </div>
@@ -115,5 +111,3 @@ const Useradd = (item ) => {
 };
 
 export default Useradd;
-
-//update a subTotal & total is quantity value  set 
