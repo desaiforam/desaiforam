@@ -15,7 +15,7 @@ const Header = ({ posts }) => {
   const onclickSignup = () => { navigate("/sing-up") }
   const onclickMyOrder = () => { navigate("/product-details") }
   const onclickFound = () => { navigate("/not-found") }
-  const onclickLogout = () => { navigate("/admin-login")}
+  const onclickLogout = () => { navigate("/admin- ")}
   const { WishList, addToCart} = useSelector((state) => state.Auth)
 
 

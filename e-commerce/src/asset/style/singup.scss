@@ -1,5 +1,5 @@
 .container {
-    .singup {
+    .sing-up {
         .row {
             .col-6 {
                 .bag {
@@ -15,7 +15,7 @@
                     flex-direction: column;
                     align-items: flex-start;
                     margin-left: 224px;
-                    .detalis {
+                    .details {
                         display: flex;
                         flex-direction: column;
                         align-items: flex-start;
@@ -53,7 +53,7 @@
                     }
                     .login {
                         margin-top: 60px;
-                        .buttoncreate {
+                        .button-create {
                             background-color: #db4444;
                             color: white;
                             width: 100%;
@@ -69,7 +69,7 @@
                             align-items: center;
                             justify-content: center;
                             padding: 7px;
-                            .btn-googlsing {
+                            .btn-googl-sing {
                                 display: flex;
                                 flex-direction: row;
                                 gap: 24px;

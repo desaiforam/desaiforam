@@ -1,28 +1,33 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Navbar from "../../Component/Navbar";
 import Header from "../../Component/header";
 import Footer from "../../Component/Footer";
 import Images from "../../utils/images";
 import { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "../../config";
+import { useNavigate } from "react-router-dom";
+
+const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 const Login = () => {
-    
-    const [password, setPassword] = useState("");
-  const [user, setUser] = useState("");
-
+  const home = useNavigate();
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [userError, setUserError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  
-  
 
   const validationCheck = () => {
-    if (!user && !password) {
-      setUserError("Please enter your user name");
+    if (!email && !password) {
+      setUserError("Please enter your email name");
       setPasswordError("Please enter your password");
       return false;
     }
-    if (!user) {
-      setUserError("Please enter your user name");
+    if (!email) {
+      setUserError("Please enter your email name");
       return false;
     }
     if (!password) {
@@ -31,20 +36,30 @@ const Login = () => {
     }
     return true;
   };
+  const auth = getAuth();
 
-  const onsubmit = async () => {
-    if (!validationCheck()) return;
-    console.log("user :", user);
-    console.log("password :", password);
-  };
   
-    return (
+  const onLogin = async () => {
+    if (!validationCheck()) return;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("data", userCredential);
+        home("/");
+      })
+      .catch((error) => {
+        alert(error.code);
+        alert(error.message);
+      });
+  };
+
+  return (
     <div>
       <Navbar />
       <Header />
       <hr className="w-100" />
       <div className="container w-100" style={{ marginLeft: "0" }}>
-        <div className="login  w-100">
+        <div className="login-form w-100">
           <div className="row w-100">
             <div className="col-7">
               <div className="bag">
@@ -54,7 +69,7 @@ const Login = () => {
 
             <div className="col-5">
               <div className="form">
-                <div className="detalis">
+                <div className="details">
                   <span
                     className="acc"
                     style={{ fontSize: "xxx-large", fontWeight: "600" }}
@@ -64,35 +79,47 @@ const Login = () => {
                   <span>Enter your details below</span>
                 </div>
                 <div className="form__group field">
-                <div className="w-100  gap-2 d-flex flex-column">
-
-                  <input
-                    type="text"
-                    className="form__field"
-                    placeholder="Email or Phone Number"
-                    value={user}
-                    name="uname"
-                    onChange={(e) => setUser(e.target.value)}
-                    required
-                  />
-                  <span className="error" style={{color:"red", alignItems:"baseline"}}>{userError }</span>
-                </div>
-                <div className="w-100  gap-2 d-flex flex-column">
-
-                  <input
-                    type="text"
-                    className="form__field"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                    <span className="error" style={{color:"red", alignItems:"baseline"}}>{userError }</span>
-                </div>
+                  <div className="w-100  gap-2 d-flex flex-column">
+                    <input
+                      type="text"
+                      className="form__field"
+                      placeholder=" Enter Your Email "
+                      value={email}
+                      name="uname"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                    <span
+                      className="error"
+                      style={{ color: "red", alignItems: "baseline" }}
+                    >
+                      {userError}
+                    </span>
+                  </div>
+                  <div className="w-100  gap-2 d-flex flex-column">
+                    <input
+                      type="password"
+                      className="form__field"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <span
+                      className="error"
+                      style={{ color: "red", alignItems: "baseline" }}
+                    >
+                      {userError}
+                    </span>
+                  </div>
                 </div>
                 <div className="login mt-5">
-                  <div className="buttoncreate">
-                    <div  className="btn" onClick={onsubmit}>Create Account</div>
+                  <div className="button-create">
+                    <div className="btn" 
+                    onClick={onLogin}
+                    >
+                      Log in
+                    </div>
                   </div>
                   <div className="password">
                     <span className=" d-flex flex-column justify-content-center">
@@ -109,5 +136,7 @@ const Login = () => {
     </div>
   );
 };
-
+export const auth = getAuth(app);
 export default Login;
+  
+ 

@@ -1,32 +1,36 @@
+/* eslint-disable no-unused-vars */
+
 import React, { useState } from "react";
 import Navbar from "../../Component/Navbar";
 import Header from "../../Component/header";
 import Footer from "../../Component/Footer";
 import Images from "../../utils/images";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../firebase";
 
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
- 
-
 const Signup = () => {
-  const [email ,setEmail] = useState('')
-  const [userName ,setUserName] = useState('')
-    const [password ,setPassword] = useState("")
-    const [userError, setUserError] = useState("");
+  const home = useNavigate();
+  
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [userError, setUserError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const[emailError , setEmailError] = useState("")
-    
+  const [emailError, setEmailError] = useState("");
+  const [login, setLogin] = useState(false);
+
   const validationCheck = () => {
     if (!userName && !password && !email) {
       setUserError("Please enter your user name");
       setPasswordError("Please enter your password");
-      setEmailError("Please enter your user email")
+      setEmailError("Please enter your user email");
       return false;
     }
     if (!userName) {
@@ -37,41 +41,62 @@ const Signup = () => {
       setPasswordError("Please enter your password");
       return false;
     }
-    if (!email){
-      setEmailError("Please enter your user email")
+    if (!email) {
+      setEmailError("Please enter your user email");
       return false;
     }
     return true;
   };
+  const auth = getAuth();
 
-  
-  const onsubmit = async (e) =>{
-       if(!validationCheck()) return;
-       console.log(userName,password,email)
-    }
+  const onsubmit = async (e) => {
+    if (!validationCheck()) return;
+
+    
+    
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("User signed in:", userCredential);
+        home("/");
+      })
+      .catch((error) => {
+        alert(error.code);
+        alert(error.message);
+        setLogin(true);
+      });
+        
+  };
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
 
 
 
-const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-     
-      const user = userCredential.user;
-      
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+         
+        } else {
+          
+        }
+      });
 
-    return (
+
+
+  return (
     <>
       <Navbar />
       <Header />
       <hr className="w-100" />
       <div className="container" style={{ marginLeft: "0" }}>
-        <div className="singup  w-100">
+        <div className="sing-up  w-100">
           <div className="row w-100">
             <div className="col-6">
               <div className="bag">
@@ -81,7 +106,7 @@ const auth = getAuth();
             <div className="col-1"></div>
             <div className="col-5">
               <div className="form">
-                <div className="detalis">
+                <div className="details">
                   <span
                     className="acc"
                     style={{ fontSize: "xxx-large", fontWeight: "600" }}
@@ -91,12 +116,14 @@ const auth = getAuth();
                   <span>Enter your details below</span>
                 </div>
                 <div className="form__group field">
-                  <input type="text" 
-                  placeholder="Name" 
-                  id="" 
-                  value={userName}
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    id=""
+                    value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                  required />
+                    required
+                  />
                   <input
                     type="text"
                     placeholder="Email or Phone Number"
@@ -104,18 +131,22 @@ const auth = getAuth();
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <input type="password"
-                   placeholder="password" 
-                   value={password}
+                  <input
+                    type="password"
+                    placeholder="password"
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                   id="" />
+                    id=""
+                  />
                 </div>
                 <div className="login">
-                  <div className="buttoncreate">
-                    <button className="btn" onClick={onsubmit}>Create Account</button>
+                  <div className="button-create">
+                    <button className="btn" onClick={onsubmit}>
+                      Create Account
+                    </button>
                   </div>
                   <div className="google mt-4 mb-5 ">
-                    <button className="btn btn-googlsing">
+                    <button className="btn btn-googl-sing">
                       <div className="svg">
                         <svg
                           width="24"
@@ -174,4 +205,5 @@ const auth = getAuth();
   );
 };
 
+export const database = getAuth(app);
 export default Signup;

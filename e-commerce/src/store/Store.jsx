@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import Authredaucre from "./action/AuthAction";
 import logger from "redux-logger";
-import quantityReducer from "./QuantitySlice";
 
 const middleware = (getDefaultMiddleware) => {
   return getDefaultMiddleware({

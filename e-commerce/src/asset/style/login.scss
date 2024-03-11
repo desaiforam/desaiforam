@@ -1,5 +1,5 @@
 .container{
-    .login{
+    .login-form{
         .row{
             .col-6{
                 .bag{
@@ -16,7 +16,7 @@
                     flex-direction: column;
                     align-items: flex-start;
                     margin-left: 224px;
-                .detalis
+                .details
                     {
                         display: flex;
                         flex-direction: column;
@@ -51,7 +51,7 @@
                     align-items: center;
                     justify-content: space-between;
 
-                    .buttoncreate{
+                    .button-create{
                         background-color: #db4444;
                         color: white;
                         padding: 5px;
@@ -71,5 +71,36 @@
                 }
             }
         }
+        // @media only screen and (min-width: 768px) {
+            
+        //     .col-6 {
+        //         width: 50%;
+        //     }
+        
+        //     .col-5 {
+        //         width: 50%;
+        //     }
+        
+        //     .form {
+        //         margin-top: 80px;
+        //         margin-left: 0; 
+        //     }
+        
+        //     .login-form {
+        //         max-width: 500px; 
+        //     }
+        // }
+        
+        // @media only screen and (min-width: 1024px) {
+           
+        //     .container {
+        //         max-width: 1200px; 
+        //     }
+        // }
+    
+    
     }
+
 }
+
+

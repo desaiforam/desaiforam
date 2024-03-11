@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import axios from "axios";
@@ -20,21 +21,23 @@ import "../../asset/style/CustomCard.scss";
 import "../../asset/style/CustomCard2.scss";
 import "../../asset/style/iphone.scss";
 import { AuthAction } from "../../store/action/AuthAction";
+import {  getAuth, onAuthStateChanged } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "../../config";
+
 
 const Home = () => {
-  const { listOfProduct, quantity ,} = useSelector((state) => state.Auth);
+  const { listOfProduct} = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
-  
+
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
         "https://mocki.io/v1/553960a9-f177-4b4b-a1d2-48fb57c5ebd7"
       );
-
       const data = response.data.map((product) => ({
         ...product,
-        
       }));
 
       dispatch(AuthAction.addToProduct(data));
@@ -42,6 +45,7 @@ const Home = () => {
       console.error("Error fetching data:", error);
     }
   };
+  
   useEffect(() => {
     fetchData();
   

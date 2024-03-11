@@ -17,8 +17,7 @@ import store from './store/Store'
 import WishlistItem from './Component/Wishlist';
 import AdminLogin from './Component/AdminLogin';
 import './asset/style/global.scss'
-import firebaseConfig from './config';
-import { initializeApp } from 'firebase/app';
+
 
 const App = () => {
   return (
@@ -26,8 +25,8 @@ const App = () => {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Home />} />
             <Route path='/sing-up' element={<Signup />} />
+            <Route path='/' element={<Home />} />
             <Route path='/log-in' element={<Login />} />
             <Route path='/product-details' element={<ProductDetails />} />
             <Route path='/ukase-cart' element={<Useradd />} />
@@ -43,7 +42,7 @@ const App = () => {
             
           </Routes>
         </BrowserRouter>
-        {/* <Home /> */}
+
       </div>
 
     </Provider>
