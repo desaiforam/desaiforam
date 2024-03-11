@@ -44,7 +44,8 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("data", userCredential);
+       
+        const user = userCredential.user;
         home("/");
       })
       .catch((error) => {

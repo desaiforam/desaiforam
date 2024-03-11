@@ -25,6 +25,7 @@ import { ReactComponent as Eyes } from "./eyes.svg";
 import { ReactComponent as Exclusive } from "./Exclusive.svg";
 import { ReactComponent as Truck} from "./truck.svg"
 import {ReactComponent as Refresh} from "./refresh.svg"
+import {ReactComponent as Google} from "./google.svg"
 
 export {
   PhoneIcon,
@@ -54,4 +55,5 @@ export {
   Exclusive,
   Truck,
   Refresh,
+  Google
 };
