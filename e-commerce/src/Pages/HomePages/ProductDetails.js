@@ -11,6 +11,8 @@ import SizeSelector from "../../Component/SizeSelector";
 import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart, Refresh, Truck } from "../../asset/images/svg";
 import ColorSelector from "../../Component/ColorSelector";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../config";
 
 const ProductDetails = (props) => {
   const location = useLocation();
@@ -24,7 +26,7 @@ const ProductDetails = (props) => {
   const [selectedColor, setSelectedColor] = useState();
   const product = location?.state;
   const [CartToad, setCartToad] = useState([]);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
@@ -44,6 +46,12 @@ const ProductDetails = (props) => {
           return itemed === location.state.id;
         })
       : false;
+      useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) =>{
+          setIsLoggedIn(!!user);
+        })
+        return () => unsubscribe();
+      },[])
   const addToCartbtn = () => {
     dispatch(AuthAction.upDateCart(location.state.id));
     setCartToad([...addToCart, location.state.id]);
@@ -189,7 +197,10 @@ const ProductDetails = (props) => {
                   />
                 </div>
                 <div className="buyNow">
-                  {!cartAdded ? (
+                {isLoggedIn && 
+                (
+
+                 !cartAdded ? (
                     <button
                       className="btn btn-now"
                       style={{ backgroundColor: "orangeade" }}
@@ -205,7 +216,9 @@ const ProductDetails = (props) => {
                     >
                       Remove To Cart
                     </button>
+                  )
                   )}
+                
                 </div>
                 <div className="Wishart">
                   {!wishListed ? (

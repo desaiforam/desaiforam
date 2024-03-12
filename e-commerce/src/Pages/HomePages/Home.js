@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../Component/Navbar";
@@ -27,6 +27,7 @@ import firebaseConfig from "../../config";
 
 
 const Home = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { listOfProduct} = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
 
@@ -53,7 +54,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn}/>
       {listOfProduct && <Header posts={listOfProduct} />}
       <div className="container mt-0">
         <hr className="w-100" />
@@ -79,3 +80,4 @@ const Home = () => {
 
 export default Home;
 
+// without loggedin user can not add a product to cart 

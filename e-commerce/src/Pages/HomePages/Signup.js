@@ -194,38 +194,6 @@
 // export const database = getAuth(app);
 // export default Signup;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //user will signup using firebase that  change a name Create an account to sing in account 
 
 // if user is  sign in then logout will appear using firebase 

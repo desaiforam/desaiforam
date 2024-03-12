@@ -6,6 +6,8 @@ import { AuthAction } from "../store/action/AuthAction";
 import { Blnkheart, Eyes, Heart } from "../asset/images/svg";
 import { FaStar } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../config";
 
 const CustomCard = (props) => {
   const { item, index, listOfProduct } = props;
@@ -18,6 +20,7 @@ const CustomCard = (props) => {
   const [quantityCart, setQuantityCart] = useState(1);
   const [selectedSize, setSelectedSize] = useState();
   const [AddToWish, setAddToWish] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const product = location?.state;
 
   useEffect(() => {
@@ -27,6 +30,13 @@ const CustomCard = (props) => {
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) =>{
+      setIsLoggedIn(!!user);
+    })
+    return () => unsubscribe();
+  },[])
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
@@ -73,7 +83,6 @@ const CustomCard = (props) => {
     e.stopPropagation();
   };
 
-  
   const removeToWish = (e, id) => {
     const object = WishList.filter((obj) => obj !== id.id);
 
@@ -127,6 +136,7 @@ const CustomCard = (props) => {
           </div>
         </div>
         <div className="add mb-3">
+          {/* <>
           {!cartAdded && (
             <button
               className="btn btn-dark "
@@ -139,10 +149,27 @@ const CustomCard = (props) => {
             <button
               className="btn btn-dark "
               onClick={(e) => removeToCart(item, e)}
-              
             >
               Remove To Cart
             </button>
+          )}
+          </> */}
+          {isLoggedIn && (
+            !cartAdded ? (
+              <button
+                className="btn btn-dark "
+                onClick={(e) => addToCartbtn(e, item)}
+              >
+                Add To Cart
+              </button>
+            ) : (
+              <button
+                className="btn btn-dark "
+                onClick={(e) => removeToCart(item, e)}
+              >
+                Remove To Cart
+              </button>
+            )
           )}
         </div>
         <div className="games">
@@ -182,6 +209,4 @@ const CustomCard = (props) => {
 
 export default CustomCard;
 
-
-
-//removeToCart to remove value of  from the  and redux list
+// without sign up user can not add a product to cart
