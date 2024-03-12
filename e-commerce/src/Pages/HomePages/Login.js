@@ -39,19 +39,42 @@ const Login = () => {
   const auth = getAuth();
 
   
-  const onLogin = async () => {
+  const onLogin = async (e) => {
     if (!validationCheck()) return;
-
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
        
         const user = userCredential.user;
         home("/");
+        e.preventDefault();
+      const User = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          
+          email,
+          
+        }),
+      };
+
+      const res = fetch(
+        "https://main-e-commerec-default-rtdb.firebaseio.com/UserData.json",
+        User
+      );
+      console.log(res);
+      if (res) {
+        alert("Message Send");
+      } else {
+        alert("Error Occurred");
+      }
       })
       .catch((error) => {
         alert(error.code);
         alert(error.message);
       });
+
   };
 
   return (
@@ -79,6 +102,7 @@ const Login = () => {
                   </span>
                   <span>Enter your details below</span>
                 </div>
+                <form method='POST'>
                 <div className="form__group field">
                   <div className="w-100  gap-2 d-flex flex-column">
                     <input
@@ -128,6 +152,7 @@ const Login = () => {
                     </span>
                   </div>
                 </div>
+                </form>
               </div>
             </div>
           </div>
