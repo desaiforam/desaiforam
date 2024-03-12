@@ -42,9 +42,9 @@ const Login = () => {
   const onLogin = async (e) => {
     if (!validationCheck()) return;
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
        
-        const user = userCredential.user;
+        await signInWithEmailAndPassword(auth, email, password);
         home("/");
         e.preventDefault();
       const User = {
