@@ -3,7 +3,7 @@ import Images from '../utils/images'
 import { Bag, Cancleicon, LogOut, Review, Uaericon } from '../asset/images/svg'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { auth } from '../config'
+import { auth, database } from '../config'
 import { onAuthStateChanged } from 'firebase/auth'
 
 const Header = () => {
@@ -22,7 +22,8 @@ const Header = () => {
 
     return unsubscribe;
   }, []);
- 
+
+
 
   const { WishList, addToCart } = useSelector((state) => state.Auth);
 
@@ -36,22 +37,26 @@ const Header = () => {
   
   
   const onclickLogout = () => { 
-    auth.signOut()
-      .then(() => {
-        console.log("Logged out successfully");
-        setIsLoggedIn(true);
-        navigate("/sing-up");
-      })
-      .catch((error) => {
-        console.error("Error logging out: ", error);
-      });
-     }
+    if (isLoggedIn) {
+      auth.signOut()
+        .then(() => {
+          console.log("Logged out successfully");
+          setIsLoggedIn(false); 
+          navigate("/sign-up");
+        })
+        .catch((error) => {
+          console.error("Error logging out: ", error);
+        });
+    } else {
+      navigate("/sign-up");
+    }
+  }
   const onclickSignup = () => {
     auth.signOut()
       .then(() => {
         console.log("Logged out successfully");
         setIsLoggedIn(true);
-        navigate("/sing-up");
+        navigate("/sign-up");
         setUserName(userName);
       })
       .catch((error) => {
@@ -136,3 +141,5 @@ const Header = () => {
 }
 
 export default Header
+
+// get the loggedin user name will  print a sign up place in firebase 

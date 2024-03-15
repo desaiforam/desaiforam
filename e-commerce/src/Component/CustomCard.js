@@ -7,7 +7,8 @@ import { Blnkheart, Eyes, Heart } from "../asset/images/svg";
 import { FaStar } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config";
+import { auth, db } from "../config";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 const CustomCard = (props) => {
   const { item, index, listOfProduct } = props;
@@ -21,6 +22,7 @@ const CustomCard = (props) => {
   const [selectedSize, setSelectedSize] = useState();
   const [AddToWish, setAddToWish] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [ userName , setUserName] = useState()
   const product = location?.state;
 
   useEffect(() => {
@@ -37,10 +39,28 @@ const CustomCard = (props) => {
     })
     return () => unsubscribe();
   },[])
+  useEffect(() =>{
+    fetchCartItem();
+  })
+
+  const fetchCartItem = async () => {
+    try {
+      if(!isLoggedIn) return;
+      const userId  = auth.currentUser.uid
+      const querySnapshot = await getDocs(collection(db, "users", userId, "cart"));
+      const cartItems = [];
+      querySnapshot.forEach((doc) => {
+        cartItems.push(doc.data());
+      });
+      setCartToad(cartItems);
+    } catch (error) {
+      console.error("Error fetching cart items:", error);
+    }
+  };
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
-
+ 
   const cartAdded =
     addToCart.length > 0
       ? addToCart.find((itemed) => {
@@ -59,10 +79,21 @@ const CustomCard = (props) => {
       state: { ...item, cartAdded: !!cartAdded, listOfProduct },
     });
   };
-  const addToCartbtn = (e) => {
-    dispatch(AuthAction.upDateCart(item.id));
-    setCartToad([...addToCart, item.id]);
+  const addToCartbtn = async (e) => {
     e.stopPropagation();
+    try {
+      await addDoc(collection(db, "cart"), {
+        itemId: item.id,  
+        quantity: 1,
+       
+      });
+      fetchCartItem(); 
+      alert("item add to cart ")
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    }
+    dispatch(AuthAction.upDateCart(item.id));
+    setCartToad([...addToCart, item.id]);  
   };
   const addToWishList = (e) => {
     dispatch(AuthAction.upDateWishList(item.id));
@@ -120,7 +151,7 @@ const CustomCard = (props) => {
         </div>
         {item.button && (
           <button
-            className="btn  btn-success d-flex  position-absolute m-3"
+            className="btn  btn-success d-flex  position-absolute m-3"  
             style={{ background: item.buttoncolor, border: "0" }}
           >
             {item.button}{" "}
@@ -136,25 +167,9 @@ const CustomCard = (props) => {
           </div>
         </div>
         <div className="add mb-3">
-          {/* <>
-          {!cartAdded && (
-            <button
-              className="btn btn-dark "
-              onClick={(e) => addToCartbtn(e, item)}
-            >
-              Add To Cart
-            </button>
-          )}
-          {cartAdded && (
-            <button
-              className="btn btn-dark "
-              onClick={(e) => removeToCart(item, e)}
-            >
-              Remove To Cart
-            </button>
-          )}
-          </> */}
-          {isLoggedIn && (
+      
+          {isLoggedIn && 
+          (
             !cartAdded ? (
               <button
                 className="btn btn-dark "
@@ -209,4 +224,5 @@ const CustomCard = (props) => {
 
 export default CustomCard;
 
-// without sign up user can not add a product to cart
+
+//Get the item name in the database and the subcollection of the LongDyn user name in the FireStore database.
