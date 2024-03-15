@@ -25,26 +25,19 @@ const Signup = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [userError, setUserError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [login, setLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
+      setIsLoggedIn(!!user);
     });
   }, []);
 
   const validationCheck = () => {
     if (!userName && !password && !email) {
-      setUserError("Please enter your user name");
-      setPasswordError("Please enter your password");
-      setEmailError("Please enter your user email");
+      setUserError("Please enter your value true ");
+
       return false;
     }
     if (!userName) {
@@ -52,11 +45,11 @@ const Signup = () => {
       return false;
     }
     if (!password) {
-      setPasswordError("Please enter your password");
+      setUserError("Please enter your password");
       return false;
     }
     if (!email) {
-      setEmailError("Please enter your user email");
+      setUserError("Please enter your user email");
       return false;
     }
     return true;
@@ -66,9 +59,7 @@ const Signup = () => {
     if (!validationCheck()) return;
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("User signed in:", userCredential);
-        home("/");
+      .then(async (userCredential) => {
         e.preventDefault();
         const User = {
           method: "POST",
@@ -80,17 +71,27 @@ const Signup = () => {
             email,
           }),
         };
+        const userData = { userName, email };
+        await fetch(userData);
+        console.log("userData", userData);
+        console.log("User signed in:", userCredential);
+
+        home("/");
+
         const res = fetch(
           "https://main-e-commerec-default-rtdb.firebaseio.com/UserData.json",
           User
         );
         console.log(res);
         if (res) {
+          const userData = { userName, email };
+          await fetch(userData);
+          console.log("userData", userData);
           alert("Message Send");
         } else {
           alert("Error Occurred");
         }
-        signInWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, userName, email, password)
           .then((userCredential) => {
             const user = userCredential.user;
           })
@@ -189,7 +190,4 @@ const Signup = () => {
 export const database = getAuth(app);
 export default Signup;
 
-
-
-
-// after a logged in find a current user name   
+// The recommended way to get the current username  is by setting an observer on the Auth object:

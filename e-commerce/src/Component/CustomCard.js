@@ -47,7 +47,7 @@ const CustomCard = (props) => {
     try {
       if(!isLoggedIn) return;
       const userId  = auth.currentUser.uid
-      const querySnapshot = await getDocs(collection(db, "users", userId, "cart"));
+      const querySnapshot = await getDocs(collection(db ,userId));
       const cartItems = [];
       querySnapshot.forEach((doc) => {
         cartItems.push(doc.data());
@@ -82,7 +82,14 @@ const CustomCard = (props) => {
   const addToCartbtn = async (e) => {
     e.stopPropagation();
     try {
-      await addDoc(collection(db, "cart"), {
+      if(!isLoggedIn) {
+        return;
+      }
+
+      const userId = auth.currentUser.uid;
+
+
+      await addDoc(collection(db, userId), {
         itemId: item.id,  
         quantity: 1,
        
@@ -95,10 +102,27 @@ const CustomCard = (props) => {
     dispatch(AuthAction.upDateCart(item.id));
     setCartToad([...addToCart, item.id]);  
   };
-  const addToWishList = (e) => {
+  const addToWishList = async (e) => {
+    e.stopPropagation();
+    try {
+      if(!isLoggedIn) {
+        return;
+      }
+
+      const userId = auth.currentUser.uid;
+      await addDoc(collection(db, userId), {
+        itemId: item.id,  
+        quantity: 1,
+       
+      });
+      fetchCartItem(); 
+      alert("item add to cart ")
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    }
     dispatch(AuthAction.upDateWishList(item.id));
     setAddToWish([...AddToWish, item.id]);
-    e.stopPropagation();
+    
   };
   const removeToCart = (id, e) => {
     const object = addToCart.filter((obj) => obj !== id.id);
@@ -131,8 +155,10 @@ const CustomCard = (props) => {
         <div
           className="images  position-absolute d-flex flex-column align-items-center justify-content-center"
           style={{ right: "25px", background: "transparent" }}
-        >
-          {!wishListed ? (
+        > {isLoggedIn && (
+          
+          !wishListed ? 
+          (
             <button
               style={{ border: "none", background: "transparent" }}
               onClick={(e) => addToWishList(e, item)}
@@ -146,7 +172,8 @@ const CustomCard = (props) => {
             >
               <Heart />
             </button>
-          )}
+          )
+        )}
           <Eyes />
         </div>
         {item.button && (
@@ -225,4 +252,4 @@ const CustomCard = (props) => {
 export default CustomCard;
 
 
-//Get the item name in the database and the subcollection of the LongDyn user name in the FireStore database.
+// item  can  stored  database using  uid for firestore  databse 

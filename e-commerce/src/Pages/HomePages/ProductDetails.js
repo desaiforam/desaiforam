@@ -220,7 +220,9 @@ const ProductDetails = (props) => {
                   )}
                 
                 </div>
+                {isLoggedIn   && (
                 <div className="Wishart">
+
                   {!wishListed ? (
                     <button
                       style={{ border: "none", background: "transparent" }}
@@ -235,8 +237,10 @@ const ProductDetails = (props) => {
                     >
                       <Heart />
                     </button>
-                  )}
+                )}
                 </div>
+                  )}
+
               </div>
 
               <div className="delivery mt-5">
