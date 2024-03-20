@@ -37,9 +37,9 @@ const Iphone = () => {
             <img src={Images.symbol} height="49" width="40" alt=''/>
             <h5>iPhone 14 Series</h5>
             </div>
-            <div className='alink mt-4'>
+            <div className='a-link mt-4'>
             <h2> Up to 10% off Voucher</h2>
-            <a href='/' className='alink mt-5' color='white'>Shop Now</a>
+            <a href='/' className='a-link mt-5' color='white'>Shop Now</a>
             <img src={Images.shopboy} height="30" width="30" alt=''/>
             </div>
             </div>

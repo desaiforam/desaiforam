@@ -17,6 +17,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+
 const CustomCard = (props) => {
   const { item, index, listOfProduct } = props;
   const location = useLocation();
@@ -114,10 +115,7 @@ const CustomCard = (props) => {
       if (!isLoggedIn) {
         return;
       }
-      
       const userId = auth.currentUser.uid;
-      
-      // Add the item to the user's wishlist collection
       await addDoc(collection(db, `users/${userId}/wishlist`), {
         itemId: item.id,
       });
@@ -130,10 +128,10 @@ const CustomCard = (props) => {
       console.error("Error adding item to wishlist:", error);
     }
   };
-  
+
+
   const removeToCart = async (id, e) => {
     e.stopPropagation();
-
     const object = addToCart.filter((obj) => obj !== id.id);
     dispatch(AuthAction.removeColor(id.id));
     dispatch(AuthAction.removeData(id.id));
@@ -145,13 +143,11 @@ const CustomCard = (props) => {
     setSelectedSize(object);
     setQuantityCart(object);
   };
-
   const removeToWish = async (e, id) => {
-    e.stopPropagation();
+     e.stopPropagation();
     const object = WishList.filter((obj) => obj !== id.id);
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
-   
   };
 
   return (
@@ -212,7 +208,7 @@ const CustomCard = (props) => {
             ) : (
               <button
                 className="btn btn-dark "
-                onClick={(e) => removeToCart(item, e)}
+                onClick={(e) => removeToCart(e, item)}
               >
                 Remove To Cart
               </button>
@@ -255,4 +251,4 @@ const CustomCard = (props) => {
 
 export default CustomCard;
 
-//  how to wishlist data can store and remove data from firestore data base 
+//  how to addtocart data can remove from   firestore data base 
