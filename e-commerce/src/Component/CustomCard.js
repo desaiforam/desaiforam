@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "../asset/style/CustomCard.scss";
@@ -8,7 +9,13 @@ import { FaStar } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
 
 const CustomCard = (props) => {
   const { item, index, listOfProduct } = props;
@@ -22,7 +29,7 @@ const CustomCard = (props) => {
   const [selectedSize, setSelectedSize] = useState();
   const [AddToWish, setAddToWish] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [ userName , setUserName] = useState()
+  const [userName, setUserName] = useState();
   const product = location?.state;
 
   useEffect(() => {
@@ -34,20 +41,18 @@ const CustomCard = (props) => {
   }, [WishList]);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) =>{
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLoggedIn(!!user);
-    })
+    });
     return () => unsubscribe();
-  },[])
-  useEffect(() =>{
-    fetchCartItem();
-  })
+  }, []);
 
   const fetchCartItem = async () => {
     try {
-      if(!isLoggedIn) return;
-      const userId  = auth.currentUser.uid
-      const querySnapshot = await getDocs(collection(db ,userId));
+      if (!isLoggedIn) return;
+      const userId = auth.currentUser.uid;
+        
+      const querySnapshot = await getDocs(collection(db, userId));
       const cartItems = [];
       querySnapshot.forEach((doc) => {
         cartItems.push(doc.data());
@@ -57,10 +62,13 @@ const CustomCard = (props) => {
       console.error("Error fetching cart items:", error);
     }
   };
+  useEffect(() => {
+    fetchCartItem();
+  }, []);
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
- 
+
   const cartAdded =
     addToCart.length > 0
       ? addToCart.find((itemed) => {
@@ -82,49 +90,50 @@ const CustomCard = (props) => {
   const addToCartbtn = async (e) => {
     e.stopPropagation();
     try {
-      if(!isLoggedIn) {
+      if (!isLoggedIn) {
         return;
       }
 
       const userId = auth.currentUser.uid;
 
-
-      await addDoc(collection(db, userId), {
-        itemId: item.id,  
+      await addDoc(collection(db, `users/${userId}/addtocart`), {
+        itemId: item.id,
         quantity: 1,
-       
       });
-      fetchCartItem(); 
-      alert("item add to cart ")
+      fetchCartItem();
+      alert("item add to cart ");
     } catch (error) {
       console.error("Error adding item to cart:", error);
     }
     dispatch(AuthAction.upDateCart(item.id));
-    setCartToad([...addToCart, item.id]);  
+    setCartToad([...addToCart, item.id]);
   };
   const addToWishList = async (e) => {
     e.stopPropagation();
     try {
-      if(!isLoggedIn) {
+      if (!isLoggedIn) {
         return;
       }
-
+      
       const userId = auth.currentUser.uid;
-      await addDoc(collection(db, userId), {
-        itemId: item.id,  
-        quantity: 1,
-       
+      
+      // Add the item to the user's wishlist collection
+      await addDoc(collection(db, `users/${userId}/wishlist`), {
+        itemId: item.id,
       });
-      fetchCartItem(); 
-      alert("item add to cart ")
+      fetchCartItem();
+      alert("item add to wishlist");
+  
+      dispatch(AuthAction.upDateWishList(item.id));
+      setAddToWish([...AddToWish, item.id]);
     } catch (error) {
-      console.error("Error adding item to cart:", error);
+      console.error("Error adding item to wishlist:", error);
     }
-    dispatch(AuthAction.upDateWishList(item.id));
-    setAddToWish([...AddToWish, item.id]);
-    
   };
-  const removeToCart = (id, e) => {
+  
+  const removeToCart = async (id, e) => {
+    e.stopPropagation();
+
     const object = addToCart.filter((obj) => obj !== id.id);
     dispatch(AuthAction.removeColor(id.id));
     dispatch(AuthAction.removeData(id.id));
@@ -135,50 +144,48 @@ const CustomCard = (props) => {
     setSelectedColor(object);
     setSelectedSize(object);
     setQuantityCart(object);
-    e.stopPropagation();
   };
 
-  const removeToWish = (e, id) => {
+  const removeToWish = async (e, id) => {
+    e.stopPropagation();
     const object = WishList.filter((obj) => obj !== id.id);
-
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
-    e.stopPropagation();
+   
   };
 
   return (
     <div className="d-flex  col-3 " key={index}>
       <div
-        className="position-relative d-flex flex-column card_main"
+        className=" position-relative d-flex flex-column card_main"
         onClick={() => onclickMyOrder(item)}
       >
         <div
           className="images  position-absolute d-flex flex-column align-items-center justify-content-center"
           style={{ right: "25px", background: "transparent" }}
-        > {isLoggedIn && (
-          
-          !wishListed ? 
-          (
-            <button
-              style={{ border: "none", background: "transparent" }}
-              onClick={(e) => addToWishList(e, item)}
-            >
-              <Blnkheart />
-            </button>
-          ) : (
-            <button
-              style={{ border: "none", background: "transparent" }}
-              onClick={(e) => removeToWish(e, item)}
-            >
-              <Heart />
-            </button>
-          )
-        )}
+        >
+          {" "}
+          {isLoggedIn &&
+            (!wishListed ? (
+              <button
+                style={{ border: "none", background: "transparent" }}
+                onClick={(e) => addToWishList(e, item)}
+              >
+                <Blnkheart />
+              </button>
+            ) : (
+              <button
+                style={{ border: "none", background: "transparent" }}
+                onClick={(e) => removeToWish(e, item)}
+              >
+                <Heart />
+              </button>
+            ))}
           <Eyes />
         </div>
         {item.button && (
           <button
-            className="btn  btn-success d-flex  position-absolute m-3"  
+            className="btn  btn-success d-flex  position-absolute m-3"
             style={{ background: item.buttoncolor, border: "0" }}
           >
             {item.button}{" "}
@@ -194,10 +201,8 @@ const CustomCard = (props) => {
           </div>
         </div>
         <div className="add mb-3">
-      
-          {isLoggedIn && 
-          (
-            !cartAdded ? (
+          {isLoggedIn &&
+            (!cartAdded ? (
               <button
                 className="btn btn-dark "
                 onClick={(e) => addToCartbtn(e, item)}
@@ -211,8 +216,7 @@ const CustomCard = (props) => {
               >
                 Remove To Cart
               </button>
-            )
-          )}
+            ))}
         </div>
         <div className="games">
           <div className="d-flex flex-column  align-items-start">
@@ -251,5 +255,4 @@ const CustomCard = (props) => {
 
 export default CustomCard;
 
-
-// item  can  stored  database using  uid for firestore  databse 
+//  how to wishlist data can store and remove data from firestore data base 

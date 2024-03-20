@@ -3,7 +3,7 @@ import Images from '../utils/images'
 import { Bag, Cancleicon, LogOut, Review, Uaericon } from '../asset/images/svg'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { auth, database } from '../config'
+import { auth} from '../config'
 import { onAuthStateChanged } from 'firebase/auth'
 
 const Header = () => {
@@ -94,14 +94,18 @@ const Header = () => {
               <img src={Images.search} alt='' width="20" height="20" style={{ marginRight: "15px" }} />
             </div>
             <div className='img g-2 '>
+            {isLoggedIn && (
               <div onClick={addToWishList} className='position-relative' style={{ cursor: "pointer" }} >
                 <img src={Images.vector} width="35" height="35" alt='' />
                 {WishList.length > 0 && <div className='position-absolute wishlist-count' >{WishList.length}</div>}
               </div>
+            )}
+             {isLoggedIn && (
               <div onClick={onclickCart} style={{ cursor: "pointer" }} className='position-relative'>
                 <img src={Images.cart1} width="35" height="35" alt='' />
                 {addToCart.length > 0 && <div className='position-absolute wishlist-count' >{addToCart.length}</div>}
               </div>
+             )}
               <div className="dropdown">
                 <a className="btn " href="/" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src={Images.user} width="35" height="35" alt='' />
@@ -142,4 +146,3 @@ const Header = () => {
 
 export default Header
 
-// get the loggedin user name will  print a sign up place in firebase 

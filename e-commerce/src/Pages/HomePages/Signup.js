@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Component/Navbar";
 import Header from "../../Component/header";
@@ -20,24 +21,30 @@ const auth = getAuth(app);
 
 const Signup = () => {
   const home = useNavigate();
-
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [userError, setUserError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [login, setLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setIsLoggedIn(!!user);
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
     });
   }, []);
 
   const validationCheck = () => {
     if (!userName && !password && !email) {
-      setUserError("Please enter your value true ");
-
+      setUserError("Please enter your user name");
+      setPasswordError("Please enter your password");
+      setEmailError("Please enter your user email");
       return false;
     }
     if (!userName) {
@@ -45,11 +52,11 @@ const Signup = () => {
       return false;
     }
     if (!password) {
-      setUserError("Please enter your password");
+      setPasswordError("Please enter your password");
       return false;
     }
     if (!email) {
-      setUserError("Please enter your user email");
+      setEmailError("Please enter your user email");
       return false;
     }
     return true;
@@ -60,6 +67,8 @@ const Signup = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
+        console.log("userCredential", userCredential);
+        home("/");
         e.preventDefault();
         const User = {
           method: "POST",
@@ -71,12 +80,6 @@ const Signup = () => {
             email,
           }),
         };
-        const userData = { userName, email };
-        await fetch(userData);
-        console.log("userData", userData);
-        console.log("User signed in:", userCredential);
-
-        home("/");
 
         const res = fetch(
           "https://main-e-commerec-default-rtdb.firebaseio.com/UserData.json",
@@ -84,14 +87,11 @@ const Signup = () => {
         );
         console.log(res);
         if (res) {
-          const userData = { userName, email };
-          await fetch(userData);
-          console.log("userData", userData);
           alert("Message Send");
         } else {
           alert("Error Occurred");
         }
-        signInWithEmailAndPassword(auth, userName, email, password)
+        signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             const user = userCredential.user;
           })

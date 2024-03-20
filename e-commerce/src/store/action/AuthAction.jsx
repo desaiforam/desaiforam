@@ -5,7 +5,6 @@ const initialState = {
   addToCart: [],
   listOfProduct: [],
   addCartItem: [],
-  fireBase :[],
 };
 
 const authAction = createSlice({
@@ -22,12 +21,9 @@ const authAction = createSlice({
       state.WishList = [...state.WishList, action.payload];
     },
     removeToCart: (state, action) => {
-      console.log("action.payload", action.payload);
       state.addToCart = action.payload;
     },
-    upDateUserCart:(state,action) =>{
-      state.fireBase = action.payload
-    },
+  
     removeData: (state, action) => {
       if (!action.payload) {
         state.addToCart = [];

@@ -12,7 +12,8 @@ import QuantityEvent from "../../Component/QuantityEvent";
 import { Blnkheart, Heart, Refresh, Truck } from "../../asset/images/svg";
 import ColorSelector from "../../Component/ColorSelector";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../config";
+import { auth, db } from "../../config";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 const ProductDetails = (props) => {
   const location = useLocation();
@@ -52,10 +53,42 @@ const ProductDetails = (props) => {
         })
         return () => unsubscribe();
       },[])
-  const addToCartbtn = () => {
-    dispatch(AuthAction.upDateCart(location.state.id));
-    setCartToad([...addToCart, location.state.id]);
-  };
+      const fetchCartItem = async () => {
+        try {
+          if(!isLoggedIn) return;
+          const userId  = auth.currentUser.uid
+          const querySnapshot = await getDocs(collection(db ,userId));
+          const cartItems = [];
+          querySnapshot.forEach((doc) => {
+            cartItems.push(doc.data());
+          });
+          setCartToad(cartItems);
+        } catch (error) {
+          console.error("Error fetching cart items:", error);
+        }
+      };
+      const addToCartbtn = async (e) => {
+        
+        try {
+          if(!isLoggedIn) {
+            return;
+          }
+          const userId = auth.currentUser.uid;
+    
+    
+          await addDoc(collection(db, userId), {
+            itemId: location.state.id,  
+            quantity: 1,
+           
+          });
+          fetchCartItem(); 
+          alert("item add to cart ")
+        } catch (error) {
+          console.error("Error adding item to cart:", error);
+        }
+        dispatch(AuthAction.upDateCart(location.state.id));
+        setCartToad([...addToCart, location.state.id]);  
+      };
   const removeToCart = () => {
     const object = addToCart.filter((obj) => obj !== location.state.id);
     dispatch(AuthAction.removeColor(location.state.id));
@@ -129,7 +162,7 @@ const ProductDetails = (props) => {
                 />
               </div>
               <div className="mainhavic">
-                <img src={product.image} alt="" height="50%" width="100%" />
+                <img src={product.image} alt="" height="50%" width="90%" />
               </div>
             </div>
             <div className="col-5 gap-5">

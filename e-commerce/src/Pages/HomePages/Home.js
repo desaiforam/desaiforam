@@ -25,8 +25,10 @@ import {  getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config";
 
-
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const Home = () => {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { listOfProduct} = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
@@ -35,6 +37,7 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
+      //  "https://mocki.io/v1/a5299b61-f23b-4507-9868-970d07f998dc"
         "https://mocki.io/v1/553960a9-f177-4b4b-a1d2-48fb57c5ebd7"
       );
       const data = response.data.map((product) => ({
@@ -77,7 +80,7 @@ const Home = () => {
     </>
   );
 };
-
+export const database = getAuth(app);
 export default Home;
 
 // without loggedin user can not add a product to cart 

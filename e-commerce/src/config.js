@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
 import { getDatabase } from "firebase/database";
@@ -19,5 +20,5 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 const db = getFirestore(app);
 
-export { app, auth, database, db };
+export { app, auth, database, db, Logout };
 export default firebaseConfig;
