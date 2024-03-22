@@ -164,9 +164,6 @@ const CustomCard = (props) => {
     setSelectedSize(object);
     setQuantityCart(object);
   };
-
-
-
 const removeToWish = async (e, id) => {
     e.stopPropagation();
     const userId = auth.currentUser.uid;
@@ -200,9 +197,9 @@ const removeToWish = async (e, id) => {
   
 
   return (
-    <div className="d-flex  col-3 " key={index}>
+    <div className="d-flex col-3" key={index}>
       <div
-        className=" position-relative d-flex flex-column card_main"
+        className=" position-relative d-flex flex-column card_main "
         onClick={() => onclickMyOrder(item)}
       >
         <div
@@ -240,7 +237,7 @@ const removeToWish = async (e, id) => {
           <div className="img">
             <img
               src={item?.image}
-              style={{ height: "90%", width: "90%" }}
+              
               alt=""
             />
           </div>

@@ -13,9 +13,9 @@ const CustomCard2 = (props) => {
         {/* <img  src={items.img} className='hover d-flex justify-content-start' height="60" width="60" /> */}
         {items.img}
        
-        <h4 className='value'>
+        <span className='value'>
           {items.value}
-        </h4>
+        </span>
       </div>
     </div>
 

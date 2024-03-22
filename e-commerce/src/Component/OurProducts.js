@@ -11,7 +11,8 @@ const Ourproduct = ({ posts }) => {
         <div>
 
             <div className='container flex-column '>
-                <div className='ourproduct' >
+
+                <div className='outproduce ' >
                     <div className='name flex-row w-100'>
                         <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="20" height="40" rx="4" fill="#DB4444" />
@@ -28,12 +29,12 @@ const Ourproduct = ({ posts }) => {
                         </div>
                     </div>
                 </div>
-                <div className='container '>
-                    <div className='ourproduct CustomCard'>
+                <div className='container d-flex flex-column '>
+                    <div className='outproduce CustomCard'>
                         <div className='row m-0'>
                             {posts.map((item, index) => {
                                 return (
-                                    // <ProductCard item={item} index={index} />
+                                   
                                      <CustomCard item={item} index={index}  key={index}/>
                                 );
                             })}
