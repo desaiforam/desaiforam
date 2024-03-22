@@ -128,10 +128,31 @@ const CustomCard = (props) => {
       console.error("Error adding item to wishlist:", error);
     }
   };
-
-
-  const removeToCart = async (id, e) => {
+  const removeToCart = async (e, id) => {
     e.stopPropagation();
+    const userId = auth.currentUser.uid;
+    try {
+      const wishRef = collection(db, `users/${userId}/addtocart`);
+      const snapshot = await getDocs(wishRef);
+  
+      
+      let docToDelete;
+      snapshot.forEach((doc) => {
+        if (doc.data().itemId === id.id) {
+          docToDelete = doc.ref;
+        }
+      });
+  
+      if (docToDelete) {
+        await deleteDoc(docToDelete);
+        console.log("addToCart item removed from Firestore");
+      } else {
+        console.error("addToCart item not found in Firestore");
+      }
+    } catch (error) {
+      console.error("Error removing addToCart item from Firestore:", error);
+    }
+  
     const object = addToCart.filter((obj) => obj !== id.id);
     dispatch(AuthAction.removeColor(id.id));
     dispatch(AuthAction.removeData(id.id));
@@ -143,12 +164,40 @@ const CustomCard = (props) => {
     setSelectedSize(object);
     setQuantityCart(object);
   };
-  const removeToWish = async (e, id) => {
-     e.stopPropagation();
+
+
+
+const removeToWish = async (e, id) => {
+    e.stopPropagation();
+    const userId = auth.currentUser.uid;
+    try {
+      const wishRef = collection(db, `users/${userId}/wishlist`);
+      const snapshot = await getDocs(wishRef);
+  
+      
+      let docToDelete;
+      snapshot.forEach((doc) => {
+        if (doc.data().itemId === id.id) {
+          docToDelete = doc.ref;
+        }
+      });
+  
+      if (docToDelete) {
+        await deleteDoc(docToDelete);
+        console.log("Wishlist item removed from Firestore");
+      } else {
+        console.error("Wishlist item not found in Firestore");
+      }
+    } catch (error) {
+      console.error("Error removing wishlist item from Firestore:", error);
+    }
+  
     const object = WishList.filter((obj) => obj !== id.id);
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
   };
+
+  
 
   return (
     <div className="d-flex  col-3 " key={index}>

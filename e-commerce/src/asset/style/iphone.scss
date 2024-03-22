@@ -1,63 +1,164 @@
+//{
+// .list {
+//     text-decoration: none;
+//     text-align: left;
+//     list-style: none;
+//     color: black;
+//     li {
+//         width: 198px;
+//         height: 40px;
+//         display: flex;
+//         align-items: center;
+//     }
+// }
+// .row-iphone {
+//     color: white;
+//     align-items: center;
+//     text-align: left;
+//     .col-sm-3 {
+//         // width: 25%;
+//         margin-left: 120px;
+//         background-color: black;
+//         .a {
+//             text-decoration: none;
+//             color: white;
+//         }
+//         .iphone {
+//             display: flex;
+//             align-items: center;
+//             text-align: center;
+//             margin-bottom: 49px;
+//         }
+//     }
+// }
+// .line {
+//     .line-height {
+//         height: 400px;
+//         width: 1px;
+//     }
+// }
+// .iphone14 {
+//     background: black;
+//     width: 100%;
+//     color: white;
+//     height: 400px;
+//     // .exclusive {
+//     // }
+//     .iphone-14pro {
+//         display: flex;
+//         justify-content: flex-start;
+//         align-items: center;
+//         gap: 10px;
+//         img {
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             padding: 30px;
+//         }
+//     }
+//     .a-link {
+//         color: #fff;
+//         text-align: left;
+//         h2 {
+//             font-size: 55px;
+//             text-align: left;
+//         }
+//     }
+// }
+
+// //convert a responsive scss with bootstrap
+//}
+
+
+
+ @import "~bootstrap/scss/bootstrap";
+
+
 .list {
-    text-decoration: none;
-    text-align: left;
-    list-style: none;
-    color: black;
-    li{
-        // margin-bottom: 5px;
-        width: 198px;
-        height: 40px;
+  text-decoration: none;
+  list-style: none;
+  padding: 0; 
+
+  li {
+    display: flex;
+    align-items: center;
+    width: 198px; 
+    height: 40px; 
+
+    a {
+      text-decoration: none;
+      color: black; 
     }
+  }
 }
-.row-iphone{
-            // background-color: black;
-            color: white;
-            margin: 20px;
-            align-items: center;
-            text-align: left;
-    .col-sm-3{
-        // width: 25%;
-        margin-left: 120px;
-        background-color: black;
-        .a{
-            text-decoration: none;
-            color: white;
-        }
-            .iphone {
-                display: flex;
-                align-items: center;
-                text-align: center;
-                margin-bottom: 49px;
-               
-            }
-        }
-    } 
-    .line{
-        .line-height {
-            height: 400px;
-            width: 1px;
-        };
-    }
-.iphone14{
-    background: black;
-    width: 100%;
-    color: white;
-     .exclusive{
-        padding: 70px;
-     }
-    .iphone{
+
+
+.row-iphone {
+  @include media-breakpoint-up(sm) { 
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+
+    .col-sm-3 { 
+      width: 25%; 
+      margin-left: auto; 
+      margin-right: auto; 
+      background-color: black;
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .iphone {
         display: flex;
-        justify-content: flex-start;
         align-items: center;
-        gap: 10px;
+        text-align: center;
+        margin-bottom: 49px;
+      }
     }
-    .a-link{
-            color: #fff;
-            text-align: left;
-        h2{
-           font-size: 55px;
-           text-align: left;
-        }
-    }
+  }
 }
+
+
+.line {
+  .line-height {
+    height: 400px;
+    width: 1px;
+    background-color: #ddd; // Use Bootstrap light gray color
+  }
+}
+
+// iPhone 14 section (using Bootstrap grid system)
+.iphone14 {
+  background: black;
+  width: 100%;
+  color: white;
+  height: 400px;
+
+  .iphone-14pro {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px; // Adjust padding as needed
+    }
+  }
+
+  .a-link {
+    color: #fff;
+    text-align: left;
+
+    h2 {
+      font-size: 55px;
+      text-align: left;
+    }
+  }
+}
+
 

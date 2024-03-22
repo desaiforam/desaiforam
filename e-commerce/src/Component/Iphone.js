@@ -1,5 +1,6 @@
 import React from 'react'
 import Images from '../utils/images'
+import { RightDrop } from '../asset/images/svg'
 const Iphone = () => {
   return (
     <>
@@ -7,15 +8,15 @@ const Iphone = () => {
       <div className="container d-flex gap-3">
     <div className='row row-iphone'>
         <ul className='list'>
-            <div className='d-flex align-items-center'>
+            <div className='d-flex align-items-center justify-content-center'>
             <li>Woman’s Fashion 
             </li>
-              <img src={Images.dropdown} height="15" width="15" className='mt-2' alt=''/>
+             <RightDrop />
             </div>
-            <div className='d-flex align-items-center'>
+            <div className='d-flex align-items-center justify-content-center'>
             <li>Men’s Fashion            
             </li>
-            <img src={Images.dropdown} height="15" width="15" className='mt-2' alt=''/>
+            <RightDrop />
             </div>
             <li>Electronics</li>
             <li>Home & Lifestyle</li>
@@ -31,7 +32,7 @@ const Iphone = () => {
           </div>
       <div className='iphone14'>
             <div className="exclusive ">
-            <div className='row d-flex align-items-center g-3'>
+            <div className='row d-flex align-items-center justify-content-center g-3'>
            <div className='col-5'>
             <div className='iphone'>
             <img src={Images.symbol} height="49" width="40" alt=''/>
@@ -66,3 +67,9 @@ const Iphone = () => {
 }
 
 export default Iphone
+
+// firestore database will success fully add and remove a addTocart and wishlidt data
+
+
+// Will successfully add and remove cart and wishlist data to the database in FireStore
+//The database in FireStore will successfully add and remove cart and wishlist data
