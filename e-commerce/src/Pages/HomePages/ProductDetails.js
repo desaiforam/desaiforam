@@ -199,7 +199,7 @@ const ProductDetails = (props) => {
           </p>
           <div className="row">
             <div className="col-7  d-flex g-2">
-              <div className="setofimages mt-5 g-3">
+              <div className="set-of-images mt-5 g-3">
                 <img
                   className="mb-5"
                   src={product.image}
@@ -229,13 +229,13 @@ const ProductDetails = (props) => {
                   alt=""
                 />
               </div>
-              <div className="mainhavic">
+              <div className="main-havit">
                 <img src={product.image} alt="" height="50%" width="90%" />
               </div>
             </div>
             <div className="col-5 gap-5">
               <>
-                <div className="havicgamepad">
+                <div className="havit-gamepad">
                   <div className="stock d-flex flex-column  align-items-baseline">
                     <span className="d-flex align-items-baseline">
                       {product.title}
@@ -265,7 +265,7 @@ const ProductDetails = (props) => {
                       </span>
                     </div>
                   </div>
-                  <div className="havice mt-3">
+                  <div className="havit mt-3">
                     <span>${product.price} </span>
                     <p className="sensitive">{product.description}</p>
                   </div>
@@ -358,8 +358,8 @@ const ProductDetails = (props) => {
               </div>
 
               <div className="delivery mt-5">
-                <div className="freedelivery">
-                  <div className="svglogo">
+                <div className="free-delivery">
+                  <div className="svg-logo">
                     <Truck />
                   </div>
                   <div className="postal">
@@ -370,8 +370,8 @@ const ProductDetails = (props) => {
                   </div>
                 </div>
                 <hr className="opacity: 40 m-0"></hr>
-                <div className="freedelivery">
-                  <div className="svglogo">
+                <div className="free-delivery">
+                  <div className="svg-logo">
                     <Refresh />
                   </div>
                   <div className="postal">
@@ -397,4 +397,4 @@ const ProductDetails = (props) => {
 
 export default ProductDetails;
 
-// how to apply  loader in add to cart  and remove to cart btn
+// 

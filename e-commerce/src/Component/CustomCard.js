@@ -255,7 +255,7 @@ const CustomCard = (props) => {
                 onClick={(e) => addToCartbtn(e, item)}
                 disabled={isLoading}
               >
-                {isLoading ? ( <ReactLoader type="Oval" color="#000" height={5} width={5} />  ) : ( "Add To Cart" )}
+                {isLoading ? ( <ReactLoader  type="ball-scale-multiple" />  ) : ( "Add To Cart" )}
               </button>
             ) : (
               <button
@@ -264,7 +264,7 @@ const CustomCard = (props) => {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <ReactLoader type="oval" color="#000" height={5} width={5} />
+                  <ReactLoader type="ball-scale-multiple" />
                 ) : (
                   "Remove To Cart"
                 )}
@@ -303,3 +303,10 @@ const CustomCard = (props) => {
   );
 };
 export default CustomCard;
+
+
+
+//add to cart item it's cannot be removed from cart ,remove item when occurs the user removes in react js 
+// get the add to cat and wishlist data  can store firestore using localstore  
+
+//firestore data can store a localstoreg

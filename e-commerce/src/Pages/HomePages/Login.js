@@ -149,7 +149,7 @@ const Login = () => {
                     <div className="btn" 
                     onClick={onLogin}
                     >
-                       {isLoading ? <ReactLoader type="Oval" color="#000" height={24} width={24} /> : "Log in"}
+                       {isLoading ? <ReactLoader type="ball-scale-multiple" /> : "Log in"}
                     
                     </div>
                   </div>
