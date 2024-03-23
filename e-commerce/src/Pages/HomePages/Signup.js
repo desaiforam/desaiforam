@@ -31,14 +31,15 @@ const Signup = () => {
   const [login, setLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState([]);
-  
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLoggedIn(true);
+        localStorage.setItem("user",JSON.stringify(user));
       } else {
         setIsLoggedIn(false);
+        localStorage.removeItem("user");
       }
     });
   }, []);
@@ -65,8 +66,7 @@ const Signup = () => {
     return true;
   };
 
-  const onsubmit = async (e) => {
-    
+const onsubmit = async (e) => {
     if (!validationCheck()) return;
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
@@ -109,16 +109,15 @@ const Signup = () => {
         alert(error.message);
         setLogin(true);
       })
-      .finally(() =>{
-        setIsLoading(false)
+      .finally(() => {
+        setIsLoading(false);
       });
   };
-
-  setTimeout(() =>{
+  setTimeout(() => {
     setIsLoading(false);
-  },100)
+  }, 100);
 
-  return (
+return (
     <>
       <Navbar isLoggedIn={isLoggedIn} />
       <Header />
@@ -141,7 +140,7 @@ const Signup = () => {
                   >
                     Create an account
                   </span>
-                
+
                   <span>Enter your details below</span>
                 </div>
                 <div className="form__group field">
@@ -170,12 +169,18 @@ const Signup = () => {
                 </div>
                 <div className="login">
                   <div className="button-create">
-                    <button className="btn" onClick={onsubmit}
-                    >
-                      {isLoading ? <ReactLoader type="Oval" color="#000" height={24} width={24} /> : "Create Account"}
-                      
+                    <button className="btn" onClick={onsubmit}>
+                      {isLoading ? (
+                        <ReactLoader
+                          type="Oval"
+                          color="#000"
+                          height={24}
+                          width={24}
+                        />
+                      ) : (
+                        "Create Account"
+                      )}
                     </button>
-                    
                   </div>
                   <div className="google mt-4 mb-5 ">
                     <button className="btn btn-googl-sing">
@@ -201,7 +206,7 @@ const Signup = () => {
     </>
   );
 };
-
 export const database = getAuth(app);
 export default Signup;
 
+// get store a LoggedIn user data will also stored in a local store

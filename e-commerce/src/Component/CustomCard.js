@@ -306,7 +306,9 @@ export default CustomCard;
 
 
 
-//add to cart item it's cannot be removed from cart ,remove item when occurs the user removes in react js 
-// get the add to cat and wishlist data  can store firestore using localstore  
+// 
 
+
+//add to cart item it's cannot be removed from cart ,remove item when occurs the user removes in react js 
+// get the add to cat and wishlist data  can store firestore using localstoreg
 //firestore data can store a localstoreg

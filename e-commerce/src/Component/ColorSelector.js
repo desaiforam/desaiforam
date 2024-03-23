@@ -19,9 +19,9 @@ function ColorSelector(props) {
  
   return (
     <div>
-      <div className="inputbutton">
+      <div className="input-button">
         Colors:
-        <div className="butinput d-flex gap-3">
+        <div className="but-input d-flex gap-3">
           <div
             className={`color-main ${colorSelect === "Sky" && "selected-color"}`}
             onClick={() => handleColorClick("Sky")}

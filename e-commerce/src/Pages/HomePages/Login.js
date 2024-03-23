@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../Component/Navbar";
 import Header from "../../Component/header";
 import Footer from "../../Component/Footer";
 import Images from "../../utils/images";
 import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +23,17 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+        localStorage.setItem("user",JSON.stringify(user));
+      } else {
+        setIsLoggedIn(false);
+        localStorage.removeItem("user");
+      }
+    });
+  }, []);
   const validationCheck = () => {
     if (!email && !password) {
       setUserError("Please enter your email name");
@@ -172,4 +183,4 @@ const Login = () => {
 export const auth = getAuth(app);
 export default Login;
   
- // set a loader for a Log in button
+ // 

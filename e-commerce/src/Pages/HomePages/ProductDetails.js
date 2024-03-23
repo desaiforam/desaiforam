@@ -15,7 +15,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config";
 import { addDoc, collection, deleteDoc, getDocs } from "firebase/firestore";
 import ReactLoader from "react-loader";
-import { set } from "firebase/database";
 
 const ProductDetails = (props) => {
   const location = useLocation();
@@ -90,7 +89,6 @@ const ProductDetails = (props) => {
         quantity: 1,
       });
       fetchCartItem();
-      alert("item add to cart ");
       dispatch(AuthAction.upDateCart(location.state.id));
       setCartToad([...addToCart, location.state.id]);
     } catch (error) {
@@ -235,7 +233,7 @@ const ProductDetails = (props) => {
             </div>
             <div className="col-5 gap-5">
               <>
-                <div className="havit-gamepad">
+                <div className="havit-gamed">
                   <div className="stock d-flex flex-column  align-items-baseline">
                     <span className="d-flex align-items-baseline">
                       {product.title}
@@ -397,4 +395,7 @@ const ProductDetails = (props) => {
 
 export default ProductDetails;
 
-// 
+// get the  value can store a local store
+// get the value can also seen by local store
+// get the value can set for the Logged In user 
+

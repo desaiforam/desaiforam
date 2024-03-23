@@ -40,15 +40,17 @@ const Home = () => {
     try {
       const response = await axios.get(
        "https://mocki.io/v1/a5299b61-f23b-4507-9868-970d07f998dc"
-       // "https://mocki.io/v1/553960a9-f177-4b4b-a1d2-48fb57c5ebd7"
+     
       );
       const data = response.data.map((product) => ({
         ...product,
       }));
 
       dispatch(AuthAction.addToProduct(data));
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
+      setIsLoading(false);
     }
   };
   
@@ -59,7 +61,7 @@ const Home = () => {
 
   return (
     <>
-    {isLoading ? <ReactLoader /> :fetchData }
+    
       <Navbar isLoggedIn={isLoggedIn}/>
       {listOfProduct && <Header posts={listOfProduct} />}
       <div className="container mt-0">
@@ -86,4 +88,3 @@ const Home = () => {
 export const database = getAuth(app);
 export default Home;
 
-// without loggedin user can not add a product to cart 
