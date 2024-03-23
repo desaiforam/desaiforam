@@ -9,6 +9,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config";
 import { useNavigate } from "react-router-dom";
+import ReactLoader from "react-loader";
 
 const app = initializeApp(firebaseConfig);
 // const auth = getAuth(app);
@@ -19,6 +20,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [userError, setUserError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const validationCheck = () => {
     if (!email && !password) {
@@ -40,6 +43,7 @@ const Login = () => {
 
   
   const onLogin = async (e) => {
+    setIsLoading(true)
     if (!validationCheck()) return;
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
@@ -65,16 +69,18 @@ const Login = () => {
       );
       console.log(res);
       if (res) {
-        alert("Message Send");
+        // alert("Message Send");
       } else {
-        alert("Error Occurred");
+        //alert("Error Occurred");
       }
       })
       .catch((error) => {
         alert(error.code);
         alert(error.message);
+      })
+      .finally(() =>{
+        setIsLoading(false)
       });
-
   };
 
   return (
@@ -143,7 +149,8 @@ const Login = () => {
                     <div className="btn" 
                     onClick={onLogin}
                     >
-                      Log in
+                       {isLoading ? <ReactLoader type="Oval" color="#000" height={24} width={24} /> : "Log in"}
+                    
                     </div>
                   </div>
                   <div className="password">
@@ -165,4 +172,4 @@ const Login = () => {
 export const auth = getAuth(app);
 export default Login;
   
- 
+ // set a loader for a Log in button

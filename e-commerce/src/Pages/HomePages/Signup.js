@@ -15,6 +15,7 @@ import firebaseConfig from "../../config";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../firebase";
 import { Google } from "../../asset/images/svg";
+import ReactLoader from "react-loader";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -29,6 +30,8 @@ const Signup = () => {
   const [emailError, setEmailError] = useState("");
   const [login, setLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState([]);
+  
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -63,8 +66,9 @@ const Signup = () => {
   };
 
   const onsubmit = async (e) => {
+    
     if (!validationCheck()) return;
-
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         console.log("userCredential", userCredential);
@@ -87,7 +91,7 @@ const Signup = () => {
         );
         console.log(res);
         if (res) {
-          alert("Message Send");
+          //alert("Message Send");
         } else {
           alert("Error Occurred");
         }
@@ -104,8 +108,15 @@ const Signup = () => {
         alert(error.code);
         alert(error.message);
         setLogin(true);
+      })
+      .finally(() =>{
+        setIsLoading(false)
       });
   };
+
+  setTimeout(() =>{
+    setIsLoading(false);
+  },100)
 
   return (
     <>
@@ -130,6 +141,7 @@ const Signup = () => {
                   >
                     Create an account
                   </span>
+                
                   <span>Enter your details below</span>
                 </div>
                 <div className="form__group field">
@@ -158,9 +170,12 @@ const Signup = () => {
                 </div>
                 <div className="login">
                   <div className="button-create">
-                    <button className="btn" onClick={onsubmit}>
-                      {isLoggedIn ? "Sign up" : "Create Account"}
+                    <button className="btn" onClick={onsubmit}
+                    >
+                      {isLoading ? <ReactLoader type="Oval" color="#000" height={24} width={24} /> : "Create Account"}
+                      
                     </button>
+                    
                   </div>
                   <div className="google mt-4 mb-5 ">
                     <button className="btn btn-googl-sing">
@@ -190,4 +205,3 @@ const Signup = () => {
 export const database = getAuth(app);
 export default Signup;
 
-// The recommended way to get the current username  is by setting an observer on the Auth object:

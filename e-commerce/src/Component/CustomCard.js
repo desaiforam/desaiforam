@@ -9,6 +9,7 @@ import { FaStar } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config";
+import ReactLoader from "react-loader";
 import {
   addDoc,
   collection,
@@ -16,7 +17,6 @@ import {
   doc,
   getDocs,
 } from "firebase/firestore";
-
 
 const CustomCard = (props) => {
   const { item, index, listOfProduct } = props;
@@ -31,6 +31,7 @@ const CustomCard = (props) => {
   const [AddToWish, setAddToWish] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState();
+  const [isLoading, setIsLoading] = useState([]);
   const product = location?.state;
 
   useEffect(() => {
@@ -48,11 +49,13 @@ const CustomCard = (props) => {
     return () => unsubscribe();
   }, []);
 
+
+
   const fetchCartItem = async () => {
     try {
       if (!isLoggedIn) return;
       const userId = auth.currentUser.uid;
-        
+
       const querySnapshot = await getDocs(collection(db, userId));
       const cartItems = [];
       querySnapshot.forEach((doc) => {
@@ -70,6 +73,9 @@ const CustomCard = (props) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   };
 
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 500);
   const cartAdded =
     addToCart.length > 0
       ? addToCart.find((itemed) => {
@@ -90,11 +96,11 @@ const CustomCard = (props) => {
   };
   const addToCartbtn = async (e) => {
     e.stopPropagation();
+    setIsLoading(true);
     try {
       if (!isLoggedIn) {
         return;
       }
-
       const userId = auth.currentUser.uid;
 
       await addDoc(collection(db, `users/${userId}/addtocart`), {
@@ -102,15 +108,18 @@ const CustomCard = (props) => {
         quantity: 1,
       });
       fetchCartItem();
-      alert("item add to cart ");
+      
+      dispatch(AuthAction.upDateCart(item.id));
+      setCartToad([...addToCart, item.id]);
     } catch (error) {
       console.error("Error adding item to cart:", error);
+    } finally {
+      setIsLoading(false);
     }
-    dispatch(AuthAction.upDateCart(item.id));
-    setCartToad([...addToCart, item.id]);
   };
   const addToWishList = async (e) => {
     e.stopPropagation();
+    setIsLoading(true);
     try {
       if (!isLoggedIn) {
         return;
@@ -120,8 +129,8 @@ const CustomCard = (props) => {
         itemId: item.id,
       });
       fetchCartItem();
-      alert("item add to wishlist");
-  
+     
+
       dispatch(AuthAction.upDateWishList(item.id));
       setAddToWish([...AddToWish, item.id]);
     } catch (error) {
@@ -130,19 +139,19 @@ const CustomCard = (props) => {
   };
   const removeToCart = async (e, id) => {
     e.stopPropagation();
+    setIsLoading(true);
     const userId = auth.currentUser.uid;
     try {
       const wishRef = collection(db, `users/${userId}/addtocart`);
       const snapshot = await getDocs(wishRef);
-  
-      
+
       let docToDelete;
       snapshot.forEach((doc) => {
         if (doc.data().itemId === id.id) {
           docToDelete = doc.ref;
         }
       });
-  
+
       if (docToDelete) {
         await deleteDoc(docToDelete);
         console.log("addToCart item removed from Firestore");
@@ -152,7 +161,7 @@ const CustomCard = (props) => {
     } catch (error) {
       console.error("Error removing addToCart item from Firestore:", error);
     }
-  
+
     const object = addToCart.filter((obj) => obj !== id.id);
     dispatch(AuthAction.removeColor(id.id));
     dispatch(AuthAction.removeData(id.id));
@@ -164,21 +173,21 @@ const CustomCard = (props) => {
     setSelectedSize(object);
     setQuantityCart(object);
   };
-const removeToWish = async (e, id) => {
+  const removeToWish = async (e, id) => {
     e.stopPropagation();
+    setIsLoading(true);
     const userId = auth.currentUser.uid;
     try {
       const wishRef = collection(db, `users/${userId}/wishlist`);
       const snapshot = await getDocs(wishRef);
-  
-      
+
       let docToDelete;
       snapshot.forEach((doc) => {
         if (doc.data().itemId === id.id) {
           docToDelete = doc.ref;
         }
       });
-  
+
       if (docToDelete) {
         await deleteDoc(docToDelete);
         console.log("Wishlist item removed from Firestore");
@@ -188,13 +197,11 @@ const removeToWish = async (e, id) => {
     } catch (error) {
       console.error("Error removing wishlist item from Firestore:", error);
     }
-  
+
     const object = WishList.filter((obj) => obj !== id.id);
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
   };
-
-  
 
   return (
     <div className="d-flex col-3" key={index}>
@@ -213,14 +220,16 @@ const removeToWish = async (e, id) => {
                 style={{ border: "none", background: "transparent" }}
                 onClick={(e) => addToWishList(e, item)}
               >
-                <Blnkheart />
+                          <Blnkheart />
+               
               </button>
             ) : (
               <button
                 style={{ border: "none", background: "transparent" }}
                 onClick={(e) => removeToWish(e, item)}
               >
-                <Heart />
+                        <Heart />
+                
               </button>
             ))}
           <Eyes />
@@ -235,11 +244,7 @@ const removeToWish = async (e, id) => {
         )}
         <div className="custard d-flex flex-d-block align-item-center m-5 justify-content-center">
           <div className="img">
-            <img
-              src={item?.image}
-              
-              alt=""
-            />
+            <img src={item?.image} alt="" />
           </div>
         </div>
         <div className="add mb-3">
@@ -248,25 +253,28 @@ const removeToWish = async (e, id) => {
               <button
                 className="btn btn-dark "
                 onClick={(e) => addToCartbtn(e, item)}
+                disabled={isLoading}
               >
-                Add To Cart
+                {isLoading ? ( <ReactLoader type="Oval" color="#000" height={5} width={5} />  ) : ( "Add To Cart" )}
               </button>
             ) : (
               <button
                 className="btn btn-dark "
                 onClick={(e) => removeToCart(e, item)}
+                disabled={isLoading}
               >
-                Remove To Cart
+                {isLoading ? (
+                  <ReactLoader type="oval" color="#000" height={5} width={5} />
+                ) : (
+                  "Remove To Cart"
+                )}
               </button>
             ))}
         </div>
         <div className="games">
           <div className="d-flex flex-column  align-items-start">
             <div className="havit">
-              <h6>
-                {/* {item.title} */}
-                {truncate(item?.title, 5, 30)}
-              </h6>
+              <h6>{truncate(item?.title, 5, 30)}</h6>
             </div>
             <div className="price">
               <span>{item.price}</span>
@@ -294,7 +302,4 @@ const removeToWish = async (e, id) => {
     </div>
   );
 };
-
 export default CustomCard;
-
-//  how to addtocart data can remove from   firestore data base 

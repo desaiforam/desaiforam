@@ -8,7 +8,6 @@ function SizeSelector(props) {
   const { id } = props;
  const selectedSize = addCartItem.find ((item) =>  item.id === id)?.size;
   const handleSizeClick = (size) => {
-   
     dispatch(AuthAction.upDateSize({ id: id, size: size }));
   };
 

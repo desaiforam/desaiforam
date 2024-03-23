@@ -24,12 +24,14 @@ import { AuthAction } from "../../store/action/AuthAction";
 import {  getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config";
+import ReactLoader from "react-loader";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const Home = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading ,setIsLoading] = useState([])
   const { listOfProduct} = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
 
@@ -37,8 +39,8 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-      //  "https://mocki.io/v1/a5299b61-f23b-4507-9868-970d07f998dc"
-        "https://mocki.io/v1/553960a9-f177-4b4b-a1d2-48fb57c5ebd7"
+       "https://mocki.io/v1/a5299b61-f23b-4507-9868-970d07f998dc"
+       // "https://mocki.io/v1/553960a9-f177-4b4b-a1d2-48fb57c5ebd7"
       );
       const data = response.data.map((product) => ({
         ...product,
@@ -57,6 +59,7 @@ const Home = () => {
 
   return (
     <>
+    {isLoading ? <ReactLoader /> :fetchData }
       <Navbar isLoggedIn={isLoggedIn}/>
       {listOfProduct && <Header posts={listOfProduct} />}
       <div className="container mt-0">

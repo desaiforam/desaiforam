@@ -17,6 +17,7 @@ const WishlistItem = () => {
       <Headers />
       <hr w-100></hr>
       <div className="container d-flex flex-column">
+       
         <div className="wishlidtcart">
           <div className="wishlist d-flex">
             <span>wishlist({WishList.length})</span>

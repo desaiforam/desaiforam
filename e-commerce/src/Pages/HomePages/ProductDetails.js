@@ -13,7 +13,9 @@ import { Blnkheart, Heart, Refresh, Truck } from "../../asset/images/svg";
 import ColorSelector from "../../Component/ColorSelector";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, getDocs } from "firebase/firestore";
+import ReactLoader from "react-loader";
+import { set } from "firebase/database";
 
 const ProductDetails = (props) => {
   const location = useLocation();
@@ -27,13 +29,18 @@ const ProductDetails = (props) => {
   const [selectedColor, setSelectedColor] = useState();
   const product = location?.state;
   const [CartToad, setCartToad] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     setAddToWish(WishList);
   }, [WishList]);
   useEffect(() => {
     setCartToad(addToCart);
   }, [addToCart]);
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 500);
   const cartAdded =
     addToCart.length > 0
       ? addToCart.find((itemed) => {
@@ -47,49 +54,73 @@ const ProductDetails = (props) => {
           return itemed === location.state.id;
         })
       : false;
-      useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) =>{
-          setIsLoggedIn(!!user);
-        })
-        return () => unsubscribe();
-      },[])
-      const fetchCartItem = async () => {
-        try {
-          if(!isLoggedIn) return;
-          const userId  = auth.currentUser.uid
-          const querySnapshot = await getDocs(collection(db ,userId));
-          const cartItems = [];
-          querySnapshot.forEach((doc) => {
-            cartItems.push(doc.data());
-          });
-          setCartToad(cartItems);
-        } catch (error) {
-          console.error("Error fetching cart items:", error);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+  const fetchCartItem = async () => {
+    try {
+      if (!isLoggedIn) return;
+      const userId = auth.currentUser.uid;
+      const querySnapshot = await getDocs(db, userId);
+      const cartItems = [];
+      querySnapshot.forEach((doc) => {
+        cartItems.push(doc.data());
+      });
+      setCartToad(cartItems);
+    } catch (error) {
+      console.error("Error fetching cart items:", error);
+    }
+  };
+  useEffect(() => {
+    fetchCartItem();
+  }, []);
+  const addToCartbtn = async (e) => {
+    try {
+      if (!isLoggedIn) {
+        return;
+      }
+      setIsLoading(true);
+      const userId = auth.currentUser.uid;
+
+      await addDoc(collection(db, `users/${userId}/addtocart`), {
+        itemId: location.state.id,
+        quantity: 1,
+      });
+      fetchCartItem();
+      alert("item add to cart ");
+      dispatch(AuthAction.upDateCart(location.state.id));
+      setCartToad([...addToCart, location.state.id]);
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const removeToCart = async () => {
+    setIsLoading(true);
+    const userId = auth.currentUser.uid;
+    try {
+      const wishRef = collection(db, `users/${userId}/addtocart`);
+      const snapshot = await getDocs(wishRef);
+      let docToDelete;
+      snapshot.forEach((doc) => {
+        if (doc.data().itemId === location.id) {
+          docToDelete = doc.ref;
         }
-      };
-      const addToCartbtn = async (e) => {
-        
-        try {
-          if(!isLoggedIn) {
-            return;
-          }
-          const userId = auth.currentUser.uid;
-    
-    
-          await addDoc(collection(db, userId), {
-            itemId: location.state.id,  
-            quantity: 1,
-           
-          });
-          fetchCartItem(); 
-          alert("item add to cart ")
-        } catch (error) {
-          console.error("Error adding item to cart:", error);
-        }
-        dispatch(AuthAction.upDateCart(location.state.id));
-        setCartToad([...addToCart, location.state.id]);  
-      };
-  const removeToCart = () => {
+      });
+
+      if (docToDelete) {
+        await deleteDoc(docToDelete);
+        console.log("addToCart item removed from Firestore");
+      } else {
+        console.error("addToCart item not found in Firestore");
+      }
+    } catch (error) {
+      console.error("Error removing addToCart item from Firestore:", error);
+    }
     const object = addToCart.filter((obj) => obj !== location.state.id);
     dispatch(AuthAction.removeColor(location.state.id));
     dispatch(AuthAction.removeData(location.state.id));
@@ -101,12 +132,49 @@ const ProductDetails = (props) => {
     setSelectedSize(object);
     setQuantityCart(object);
   };
-  const addToWishList = () => {
-    dispatch(AuthAction.upDateWishList(location.state.id));
-    setAddToWish([...AddToWish, location.state.id]);
+  const addToWishList = async () => {
+    setIsLoading(true);
+    try {
+      if (!isLoggedIn) {
+        return;
+      }
+      const userId = auth.currentUser.uid;
+      await addDoc(collection(db, `users/${userId}/wishlist`), {
+        itemId: location.state.id,
+      });
+      fetchCartItem();
+      alert("item add to wishlist");
+
+      dispatch(AuthAction.upDateWishList(location.state.id));
+      setAddToWish([...AddToWish, location.state.id]);
+    } catch (error) {
+      console.error("Error adding item to wishlist:", error);
+    }
   };
 
-  const removeToWish = () => {
+  const removeToWish = async () => {
+    setIsLoading(true);
+    const userId = auth.currentUser.uid;
+    try {
+      const wishRef = collection(db, `users/${userId}/wishlist`);
+      const snapshot = await getDocs(wishRef);
+
+      let docToDelete;
+      snapshot.forEach((doc) => {
+        if (doc.data().itemId === location.state.id) {
+          docToDelete = doc.ref;
+        }
+      });
+
+      if (docToDelete) {
+        await deleteDoc(docToDelete);
+        console.log("Wishlist item removed from Firestore");
+      } else {
+        console.error("Wishlist item not found in Firestore");
+      }
+    } catch (error) {
+      console.error("Error removing wishlist item from Firestore:", error);
+    }
     const object = WishList.filter((obj) => obj !== location.state.id);
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
@@ -230,50 +298,63 @@ const ProductDetails = (props) => {
                   />
                 </div>
                 <div className="buyNow">
-                {isLoggedIn && 
-                (
-
-                 !cartAdded ? (
-                    <button
-                      className="btn btn-now"
-                      style={{ backgroundColor: "orangeade" }}
-                      onClick={() => addToCartbtn(location.state.id)}
-                    >
-                      Buy Now
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-now "
-                      style={{ backgroundColor: "orangeade" }}
-                      onClick={(e) => removeToCart(location.state.id)}
-                    >
-                      Remove To Cart
-                    </button>
-                  )
-                  )}
-                
+                  {isLoggedIn &&
+                    (!cartAdded ? (
+                      <button
+                        className="btn btn-now"
+                        style={{ backgroundColor: "orangeade" }}
+                        onClick={() => addToCartbtn(location.state.id)}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <ReactLoader type="ball-scale-multiple" />
+                        ) : (
+                          " Buy Now"
+                        )}
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-now "
+                        style={{ backgroundColor: "orangeade" }}
+                        onClick={(e) => removeToCart(location.state.id)}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <ReactLoader type="ball-scale-multiple" />
+                        ) : (
+                          "Remove To Cart"
+                        )}
+                      </button>
+                    ))}
                 </div>
-                {isLoggedIn   && (
-                <div className="Wishart">
-
-                  {!wishListed ? (
-                    <button
-                      style={{ border: "none", background: "transparent" }}
-                      onClick={(e) => addToWishList(e, location.state.id)}
-                    >
-                      <Blnkheart />
-                    </button>
-                  ) : (
-                    <button
-                      style={{ border: "none", background: "transparent" }}
-                      onClick={(e) => removeToWish(e, location.state.id)}
-                    >
-                      <Heart />
-                    </button>
+                {isLoggedIn && (
+                  <div className="Wishart">
+                    {!wishListed ? (
+                      <button
+                        style={{ border: "none", background: "transparent" }}
+                        onClick={(e) => addToWishList(e, location.state.id)}
+                      >
+                        {isLoading ? (
+                          <ReactLoader type="ball-scale-multiple" />
+                        ) : (
+                          <Blnkheart />
+                        )}
+                      </button>
+                    ) : (
+                      <button
+                        style={{ border: "none", background: "transparent" }}
+                        onClick={(e) => removeToWish(e, location.state.id)}
+                      >
+                        {isLoading ? (
+                          <ReactLoader type="ball-scale-multiple" />
+                        ) : (
+                         
+                        <Heart />
+                        )}
+                      </button>
+                    )}
+                  </div>
                 )}
-                </div>
-                  )}
-
               </div>
 
               <div className="delivery mt-5">
@@ -315,3 +396,5 @@ const ProductDetails = (props) => {
 };
 
 export default ProductDetails;
+
+// how to apply  loader in add to cart  and remove to cart btn
