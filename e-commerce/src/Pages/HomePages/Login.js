@@ -5,29 +5,45 @@ import Header from "../../Component/header";
 import Footer from "../../Component/Footer";
 import Images from "../../utils/images";
 import { useState } from "react";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config";
 import { useNavigate } from "react-router-dom";
 import ReactLoader from "react-loader";
+import { useDispatch } from "react-redux";
+import {AuthAction} from "../../store/action/AuthAction";
 
 const app = initializeApp(firebaseConfig);
 // const auth = getAuth(app);
 
 const Login = () => {
   const home = useNavigate();
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("48204820");
+  const [email, setEmail] = useState("chintu@gmail.com");
   const [userError, setUserError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLoggedIn(true);
-        localStorage.setItem("user",JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
+        const userId = auth.currentUser.uid;
+        const cartItems = localStorage.getItem(`@cart_${userId}`);
+        try {
+          const items = JSON.parse(cartItems);
+          console.log("items", items);
+          dispatch(AuthAction.addToCart(items));
+        } catch (error) {
+          console.log("error", error);
+        }
       } else {
         setIsLoggedIn(false);
         localStorage.removeItem("user");
@@ -52,45 +68,41 @@ const Login = () => {
   };
   const auth = getAuth();
 
-  
   const onLogin = async (e) => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (!validationCheck()) return;
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
-       
         await signInWithEmailAndPassword(auth, email, password);
         home("/");
         e.preventDefault();
-      const User = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          
-          email,
-          
-        }),
-      };
+        const User = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+          }),
+        };
 
-      const res = fetch(
-        "https://main-e-commerec-default-rtdb.firebaseio.com/UserData.json",
-        User
-      );
-      console.log(res);
-      if (res) {
-        // alert("Message Send");
-      } else {
-        //alert("Error Occurred");
-      }
+        const res = fetch(
+          "https://main-e-commerec-default-rtdb.firebaseio.com/UserData.json",
+          User
+        );
+        console.log(res);
+        if (res) {
+          // alert("Message Send");
+        } else {
+          //alert("Error Occurred");
+        }
       })
       .catch((error) => {
         alert(error.code);
         alert(error.message);
       })
-      .finally(() =>{
-        setIsLoading(false)
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -119,57 +131,58 @@ const Login = () => {
                   </span>
                   <span>Enter your details below</span>
                 </div>
-                <form method='POST'>
-                <div className="form__group field">
-                  <div className="w-100  gap-2 d-flex flex-column">
-                    <input
-                      type="text"
-                      className="form__field"
-                      placeholder=" Enter Your Email "
-                      value={email}
-                      name="uname"
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                    <span
-                      className="error"
-                      style={{ color: "red", alignItems: "baseline" }}
-                    >
-                      {userError}
-                    </span>
-                  </div>
-                  <div className="w-100  gap-2 d-flex flex-column">
-                    <input
-                      type="password"
-                      className="form__field"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                    <span
-                      className="error"
-                      style={{ color: "red", alignItems: "baseline" }}
-                    >
-                      {userError}
-                    </span>
-                  </div>
-                </div>
-                <div className="login mt-5">
-                  <div className="button-create">
-                    <div className="btn" 
-                    onClick={onLogin}
-                    >
-                       {isLoading ? <ReactLoader type="ball-scale-multiple" /> : "Log in"}
-                    
+                <form method="POST">
+                  <div className="form__group field">
+                    <div className="w-100  gap-2 d-flex flex-column">
+                      <input
+                        type="text"
+                        className="form__field"
+                        placeholder=" Enter Your Email "
+                        value={email}
+                        name="uname"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                      <span
+                        className="error"
+                        style={{ color: "red", alignItems: "baseline" }}
+                      >
+                        {userError}
+                      </span>
+                    </div>
+                    <div className="w-100  gap-2 d-flex flex-column">
+                      <input
+                        type="password"
+                        className="form__field"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                      <span
+                        className="error"
+                        style={{ color: "red", alignItems: "baseline" }}
+                      >
+                        {userError}
+                      </span>
                     </div>
                   </div>
-                  <div className="password">
-                    <span className=" d-flex flex-column justify-content-center">
-                      Forget Password?
-                    </span>
+                  <div className="login mt-5">
+                    <div className="button-create">
+                      <div className="btn" onClick={onLogin}>
+                        {isLoading ? (
+                          <ReactLoader type="ball-scale-multiple" />
+                        ) : (
+                          "Log in"
+                        )}
+                      </div>
+                    </div>
+                    <div className="password">
+                      <span className=" d-flex flex-column justify-content-center">
+                        Forget Password?
+                      </span>
+                    </div>
                   </div>
-                </div>
                 </form>
               </div>
             </div>
@@ -182,5 +195,5 @@ const Login = () => {
 };
 export const auth = getAuth(app);
 export default Login;
-  
- // 
+
+//

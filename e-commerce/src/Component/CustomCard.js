@@ -19,7 +19,7 @@ import {
 } from "firebase/firestore";
 
 const CustomCard = (props) => {
-  const { item, index, listOfProduct } = props;
+  const { item, index, listOfProduct, id } = props;
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,19 +43,26 @@ const CustomCard = (props) => {
   }, [WishList]);
 
   useEffect(() => {
+    const savedCart = localStorage.getItem("@cart");
+    if (savedCart) {
+      setCartToad(JSON.parse(savedCart));
+    }
+
+    const savedWishlist = localStorage.getItem("@wishlist");
+    if (savedWishlist) {
+      setAddToWish(JSON.parse(savedWishlist));
+    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsLoggedIn(!!user);
     });
     return () => unsubscribe();
   }, []);
 
-
-
   const fetchCartItem = async () => {
     try {
       if (!isLoggedIn) return;
-      const userId = auth.currentUser.uid;
 
+      const userId = auth.currentUser.uid;
       const querySnapshot = await getDocs(collection(db, userId));
       const cartItems = [];
       querySnapshot.forEach((doc) => {
@@ -108,15 +115,29 @@ const CustomCard = (props) => {
         quantity: 1,
       });
       fetchCartItem();
-      
+
       dispatch(AuthAction.upDateCart(item.id));
       setCartToad([...addToCart, item.id]);
+
+      localStorage.setItem(
+        `@cart_${userId}`,
+        JSON.stringify([...addToCart, item.id])
+      );
     } catch (error) {
       console.error("Error adding item to cart:", error);
     } finally {
       setIsLoading(false);
     }
   };
+  useEffect(() => {
+    if (isLoggedIn) {
+      const userId = auth.currentUser.uid;
+      const savedCart = localStorage.getItem(`@cart_${userId}`);
+      if (savedCart) {
+        setCartToad(JSON.parse(savedCart));
+      }
+    }
+  }, [isLoggedIn]);
   const addToWishList = async (e) => {
     e.stopPropagation();
     setIsLoading(true);
@@ -129,7 +150,6 @@ const CustomCard = (props) => {
         itemId: item.id,
       });
       fetchCartItem();
-     
 
       dispatch(AuthAction.upDateWishList(item.id));
       setAddToWish([...AddToWish, item.id]);
@@ -202,7 +222,20 @@ const CustomCard = (props) => {
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
   };
+  // useEffect(() => {
+  //   if (cartAdded) {
+  //     localStorage.setItem("@cart", JSON.stringify(addToCart));
+  //     console.log("addToCart", addToCart);
+  //   } else {
+  //   }
+  // }, [addToCart]);
 
+  useEffect(() => {
+    if (wishListed) {
+      localStorage.setItem("@wishlist", JSON.stringify(AddToWish));
+    } else {
+    }
+  }, [AddToWish]);
   return (
     <div className="d-flex col-3" key={index}>
       <div
@@ -220,16 +253,14 @@ const CustomCard = (props) => {
                 style={{ border: "none", background: "transparent" }}
                 onClick={(e) => addToWishList(e, item)}
               >
-                          <Blnkheart />
-               
+                <Blnkheart />
               </button>
             ) : (
               <button
                 style={{ border: "none", background: "transparent" }}
                 onClick={(e) => removeToWish(e, item)}
               >
-                        <Heart />
-                
+                <Heart />
               </button>
             ))}
           <Eyes />
@@ -255,7 +286,11 @@ const CustomCard = (props) => {
                 onClick={(e) => addToCartbtn(e, item)}
                 disabled={isLoading}
               >
-                {isLoading ? ( <ReactLoader  type="ball-scale-multiple" />  ) : ( "Add To Cart" )}
+                {isLoading ? (
+                  <ReactLoader type="ball-scale-multiple" />
+                ) : (
+                  "Add To Cart"
+                )}
               </button>
             ) : (
               <button
@@ -303,12 +338,7 @@ const CustomCard = (props) => {
   );
 };
 export default CustomCard;
-
-
-
-// 
-
-
-//add to cart item it's cannot be removed from cart ,remove item when occurs the user removes in react js 
-// get the add to cat and wishlist data  can store firestore using localstoreg
-//firestore data can store a localstoreg
+//How a login user can save AddToCart data to local storage in their account
+// how  login user can save the addtocart  in local storage in own account
+//how to get addtocart data value using user login in local storaeg
+// a user can addtocart data it is the save for the user loging data

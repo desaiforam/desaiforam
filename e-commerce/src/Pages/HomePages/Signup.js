@@ -172,10 +172,7 @@ return (
                     <button className="btn" onClick={onsubmit}>
                       {isLoading ? (
                         <ReactLoader
-                          type="Oval"
-                          color="#000"
-                          height={24}
-                          width={24}
+                          type="ball-scale-multiple" 
                         />
                       ) : (
                         "Create Account"
