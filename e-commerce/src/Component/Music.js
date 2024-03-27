@@ -10,7 +10,7 @@ const Music = (props) => {
       <div className='container'>
             <div className='row w-100' style={{background : "#000000"}}>
                 <div className='col-5 p-5 mt-1 '>
-                        <span className='mt-3 mb-4  d-flex'  style={{color: "#00FF66"}}>Categories</span>
+                        <span className='mb-4  d-flex'  style={{color: "#00FF66"}}>Categories</span>
                     <div className='enhances mb-3'>
                         <span >Enhance Your Music Experience</span>
                     </div>        

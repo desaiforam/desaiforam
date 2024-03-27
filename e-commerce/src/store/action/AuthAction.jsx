@@ -21,6 +21,9 @@ const authAction = createSlice({
     upDateCart: (state, action) => {
       state.addToCart = [...state.addToCart, action.payload];
     },
+    wishlistItem: (state, action) => {
+      state.WishList = action.payload; 
+    },
     upDateWishList: (state, action) => {
       state.WishList = [...state.WishList, action.payload];
     },

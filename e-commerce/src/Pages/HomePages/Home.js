@@ -39,8 +39,9 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-       "https://mocki.io/v1/a5299b61-f23b-4507-9868-970d07f998dc"
-     
+       "https://mocki.io/v1/9c86b615-3d28-4182-a1eb-e2f1b27fe6d5"
+      
+      
       );
       const data = response.data.map((product) => ({
         ...product,

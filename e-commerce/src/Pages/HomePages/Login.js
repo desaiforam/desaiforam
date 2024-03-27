@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import Navbar from "../../Component/Navbar";
@@ -15,15 +16,15 @@ import firebaseConfig from "../../config";
 import { useNavigate } from "react-router-dom";
 import ReactLoader from "react-loader";
 import { useDispatch } from "react-redux";
-import {AuthAction} from "../../store/action/AuthAction";
+import { AuthAction } from "../../store/action/AuthAction";
 
 const app = initializeApp(firebaseConfig);
 // const auth = getAuth(app);
 
 const Login = () => {
   const home = useNavigate();
-  const [password, setPassword] = useState("48204820");
-  const [email, setEmail] = useState("chintu@gmail.com");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [userError, setUserError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -36,11 +37,21 @@ const Login = () => {
         setIsLoggedIn(true);
         localStorage.setItem("user", JSON.stringify(user));
         const userId = auth.currentUser.uid;
-        const cartItems = localStorage.getItem(`@cart_${userId}`);
+        const cartItems = localStorage.getItem(`@cart_${userId}`) || "[]";
+        const wishlistItems =
+          localStorage.getItem(`wishlist_${userId}`) || "[]";
+
         try {
-          const items = JSON.parse(cartItems);
-          console.log("items", items);
-          dispatch(AuthAction.addToCart(items));
+          if (cartItems) {
+            const items = JSON.parse(cartItems);
+            dispatch(AuthAction.addToCart(items));
+            const wishListItems = JSON.parse(wishlistItems);
+            dispatch(AuthAction.wishlistItem(wishListItems))
+           
+          } else {
+            dispatch(AuthAction.addToCart([]));
+            dispatch(AuthAction.wishlistItem([]));
+          }
         } catch (error) {
           console.log("error", error);
         }
