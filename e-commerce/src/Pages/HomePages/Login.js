@@ -21,8 +21,9 @@ import { AuthAction } from "../../store/action/AuthAction";
 const app = initializeApp(firebaseConfig);
 // const auth = getAuth(app);
 
-const Login = () => {
+const Login = (props) => {
   const home = useNavigate();
+  const { id, } = props
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [userError, setUserError] = useState("");
@@ -40,6 +41,7 @@ const Login = () => {
         const cartItems = localStorage.getItem(`@cart_${userId}`) || "[]";
         const wishlistItems =
           localStorage.getItem(`wishlist_${userId}`) || "[]";
+        const  saveColor = localStorage.getItem(`color_${userId}_${id}`) || "[]";
 
         try {
           if (cartItems) {
@@ -47,6 +49,8 @@ const Login = () => {
             dispatch(AuthAction.addToCart(items));
             const wishListItems = JSON.parse(wishlistItems);
             dispatch(AuthAction.wishlistItem(wishListItems))
+            const savedColor = JSON.parse(saveColor);
+            dispatch(AuthAction.cartItems(savedColor))
            
           } else {
             dispatch(AuthAction.addToCart([]));
@@ -184,7 +188,7 @@ const Login = () => {
                         {isLoading ? (
                           <ReactLoader type="ball-scale-multiple" />
                         ) : (
-                          "Log in"
+                          "Log in" 
                         )}
                       </div>
                     </div>

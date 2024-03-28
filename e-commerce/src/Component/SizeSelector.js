@@ -1,18 +1,35 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
+import { auth } from "../config";
 
 function SizeSelector(props) {
   const dispatch = useDispatch();
   const { addCartItem } = useSelector((state) => state.Auth);
   const { id } = props;
- const selectedSize = addCartItem.find ((item) =>  item.id === id)?.size;
+
+  const selectedSize = addCartItem.find((item) => item.id === id)?.size;
+
   const handleSizeClick = (size) => {
-    dispatch(AuthAction.upDateSize({ id: id, size: size }));
+    const userId = auth?.currentUser?.uid;
+    const setSize = { id: id, size: size };
+    dispatch(AuthAction.upDateSize(setSize));
+
+    localStorage.setItem(`size_${userId}`, size);
   };
 
+  const userId = auth?.currentUser?.uid;
 
-  
+  const savedSize = localStorage.getItem(`size_${userId}`);
+
+  useEffect(() => {
+    const selectSize = { id: id, size: savedSize };
+    if (savedSize) {
+      dispatch(AuthAction.upDateSize(selectSize));
+      console.log("selectSize", selectSize);
+    }
+  },[addCartItem]);
   return (
     <div className="size-chart d-flex" style={{ cursor: "pointer" }}>
       <span
@@ -24,7 +41,6 @@ function SizeSelector(props) {
         onClick={() => handleSizeClick("XS")}
       >
         XS
-     
       </span>
       <span
         className={`chart ${selectedSize === "S" && "select-size"}`}
@@ -35,7 +51,6 @@ function SizeSelector(props) {
         onClick={() => handleSizeClick("S")}
       >
         S
-      
       </span>
       <span
         className={`chart ${selectedSize === "M" && "select-size"}`}
@@ -46,7 +61,6 @@ function SizeSelector(props) {
         onClick={() => handleSizeClick("M")}
       >
         M
-       
       </span>
       <span
         className={`chart ${selectedSize === "L" && "select-size"}`}
@@ -57,7 +71,6 @@ function SizeSelector(props) {
         onClick={() => handleSizeClick("L")}
       >
         L
-        
       </span>
       <span
         className={`chart ${selectedSize === "XL" && "select-size"}`}
@@ -68,7 +81,6 @@ function SizeSelector(props) {
         onClick={() => handleSizeClick("XL")}
       >
         XL
-      
       </span>
     </div>
   );
@@ -77,5 +89,3 @@ function SizeSelector(props) {
 export default SizeSelector;
 
 
-
-// get the size  value can store a redux list 

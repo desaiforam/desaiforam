@@ -24,6 +24,9 @@ const authAction = createSlice({
     wishlistItem: (state, action) => {
       state.WishList = action.payload; 
     },
+    itemsCart:(state, action) => {
+      state.addCartItem = action.payload; 
+    },
     upDateWishList: (state, action) => {
       state.WishList = [...state.WishList, action.payload];
     },
@@ -43,6 +46,7 @@ const authAction = createSlice({
     removeToWish: (state, action) => {
       state.WishList = action.payload;
     },
+//When i select size and color qty is removed
     updateQuantity: (state, action) => {
       const index = state.addCartItem.findIndex(
         (item) => item.id === action.payload.id
@@ -50,9 +54,12 @@ const authAction = createSlice({
       if (index === -1) {
         state.addCartItem = [...state.addCartItem, action.payload];
       } else {
-        state.addCartItem[index].quantity = action.payload.quantity;
+        if (action.payload.quantity != null) {
+          state.addCartItem[index].quantity = action.payload.quantity;
+        }
       }
     },
+    // if quantity  is !null
     upOnChangeQuantity: (state, action) => {
       state.quantity = [...state.quantity, action.payload];
       const list = [...state.listOfProduct];
@@ -73,6 +80,7 @@ const authAction = createSlice({
         state.addCartItem = newQuantity;
       }
     },
+
     upDateColor: (state, action) => {
       const index = state.addCartItem.findIndex(
         (item) => item.id === action.payload.id

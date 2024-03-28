@@ -107,6 +107,7 @@ const CustomCard = (props) => {
       await addDoc(collection(db, `users/${userId}/addtocart`), {
         itemId: item.id,
         quantity: 1,
+        color : "",
       });
       fetchCartItem();
 
@@ -162,7 +163,7 @@ const CustomCard = (props) => {
       if (savedCart) {
         setCartToad(JSON.parse(savedCart));
       }
-      const savedWishlist = localStorage.getItem(`@wishlist_${userId}`);
+      const savedWishlist = localStorage.getItem(`wishlist_${userId}`);
       if (savedWishlist) {
         setAddToWish(JSON.parse(savedWishlist));
         console.log("savedWishlist", savedWishlist);
@@ -338,9 +339,3 @@ const CustomCard = (props) => {
   );
 };
 export default CustomCard;
-//how  login user can save the wishlist  in local storage in own account
-// a wishlist can save the local storage in the with wishlist uid
-//How a login user can save AddToCart data to local storage in their account
-// how  login user can save the addtocart  in local storage in own account
-//how to get addtocart data value using user login in local storage
-// a user can addtocart data it is the save for the user login data

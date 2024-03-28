@@ -169,7 +169,7 @@ return (
                 </div>
                 <div className="login">
                   <div className="button-create">
-                    <button className="btn" onClick={onsubmit}>
+                    <button className="btn w-100" onClick={onsubmit}>
                       {isLoading ? (
                         <ReactLoader
                           type="ball-scale-multiple" 
@@ -206,4 +206,3 @@ return (
 export const database = getAuth(app);
 export default Signup;
 
-// get store a LoggedIn user data will also stored in a local store

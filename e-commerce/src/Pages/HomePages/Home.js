@@ -40,7 +40,7 @@ const Home = () => {
     try {
       const response = await axios.get(
        "https://mocki.io/v1/9c86b615-3d28-4182-a1eb-e2f1b27fe6d5"
-      
+     
       
       );
       const data = response.data.map((product) => ({
@@ -89,3 +89,9 @@ const Home = () => {
 export const database = getAuth(app);
 export default Home;
 
+//how  login user can save the quantitycart value  in local storage in own account
+// a wishlist can save the local storage in the with wishlist uid
+//How a login user can save AddToCart data to local storage in their account
+// how  login user can save the addtocart  in local storage in own account
+//how to get addtocart data value using user login in local storage
+// a user can addtocart data it is the save for the user login data

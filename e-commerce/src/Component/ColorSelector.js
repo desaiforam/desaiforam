@@ -1,29 +1,50 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthAction } from "../store/action/AuthAction";
 import { useDispatch, useSelector } from "react-redux";
+import { auth } from "../config";
 
 function ColorSelector(props) {
   const dispatch = useDispatch();
-  
+
   const [selectedColor, setSelectedColor] = useState("Sky");
-  const { id, } = props
+  const { id } = props;
   const { addCartItem } = useSelector((state) => state.Auth);
+
   const handleColorClick = (color) => {
+    const userId = auth.currentUser.uid;
     const setColor = { id: id, colorName: color };
     dispatch(AuthAction.upDateColor(setColor));
     setSelectedColor(color);
+
+    localStorage.setItem(`color_${userId}`, color);
   };
-  const colorSelect = addCartItem.find((item) => item.id === id
-  )?.colorName
- 
+
+  const userId = auth?.currentUser?.uid;
+
+  const savedColor = localStorage.getItem(`color_${userId}`);
+  useEffect(() => {
+    const selectedColor = { id: id, colorName: savedColor };
+    if (savedColor) {
+      dispatch(AuthAction.upDateColor(selectedColor));
+      
+    } else {
+    }
+    setSelectedColor(savedColor);
+  }, [addCartItem]);
+
+  const colorSelect = addCartItem.find((item) => item.id === id)?.colorName;
+
   return (
     <div>
       <div className="input-button">
         Colors:
         <div className="but-input d-flex gap-3">
           <div
-            className={`color-main ${colorSelect === "Sky" && "selected-color"}`}
+            className={`color-main ${
+              colorSelect === "Sky" && "selected-color"
+            }`}
             onClick={() => handleColorClick("Sky")}
           >
             <div
@@ -36,7 +57,9 @@ function ColorSelector(props) {
             ></div>
           </div>
           <div
-            className={`color-main ${colorSelect === "Orange" && "selected-color"}`}
+            className={`color-main ${
+              colorSelect === "Orange" && "selected-color"
+            }`}
             onClick={() => handleColorClick("Orange")}
           >
             <div
@@ -45,16 +68,13 @@ function ColorSelector(props) {
                 backgroundColor: "#E07575",
                 color: "#E07575",
                 margin: "3px",
-                
               }}
             ></div>
           </div>
         </div>
       </div>
-     </div>
+    </div>
   );
 }
 
 export default ColorSelector;
-
-// get the color value can store a redux list 
