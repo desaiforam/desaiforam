@@ -28,7 +28,7 @@ const CustomCard = (props) => {
   const [selectedColor, setSelectedColor] = useState();
   const [quantityCart, setQuantityCart] = useState(1);
   const [selectedSize, setSelectedSize] = useState();
-  const [AddToWish, setAddToWish] = useState([]);
+  const [addToWish, setAddToWish] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState();
   const [isLoading, setIsLoading] = useState([]);
@@ -100,34 +100,33 @@ const CustomCard = (props) => {
     e.stopPropagation();
     setIsLoading(true);
     try {
-      if (!isLoggedIn) {
+      if (!isLoggedIn) { 
         return;
       }
       const userId = auth.currentUser.uid;
       await addDoc(collection(db, `users/${userId}/addtocart`), {
         itemId: item.id,
-        quantity: 1,
-        color : "",
+         quantity: 1,
+        color: "",
+        size: "",
       });
       fetchCartItem();
-
+     
       dispatch(AuthAction.upDateCart(item.id));
+      
       setCartToad([...addToCart, item.id]);
-
-      localStorage.setItem(
-        `@cart_${userId}`,
-        JSON.stringify([...addToCart, item.id])
-      );
+      const updatedCart = [...addToCart, item.id];
+      setCartToad(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     } catch (error) {
       console.error("Error adding item to cart:", error);
     } finally {
       setIsLoading(false);
     }
-  };
-
+  }; 
   const addToWishList = async (e) => {
-    e.stopPropagation();
     setIsLoading(true);
+    e.stopPropagation();
     try {
       if (!isLoggedIn) {
         return;
@@ -139,37 +138,17 @@ const CustomCard = (props) => {
       fetchCartItem();
 
       dispatch(AuthAction.upDateWishList(item.id));
-      setAddToWish([...AddToWish, item.id]);
+      setAddToWish([...addToWish, item.id]);
+      const upDateWish = [...WishList,item.id];
+      setAddToWish(upDateWish);
 
-      const wishListItems = localStorage.getItem(`wishlist_${userId}`) || "[]";
-      const updatedWishList = JSON.parse(wishListItems);
-      updatedWishList.push(item.id);
-
-      localStorage.setItem(
-        `wishlist_${userId}`,
-        JSON.stringify([...WishList, item.id])
-      );
-      setAddToWish(updatedWishList);
+      localStorage.setItem("wishlist",JSON.stringify(upDateWish))
     } catch (error) {
       console.error("Error adding item to wishlist:", error);
     } finally {
       setIsLoading(false);
     }
   };
-  useEffect(() => {
-    if (isLoggedIn) {
-      const userId = auth.currentUser.uid;
-      const savedCart = localStorage.getItem(`@cart_${userId}`);
-      if (savedCart) {
-        setCartToad(JSON.parse(savedCart));
-      }
-      const savedWishlist = localStorage.getItem(`wishlist_${userId}`);
-      if (savedWishlist) {
-        setAddToWish(JSON.parse(savedWishlist));
-        console.log("savedWishlist", savedWishlist);
-      }
-    }
-  }, [isLoggedIn]);
 
   const removeToCart = async (e, id) => {
     e.stopPropagation();

@@ -13,14 +13,17 @@ import About from "./Pages/HomePages/About";
 import NotFound from "./Component/NotFound";
 import Post from "./Component/post";
 import { Provider } from "react-redux";
-import store from "./store/Store";
+import store, { persist } from "./store/Store";
 import WishlistItem from "./Component/Wishlist";
 import AdminLogin from "./Component/AdminLogin";
 import "./asset/style/global.scss";
+import { PersistGate } from 'redux-persist/integration/react';
 
 const App = () => {
   return (
     <Provider store={store}>
+    <PersistGate persistor= {persist}>
+    
       <div className="App">
         <BrowserRouter>
           <Routes>
@@ -41,6 +44,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </div>
+      </PersistGate>
     </Provider>
   );
 };

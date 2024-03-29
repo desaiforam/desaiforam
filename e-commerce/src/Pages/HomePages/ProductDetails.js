@@ -67,26 +67,19 @@ const ProductDetails = (props) => {
       const cartItems = [];
       querySnapshot.forEach((doc) => {
         cartItems.push(doc.data());
-      });
+      }); 
       setCartToad(cartItems);
+      const cartItem = [];
+      querySnapshot.forEach((doc) => {
+        cartItem.push(doc.data());
+      });
+      setCartToad(cartItem);
     } catch (error) {
       console.error("Error fetching cart items:", error);
     }
   };
   useEffect(() => {
     fetchCartItem();
-  }, []);
-
-  useEffect(() => {
-    const userId = auth.currentUser.uid;
-    const savedAddToCart = localStorage.getItem(`@cart_${userId}`);
-    const savedWishlist = localStorage.getItem(`wishlist_${userId}`);
-
-    const parsedAddToCart = savedAddToCart ? JSON.parse(savedAddToCart) : [];
-    const parsedWishlist = savedWishlist ? JSON.parse(savedWishlist) : [];
-
-    setCartToad(parsedAddToCart);
-    setAddToWish(parsedWishlist);
   }, []);
   const addToCartbtn = async (e) => {
     try {
@@ -99,49 +92,18 @@ const ProductDetails = (props) => {
       await addDoc(collection(db, `users/${userId}/addtocart`), {
         itemId: location.state.id,
         quantity: 1,
+        color: "",
+        size: "",
       });
       fetchCartItem();
 
       dispatch(AuthAction.upDateCart(location.state.id));
       setCartToad([...addToCart, location.state.id]);
-      const updatedAddToCart = localStorage.getItem(`@cart_${userId}`) || "[]";
-      const updatedAddToCartList = JSON.parse(updatedAddToCart)
-      updatedAddToCartList.push(location.state.id)
-      localStorage.setItem(
-        `@cart_${userId}`,
-        JSON.stringify([...addToCart,location.state.id])
-      );
+      const updatedCart = [...addToCart, location.state.id];
+      setCartToad(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     } catch (error) {
       console.error("Error adding item to cart:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };//how get the quantity value in firestore in reactjs
-  const addToWishList = async () => {
-    setIsLoading(true);
-    try {
-      if (!isLoggedIn) {
-        return;
-      }
-      const userId = auth.currentUser.uid;
-      await addDoc(collection(db, `users/${userId}/wishlist`), {
-        itemId: location.state.id,
-      });
-      fetchCartItem();
-
-      dispatch(AuthAction.upDateWishList(location.state.id));
-      setAddToWish([...AddToWish, location.state.id]);
-      const wishListItems = localStorage.getItem(`wishlist_${userId}`) || "[]";
-      const updatedWishList = JSON.parse(wishListItems);
-      updatedWishList.push(location.state.id);
-
-      localStorage.setItem(
-        `wishlist_${userId}`,
-        JSON.stringify([...WishList, location.state.id])
-      );
-      setAddToWish(updatedWishList);
-    } catch (error) {
-      console.error("Error adding item to wishlist:", error);
     } finally {
       setIsLoading(false);
     }
@@ -168,26 +130,39 @@ const ProductDetails = (props) => {
     } catch (error) {
       console.error("Error removing addToCart item from Firestore:", error);
     }
-    const updatedAddToCart = addToCart.filter(
-      (obj) => obj !== location.state.id
-    );
-    setCartToad(updatedAddToCart);
-
-    localStorage.setItem(
-      `@cart_${userId}`,
-      JSON.stringify(updatedAddToCart)
-    );
     const object = addToCart.filter((obj) => obj !== location.state.id);
-    dispatch(AuthAction.removeSize(location.state.id));
+
     dispatch(AuthAction.removeColor(location.state.id));
     dispatch(AuthAction.removeData(location.state.id));
+    dispatch(AuthAction.removeSize(location.state.id));
     dispatch(AuthAction.removeQuantity(location.state.id));
     dispatch(AuthAction.removeToCart(object));
-    setSelectedSize(object);
+
     setCartToad(object);
     setSelectedColor(object);
+    setSelectedSize(object);
     setQuantityCart(object);
   };
+  const addToWishList = async () => {
+    setIsLoading(true);
+    try {
+      if (!isLoggedIn) {
+        return;
+      }
+      const userId = auth.currentUser.uid;
+      await addDoc(collection(db, `users/${userId}/wishlist`), {
+        itemId: location.state.id,
+      });
+      fetchCartItem();
+      alert("item add to wishlist");
+
+      dispatch(AuthAction.upDateWishList(location.state.id));
+      setAddToWish([...AddToWish, location.state.id]);
+    } catch (error) {
+      console.error("Error adding item to wishlist:", error);
+    }
+  };
+
   const removeToWish = async () => {
     setIsLoading(true);
     const userId = auth.currentUser.uid;
@@ -211,15 +186,9 @@ const ProductDetails = (props) => {
     } catch (error) {
       console.error("Error removing wishlist item from Firestore:", error);
     }
-    const updatedWishList = WishList.filter((obj) => obj !== location.state.id);
-    dispatch(updatedWishList);
-    setAddToWish(updatedWishList);
-
-    localStorage.setItem(
-      `wishlist_${userId}`,
-      JSON.stringify(updatedWishList)
-    );
-   
+    const object = WishList.filter((obj) => obj !== location.state.id);
+    dispatch(AuthAction.removeToWish(object));
+    setAddToWish(object);
   };
   // 
   return (

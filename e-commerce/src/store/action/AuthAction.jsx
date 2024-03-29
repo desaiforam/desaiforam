@@ -17,12 +17,16 @@ const authAction = createSlice({
     },
     addToCart: (state, action) => {
       state.addToCart = action.payload; 
-    },
+
+      localStorage.setItem('cart', JSON.stringify(state.addToCart));
+    },//persist:root using addtocart item 
     upDateCart: (state, action) => {
       state.addToCart = [...state.addToCart, action.payload];
     },
     wishlistItem: (state, action) => {
       state.WishList = action.payload; 
+
+      localStorage.setItem("wishlist",JSON.stringify(state.WishList) )
     },
     itemsCart:(state, action) => {
       state.addCartItem = action.payload; 
@@ -46,7 +50,7 @@ const authAction = createSlice({
     removeToWish: (state, action) => {
       state.WishList = action.payload;
     },
-//When i select size and color qty is removed
+
     updateQuantity: (state, action) => {
       const index = state.addCartItem.findIndex(
         (item) => item.id === action.payload.id
@@ -58,8 +62,9 @@ const authAction = createSlice({
           state.addCartItem[index].quantity = action.payload.quantity;
         }
       }
+     
     },
-    // if quantity  is !null
+    
     upOnChangeQuantity: (state, action) => {
       state.quantity = [...state.quantity, action.payload];
       const list = [...state.listOfProduct];
@@ -91,6 +96,7 @@ const authAction = createSlice({
         state.addCartItem[index].colorName = action.payload.colorName;
       }
     },
+    
     removeColor: (state, action) => {
       if (!action.payload) {
         state.addCartItem = [];
@@ -136,6 +142,9 @@ const authAction = createSlice({
     },
   },
 });
+export const upDateColor = createAction('ADD_CART_ITEM')  
+export const {upDateSize , upDateQuantity} = createAction('ADD_CART_ITEM')
+
 export const AuthAction = authAction.actions;
 export const setPosts = createAction("SET_POSTS");
 export default authAction.reducer;

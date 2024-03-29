@@ -18,21 +18,14 @@ function ColorSelector(props) {
     dispatch(AuthAction.upDateColor(setColor));
     setSelectedColor(color);
 
-    localStorage.setItem(`color_${userId}`, color);
+    const colorChange = addCartItem;
+    localStorage.setItem("addCartItem",JSON.stringify(colorChange))
+
   };
 
   const userId = auth?.currentUser?.uid;
 
-  const savedColor = localStorage.getItem(`color_${userId}`);
-  useEffect(() => {
-    const selectedColor = { id: id, colorName: savedColor };
-    if (savedColor) {
-      dispatch(AuthAction.upDateColor(selectedColor));
-      
-    } else {
-    }
-    setSelectedColor(savedColor);
-  }, [addCartItem]);
+
 
   const colorSelect = addCartItem.find((item) => item.id === id)?.colorName;
 

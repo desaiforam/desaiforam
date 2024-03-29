@@ -36,10 +36,10 @@ const Signup = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLoggedIn(true);
-        localStorage.setItem("user",JSON.stringify(user));
+      
       } else {
         setIsLoggedIn(false);
-        localStorage.removeItem("user");
+      
       }
     });
   }, []);
@@ -80,8 +80,8 @@ const onsubmit = async (e) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userName,
-            email,
+            userName : userName,
+            email :email ,
           }),
         };
 

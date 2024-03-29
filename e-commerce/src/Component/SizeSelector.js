@@ -2,6 +2,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
+import { doc, getDoc, collection } from "firebase/firestore"; // Import collection function
+import { db } from "../firebase";
 import { auth } from "../config";
 
 function SizeSelector(props) {
@@ -10,26 +12,45 @@ function SizeSelector(props) {
   const { id } = props;
 
   const selectedSize = addCartItem.find((item) => item.id === id)?.size;
+  
+
+  useEffect(() => {
+    const fetchSizeFromFirestore = async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          console.error("User not logged in.");
+          return;
+        }
+        const userId = user.uid;
+
+        const cartItemRef = collection(db, `users/${userId}/addtocart`);
+
+        const docRef = doc(cartItemRef, id);
+
+        const cartItemSnapshot = await getDoc(docRef);
+        if (cartItemSnapshot.exists()) {
+          const sizeFromFirestore = cartItemSnapshot.data().selectedSize;
+          console.log("cartItemSnapshot", cartItemSnapshot);
+
+          dispatch(AuthAction.upDateSize({ id: id, size: sizeFromFirestore }));
+        }
+      } catch (error) {
+        console.log("Error fetching size from Firestore:", error);
+      }
+    };
+
+    fetchSizeFromFirestore();
+  }, [id, dispatch, auth.currentUser]);
 
   const handleSizeClick = (size) => {
-    const userId = auth?.currentUser?.uid;
     const setSize = { id: id, size: size };
     dispatch(AuthAction.upDateSize(setSize));
 
-    localStorage.setItem(`size_${userId}`, size);
+    const sizeChange = addCartItem;
+    localStorage.setItem("addCartItem", JSON.stringify(sizeChange));
   };
 
-  const userId = auth?.currentUser?.uid;
-
-  const savedSize = localStorage.getItem(`size_${userId}`);
-
-  useEffect(() => {
-    const selectSize = { id: id, size: savedSize };
-    if (savedSize) {
-      dispatch(AuthAction.upDateSize(selectSize));
-      console.log("selectSize", selectSize);
-    }
-  },[addCartItem]);
   return (
     <div className="size-chart d-flex" style={{ cursor: "pointer" }}>
       <span
@@ -87,5 +108,3 @@ function SizeSelector(props) {
 }
 
 export default SizeSelector;
-
-

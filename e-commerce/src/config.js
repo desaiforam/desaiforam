@@ -22,3 +22,5 @@ const db = getFirestore(app);
 
 export { app, auth, database, db, Logout };
 export default firebaseConfig;
+
+// Error fetching size from Firestore: FirebaseError: Expected first argument to collection() to be a CollectionReference, a DocumentReference or FirebaseFirestore
