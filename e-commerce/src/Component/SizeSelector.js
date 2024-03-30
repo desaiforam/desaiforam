@@ -1,54 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthAction } from "../store/action/AuthAction";
-import { doc, getDoc, collection } from "firebase/firestore"; // Import collection function
-import { db } from "../firebase";
-import { auth } from "../config";
+import { auth, db } from "../config";
+import { addDoc, collection } from "firebase/firestore";
+import { useLocation } from "react-router-dom";
 
 function SizeSelector(props) {
   const dispatch = useDispatch();
   const { addCartItem } = useSelector((state) => state.Auth);
-  const { id } = props;
+  const location = useLocation();
+  const { id, setSelectedSize } = props;
 
   const selectedSize = addCartItem.find((item) => item.id === id)?.size;
-  
 
-  useEffect(() => {
-    const fetchSizeFromFirestore = async () => {
-      try {
-        const user = auth.currentUser;
-        if (!user) {
-          console.error("User not logged in.");
-          return;
-        }
-        const userId = user.uid;
-
-        const cartItemRef = collection(db, `users/${userId}/addtocart`);
-
-        const docRef = doc(cartItemRef, id);
-
-        const cartItemSnapshot = await getDoc(docRef);
-        if (cartItemSnapshot.exists()) {
-          const sizeFromFirestore = cartItemSnapshot.data().selectedSize;
-          console.log("cartItemSnapshot", cartItemSnapshot);
-
-          dispatch(AuthAction.upDateSize({ id: id, size: sizeFromFirestore }));
-        }
-      } catch (error) {
-        console.log("Error fetching size from Firestore:", error);
-      }
-    };
-
-    fetchSizeFromFirestore();
-  }, [id, dispatch, auth.currentUser]);
-
-  const handleSizeClick = (size) => {
-    const setSize = { id: id, size: size };
-    dispatch(AuthAction.upDateSize(setSize));
-
-    const sizeChange = addCartItem;
-    localStorage.setItem("addCartItem", JSON.stringify(sizeChange));
+  const handleSizeClick = async (size) => {
+    try {
+      const setSize = { id: id, size: size };
+      dispatch(AuthAction.upDateSize(setSize));
+      setSelectedSize(size);
+      const sizeChange = addCartItem;
+      localStorage.setItem("addCartItem", JSON.stringify(sizeChange));
+      
+      const itemed = {
+        itemID: location.state.id,
+        size: size,
+      };
+      const userId = auth.currentUser.uid;
+      await addDoc(collection(db, `users/${userId}/size`), itemed);
+      console.log("itemed", itemed);
+      console.log("Document added successfully to the 'size' collection!");
+    } catch (error) {
+      console.log("Error adding document to 'size' collection:", error);
+    }
   };
 
   return (

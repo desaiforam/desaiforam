@@ -113,7 +113,8 @@ const Login = (props) => {
         setIsLoading(false);
       });
   };
-
+  //logging user  if logout  that addtocart is clear
+  
   return (
     <div>
       <Navbar />

@@ -3,31 +3,40 @@
 import React, { useEffect, useState } from "react";
 import { AuthAction } from "../store/action/AuthAction";
 import { useDispatch, useSelector } from "react-redux";
-import { auth } from "../config";
+import { auth, db } from "../config";
+import { useLocation } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
 
 function ColorSelector(props) {
   const dispatch = useDispatch();
 
-  const [selectedColor, setSelectedColor] = useState("Sky");
+  const [selectedColor, setSelectedColor] = useState();
+  const location = useLocation();
   const { id } = props;
   const { addCartItem } = useSelector((state) => state.Auth);
-
-  const handleColorClick = (color) => {
-    const userId = auth.currentUser.uid;
-    const setColor = { id: id, colorName: color };
-    dispatch(AuthAction.upDateColor(setColor));
-    setSelectedColor(color);
-
-    const colorChange = addCartItem;
-    localStorage.setItem("addCartItem",JSON.stringify(colorChange))
-
-  };
-
-  const userId = auth?.currentUser?.uid;
-
-
-
   const colorSelect = addCartItem.find((item) => item.id === id)?.colorName;
+
+  const handleColorClick = async (color) => {
+    try {
+      const setColor = { id: id, colorName: color };
+      dispatch(AuthAction.upDateColor(setColor));
+      setSelectedColor(color);
+      const colorChange = addCartItem;
+      localStorage.setItem("addCartItem", JSON.stringify(colorChange));
+
+      const colorItemed = {
+        itemID: location.state.id,
+        color: color,
+      };
+      const userId = auth.currentUser.uid;
+      await addDoc(collection(db, `users/${userId}/color`), colorItemed);
+      console.log("colorItemed", colorItemed);
+
+      console.log("Document added successfully to the 'color' collection!");
+    } catch (error) {
+      console.log("Error adding document to 'color' collection:", error);
+    }
+  };
 
   return (
     <div>

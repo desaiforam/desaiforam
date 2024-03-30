@@ -12,15 +12,19 @@ const firebaseConfig = {
   appId: "1:200883106944:web:bbfae8f5519d0febeca265",
   databaseURL: "https://main-e-commerec-default-rtdb.firebaseio.com",
 };
-const Logout = () => {
-  signOut(auth);
-};
+// const Logout = () => {
+//   signOut(auth);
+// };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 const db = getFirestore(app);
+const getDocs = getFirestore(app)
 
-export { app, auth, database, db, Logout };
+export { app, auth, database, db, getDocs };
+export const Logout = () => {
+  signOut(auth);
+};
 export default firebaseConfig;
 
-// Error fetching size from Firestore: FirebaseError: Expected first argument to collection() to be a CollectionReference, a DocumentReference or FirebaseFirestore
+//Ensure that db is properly initialized and references your Firestore instance. It should be something like:

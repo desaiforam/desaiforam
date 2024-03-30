@@ -96,6 +96,8 @@ const CustomCard = (props) => {
       state: { ...item, cartAdded: !!cartAdded, listOfProduct },
     });
   };
+
+  
   const addToCartbtn = async (e) => {
     e.stopPropagation();
     setIsLoading(true);
@@ -106,12 +108,11 @@ const CustomCard = (props) => {
       const userId = auth.currentUser.uid;
       await addDoc(collection(db, `users/${userId}/addtocart`), {
         itemId: item.id,
-         quantity: 1,
-        color: "",
-        size: "",
+
+        
       });
       fetchCartItem();
-     
+      
       dispatch(AuthAction.upDateCart(item.id));
       
       setCartToad([...addToCart, item.id]);
@@ -136,7 +137,6 @@ const CustomCard = (props) => {
         itemId: item.id,
       });
       fetchCartItem();
-
       dispatch(AuthAction.upDateWishList(item.id));
       setAddToWish([...addToWish, item.id]);
       const upDateWish = [...WishList,item.id];

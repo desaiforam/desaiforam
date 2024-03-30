@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Component/Navbar";
 import Header from "../../Component/header";
@@ -13,7 +13,7 @@ import { Blnkheart, Heart, Refresh, Truck } from "../../asset/images/svg";
 import ColorSelector from "../../Component/ColorSelector";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config";
-import { addDoc, collection, deleteDoc, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, getDocs,} from "firebase/firestore";
 import ReactLoader from "react-loader";
 
 const ProductDetails = (props) => {
@@ -81,6 +81,7 @@ const ProductDetails = (props) => {
   useEffect(() => {
     fetchCartItem();
   }, []);
+
   const addToCartbtn = async (e) => {
     try {
       if (!isLoggedIn) {
@@ -91,12 +92,8 @@ const ProductDetails = (props) => {
 
       await addDoc(collection(db, `users/${userId}/addtocart`), {
         itemId: location.state.id,
-        quantity: 1,
-        color: "",
-        size: "",
+        
       });
-      fetchCartItem();
-
       dispatch(AuthAction.upDateCart(location.state.id));
       setCartToad([...addToCart, location.state.id]);
       const updatedCart = [...addToCart, location.state.id];
@@ -108,6 +105,7 @@ const ProductDetails = (props) => {
       setIsLoading(false);
     }
   };
+
   const removeToCart = async () => {
     setIsLoading(true);
     const userId = auth.currentUser.uid;
@@ -143,6 +141,7 @@ const ProductDetails = (props) => {
     setSelectedSize(object);
     setQuantityCart(object);
   };
+  
   const addToWishList = async () => {
     setIsLoading(true);
     try {
@@ -190,7 +189,7 @@ const ProductDetails = (props) => {
     dispatch(AuthAction.removeToWish(object));
     setAddToWish(object);
   };
-  // 
+  
   return (
     <div>
       <Navbar />
